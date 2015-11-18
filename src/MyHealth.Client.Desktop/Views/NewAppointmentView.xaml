@@ -1,0 +1,72 @@
+﻿<Page x:Class="MyHealth.Client.Desktop.Views.NewAppointmentView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MyHealth.Client.Desktop"
+      xmlns:controls="clr-namespace:MyHealth.Client.Desktop.Controls"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1280"
+      d:DataContext="{d:DesignInstance local:DesignDetailsViewModel, IsDesignTimeCreatable=True}"
+      Title="NewAppointmentView"
+      Background="{StaticResource MainViewBackground}"
+      Loaded="Page_Loaded" >
+   
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="420" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="{StaticResource HeaderHeight}"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <controls:Menu Grid.Row="0" Grid.ColumnSpan="3" DataContext="{Binding CurrentHeaderViewModel}"/>
+        <controls:PatientDetails Grid.Column="0" Grid.Row="2" Margin="{StaticResource ControlMargin}" DataContext="{Binding CurrentViewModel}" Effect="{StaticResource DropShadowEffect}"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Doctor calendar" Style="{StaticResource SecondRowHeaderTextStyle}" />
+
+        <Grid Grid.Column="1" Grid.Row="2" Margin="{StaticResource ControlMargin3}" Background="{StaticResource MainViewBackground}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <ComboBox Name="DoctorSpeciality" Grid.Row="0" 
+                      Style="{DynamicResource ComboBoxStyle}"
+                      ItemsSource="{Binding CurrentViewModel.Specialties}" SelectedItem="{Binding CurrentViewModel.Specialty, Mode=TwoWay}"
+                      Text="Specialty" IsEditable="True" IsReadOnly="True" 
+                      Template="{DynamicResource ComboBoxTemplate}" 
+                      ItemContainerStyle="{DynamicResource ComboBoxItemStyle}"/>
+
+            <ComboBox Name="DoctorName" Grid.Row="2" 
+                      Style="{DynamicResource ComboBoxStyle}"
+                      IsEnabled="{Binding CurrentViewModel.IsDoctorsEnabled}" 
+                      ItemsSource="{Binding CurrentViewModel.FilteredDoctors}" SelectedItem="{Binding CurrentViewModel.Doctor, Mode=TwoWay}" DisplayMemberPath="Name" 
+                      Text="Doctor" IsEditable="True" IsReadOnly="True"
+                      Template="{DynamicResource ComboBoxTemplate}" 
+                      ItemContainerStyle="{DynamicResource ComboBoxItemStyle}"/>
+
+            <Viewbox Grid.Row="4" VerticalAlignment="Top">
+                <Calendar VerticalAlignment="Stretch" 
+                          Name="DoctorCalendar"                                               
+                          IsTodayHighlighted="True" 
+                          IsEnabled="{Binding CurrentViewModel.IsCalendarEnabled}"                          
+                          CalendarDayButtonStyle="{DynamicResource DoctorCalendarDayButtonStyle}" 
+                          CalendarItemStyle="{DynamicResource CalendarItemStyle1}" 
+                          Style="{DynamicResource CalendarStyle1}"
+                          DisplayDate="{Binding CurrentViewModel.DisplayDate}" 
+                          SelectedDate="{Binding CurrentViewModel.SelectedDate}"
+                          Effect="{StaticResource DropShadowEffect}"/>
+            </Viewbox>
+        </Grid>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="Hour and room" Style="{StaticResource SecondRowHeaderTextStyle}" />
+        <TextBlock x:Name="InfoText" Grid.Column="2" Grid.Row="2" Margin="{StaticResource ControlMargin3}" Text="{Binding CurrentViewModel.InfoText}"  Visibility="{Binding CurrentViewModel.InfoText, Converter={StaticResource InfoTextVisibilityConverter}}" Style="{StaticResource InfoTextStyle}"/>
+        <controls:AppointmentSuggestionList x:Name="SelectedAppointment" Grid.Column="2" Grid.Row="2" Margin="{StaticResource ControlMargin3}" Visibility="{Binding CurrentViewModel.PossibleAppointments, Converter={StaticResource AppointmentPickerListVisibilityConverter}}" />  
+    </Grid>
+</Page>

@@ -1,0 +1,190 @@
+﻿@import "_variables.scss";
+
+/*
+    Custom Ionic Bars and Menu Bar
+*/
+$bar-inner-glow-color: rgba(255,255,255,0.1);
+$bar-inner-glow-width: 1px;
+$bar-shadow-color: rgba(0, 0, 0, 0.3);
+
+$bar-header-menu-title-size: 18px;
+$bar-header-menu-subtitle-size: 14px;
+$bar-header-menu-info-line-height: 1.5;
+
+@-moz-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.bar.bar-header.bar-header-menu {
+    height: $bar-big-height !important;
+    background-image: url(../images/menu-header-background.svg);
+    background-color: #fbffff;
+    background-size: 108%;
+    background-position: 1px 24%;
+    display: table;
+    border: none !important;
+    box-shadow: none;
+
+    + .has-header {
+        top: $bar-big-height;
+        background-color: $base-background-color;
+    }
+}
+
+.bar-header-menu-avatar {
+    height: 84px;
+    width: 84px;
+    margin-top: -42px !important;
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    border: 4px solid white;
+    border-radius: 50%;
+}
+
+.bar-header-menu-info {
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 104px;
+
+    h4 {
+        font-size: 18px;
+        line-height: #{$bar-header-menu-info-line-height}em;
+        font-weight: 600;
+        color: $title-text-color;
+        margin: 0;
+    }
+
+    p {
+        font-size: 14px;
+        line-height: #{$bar-header-menu-info-line-height}em;
+        color: $subtitle-text-color;
+        margin: 0;
+    }
+}
+
+/*
+    Custom menu item
+*/
+.ion-item-menu-list {
+    div.list {
+        padding-top: 7px;
+    }
+}
+
+.ion-item-menu-option {
+    border: none;
+    background-color: transparent !important;
+
+    a {
+        background-color: transparent !important;
+        font-size: 16px;
+        color: white;
+
+        span {
+            vertical-align: middle;
+        }
+
+        [class^="icon-"], [class*=" icon-"] {
+            font-size: 25px;
+            margin-right: 20px;
+            display: inline-block;
+            width: 34px;
+
+            &.icon-calendar-icon {
+                margin-left: 4px;
+                width: 30px;
+            }
+
+            &.icon-refresh-icon {
+                margin-right: 15px;
+                margin-left: 5px;
+                text-align: center;
+            }
+
+            &.icon-settings-icon {
+                 text-align: center;
+            }
+
+            &.icon-spin {
+                -moz-animation-name: spin;
+                -o-animation-name: spin;
+                -webkit-animation-name: spin;
+                animation-name: spin;
+                -moz-animation-duration: 2s;
+                -o-animation-duration: 2s;
+                -webkit-animation-duration: 2s;
+                animation-duration: 2s;
+                -moz-animation-iteration-count: infinite;
+                -o-animation-iteration-count: infinite;
+                -webkit-animation-iteration-count: infinite;
+                animation-iteration-count: infinite;
+                -moz-animation-timing-function: linear;
+                -o-animation-timing-function: linear;
+                -webkit-animation-timing-function: linear;
+                animation-timing-function: linear;
+            }
+        }
+    }
+
+    &.ion-item-menu-option-active {
+        a {
+            color: $subtitle-text-color;
+        }
+    }
+
+    &.ion-item-menu-option-bottom {
+        position: absolute;
+        bottom: 0;
+    }
+}

@@ -1,0 +1,364 @@
+﻿<base:WindowsBasePage
+    x:Class="MyHealth.Client.W10.UWP.Views.AppointmentsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyHealth.Client.W10.UWP.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="using:MyHealth.Client.W10.UWP.Views.Base"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:c="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:toolkit="using:WinRTXamlToolkit.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Appointments">
+    <ScrollViewer x:Name="scrollViewer" VerticalScrollBarVisibility="Auto">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Phone">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth ="320" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="newAppointmentTitle.Visibility" Value="Collapsed" />
+                        <Setter Target="appointmentListTitle.Visibility" Value="Collapsed" />
+                        <Setter Target="nextAppointmentTitle.Visibility" Value="Collapsed" />
+                        <Setter Target="ContentGrid.Margin" Value="5" />
+                        <Setter Target="AppointmentsListGrid.(Grid.Row)" Value="1"/>
+                        <Setter Target="AppointmentsListGrid.(Grid.Column)" Value="0"/>
+                        <Setter Target="AppointmentDetailGrid.(Grid.Row)" Value="2"/>
+                        <Setter Target="AppointmentDetailGrid.(Grid.Column)" Value="0"/>
+                        <Setter Target="AppointmentsListGrid.HorizontalAlignment" Value="Stretch" />
+                        <Setter Target="NewAppointmentGrid.HorizontalAlignment" Value="Stretch" />
+                        <Setter Target="AppointmentDetailGrid.HorizontalAlignment" Value="Stretch" />
+                        <Setter Target="ContentColumn2.Width" Value="Auto"/>
+                        <Setter Target="ContentColumn3.Width" Value="Auto"/>
+                        <Setter Target="ContentColumn1.Width" Value="*" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Tablet">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth ="720" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="AppointmentDetailGrid.(Grid.Row)" Value="1"/>
+                        <Setter Target="AppointmentDetailGrid.(Grid.Column)" Value="0"/>
+                        <Setter Target="AppointmentDetailGrid.(Grid.ColumnSpan)" Value="2"/>
+                        <Setter Target="ContentColumn3.Width" Value="Auto"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Desktop">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth ="1366" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid x:Name="ContentGrid" 
+              Margin="20,0">
+            <Grid Visibility="{Binding IsBusy, Converter={StaticResource InverseBoolToVisibilityConverter}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Name="ContentColumn1" Width="420"></ColumnDefinition>
+                    <ColumnDefinition x:Name="ContentColumn2" Width="*"></ColumnDefinition>
+                    <ColumnDefinition x:Name="ContentColumn3" Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid x:Name="NewAppointmentGrid"
+                            Margin="0,0,10,10"
+                            DataContext="{Binding NewAppointmentViewModel}"
+                            VerticalAlignment="Top">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="New Appointment"
+                               Style="{StaticResource LightTextStyle}"
+                               FontSize="30"
+                               Opacity="0.87"
+                               x:Name="newAppointmentTitle"
+                               Margin="0,20" />
+                    <Grid Background="{StaticResource MyHealthWhiteThemeBrush}"
+                      Height="510" 
+                      Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <ComboBox HorizontalAlignment="Stretch"
+                                  PlaceholderText="Specialty"
+                                  Margin="10,20,10,5" 
+                                  FontFamily="/Assets/Fonts/Roboto-Regular.ttf#Roboto"
+                                  BorderThickness="1"
+                                  SelectedItem="{Binding SelectedSpeciality, Mode=TwoWay}"
+                                  ItemsSource="{Binding AvailableSpecialities}"
+                                  BorderBrush="{StaticResource MyHealthDarkGrayThemeBrush}"
+                                  Background="{StaticResource MyHealthExtraLightGrayThemeBrush}"
+                                  ItemContainerStyle="{StaticResource AppointmentsComboBoxItemStyle}"/>
+                        <ComboBox Name="combo"
+                                  Grid.Row="1"
+                                  HorizontalAlignment="Stretch"
+                                  ItemsSource="{Binding Doctors}"
+                                  Margin="10,5,10,5"
+                                  DisplayMemberPath="Name"
+                                  FontFamily="/Assets/Fonts/Roboto-Regular.ttf#Roboto"
+                                  PlaceholderText="Doctor"
+                                  SelectedItem="{Binding SelectedDoctor, Mode=TwoWay}"
+                                   BorderBrush="{StaticResource MyHealthDarkGrayThemeBrush}"
+                                  Background="{StaticResource MyHealthExtraLightGrayThemeBrush}"
+                                  ItemContainerStyle="{StaticResource AppointmentsComboBoxItemStyle}"
+                                  BorderThickness="1"/>
+                        <toolkit:Calendar Margin="10,15,10,5"
+                                          Grid.Row="2"
+                                          FontFamily="/Assets/Fonts/Roboto-Regular.ttf#Roboto"
+                                          CalendarDayButtonStyle="{StaticResource CalendarDayButtonStyle}"
+                                          CalendarButtonStyle="{StaticResource CalendarButtonStyle}"
+                                          CalendarItemStyle="{StaticResource CalendarItemStyle}" 
+                                          Style="{StaticResource CalendarStyle}"
+                                          BorderBrush="{StaticResource MyHealthDarkGrayThemeBrush}"
+                                          SelectedDate="{Binding SelectedDate, Mode=TwoWay}"
+                                          HorizontalContentAlignment="Stretch" />
+                        <ComboBox HorizontalAlignment="Left"
+                                  Grid.Row="3"
+                                  Margin="10,15,10,5"
+                                  PlaceholderText="Hour"
+                                  BorderThickness="1"
+                                  FontFamily="/Assets/Fonts/Roboto-Regular.ttf#Roboto"
+                                  ItemsSource="{Binding PossibleHours}"
+                                  SelectedItem="{Binding SelectedHour, Mode=TwoWay}"
+                                  ItemContainerStyle="{StaticResource AppointmentsComboBoxItemStyle}"
+                                   BorderBrush="{StaticResource MyHealthDarkGrayThemeBrush}"
+                                  Background="{StaticResource MyHealthExtraLightGrayThemeBrush}"/>
+                        <Grid Margin="5,10"
+                              Grid.Row="4"
+                              VerticalAlignment="Bottom">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Button Height="50"
+                                    Grid.Column="1"
+                    		        Content="Accept"
+                    		        FontSize="20"
+                                    Margin="2,0,0,0"
+                                    HorizontalAlignment="Stretch"
+                                    Command="{Binding AcceptCommand}"
+                                    FontFamily="/Assets/Fonts/Roboto-Regular.ttf#Roboto"
+                    		        Background="{StaticResource MyHealthBackgroundBlueThemeBrush}"
+                    		        Foreground="{StaticResource MyHealthWhiteThemeBrush}"
+                                    Style="{StaticResource NewAppointmentCalendarButtonStyle}"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid x:Name="AppointmentsListGrid"
+                            Margin="0,0,10,10"
+                            VerticalAlignment="Top"
+                        HorizontalAlignment="Stretch"
+                            Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Appointment List"
+                               Style="{StaticResource LightTextStyle}"
+                               FontSize="30"
+                               Opacity="0.87" 
+                               x:Name="appointmentListTitle"
+                               Margin="0,20"/>
+                    <Grid x:Name="ListViewAppointments" 
+                      Height="510"
+                      Grid.Row="1">
+                        <ListView ItemsSource="{Binding Appointments}"
+                              ItemTemplate="{StaticResource AppointmentDataTemplate}"
+                              SelectedItem="{Binding AppointmentSelectedItem, Mode=TwoWay}"
+                              IsSwipeEnabled="False"
+                              FontSize="10"
+                              IsItemClickEnabled="True"
+                              Background="Transparent"
+                              ItemContainerStyle="{StaticResource AppointmentListViewItemStyle}" SelectionChanged="ListView_SelectionChanged">
+                        </ListView>
+                    </Grid>
+                </Grid>
+                <Grid x:Name="AppointmentDetailGrid"
+                      Margin="0,0,10,10"
+                      Grid.Column="2"
+                      VerticalAlignment="Top">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Next Appointment"
+                               Style="{StaticResource LightTextStyle}"
+                               FontSize="30"
+                               Opacity="0.87"
+                               x:Name="nextAppointmentTitle"
+                               Margin="0,20" />
+                    <Grid Grid.Row="1"
+                          Height="510"
+                          Background="{StaticResource MyHealthWhiteThemeBrush}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid >
+                            <Rectangle VerticalAlignment="Bottom"
+                                   Height="1"
+                                   Fill="{StaticResource MyHealthAppointmentSelectedThemeBrush}"/>
+                            <Grid Margin="5"
+                			Background="{StaticResource MyHealthSelectedWhiteThemeBrush}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Ellipse x:Name="Picture1" Margin="20"
+                				Width="50"
+                				Height="50"
+                				Stroke="{StaticResource MyHealthWhiteThemeBrush}"
+                				StrokeThickness="2">
+                                    <Ellipse.Fill>
+                                        <ImageBrush Stretch="Fill" 
+                                                ImageSource="{Binding AppointmentSelectedItem.Doctor.Picture, Converter={StaticResource ByteArrayToImageConverter}}"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <StackPanel Orientation="Vertical"
+                				Grid.Column="1"
+                				HorizontalAlignment="Left"
+                				VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding AppointmentSelectedItem.Doctor.Name}" 
+                					FontSize="26"
+                					VerticalAlignment="Center"
+                                           Style="{StaticResource RegularTextStyle}"
+                					Foreground="{StaticResource MyHealthHeaderBlueThemeBrush}"/>
+                                    <TextBlock Text="{Binding AppointmentSelectedItem.Doctor.Speciality}" 
+                					FontSize="18"
+                                           Opacity="0.87"
+                					VerticalAlignment="Center"
+                                           Style="{StaticResource RegularTextStyle}"
+                					Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
+                                </StackPanel>
+                                <Border Grid.Column="2"
+                				    HorizontalAlignment="Right"
+                				    VerticalAlignment="Top"
+                				    Margin="3"
+                				    Background="{StaticResource MyHealthPinkLogoThemeBrush}"
+                				    Visibility="{Binding AppointmentSelectedItem.IsUrgent, Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <TextBlock Text="Urgent"
+                					       Margin="4,1"
+                					       FontSize="14"
+                                           VerticalAlignment="Center"
+                                           Style="{StaticResource RegularTextStyle}"
+                					       Foreground="{StaticResource MyHealthWhiteThemeBrush}" 
+                                           />
+                                </Border>
+                            </Grid>
+
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Rectangle VerticalAlignment="Bottom"
+                                   Height="1"
+                                   Fill="{StaticResource MyHealthAppointmentSelectedThemeBrush}"/>
+                            <StackPanel Orientation="Vertical"
+                                    Grid.Column="1"
+                                    Margin="20"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center">
+                                <TextBlock Text="Date" 
+                                   FontSize="18"
+                                       Opacity="0.87"
+                                       Style="{StaticResource RegularTextStyle}"
+                			        VerticalAlignment="Center"
+                			        Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
+                                <TextBlock Text="{Binding AppointmentSelectedItem.DateTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:MMM dd, yyyy}'}" 
+                                       FontSize="28"
+                                       Style="{StaticResource RegularTextStyle}"
+                			           VerticalAlignment="Center"
+                			           Foreground="{StaticResource MyHealthHeaderBlueThemeBrush}"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Vertical"
+                                    Margin="20"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center">
+                                <TextBlock Text="Hour" 
+                                       FontSize="18"
+                                       Opacity="0.87"
+                			           VerticalAlignment="Center"
+                                       Style="{StaticResource RegularTextStyle}"
+                			           Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
+                                <TextBlock VerticalAlignment="Center"
+                                       Style="{StaticResource RegularTextStyle}"
+                                       FontSize="28"
+                			           Foreground="{StaticResource MyHealthHeaderBlueThemeBrush}">
+                                <Run Text="{Binding AppointmentSelectedItem.DateTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:h:mm}'}"
+                                     />
+                                <Run Text="{Binding AppointmentSelectedItem.DateTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:tt}'}"
+                                     FontSize="20"/>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical"
+                                    Margin="20"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center">
+                                <TextBlock Text="Room" 
+                                       Style="{StaticResource RegularTextStyle}"
+                                       FontSize="18"
+                                       Opacity="0.87"
+                			           VerticalAlignment="Center"
+                			           Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
+                                <TextBlock Text="{Binding AppointmentSelectedItem.RoomNumber}" 
+                                       FontSize="28"
+                                        Style="{StaticResource RegularTextStyle}"
+                			           VerticalAlignment="Center"
+                			           Foreground="{StaticResource MyHealthHeaderBlueThemeBrush}"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Row="3"
+                      MaxWidth="450">
+                            <Rectangle VerticalAlignment="Top"
+                                   Height="1"
+                                   Fill="{StaticResource MyHealthAppointmentSelectedThemeBrush}"/>
+                            <TextBlock Text="{Binding AppointmentSelectedItem.Description}"
+                                    FontSize="18"
+                                    Grid.Row="1"
+                                    Margin="20"
+                		            VerticalAlignment="Top"
+                                    HorizontalAlignment="Left"
+                                    TextWrapping="Wrap"
+                                   Style="{StaticResource RegularTextStyle}"
+                                   Opacity="0.87"
+                		            Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
+                        </Grid>
+                    </Grid>
+
+
+                </Grid>
+            </Grid>
+            <!--Loading-->
+            <Grid Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}">
+                <ProgressRing Width="100" 
+                              Height="100"
+                              Foreground="{StaticResource MyHealthWhiteThemeBrush}"
+                              IsActive="True">
+                </ProgressRing>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+
+</base:WindowsBasePage>

@@ -1,0 +1,9 @@
+﻿/*
+    This file compiles ionic with the defined custom variables
+*/
+
+// Include custom variables
+@import "base/_variables.scss";
+
+// Include Ionic
+@import "../lib/ionic/scss/ionic";

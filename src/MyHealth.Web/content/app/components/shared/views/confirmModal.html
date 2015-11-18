@@ -1,0 +1,13 @@
+﻿<section class="modal-confirm">
+    <h2 class="modal-title">{{messages.title}}</h2>
+
+    <button class="modal-close" ng-click="$dismiss()"></button>
+
+    <div class="modal-body">
+        <p>{{messages.body}}</p>
+    </div>
+    <div class="modal-footer">
+        <a href="" class="modal-btn-cancel" ng-click="cancel()">{{messages.cancel}}</a>
+        <button class="button button-pinkBordered modal-btn-ok" ng-click="ok()">{{messages.ok}}</button>
+    </div>
+</section>

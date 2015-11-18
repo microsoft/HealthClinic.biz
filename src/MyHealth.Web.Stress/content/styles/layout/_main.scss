@@ -1,0 +1,28 @@
+﻿@import '../base/_variables.scss';
+
+$main-padding-top-bottom: 20px;
+$main-padding-left-right: 20px;
+$left-container-width: 257px;
+
+.main {
+    padding: $main-padding-top-bottom $main-padding-left-right;
+    overflow: hidden;
+    max-width: $container-inner;
+    margin: 0 auto;
+}
+
+.left-container {
+    $right-margin: 8px;
+    position: relative;
+    width: calc(100% - #{$left-container-width} - #{$right-margin});
+    margin-right: $right-margin;
+    height: 100%;
+    float: left;
+}
+
+.right-container {
+    width: $left-container-width;
+    height: 100%;
+    float: left;
+}
+

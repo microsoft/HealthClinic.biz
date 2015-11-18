@@ -1,0 +1,274 @@
+﻿<base:WindowsBasePage
+    x:Class="MyHealth.Client.W10.UWP.Views.UserView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyHealth.Client.W10.UWP.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="using:MyHealth.Client.W10.UWP.Views.Base"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Name="userPage"
+    Title="User">
+
+    <ScrollViewer x:Name="scrollViewer" VerticalScrollBarVisibility="Auto">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Phone">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth ="320" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="userTitle.Visibility" Value="Collapsed" />
+                        <Setter Target="appointmentHistoryTitle.Visibility" Value="Collapsed" />
+                        <Setter Target="ContentGrid.Margin" Value="5,5,7,5" />
+                        <Setter Target="UserInfoGrid.(Grid.Row)" Value="0" />
+                        <Setter Target="AppointmentHistoryGrid.(Grid.Row)" Value="1" />
+                        <Setter Target="AppointmentHistoryGrid.(Grid.Column)" Value="0" />
+                        <Setter Target="ContentColumn1.Width" Value="*" />
+                        <Setter Target="ContentColumn2.Width" Value="Auto" />
+                        <Setter Target="Picture1.Width" Value="70" />
+                        <Setter Target="Picture1.Height" Value="70" />
+                        <Setter Target="Picture1.StrokeThickness" Value="3" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="Tablet">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth ="640" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="UserInfoGrid.(Grid.Row)" Value="0" />
+                        <Setter Target="AppointmentHistoryGrid.(Grid.Row)" Value="0" />
+                        <Setter Target="AppointmentHistoryGrid.(Grid.Column)" Value="1" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid x:Name="ContentGrid" Margin="20,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Name="ContentColumn1" MinWidth="320" MaxWidth="640" Width="2*"></ColumnDefinition>
+                    <ColumnDefinition x:Name="ContentColumn2" Width="3*" MaxWidth="700"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid x:Name="UserInfoGrid"
+                  VerticalAlignment="Top"
+                  Visibility="{Binding IsBusy, Converter={StaticResource InverseBoolToVisibilityConverter}}" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="User"
+                            Style="{StaticResource LightTextStyle}"
+                            FontSize="30"
+                            Opacity="0.87"
+                            x:Name="userTitle" 
+                            Margin="0,20" />
+                    <Grid x:Name="UserInfo" Grid.Row="1"
+                          Margin="0,0,10,10"
+                          Height="415"
+                          Background="{StaticResource MyHealthWhiteThemeBrush}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Margin="5"
+                            Orientation="Horizontal"
+                            Background="{StaticResource MyHealthSelectedWhiteThemeBrush}">
+                            <Ellipse x:Name="Picture1" 
+            			             Width="150"
+            			             Height="150"
+                                     Margin="20"
+            			             Stroke="{StaticResource MyHealthWhiteThemeBrush}"
+            			             StrokeThickness="5">
+                                <Ellipse.Fill>
+                                    <ImageBrush Stretch="Fill" ImageSource="{Binding User.Picture, Converter={StaticResource ByteArrayToImageConverter}}"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <StackPanel Margin="10,0,0,0" 
+                                        Orientation="Vertical"
+                                        VerticalAlignment="Center">
+                                <TextBlock Text="{Binding User.Name}"
+                        		           HorizontalAlignment="Center"
+                        		           Style="{StaticResource RegularTextStyle}"
+                        		           VerticalAlignment="Center"
+                        		           FontSize="24"
+                        		           Foreground="{StaticResource MyHealthBackgroundBlueThemeBrush}"/>
+                                <TextBlock Text="{Binding User.ClinicId}"
+                        		HorizontalAlignment="Center"
+                        		VerticalAlignment="Center"
+                        		FontSize="18"
+                        		Opacity="0.87"
+                        		Style="{StaticResource RegularTextStyle}"
+                        		Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <Border Grid.Row="1"
+                            BorderThickness="0,1"
+                            BorderBrush="{StaticResource MyHealthAppointmentSelectedThemeBrush}">
+                            <Grid Margin="20,10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Date Of Birth"
+            			           HorizontalAlignment="Left"
+            			           VerticalAlignment="Center"
+            			           FontSize="16"
+                                   Opacity="0.87"
+                                   Style="{StaticResource RegularTextStyle}"
+            			           Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
+                                <TextBlock Text="{Binding User.DateOfBirth, Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:MMM dd, yyyy}'}"
+            			           HorizontalAlignment="Left"
+            			           VerticalAlignment="Center"
+                                   Grid.Row="1"
+            			           FontSize="22"
+                                   Style="{StaticResource RegularTextStyle}"
+            			           Foreground="{StaticResource MyHealthBackgroundBlueThemeBrush}"/>
+                                <TextBlock Text="Genre"
+                                   Grid.Column="1"
+                                   Opacity="0.87"
+            			           HorizontalAlignment="Left"
+                                   Style="{StaticResource RegularTextStyle}"
+            			           VerticalAlignment="Center"
+            			           FontSize="16"
+            			           Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
+                                <TextBlock Text="{Binding User.Gender}"
+                                   Grid.Column="1"
+            			           HorizontalAlignment="Left"
+            			           VerticalAlignment="Center"
+                                   Grid.Row="1"
+            			           FontSize="22"
+                                   Style="{StaticResource RegularTextStyle}"
+            			           Foreground="{StaticResource MyHealthBackgroundBlueThemeBrush}"/>
+                            </Grid>
+                        </Border>
+                        <Border Grid.Row="2"
+                        BorderThickness="0,0,0,1"
+                        BorderBrush="{StaticResource MyHealthAppointmentSelectedThemeBrush}">
+                            <Grid Margin="20,10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Weight"
+            			           HorizontalAlignment="Left"
+            			           VerticalAlignment="Center"
+                                   Opacity="0.87"
+            			           FontSize="16"
+            			           Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
+                                <TextBlock HorizontalAlignment="Left"
+            			           VerticalAlignment="Center"
+                                   Style="{StaticResource RegularTextStyle}"
+                                   Grid.Row="1"
+            			           Foreground="{StaticResource MyHealthBackgroundBlueThemeBrush}">
+                            <Run Text="{Binding User.Weight}"
+                                 FontSize="24"
+                                 FontWeight="Medium"/>
+                            <Run Text="lb"
+                                 FontSize="20"
+                                 FontWeight="Normal"/>
+                                </TextBlock>
+                                <TextBlock Text="Height"
+                                   Grid.Column="1"
+            			           HorizontalAlignment="Left"
+            			           VerticalAlignment="Center"
+                                   Style="{StaticResource RegularTextStyle}"
+            			           FontSize="16"
+                                   Opacity="0.87"
+            			           Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
+                                <TextBlock HorizontalAlignment="Left"
+            			           VerticalAlignment="Center"
+                                   Style="{StaticResource RegularTextStyle}"
+                                   Grid.Row="1"
+                                   Grid.Column="1"
+            			           Foreground="{StaticResource MyHealthBackgroundBlueThemeBrush}">
+                            <Run Text="{Binding User.Height}"
+                                 FontSize="24"
+                                 FontWeight="Medium"/>
+                            <Run Text="ft"
+                                 FontSize="20"
+                                 FontWeight="Normal"/>
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                        <Border Grid.Row="3">
+                            <Grid Margin="20,10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Blood Group"
+            			           HorizontalAlignment="Left"
+            			           VerticalAlignment="Center"
+            			           FontSize="16"
+                                   Style="{StaticResource RegularTextStyle}"
+            			           Foreground="{StaticResource MyHealthPinkLogoThemeBrush}"/>
+                                <TextBlock Text="{Binding User.BloodType}"
+            			           HorizontalAlignment="Left"
+            			           VerticalAlignment="Center"
+                                   Grid.Row="1"
+            			           FontSize="24"
+                                   Style="{StaticResource RegularTextStyle}"
+            			           Foreground="{StaticResource MyHealthPinkLogoThemeBrush}"/>
+                            </Grid>
+                        </Border>
+
+                    </Grid>
+                </Grid>
+                <Grid x:Name="AppointmentHistoryGrid"
+                  Margin="0,0,10,10"
+                  Visibility="{Binding IsBusy, Converter={StaticResource InverseBoolToVisibilityConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Appointment History"
+                            Style="{StaticResource LightTextStyle}"
+                            FontSize="30"
+                            Opacity="0.87"
+                            Margin="0,20"
+                            x:Name="appointmentHistoryTitle" />
+                    <ListView x:Name="ListViewHistory" 
+                              ItemsSource="{Binding AppointmentsHistory}"
+                              ItemTemplate="{StaticResource AppointmentHistoryDataTemplate}"
+                              Grid.Row="1"
+                             
+                              ItemContainerStyle="{StaticResource AppointmentHistoryListViewItemStyle}"
+                              IsSwipeEnabled="False"
+                              SelectionMode="None"
+                              IsItemClickEnabled="True"
+                              Background="Transparent" 
+                              VerticalAlignment="Stretch"
+                              ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                              ScrollViewer.VerticalScrollMode="Disabled"
+                              Style="{StaticResource AppointmentHistoryListView}">
+                    </ListView>
+                </Grid>
+
+            </Grid>
+            <!--Loading-->
+            <Grid Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}">
+                <ProgressRing Width="100" 
+                              Height="100"
+                              Foreground="{StaticResource MyHealthWhiteThemeBrush}"
+                              IsActive="True">
+
+                </ProgressRing>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</base:WindowsBasePage>

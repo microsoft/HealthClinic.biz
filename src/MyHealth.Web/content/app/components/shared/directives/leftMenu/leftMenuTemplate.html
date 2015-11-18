@@ -1,0 +1,36 @@
+﻿
+<ul class="nav left-menu" id="left-menu">
+    <li>
+        <a ui-sref="dashboard" ng-class="{selected: vm.viewName === 'dashboard'}">
+            <div class="left-menu-icon-container">
+                 <span class="icon-btn_menu_dashboard left-menu-icon" /> 
+            </div>
+            <span class="left-menu-item">Dashboard</span>
+        </a>
+    </li>
+    <li>
+        <a ui-sref="doctors" ng-class="{selected: vm.viewName === 'doctors'}">
+            <div class="left-menu-icon-container">
+                 <span class="icon-btn_menu_patients left-menu-icon" /> 
+            </div>
+            <span class="left-menu-item">Doctors</span>
+        </a>
+    </li>
+    <li>
+        <a ui-sref="patients" ng-class="{selected: vm.viewName === 'patients'}">
+            <div class="left-menu-icon-container">
+                 <span class="icon-btn_menu_doctors left-menu-icon" /> 
+            </div>
+            <span class="left-menu-item">Patients</span>
+        </a>
+    </li>
+    <li>
+        <a ui-sref="dailyReport" ng-class="{selected: vm.viewName === 'dailyReport'}">
+            <div class="left-menu-icon-container">
+                <span class="icon-btn_menu_report left-menu-icon" />
+            </div>
+            <span class="left-menu-item">Daily Report</span>
+        </a>
+    </li>
+</ul>
+

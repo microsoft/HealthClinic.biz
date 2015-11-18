@@ -1,0 +1,36 @@
+﻿@import '../../base/_variables.scss';
+
+.login-button {
+    @extend .accent-button;
+    width: 226px;
+    height: 37px;
+    background-color: transparent;
+}
+
+#login-container {
+    background: url('../images/bg_login.jpg') no-repeat;
+    height: 100%;
+    background-size: cover;
+
+    /* For some reason in EDGE there's something pushing
+       the HTML element.
+       This prevents the login page from scrolling    */
+    overflow: hidden;
+}
+
+.login-input-text {
+    border: none;
+    border-bottom: 1px solid $grey-color;
+    color: $dark-grey-color;
+    background-color: transparent;
+    width: 226px;
+}
+
+.login-error {
+    font-size: 0.9em;
+    color: $pink-color;
+}
+
+.login-hide {
+    visibility: hidden;
+}

@@ -1,0 +1,22 @@
+﻿$iterations: 101;
+
+@for $i from 1 to $iterations {
+    .padding-left-#{$i} {
+        padding-left: #{$i}px !important;
+    }
+    .padding-right-#{$i} {
+        padding-right: #{$i}px !important;
+    }
+    .margin-left-#{$i} {
+        margin-left: #{$i}px !important;
+    }
+    .margin-right-#{$i} {
+        margin-right: #{$i}px !important;
+    }
+    .margin-bottom-#{$i} {
+        margin-bottom: #{$i}px !important;
+    }
+    .margin-top-#{$i} {
+        margin-top: #{$i}px !important;
+    }
+}

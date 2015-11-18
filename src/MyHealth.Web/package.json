@@ -1,0 +1,27 @@
+{
+  "name": "MyHealth.Web",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "gulp",
+    "postinstall": "bower install --config.interactive=false & gulp"
+  },
+  "devDependencies": {
+    "babelify": "^6.3.0",
+    "browserify": "^11.1.0",
+    "gulp": "3.8.11",
+    "gulp-babel": "^5.2.1",
+    "gulp-eslint": "~1.0.0",
+    "gulp-concat": "2.5.2",
+    "gulp-csslint": "^0.2.0",
+    "gulp-cssmin": "0.1.7",
+    "gulp-ignore": "^1.2.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.0.4",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "1.2.0",
+    "gulp-util": "^3.0.6",
+    "main-bower-files": "^2.9.0",
+    "rimraf": "2.2.8",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}

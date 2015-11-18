@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title>HealthClinic.biz</title>
+    <link href="styles/site.css" rel="stylesheet" />
+    <script src="lib/angular/angular.min.js" type="text/javascript"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript"></script>
+    <script src="app/app.js" type="text/javascript"></script>
+</head>
+
+<body ng-app="app">
+
+    <header class="header">
+        <div class="header-logo"></div>
+        <div class="header-separator"></div>
+        <h1 class="header-title">CLINICS</h1>
+    </header>
+
+    <main class="container" ui-view></main>
+
+    <div class="overlay" ng-class="{'overlay-visible':loading}">
+        <div class="loading"></div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <img src="/images/logo2.png" class="footer-logo" title="HealthClinic.biz"/>
+            <div class="footer-info">
+                <span class="footer-copyright">© 2015 HealthClinic.biz</span>
+                <nav class="footer-sitemap">
+                    <ul>
+                        <li><a href="" class="footer-link">Terms</a></li>
+                        <li><a href="" class="footer-link">Privacy</a></li>
+                        <li><a href="" class="footer-link">Contact</a></li>
+                        <li><a href="" class="footer-link">Sitemap</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

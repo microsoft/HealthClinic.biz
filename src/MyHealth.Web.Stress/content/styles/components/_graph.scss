@@ -1,0 +1,73 @@
+﻿@import '../base/_variables.scss';
+
+.graph {
+    position: relative;
+    z-index: 100;
+    width: 100% !important;
+    height: 420px;
+    padding: 0 20px;
+}
+
+.graph-header {
+    font-family: 'Raleway', sans-serif;
+    overflow: hidden;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1000;
+}
+
+.graph-header-back {
+    float: left;
+    line-height: $graph-header-height;
+    cursor: pointer;
+    color: $color-blue;
+    padding: 20px;
+    background-color: $color-white;
+
+    &:hover {
+        color: darken($color-blue, 0.75%);
+    }
+}
+
+.graph-header-back-icon {
+    background: url('/images/back.png') no-repeat center;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.graph-meeting-container {
+    width: 100%;
+    height: 200px;
+    margin-top: 8px;
+    position: relative;
+
+    > ul {
+        font-size: 0;
+        padding: 0 0 0 15px;
+        position: absolute;
+        width: 100%;
+        bottom: 25px;
+
+        > li {
+            $item-number: 12;
+            display: inline-block;
+            font-size: 12px;
+            width: calc(100%/#{$item-number});
+            text-align: center;
+
+            &:before {
+                content: " ";
+                width: 1px;
+                height: 151px;
+                background: $color-graphic-grey;
+                display: block;
+                position: relative;
+                left: 37px;
+                bottom: 10px;
+            }
+        }
+    }
+}

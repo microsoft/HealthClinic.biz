@@ -1,0 +1,37 @@
+{
+  "name": "MyHealth.Web.Clinics",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node ./bin/www",
+    "postinstall": "bower install --config.interactive=false && gulp"
+  },
+  "description": "MyHealth.Web.Clinics",
+  "dependencies": {
+    "body-parser": "~1.8.1",
+    "cookie-parser": "~1.3.3",
+    "debug": "~2.0.0",
+    "express": "~4.9.0",
+    "morgan": "~1.3.0",
+    "mssql": "^2.3.1",
+    "q": "^1.4.1",
+    "serve-favicon": "~2.1.3"
+  },
+  "devDependencies": {
+    "bower": "^1.5.3",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssmin": "0.1.7",
+    "gulp-ignore": "^1.2.1",
+    "gulp-ng-annotate": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.0.4",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-typescript": "^2.9.2",
+    "gulp-tslint": "~3.4.0",
+    "gulp-uglify": "^1.4.2",
+    "gulp-util": "^3.0.6",
+    "gulp-zip": "^3.0.2",
+    "minimist": "^1.2.0",
+    "node-uuid": "^1.4.3"
+  }
+}

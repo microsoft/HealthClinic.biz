@@ -1,0 +1,78 @@
+﻿/*****************************************************
+/* VENDORS
+/*****************************************************/
+
+// Bootstrap
+@import "vendor/bootstrap/_bootstrap.scss";
+
+// ui-calendar
+@import "vendor/ui-calendar/_ui-calendar.scss";
+
+// AngulasJS-Toaster
+// Override of default variables
+@import "vendor/toaster/_toaster-overrides.scss";
+// Lib
+@import "vendor/toaster/_toaster.scss";
+
+
+/*****************************************************
+/* BASE STYLES
+/*****************************************************/
+
+// Definition of variables to use across the project.
+
+// Do not import in this file!
+//"base/variables.less"
+
+// Cross-browser reset by Nicolas Gallagher (http://necolas.github.io/normalize.css/)
+@import "base/_normalize.scss";
+
+// Custom normalize styles
+@import "base/_custom-normalize.scss";
+
+// Custom fonts definition
+@import "base/_fonts.scss";
+
+// Custom style in all app
+@import "base/_general.scss";
+
+
+/*****************************************************
+/* COMPONENTS
+/*****************************************************/
+
+@import "components/_graph.scss";
+@import "components/_legend.scss";
+@import "components/_calendar.scss";
+@import "components/_calendar-event.scss";
+@import "components/_levels.scss";
+@import "components/_appointment.scss";
+@import "components/_stressful-btn.scss";
+@import "components/_stress-legend.scss";
+@import "components/_loading.scss";
+@import "components/_toaster.scss";
+@import "components/_stressful-time.scss";
+@import "components/_appointment-graph.scss";
+@import "components/_tooltip.scss";
+
+
+/*****************************************************
+/* LAYOUT
+/*****************************************************/
+
+@import "layout/_header.scss";
+@import "layout/_main.scss";
+@import "layout/_footer.scss";
+@import "layout/_error.scss";
+@import "layout/_overlay.scss";
+@import "layout/_dailyCalendar.scss";
+
+
+/*****************************************************
+/* HELPERS
+/*****************************************************/
+
+@import "helpers/_bg.scss";
+@import "helpers/_margins.scss";
+@import "helpers/_fontsizes.scss";
+@import "helpers/_shadows.scss";

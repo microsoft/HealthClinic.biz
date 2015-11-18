@@ -1,0 +1,99 @@
+﻿@import '../../base/_variables.scss';
+
+.sidebar-menu-container {
+    padding-top: $spacing-header-content;
+}
+
+.sidebar-menu-title-container {
+    padding-left: $spacing-margin-left;
+    height: $header-height;
+    display: table;
+    table-layout: fixed;
+}
+
+.sidebar-menu-title {
+    display: table-cell;
+    width: 100%;
+    vertical-align: middle;
+    color: $color-high;
+    font-size: 1.2em;
+}
+
+.sidebar-menu-title-collapser {
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: $spacing-menu-content;
+    font-size: 2.0em;
+}
+
+.sidebar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: $menu-width;
+    transform: translate3d(-#{$menu-width + 5px}, 0, 0);
+    box-shadow: 3px 0 5px 0 black;
+    background-color: $back-color-nocontent;
+    transition: transform .5s ease;
+    z-index:1001;
+
+    &.show {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.left-menu-item {
+    padding-left: 20px;
+}
+
+.left-menu > li > a {
+    color: $left-menu-color;
+    border-left: 3px solid transparent;
+    margin-bottom: 35px;
+}
+
+.left-menu > li > a:hover, 
+.left-menu > li > a:visited {
+    color: $left-menu-color;
+    background-color: transparent;
+}
+
+.left-menu > li a.selected {
+    border-left-color: $pink-color;
+    color: $left-menu-selected-color;
+    background-color: transparent;
+}
+
+.left-menu-icon:before {
+    padding-left: $spacing-margin-left - 15px; // 15px is provided by Bootsrapp
+}
+
+.left-menu-icon-container {
+    width: 50px;
+    display: inline-block;
+}
+
+.left-menu-chevron {
+    font-size: 20px;
+}
+
+@keyframes showsidebar {
+    from {
+        transform: translate3d(-#{$menu-width}, 0px, 0px);
+    }
+
+    to {
+        transform: translate3d(0px, 0px, 0px);
+    }
+}
+
+@keyframes hidesidebar {
+    from {
+        transform: translate3d(0px, 0px, 0px);
+    }
+
+    to {
+        transform: translate3d(-#{$menu-width}, 0px, 0px);
+    }
+}

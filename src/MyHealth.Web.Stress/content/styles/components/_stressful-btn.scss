@@ -1,0 +1,39 @@
+﻿@import '../base/_variables.scss';
+
+.stressful-btn {    
+    height: 138px;
+    background: $color-pink;
+    padding: 27px 18px;
+    color: $color-white;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+    &:hover {
+        background: darken($color-pink, 5%);
+    }
+}
+
+.stressful-btn-inner {
+    display: block;
+    text-align: right;
+    margin-bottom: 18px;
+}
+
+.stressful-btn-logo {
+    display: inline-block;
+    width: 27px;
+    height: 34px;
+    margin-right: 10px;
+    background: url('/images/featured_icon.png') no-repeat center;
+}
+
+.stressful-btn-title {
+    display: block;
+    font-size: 13px;
+}
+
+.stressful-btn-subtitle {
+    display: block;
+    font-size: 19px;
+    font-weight: 300;
+}

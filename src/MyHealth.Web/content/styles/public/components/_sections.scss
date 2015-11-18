@@ -1,0 +1,235 @@
+﻿@import '../../base/_variables.scss';
+
+.main-container {
+    font-size: 0;
+}
+
+.section-info {
+    width: 100%;
+
+    .section-info-box {
+        display: inline-block;
+    }
+
+    img {
+        display: inline-block;
+    }
+}
+
+.section-info-box {
+    color: $white-color;
+
+    @media #{$for-mobile} {
+        &.col-xs-12 {
+            width: 100%;
+            padding: 55px;
+
+            .section-info-box-inner {
+                float: none;
+                width: 100%;
+                margin: 0;
+                text-align: center;
+
+                .section-info-box-title {
+                    font-size: 27px;
+                }
+            }
+        }
+    }
+}
+
+$margin-section: 125px;
+
+.section-info-box-inner {
+    @media #{$for-tablet-or-lower} {
+        margin: 90px;
+        width: $bg-content-size/2 - 100px;
+    }
+
+    @media #{$for-desktop} {
+        margin-top: 50px;
+        margin-left: 50px;
+        width: $bg-content-size/2 - $margin-section;
+    }
+
+    @media #{$for-large-desktop} {
+        margin-top: $margin-section - 25px;
+        width: $bg-content-size/2 - $margin-section;
+    }
+
+    @media (min-width:$desktop-max) and (max-width: 1500px) {
+        margin-top: 30px;
+
+        .section-info-box-title {
+            margin-bottom: 20px;
+        }
+
+        .section-info-box-text {
+            margin-bottom: 15px;
+        }
+
+        .section-info-box-button {
+            margin-top: 0;
+        }
+    }
+
+    @media #{$for-large-desktop} and (max-width: 1700px) {
+        margin-top: 50px;
+    }
+}
+
+.section-info-box-title {
+    font-weight: bold;
+    font-size: 36px;
+    letter-spacing: 0;
+    margin-bottom: 45px;
+    line-height: 45px;
+
+    @media #{$for-desktop} {
+        line-height: 35px;
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+}
+
+.section-info-box-text {
+    font-weight: normal;
+    line-height: 25px;
+    margin: 0;
+    font-size: 16px;
+    margin-bottom: 25px;
+
+    @media #{$for-desktop} {
+        line-height: 20px;
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+}
+
+$button-width: 300px;
+$button-height: 60px;
+
+.section-info-box-button {
+    border-color: $white-color;
+    height: $button-height;
+    width: $button-width;
+    color: $white-color;
+    font-size: 25px;
+    margin-top: 15px;
+
+    @media #{$for-desktop} {
+        width: $button-width - 10px;
+        font-size: 21px;
+        margin-top: 15px;
+    }
+}
+
+.section-info-box-inner-icons {
+    $size: 20px;
+
+    > img {
+        width: $size;
+        margin: $size $size 0 0;
+    }
+}
+
+.experience-section {
+    background-color: $pink-color;
+
+    .section-info-box {
+        text-align: left;
+    }
+
+    .section-info-box-inner {
+
+        @media screen and (max-width:1200px) and (min-width: 1100px) {
+            padding: 45px 0 0 22px;
+        }
+
+        @media screen and (max-width:1100px) and (min-width: 992px) {
+            padding: 22px;
+        }
+
+        @media screen and (max-width:1200px) and (min-width: 992px) {
+            margin: 2% 0 0 0;
+
+            .section-info-box-title {
+                font-size: 26px;
+            }
+
+            .section-info-box-button {
+                margin-top: 0;
+                font-size: 18px;
+                width: 240px;
+                height: 45px;
+            }
+        }
+
+        @media #{$for-desktop} {
+            margin-right: 0;
+        }
+
+        @media #{$for-large-desktop} {
+            float: right;
+            margin-right: $margin-section;
+        }
+    }
+}
+
+.professionals-section {
+    background-color: $blue-color;
+
+    .section-info-box {
+        text-align: left;
+    }
+
+    .section-info-box-inner {
+        @media screen and (max-width:1200px) and (min-width: 1100px) {
+            padding: 45px 0 0 22px;
+            margin: 2% 0 0 0;
+        }
+
+        @media screen and (max-width:1100px) and (min-width: 992px) {
+            padding: 22px;
+            margin: 2% 0 0 0;
+        }
+
+        @media #{$for-desktop} {
+            margin-right: 0;
+        }
+
+        @media #{$for-large-desktop} {
+            float: left;
+            margin-left: $margin-section;
+        }
+    }
+}
+
+.work-section {
+    background-color: $black-color;
+
+    .section-info-box {
+        text-align: left;
+    }
+
+    .section-info-box-inner {
+        @media screen and (max-width:1200px) and (min-width: 1100px) {
+            padding: 45px 0 0 22px;
+            margin: 2% 0 0 0;
+        }
+
+        @media screen and (max-width:1100px) and (min-width: 992px) {
+            padding: 22px 0 0 22px;
+            margin: 2% 0 0 0;
+        }
+
+        @media #{$for-desktop} {
+            margin-right: 0;
+        }
+
+        @media #{$for-large-desktop} {
+            float: right;
+            margin-right: $margin-section;
+        }
+    }
+}

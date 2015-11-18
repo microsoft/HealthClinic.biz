@@ -1,0 +1,65 @@
+﻿@import '../base/_variables.scss';
+
+$modal-padding: 20px;
+
+.modal-content {
+    border: 1px solid #FFF;
+    border-radius: 0;
+    padding: $modal-padding;
+}
+
+.modal-title {
+    font-size: 26px;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+.modal-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: none;
+    border: 0;
+    font-size: 34px;
+    font-weight: 200;
+    padding: 20px $modal-padding;
+    line-height: 21px;
+
+    &:after {
+        content: 'x';
+    }
+
+    &:hover,
+    &:focus {
+        outline: none;
+        transform: scale(1.1,1.1);
+        transition: transform .1s;
+    }
+}
+
+.modal-body {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.modal-footer {
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.modal-btn-cancel {
+    line-height: 30px;
+    float: left;
+    color: $black-color;
+
+    &:hover {
+        color: $black-color;
+        border-bottom: 1px dotted $black-color;
+    }
+}
+
+.modal-btn-ok {
+    float: right;
+    padding: 5px 15px;
+}

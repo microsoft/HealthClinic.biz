@@ -1,0 +1,40 @@
+﻿@import '../../base/_variables.scss';
+
+html, body {
+    background-color: $back-color-content;
+}
+
+#app {
+    position: relative;
+    min-height: 100%;
+}
+
+@media #{$for-tablet-or-lower} {
+    .content-container-inner {
+        padding: 0 20px;
+    }
+}
+
+@media #{$for-desktop} {
+    .content-container-inner {
+        padding: 0 10px;
+    }
+}
+
+@media #{$for-lost-tablet} {
+    .content-container-inner {
+        padding: 0 50px;
+    }
+}
+
+@media #{$for-lost-desktop} {
+    .content-container-inner {
+        padding: 0 10px;
+    }
+}
+
+@media #{$for-lost-large-desktop} {
+    .content-container-inner {
+        padding: 0 140px;
+    }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "cordova-plugin-ms-appinsights",
+  "version": "0.0.2",
+  "description": "Application Insights Cordova plugin.",
+  "cordova": {
+    "id": "cordova-plugin-appinsights",
+    "platforms": [
+      "android",
+      "ios",
+      "windows"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MSOpenTech/cordova-plugin-appinsights.git"
+  },
+  "keywords": [
+    "microsoft",
+    "azure",
+    "application",
+    "insights",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-windows"
+  ],
+  "author": "MSOpenTech",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/MSOpenTech/cordova-plugin-appinsights/issues"
+  },
+  "homepage": "https://github.com/MSOpenTech/cordova-plugin-appinsights#readme"
+}

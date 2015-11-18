@@ -1,0 +1,194 @@
+﻿@import '../../base/_variables.scss';
+
+.form-container {
+    background-color: $white-color;
+    border-radius: 2px;
+    font-size: 0;
+    border: 1px solid $border-bottom-input-color;
+
+    @media #{$for-desktop-or-greater} {
+        overflow: hidden;
+    }
+}
+
+.form-container-inner-left {
+    width: 100%;
+    padding: 45px 45px 15px 45px;
+
+    @media #{$for-desktop-or-greater} {
+        width: calc(100% - 290px);
+        float: left;
+
+        .input-telephone {
+            padding: 0 30px;
+        }
+
+        .input-padding-right {
+            padding-right: 30px;
+        }
+
+        .input-padding-left {
+            padding-left: 30px;
+            float: right;
+        }
+    }
+
+    .form-image-doctor-up {
+        height: 176px;
+    }
+
+    > div {
+        > label, > input {
+            display: block;
+        }
+
+        > input, > textarea {
+            margin-bottom: 35px;
+        }
+
+        > textarea {
+            resize: none;
+            min-height: 100px;
+        }
+    }
+}
+
+.form-container-inner-right {
+    width: 100%;
+
+    @media #{$for-desktop-or-greater} {
+        width: 290px;
+        float: left;
+    }
+
+    > div {
+        height: 176px;
+        border-left: 1px solid $border-bottom-input-color;
+        border-bottom: 1px solid $border-bottom-input-color;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+}
+
+.inline-input {
+    @media #{$for-desktop-or-greater} {
+        width: calc(99.5%/3);
+        display: inline-block;
+    }
+}
+
+@media #{$for-desktop-or-greater} {
+    .fix-after-icon {
+        &:after {
+            right: 32px;
+        }
+    }
+}
+
+.form-image-doctor {
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+}
+
+.form-image-doctor-img {
+    width: 125px;
+    height: 125px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.form-image-doctor-file {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    opacity: 0;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+}
+
+.form-image-doctor-button {
+    color: $pink-color;
+    background-color: transparent;
+    border: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    font-weight: 500;
+
+    &:hover {
+        color: darken($pink-color, 10%);
+        transition: color .2s ease-in-out;
+    }
+
+    span {
+        display: block;
+    }
+
+    .icon-btn_new {
+        font-size: 60px;
+        margin-bottom: 20px;
+    }
+}
+
+.form-patients-number {
+    padding-top: 30px;
+}
+
+.form-patients-number-quantity {
+    font-family: 'Roboto', sans-serif;
+    font-size: 80px;
+    font-weight: 200;
+    text-align: center;
+    display: block;
+    line-height: 75px;
+}
+
+.form-patients-number-patients {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    display: block;
+    padding-top: 10px;
+}
+
+.form-register-date {
+    text-align: center;
+}
+
+.form-register-date-title {
+    padding-top: 65px;
+    font-size: 14px;
+    display: block;
+}
+
+.form-register-date-date {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    display: block;
+    margin-top: 10px;
+}
+
+.delete-button {
+    font-size: 13px;
+    color: $pink-color;
+
+    &:hover {
+        color: darken($pink-color, 10%);
+    }
+}
+
+.form-button {
+    padding: 0 20px;
+    font-size: 13px;
+}

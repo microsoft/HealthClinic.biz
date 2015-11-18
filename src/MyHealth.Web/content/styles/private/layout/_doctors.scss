@@ -1,0 +1,32 @@
+﻿@import '../../base/_variables.scss';
+
+.action-buttons {
+    text-align:right;
+    span {
+        cursor: pointer;
+        font-size: 18px;
+
+        @media #{$for-tablet-or-lower} {
+            margin-right: 15px;
+        }
+
+        @media #{$for-desktop-or-greater} {
+            margin-right: 30px;
+        }
+
+        &:hover {
+            color: darken($black-color, 30%);
+            transition: color .2s ease-in-out;
+        }
+    }
+}
+
+.image-column {
+    text-align: center;
+
+    @media #{$for-desktop-or-greater} {
+        .custom-check {
+            margin-right: 15px;
+        }
+    }
+}

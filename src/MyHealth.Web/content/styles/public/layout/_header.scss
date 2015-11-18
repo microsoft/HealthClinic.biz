@@ -1,0 +1,142 @@
+﻿@import '../../base/_variables.scss';
+
+//Rewrite bootstrap style
+.navbar {
+    margin-bottom: 0;
+}
+
+//Banner
+.banner {
+    position: relative;
+    background-color: $blue-color;
+
+    img {
+        width: 100%;
+    }
+
+    width: 100%;
+}
+
+.banner-text {
+    position: absolute;
+    width: $bg-content-inner-size;
+
+    @media #{$for-mobile} {
+        width: 100%;
+        padding: 0 25px;
+    }
+
+    left: 50%;
+    transform: translate(-50%, -60%);
+    text-align: center;
+}
+
+.banner-text {
+    top: 50%;
+    color: $white-color;
+    font-size: 45px;
+    font-weight: 700;
+
+    strong {
+        color: $black-color;
+    }
+}
+
+.banner-subtext {
+    top: 55%;
+    color: $skyblue-color;
+    font-size: 19px;
+    font-weight: 400;
+    display: block;
+    margin-top: 35px;
+    padding: 0px 70px;
+}
+
+.carousel-inner {
+    .item {
+        @media #{$for-mobile} {
+            height: 430px;
+        }
+    }
+}
+
+.carousel-indicators {
+    bottom: 45px;
+}
+
+$item-images-height: 610px;
+
+.carousel-inner-image-one,
+.carousel-inner-image-two,
+.carousel-inner-image-three,
+.carousel-inner-image-four {
+    height: $item-images-height;
+    background-position: center center;
+}
+
+.carousel-inner-image-one {
+    background: url("/images/public/home_banner_bg_1.jpg") no-repeat center right;
+}
+
+.carousel-inner-image-two {
+    background: url("/images/public/home_banner_bg_2.jpg") no-repeat center;
+    background-size:cover;
+}
+
+.carousel-inner-image-three {
+    background: url("/images/public/home_banner_bg_3.jpg") no-repeat center;
+    background-size:cover;
+}
+
+.carousel-inner-image-four {
+    background: url("/images/public/home_banner_bg_4.jpg") no-repeat center;
+    background-size:cover;
+}
+
+$banner-footer-height: 136px;
+
+.banner-footer {
+    width: 100%;
+    background-color: $grey-color;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.banner-footer-text-left, 
+.banner-footer-text-right {
+    color: $black-color;
+    font-size: 19px;
+
+    @media #{$for-mobile} {
+        padding: 15px 0;
+        display: block;
+    }
+
+    @media #{$for-tablet-or-greater} {
+        line-height: $banner-footer-height;
+    }
+}
+
+.carousel-indicators {
+    $size-point: 50px;
+
+    li {
+        width: $size-point;
+        height: $size-point;
+        border: 0;
+        background: url("/images/animation-slider/sliderCheck.png") left center no-repeat;
+
+        &.active {
+            background-color: transparent !important;
+            animation: slider-check 1s steps(24) forwards;
+            width: $size-point;
+            height: $size-point;
+        }
+    }
+}
+
+@keyframes slider-check {
+    100% {
+        background-position: -1200px;
+    }
+}

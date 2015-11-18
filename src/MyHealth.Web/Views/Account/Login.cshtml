@@ -1,0 +1,25 @@
+﻿@model MyHealth.Web.Viewmodels.LoginViewModel
+
+
+<main id="login-container" class="container-fluid">
+    <section class="valign-center text-center">
+        <img src="~/images/private/logo_private_area_login.png" alt="MyHealth logo" />
+        <div class="margin-top-67 login-error">
+            <span class="@(ViewData.ModelState.IsValid ? "login-hide" : null)">
+                Incorrect username or password <br />
+                Please try again.
+            </span>
+        </div>
+        <form asp-action="Login" asp-controller="Account" class="margin-top-38">
+            <div>
+                <input asp-for="UserName" placeholder="User name" class="login-input-text" />
+            </div>
+            <div class="margin-top-38">
+                <input asp-for="Password" placeholder="Password" class="login-input-text" />
+            </div>
+            <div class="margin-top-68">
+                <input class="button button-pinkBordered button-little button-important" type="submit" value="LOGIN" />
+            </div>
+        </form>
+    </section>
+</main>

@@ -1,0 +1,126 @@
+﻿@import '../../base/_variables.scss';
+
+.chart-section {
+    margin: 30px 0;
+    border: 1px solid $grey-color;
+    box-shadow: 0px 0px 18px -10px $black-color;
+    background-color: $white-color;
+    border-radius: 2px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.chart-section-container {
+    width: 90%;
+    margin: 0 auto 40px auto;
+
+    canvas {
+        height: 275px;
+        padding: 0 30px;
+        background-color: $white-color;
+    }
+}
+
+.chart-section-title {
+    font-size: 19px;
+    padding: 30px;
+    color: $title-color;
+    display: inline-block;
+}
+
+.chart-section-filter {
+    font-size: 19px;
+    font-family: 'Roboto', sans-serif;
+    padding: 30px;
+    color: $title-color;
+    margin-right: 5%;
+    display: inline-block;
+    float: right;
+}
+
+.chart-section-legend {
+    margin: 0 40px 40px 40px;
+
+    li {
+        display: inline-block;
+        margin-right: 45px;
+        font-size: 13px;
+        font-family: 'Roboto', sans-serif;
+        color: $title-color;
+        text-transform: uppercase;
+
+        span {
+            height: 4px;
+            width: 15px;
+            display: inline-block;
+            border-radius: 5px;
+            margin-right: 10px;
+            line-height: 20px;
+            vertical-align: middle;
+        }
+    }
+}
+
+.chart-section-filter-year {
+    margin: 0 20px;
+}
+
+.chart-filter-btn {
+    cursor: pointer;
+}
+
+.chart-customtooltip {
+    width: 100px!important;
+    position: absolute;
+    padding: 10px;
+    border-radius: 2px;
+    transition: all, .1s ease, opacity .1s .2s linear;
+    pointer-events: none;
+    transform: translateX(-50%);
+
+    &.below {
+        transform: translate(-50%, 0);
+
+        &:before {
+            content: url('/images/dashboard/ico_arrow_tooltip.png');
+            display: block;
+            top: 0;
+            left: 50%;
+            position: absolute;            
+            transform: rotate(180deg) translate(-50%, 78%);
+        }
+    }
+
+    &.above {
+        transform: translate(-50%, -100%);
+
+        &:before {
+            content: url('/images/dashboard/ico_arrow_tooltip.png');
+            display: block;
+            left: 50%;
+            bottom: 0;
+            position: absolute;
+            transform: translate(-50%, 80%);
+        }
+    }
+
+    .title {
+        width: 100%;
+        font-weight: 700;
+        text-align: center;
+    }  
+
+    .key {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+    } 
+    
+    .value {
+       font-size: smaller;
+    }
+}

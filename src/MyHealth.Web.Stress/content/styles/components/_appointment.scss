@@ -1,0 +1,77 @@
+﻿@import '../base/_variables.scss';
+
+.appointment {
+    width: 100%;
+    height: 200px;
+    background-color: $color-dark-blue;
+    color: $color-white;
+}
+
+.appointment-title {
+    height: 44px;
+    width: 100%;
+    line-height: 44px;
+    background-color: $color-blue;
+    padding: 0 20px;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.appointment-attendee {
+    width: 100%;
+    padding: 0px 20px;
+    display: block;
+}
+
+.appointment-description {
+    height: 100%;
+    width: 100%;
+    padding: 12px 0px;
+    float: left;
+}
+
+.appointment-name {
+    display: block;
+    font-size: 15px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.appointment-email {
+    display: block;
+    font-size: 13px;
+    color: #017a73;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.appointment-graphic {
+    padding: 0 12px;
+}
+
+.appointment-image {
+    width: calc(100% - 45px - 45px);
+    background: url('/images/next_meeting_icon.png') no-repeat center;
+    background-size: 90%;
+    height: 30px;
+    display: inline-block;
+}
+
+.appointment-hour {
+    font-size: 1.3em;
+    text-transform: lowercase;
+
+    &.mini {
+        display: inline-block;
+        font-size: 10px;
+        line-height: 10px;
+        height: 30px;
+        vertical-align: middle;
+    }
+}

@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget defaultlocale="en-US" id="healthclinic.client.doctors" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">
+    <name>Doctors</name>
+    <description>
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">HealthClinic.biz</author>
+    <content src="index.html" />
+    <access origin="*" />
+    <vs:features />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="windows-target-version" value="10.0" />
+    <preference name="auto-hide-splash-screen" value="false" />
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="SplashScreenDelay" value="10000" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="SplashScreenBackgroundColor" value="#00d8cc" />
+    <platform name="android">
+        <icon density="ldpi" src="res/icons/android/icon-36-ldpi.png" />
+        <icon density="mdpi" src="res/icons/android/icon-48-mdpi.png" />
+        <icon density="hdpi" src="res/icons/android/icon-72-hdpi.png" />
+        <icon density="xhdpi" src="res/icons/android/icon-96-xhdpi.png" />
+    </platform>
+    <platform name="ios">
+        <icon height="180" src="res/icons/ios/icon-60-3x.png" width="180" />
+        <icon height="60" src="res/icons/ios/icon-60.png" width="60" />
+        <icon height="120" src="res/icons/ios/icon-60-2x.png" width="120" />
+        <icon height="76" src="res/icons/ios/icon-76.png" width="76" />
+        <icon height="152" src="res/icons/ios/icon-76-2x.png" width="152" />
+        <icon height="40" src="res/icons/ios/icon-40.png" width="40" />
+        <icon height="80" src="res/icons/ios/icon-40-2x.png" width="80" />
+        <icon height="57" src="res/icons/ios/icon-57.png" width="57" />
+        <icon height="114" src="res/icons/ios/icon-57-2x.png" width="114" />
+        <icon height="72" src="res/icons/ios/icon-72.png" width="72" />
+        <icon height="144" src="res/icons/ios/icon-72-2x.png" width="144" />
+        <icon height="29" src="res/icons/ios/icon-small.png" width="29" />
+        <icon height="58" src="res/icons/ios/icon-small-2x.png" width="58" />
+        <icon height="50" src="res/icons/ios/icon-50.png" width="50" />
+        <icon height="100" src="res/icons/ios/icon-50-2x.png" width="100" />
+    </platform>
+    <platform name="windows">
+        <icon height="150" src="res/icons/windows/Square150x150Logo.scale-100.png" width="150" />
+        <icon height="360" src="res/icons/windows/Square150x150Logo.scale-240.png" width="360" />
+        <icon height="30" src="res/icons/windows/Square30x30Logo.scale-100.png" width="30" />
+        <icon height="44" src="res/icons/windows/Square44x44Logo.scale-100.png" width="44" />
+        <icon height="310" src="res/icons/windows/Square310x310Logo.scale-100.png" width="310" />
+        <icon height="106" src="res/icons/windows/Square44x44Logo.scale-240.png" width="106" />
+        <icon height="70" src="res/icons/windows/Square70x70Logo.scale-100.png" width="70" />
+        <icon height="71" src="res/icons/windows/Square71x71Logo.scale-100.png" width="71" />
+        <icon height="170" src="res/icons/windows/Square71x71Logo.scale-240.png" width="170" />
+        <icon height="50" src="res/icons/windows/StoreLogo.scale-100.png" width="50" />
+        <icon height="120" src="res/icons/windows/StoreLogo.scale-240.png" width="120" />
+        <icon height="150" src="res/icons/windows/Wide310x150Logo.scale-100.png" width="310" />
+        <icon height="360" src="res/icons/windows/Wide310x150Logo.scale-240.png" width="744" />
+    </platform>
+    <platform name="wp8">
+        <icon height="62" src="res/icons/wp8/ApplicationIcon.png" width="62" />
+        <icon height="173" src="res/icons/wp8/Background.png" width="173" />
+    </platform>
+    <platform name="android">
+        <splash density="port-hdpi" src="res/screens/android/screen-hdpi-portrait.png" />
+        <splash density="port-ldpi" src="res/screens/android/screen-ldpi-portrait.png" />
+        <splash density="port-mdpi" src="res/screens/android/screen-mdpi-portrait.png" />
+        <splash density="port-xhdpi" src="res/screens/android/screen-xhdpi-portrait.png" />
+    </platform>
+    <platform name="ios">
+        <splash height="480" src="res/screens/ios/screen-iphone-portrait.png" width="320" />
+        <splash height="960" src="res/screens/ios/screen-iphone-portrait-2x.png" width="640" />
+        <splash height="1136" src="res/screens/ios/screen-iphone-568h-2x.png" width="640" />
+        <splash height="1334" src="res/screens/ios/screen-iphone-portrait-667h.png" width="750" />
+        <splash height="2208" src="res/screens/ios/screen-iphone-portrait-736h.png" width="1242" />
+    </platform>
+    <platform name="windows">
+        <splash height="300" src="res/screens/windows/SplashScreen.scale-100.png" width="620" />
+        <splash height="1920" src="res/screens/windows/SplashScreen.scale-240.png" width="1152" />
+        <splash height="1920" src="res/screens/windows/SplashScreenPhone.scale-240.png" width="1152" />
+    </platform>
+    <vs:plugin name="ionic-plugin-keyboard" src="../../CordovaPlugins/ionic-plugin-keyboard" version="1.0.4" />
+    <preference name="Orientation" value="portrait" />
+    <vs:plugin name="cordova-plugin-ms-appinsights" src="../../CordovaPlugins/cordova-plugin-ms-appinsights" version="0.0.2">
+        <param name="INSTRUMENTATION_KEY" value="7d0738de-dda1-49e6-afaa-9be0a062c07c" />
+    </vs:plugin>
+    <preference name="target-device" value="handset" />
+    <vs:plugin name="cordova-plugin-console" version="1.0.1" />
+    <vs:plugin name="cordova-plugin-device" version="1.0.1" />
+    <vs:plugin name="cordova-plugin-statusbar" version="1.0.1" />
+    <vs:plugin name="cordova-plugin-splashscreen" version="2.1.0" />
+    <vs:plugin name="cordova-plugin-inappbrowser" version="1.0.1" />
+    <vs:plugin name="cordova-plugin-whitelist" version="1.0.0" />
+    <preference name="android-targetSdkVersion" value="21" />
+    <allow-navigation href="*" />
+    <vs:plugin name="cordova-plugin-transport-security" version="0.1.1" />
+    <vs:plugin name="cordova-plugin-code-push" src="../../CordovaPlugins/cordova-plugin-code-push" version="1.1.0-beta" />
+    <vs:plugin name="cordova-plugin-dialogs" version="1.1.1" />
+    <platform name="android">
+        <preference name="CodePushDeploymentKey" value="559f0091-2e2a-4327-bf86-f18922cc4c26" />
+    </platform>
+    <platform name="ios">
+        <preference name="CodePushDeploymentKey" value="39e7998a-ca53-4d31-8980-824235dd324f" />
+    </platform>
+    <preference name="instrumentation_key" value="7d0738de-dda1-49e6-afaa-9be0a062c07c" />
+</widget>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="?attr/colorPrimary"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:minHeight="400dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        local:MvxBind="Visible Visibility(IsBusy), FallbackValue=false"
+        local:cardElevation="3dp"
+        local:cardCornerRadius="0dp"
+        local:cardUseCompatPadding="true">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#fff"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:orientation="vertical">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="88dp"
+                android:id="@+id/linearLayout1"
+                android:layout_margin="4dp"
+                android:background="@color/mh_tc_lightgrey">
+                <rocket.droid.CircleImageView
+                    android:src="@android:drawable/ic_menu_gallery"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/imageView1"
+                    android:layout_marginLeft="9dp"
+                    android:layout_gravity="center_vertical"
+                    local:MvxBind="Bitmap InMemoryImage(Appointment.Doctor.Picture)"
+                    android:layout_marginRight="9dp"
+                    local:border_width="4dp"
+                    local:border_color="#FFFFFF" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linearLayout5"
+                    android:layout_gravity="center_vertical">
+                    <TextView
+                        android:text="Mike Wood"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView2"
+                        android:textColor="#00d8cc"
+                        android:textSize="24dp"
+                        local:MvxBind="Text Appointment.Doctor.Name" />
+                    <TextView
+                        android:text="Neurosurgeon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView3"
+                        android:textColor="@color/normal_text"
+                        android:textSize="15dp"
+                        local:MvxBind="Text SpecialityIdToString(Appointment.Doctor.Speciality)" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:id="@+id/linearLayout2"
+                    android:gravity="right"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:background="#ff166f"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/linearLayout3"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="2dp"
+                        android:paddingBottom="1dp"
+                        android:paddingTop="1dp"
+                        local:MvxBind="Visible Visibility(Not(Appointment.IsUrgent))">
+                        <TextView
+                            android:text="Urgent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textView1"
+                            android:textColor="#ffffffff"
+                            android:textSize="10dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:id="@+id/view1"
+                android:background="@color/mh_tc_lightgrey" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout6"
+                android:paddingLeft="19dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:paddingRight="19dp">
+                <TextView
+                    android:text="Date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView4"
+                    android:textColor="@color/normal_text"
+                    android:textSize="14dp" />
+                <TextView
+                    android:text="Sep 16, 2015"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView5"
+                    android:textColor="#00d8cc"
+                    android:textSize="24dp"
+                    android:textStyle="bold"
+                    local:MvxBind="Text DateTimeToMonthDayYear(Appointment.DateTime)" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:id="@+id/view1"
+                android:background="@color/mh_tc_lightgrey" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout7"
+                android:weightSum="2"
+                android:layout_gravity="center">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:id="@+id/linearLayout6"
+                    android:paddingLeft="19dp"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:paddingRight="19dp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <TextView
+                        android:text="Hour"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView4"
+                        android:textColor="@color/normal_text"
+                        android:textSize="14dp" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:minWidth="25px"
+                        android:minHeight="25px"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/linearLayout8">
+                        <TextView
+                            android:text="12:00"
+                            android:id="@+id/textView5"
+                            android:textColor="#00d8cc"
+                            android:textSize="24dp"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            local:MvxBind="Text DateTimeToHourMinutesIndicator(Appointment.DateTime)" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:id="@+id/linearLayout6"
+                    android:paddingLeft="19dp"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:paddingRight="19dp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <TextView
+                        android:text="Room"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView4"
+                        android:textColor="@color/normal_text"
+                        android:textSize="14dp" />
+                    <TextView
+                        android:text="4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView5"
+                        android:textColor="#00d8cc"
+                        android:textSize="24dp"
+                        android:textStyle="bold"
+                        local:MvxBind="Text Appointment.RoomNumber" />
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:id="@+id/view1"
+                android:background="@color/mh_tc_lightgrey" />
+            <TextView
+                android:text="Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, placerat per."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView6"
+                android:textSize="14dp"
+                android:textColor="@color/normal_text"
+                android:layout_margin="14dp"
+                local:MvxBind="Text Appointment.Description" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

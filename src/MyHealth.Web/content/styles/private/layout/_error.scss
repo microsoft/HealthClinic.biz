@@ -1,0 +1,28 @@
+﻿@import '../../base/_variables.scss';
+
+.error-page {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    text-align: center;
+    background-color: $skyblue-color;
+
+    > h2 {
+        margin-top: 10%;
+        color: $pink-color;
+    }
+}
+
+.error-notFound-title {
+    text-align: center;
+    font-size: 80px;
+    padding-top: 10%;
+    color: $black-color;
+}
+
+.error-notFound-description {
+    text-align: center;
+    font-size: 30px;
+    color: $pink-color;
+}

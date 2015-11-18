@@ -1,0 +1,32 @@
+﻿.popup-container-home-appointment-notification {
+    .popup {
+        width: 80%;
+        background-color: white;
+    }
+
+    .popup-head {
+        display: none;
+    }
+
+    .popup-body {
+        padding: 24px 22px 20px 22px;
+        font-size: 16px;
+    }
+
+    .popup-buttons {
+        padding: 0 4px 4px 4px;
+        min-height: 56px;
+
+        button {
+            font-size: 20px;
+            border-radius: 0;
+            border: none;
+            margin: 0;
+
+            &:not(:first-child) {
+                margin-left: 4px;
+            }
+        }
+    }
+}
+

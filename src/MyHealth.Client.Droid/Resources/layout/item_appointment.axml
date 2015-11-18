@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="0dp"
+    local:cardElevation="3dp"
+    local:cardCornerRadius="0dp"
+    local:cardUseCompatPadding="true">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout1"
+        android:background="#fff">
+        <rocket.droid.CircleImageView
+            android:src="@android:drawable/ic_menu_gallery"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:id="@+id/imageView1"
+            android:layout_marginLeft="18dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            local:MvxBind="Bitmap InMemoryImage(Doctor.Picture)"
+            local:border_width="0dp" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout5"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="17dp"
+            android:layout_marginBottom="2dp">
+            <TextView
+                android:text="Mike Wood"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                android:textColor="#00d8cc"
+                android:textSize="20dp"
+                local:MvxBind="Text Doctor.Name" />
+            <TextView
+                android:text="Neurosurgeon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView3"
+                android:textColor="@color/normal_text"
+                android:textSize="14dp"
+                local:MvxBind="Text SpecialityIdToString(Doctor.Speciality)" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:id="@+id/linearLayout2"
+            android:gravity="right"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+            <TextView
+                android:text="Today"
+                android:id="@+id/textView1"
+                android:textColor="#00d8cc"
+                android:textSize="14dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                local:MvxBind="Text DateTimeToMonthDayYear(DateTime)" />
+            <TextView
+                android:text="1:15 p.m."
+                android:id="@+id/textView1"
+                android:textColor="#00d8cc"
+                android:textSize="14dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                local:MvxBind="Text DateTimeToHourMinutesIndicator(DateTime)" />
+            <LinearLayout
+                android:background="#ff166f"
+                android:paddingRight="5dp"
+                android:paddingLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/linearLayout3"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="2dp"
+                android:paddingBottom="1dp"
+                android:paddingTop="1dp"
+                local:MvxBind="Visible Visibility(Not(IsUrgent))">
+                <TextView
+                    android:text="Urgent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView1"
+                    android:textColor="#ffffffff"
+                    android:textSize="10dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

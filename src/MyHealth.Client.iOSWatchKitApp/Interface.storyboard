@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6221" systemVersion="14A389" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3734"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModuleProvider="">
+                    <items>
+                        <label alignment="left" text="Plaquinol 400mg" id="0" width="1">
+                            <color key="textColor" colorSpace="calibratedRGB" red="0" green="0.84705882352941175" blue="0.8" alpha="1"/>
+                        </label>
+                        <group width="1" alignment="left" id="2">
+                            <items>
+                                <label alignment="left" text="Next" id="1">
+                                    <color key="textColor" colorSpace="calibratedRGB" red="0" green="0.84705882352941175" blue="0.8" alpha="1"/>
+                                </label>
+                                <label alignment="right" text="8:00h" id="3"/>
+                            </items>
+                        </group>
+                        <group width="100" alignment="center" id="5" height="100">
+                            <items>
+                                <imageView alignment="center" id="6" image="heartwatch.png" verticalAlignment="center" width="76" height="76"/>
+                            </items>
+                        </group>
+                        <label alignment="left" id="8" width="1" height="1" text="Please, open Patients on your iPhone" numberOfLines="0" textAlignment="center"/>
+                    </items>
+                    <connections>
+                        <outlet property="nameLabel" destination="0" id="name-outlet-0"/>
+                        <outlet property="leftTimeLabel" destination="3" id="name-outlet-3"/>
+                        <outlet property="countdownGroup" destination="5" id="name-outlet-5"/>
+                        <outlet property="waitingLabel" destination="8" id="name-outlet-8"/>
+                        <outlet property="nextInLabel" destination="1" id="name-outlet-1"/>
+                        <outlet property="nextInGroup" destination="2" id="name-outlet-2"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="countdown0.png" width="469" height="469"/>
+        <image name="countdown1.png" width="469" height="469"/>
+        <image name="countdown2.png" width="469" height="469"/>
+        <image name="countdown3.png" width="469" height="469"/>
+        <image name="countdown4.png" width="469" height="469"/>
+        <image name="countdown5.png" width="469" height="469"/>
+        <image name="countdown6.png" width="469" height="469"/>
+        <image name="countdown7.png" width="469" height="469"/>
+        <image name="countdown8.png" width="469" height="469"/>
+        <image name="countdown9.png" width="469" height="469"/>
+        <image name="countdown10.png" width="469" height="469"/>
+        <image name="countdown11.png" width="469" height="469"/>
+        <image name="countdown12.png" width="469" height="469"/>
+        <image name="countdown13.png" width="469" height="469"/>
+        <image name="countdown14.png" width="469" height="469"/>
+        <image name="countdown15.png" width="469" height="469"/>
+        <image name="countdown16.png" width="469" height="469"/>
+        <image name="countdown17.png" width="469" height="469"/>
+        <image name="countdown18.png" width="469" height="469"/>
+        <image name="countdown19.png" width="469" height="469"/>
+        <image name="countdown20.png" width="469" height="469"/>
+        <image name="countdown21.png" width="469" height="469"/>
+        <image name="countdown22.png" width="469" height="469"/>
+        <image name="countdown23.png" width="469" height="469"/>
+        <image name="countdown24.png" width="469" height="469"/>
+        <image name="countdown25.png" width="469" height="469"/>
+        <image name="countdown26.png" width="469" height="469"/>
+        <image name="countdown27.png" width="469" height="469"/>
+        <image name="countdown28.png" width="469" height="469"/>
+        <image name="countdown29.png" width="469" height="469"/>
+        <image name="countdown30.png" width="469" height="469"/>
+        <image name="countdown31.png" width="469" height="469"/>
+        <image name="countdown32.png" width="469" height="469"/>
+        <image name="countdown33.png" width="469" height="469"/>
+        <image name="countdown34.png" width="469" height="469"/>
+        <image name="countdown35.png" width="469" height="469"/>
+        <image name="countdown36.png" width="469" height="469"/>
+        <image name="countdown37.png" width="469" height="469"/>
+        <image name="countdown38.png" width="469" height="469"/>
+        <image name="countdown39.png" width="469" height="469"/>
+        <image name="countdown40.png" width="469" height="469"/>
+        <image name="countdown41.png" width="469" height="469"/>
+        <image name="countdown42.png" width="469" height="469"/>
+        <image name="countdown43.png" width="469" height="469"/>
+        <image name="countdown44.png" width="469" height="469"/>
+        <image name="countdown45.png" width="469" height="469"/>
+        <image name="countdown46.png" width="469" height="469"/>
+        <image name="countdown47.png" width="469" height="469"/>
+        <image name="countdown48.png" width="469" height="469"/>
+        <image name="countdown49.png" width="469" height="469"/>
+        <image name="countdown50.png" width="469" height="469"/>
+        <image name="countdown51.png" width="469" height="469"/>
+        <image name="countdown52.png" width="469" height="469"/>
+        <image name="countdown53.png" width="469" height="469"/>
+        <image name="countdown54.png" width="469" height="469"/>
+        <image name="countdown55.png" width="469" height="469"/>
+        <image name="countdown56.png" width="469" height="469"/>
+        <image name="countdown57.png" width="469" height="469"/>
+        <image name="countdown58.png" width="469" height="469"/>
+        <image name="countdown59.png" width="469" height="469"/>
+        <image name="countdown60.png" width="469" height="469"/>
+        <image name="countdown61.png" width="469" height="469"/>
+        <image name="countdown62.png" width="469" height="469"/>
+        <image name="countdown63.png" width="469" height="469"/>
+        <image name="countdown64.png" width="469" height="469"/>
+        <image name="countdown65.png" width="469" height="469"/>
+        <image name="countdown66.png" width="469" height="469"/>
+        <image name="countdown67.png" width="469" height="469"/>
+        <image name="countdown68.png" width="469" height="469"/>
+        <image name="countdown69.png" width="469" height="469"/>
+        <image name="countdown70.png" width="469" height="469"/>
+        <image name="countdown71.png" width="469" height="469"/>
+        <image name="countdown72.png" width="469" height="469"/>
+        <image name="countdown73.png" width="469" height="469"/>
+        <image name="countdown74.png" width="469" height="469"/>
+        <image name="countdown75.png" width="469" height="469"/>
+        <image name="countdown76.png" width="469" height="469"/>
+        <image name="countdown77.png" width="469" height="469"/>
+        <image name="countdown78.png" width="469" height="469"/>
+        <image name="countdown79.png" width="469" height="469"/>
+        <image name="countdown80.png" width="469" height="469"/>
+        <image name="countdown81.png" width="469" height="469"/>
+        <image name="countdown82.png" width="469" height="469"/>
+        <image name="countdown83.png" width="469" height="469"/>
+        <image name="countdown84.png" width="469" height="469"/>
+        <image name="countdown85.png" width="469" height="469"/>
+        <image name="countdown86.png" width="469" height="469"/>
+        <image name="countdown87.png" width="469" height="469"/>
+        <image name="countdown88.png" width="469" height="469"/>
+        <image name="countdown89.png" width="469" height="469"/>
+        <image name="countdown90.png" width="469" height="469"/>
+        <image name="countdown91.png" width="469" height="469"/>
+        <image name="countdown92.png" width="469" height="469"/>
+        <image name="countdown93.png" width="469" height="469"/>
+        <image name="countdown94.png" width="469" height="469"/>
+        <image name="countdown95.png" width="469" height="469"/>
+        <image name="countdown96.png" width="469" height="469"/>
+        <image name="countdown97.png" width="469" height="469"/>
+        <image name="countdown98.png" width="469" height="469"/>
+        <image name="countdown99.png" width="469" height="469"/>
+        <image name="countdown100.png" width="469" height="469"/>
+        <image name="heart.png" width="184" height="148"/>
+        <image name="heartwatch.png" width="151" height="151"/>
+        <image name="countdownWatch0.png" width="234" height="234"/>
+        <image name="countdownWatch1.png" width="234" height="234"/>
+        <image name="countdownWatch10.png" width="234" height="234"/>
+        <image name="countdownWatch100.png" width="234" height="234"/>
+        <image name="countdownWatch11.png" width="234" height="234"/>
+        <image name="countdownWatch12.png" width="234" height="234"/>
+        <image name="countdownWatch13.png" width="234" height="234"/>
+        <image name="countdownWatch14.png" width="234" height="234"/>
+        <image name="countdownWatch15.png" width="234" height="234"/>
+        <image name="countdownWatch16.png" width="234" height="234"/>
+        <image name="countdownWatch17.png" width="234" height="234"/>
+        <image name="countdownWatch18.png" width="234" height="234"/>
+        <image name="countdownWatch19.png" width="234" height="234"/>
+        <image name="countdownWatch2.png" width="234" height="234"/>
+        <image name="countdownWatch20.png" width="234" height="234"/>
+        <image name="countdownWatch21.png" width="234" height="234"/>
+        <image name="countdownWatch22.png" width="234" height="234"/>
+        <image name="countdownWatch23.png" width="234" height="234"/>
+        <image name="countdownWatch24.png" width="234" height="234"/>
+        <image name="countdownWatch25.png" width="234" height="234"/>
+        <image name="countdownWatch26.png" width="234" height="234"/>
+        <image name="countdownWatch27.png" width="234" height="234"/>
+        <image name="countdownWatch28.png" width="234" height="234"/>
+        <image name="countdownWatch29.png" width="234" height="234"/>
+        <image name="countdownWatch3.png" width="234" height="234"/>
+        <image name="countdownWatch30.png" width="234" height="234"/>
+        <image name="countdownWatch31.png" width="234" height="234"/>
+        <image name="countdownWatch32.png" width="234" height="234"/>
+        <image name="countdownWatch33.png" width="234" height="234"/>
+        <image name="countdownWatch34.png" width="234" height="234"/>
+        <image name="countdownWatch35.png" width="234" height="234"/>
+        <image name="countdownWatch36.png" width="234" height="234"/>
+        <image name="countdownWatch37.png" width="234" height="234"/>
+        <image name="countdownWatch38.png" width="234" height="234"/>
+        <image name="countdownWatch39.png" width="234" height="234"/>
+        <image name="countdownWatch4.png" width="234" height="234"/>
+        <image name="countdownWatch40.png" width="234" height="234"/>
+        <image name="countdownWatch41.png" width="234" height="234"/>
+        <image name="countdownWatch42.png" width="234" height="234"/>
+        <image name="countdownWatch43.png" width="234" height="234"/>
+        <image name="countdownWatch44.png" width="234" height="234"/>
+        <image name="countdownWatch45.png" width="234" height="234"/>
+        <image name="countdownWatch46.png" width="234" height="234"/>
+        <image name="countdownWatch47.png" width="234" height="234"/>
+        <image name="countdownWatch48.png" width="234" height="234"/>
+        <image name="countdownWatch49.png" width="234" height="234"/>
+        <image name="countdownWatch5.png" width="234" height="234"/>
+        <image name="countdownWatch50.png" width="234" height="234"/>
+        <image name="countdownWatch51.png" width="234" height="234"/>
+        <image name="countdownWatch52.png" width="234" height="234"/>
+        <image name="countdownWatch53.png" width="234" height="234"/>
+        <image name="countdownWatch54.png" width="234" height="234"/>
+        <image name="countdownWatch55.png" width="234" height="234"/>
+        <image name="countdownWatch56.png" width="234" height="234"/>
+        <image name="countdownWatch57.png" width="234" height="234"/>
+        <image name="countdownWatch58.png" width="234" height="234"/>
+        <image name="countdownWatch59.png" width="234" height="234"/>
+        <image name="countdownWatch6.png" width="234" height="234"/>
+        <image name="countdownWatch60.png" width="234" height="234"/>
+        <image name="countdownWatch61.png" width="234" height="234"/>
+        <image name="countdownWatch62.png" width="234" height="234"/>
+        <image name="countdownWatch63.png" width="234" height="234"/>
+        <image name="countdownWatch64.png" width="234" height="234"/>
+        <image name="countdownWatch65.png" width="234" height="234"/>
+        <image name="countdownWatch66.png" width="234" height="234"/>
+        <image name="countdownWatch67.png" width="234" height="234"/>
+        <image name="countdownWatch68.png" width="234" height="234"/>
+        <image name="countdownWatch69.png" width="234" height="234"/>
+        <image name="countdownWatch7.png" width="234" height="234"/>
+        <image name="countdownWatch70.png" width="234" height="234"/>
+        <image name="countdownWatch71.png" width="234" height="234"/>
+        <image name="countdownWatch72.png" width="234" height="234"/>
+        <image name="countdownWatch73.png" width="234" height="234"/>
+        <image name="countdownWatch74.png" width="234" height="234"/>
+        <image name="countdownWatch75.png" width="234" height="234"/>
+        <image name="countdownWatch76.png" width="234" height="234"/>
+        <image name="countdownWatch77.png" width="234" height="234"/>
+        <image name="countdownWatch78.png" width="234" height="234"/>
+        <image name="countdownWatch79.png" width="234" height="234"/>
+        <image name="countdownWatch8.png" width="234" height="234"/>
+        <image name="countdownWatch80.png" width="234" height="234"/>
+        <image name="countdownWatch81.png" width="234" height="234"/>
+        <image name="countdownWatch82.png" width="234" height="234"/>
+        <image name="countdownWatch83.png" width="234" height="234"/>
+        <image name="countdownWatch84.png" width="234" height="234"/>
+        <image name="countdownWatch85.png" width="234" height="234"/>
+        <image name="countdownWatch86.png" width="234" height="234"/>
+        <image name="countdownWatch87.png" width="234" height="234"/>
+        <image name="countdownWatch88.png" width="234" height="234"/>
+        <image name="countdownWatch89.png" width="234" height="234"/>
+        <image name="countdownWatch9.png" width="234" height="234"/>
+        <image name="countdownWatch90.png" width="234" height="234"/>
+        <image name="countdownWatch91.png" width="234" height="234"/>
+        <image name="countdownWatch92.png" width="234" height="234"/>
+        <image name="countdownWatch93.png" width="234" height="234"/>
+        <image name="countdownWatch94.png" width="234" height="234"/>
+        <image name="countdownWatch95.png" width="234" height="234"/>
+        <image name="countdownWatch96.png" width="234" height="234"/>
+        <image name="countdownWatch97.png" width="234" height="234"/>
+        <image name="countdownWatch98.png" width="234" height="234"/>
+        <image name="countdownWatch99.png" width="234" height="234"/>
+        <image name="Images.xcassets/AppIcons.appiconset/24x24.png" width="48" height="48"/>
+        <image name="Images.xcassets/AppIcons.appiconset/27.5x27.5.png" width="55" height="55"/>
+        <image name="Images.xcassets/AppIcons.appiconset/29x29.png" width="87" height="87"/>
+        <image name="Images.xcassets/AppIcons.appiconset/40x40.png" width="80" height="80"/>
+        <image name="Images.xcassets/AppIcons.appiconset/44x44.png" width="88" height="88"/>
+        <image name="Images.xcassets/AppIcons.appiconset/86x86.png" width="172" height="172"/>
+        <image name="Images.xcassets/AppIcons.appiconset/98x98.png" width="196" height="196"/>
+    </resources>
+</document>

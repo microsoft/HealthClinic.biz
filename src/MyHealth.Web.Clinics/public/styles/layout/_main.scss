@@ -1,0 +1,10 @@
+﻿@import '../base/_variables.scss';
+
+$margin-top: 120px;
+
+.container {
+    padding: $container-padding;
+    width: 100%;
+    max-width: $container-width;
+    margin: $margin-top auto $footer-height;
+}

@@ -1,0 +1,86 @@
+﻿@import '../base/_variables.scss';
+
+.button {
+    font-size: 14px;
+    outline: none;
+    color: $white-color;
+    background-color: transparent;
+    border: none;
+
+    &:hover:not([disabled]) {
+        transition: all .2s ease;
+    }
+
+    &[disabled] {
+        opacity: .8;
+    }
+}
+
+.button-pinkBordered {
+    color: $pink-color;
+    border: 1px solid $pink-color;
+
+    &:hover:not([disabled]) {
+        background-color: $pink-color;
+        color: $white-color;
+        border-color: $pink-color;
+    }
+}
+
+.button-whiteBordered {
+    color: $white-color;
+    border: 1px solid $white-color;
+
+    &:hover:not([disabled]) {
+        background-color: $white-color;
+        color: $pink-color;
+        border-color: $white-color;
+    }
+}
+
+.button-important {
+    font-weight: bold;
+}
+
+.button-pink {
+    background: $pink-color;
+
+    &:hover:not([disabled]) {
+        background: darken($pink-color, 5%);
+    }
+}
+
+.button-white {
+    background: $white-color;
+    border: 1px solid $white-color;
+    color: $grid-letter-color;
+
+    &:hover:not([disabled]) {
+        border: 1px solid #71717f;
+    }
+}
+
+.button-action {
+    $height: 45px;
+    padding: 0 20px;
+    height: $height;
+    line-height: $height;
+    vertical-align: middle;
+    border-radius: 2px;
+}
+
+.button-little {
+    width: 226px;
+    height: 36px;
+}
+
+.button-medium {
+    width: 300px;
+    height: 60px;
+}
+
+.button-big {
+    width: 100%;
+    height: 60px;
+    max-width: 410px;
+}

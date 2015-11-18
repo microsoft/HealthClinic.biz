@@ -1,0 +1,34 @@
+﻿@import '../base/_variables.scss';
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: $header-height;
+    background: $color-blue;
+    z-index: 1000; 
+    padding: 0 40px;
+}
+
+.header-logo {
+    background: url('/images/logo1.png') no-repeat left center;
+    width: 230px;
+    height: 27px;
+}
+
+.header-user {
+    display: flex;
+    align-items: center;
+}
+
+.header-user-name {
+    color: #FFF;
+    text-transform: capitalize;
+    margin-right: 10px;
+}
+
+.header-user-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;   
+}

@@ -1,0 +1,28 @@
+﻿@import '../base/_variables.scss';
+
+.overlay {
+    display: none;
+    opacity: 0;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,.8);
+    z-index: 100000;
+
+    &.center {
+        align-items: center;
+    }
+
+    &.top {
+        padding: $header-height;
+    }
+
+    &.visible {
+        display: flex;
+        opacity: 1;
+        transition: opacity .2s;
+    }
+}

@@ -1,0 +1,49 @@
+﻿/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+
+// Ionic-related variables
+$ionicons-font-path: "../fonts" !default;
+$calm: #33e0d6;
+$dark: #3D3D4C;
+$stable: rgb(225,225,225);
+$button-stable-text: #3d3d4c;
+$bar-height: 64px;
+
+$menu-width: 304px;
+
+$calm-for-buttons: #00d8cc;
+$button-calm-bg:                  $calm-for-buttons !default;
+$button-calm-active-bg:           darken($calm-for-buttons, 5%) !default;
+
+$button-stable-active-bg:         darken($stable, 5%) !default;
+$button-dark-active-bg:           darken($dark, 5%) !default;
+
+// Default colors (green):
+$bar-calm-bg: $calm;
+$base-background-color: #00d8cc;
+$bar-calm-text: #FFFFFF;
+// New colors (grey):
+//$bar-calm-bg: #FFFFFF;
+//$base-background-color: #cacaca;
+//$bar-calm-text: $calm;
+
+// Custom variables
+$title-text-color: #00d8cc;
+$subtitle-text-color: #3d3d4c;
+$bar-big-height: 148px;

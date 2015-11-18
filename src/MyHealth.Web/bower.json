@@ -1,0 +1,15 @@
+{
+  "name": "MyHealth.Web",
+  "dependencies": {
+    "jquery": "2.1.4",
+    "angular": "~1.4.5",
+    "angular-ui-router": "~0.2.15",
+    "chartjs": "1.0.2",
+    "bootstrap": "3.3.5",
+    "hammer.js": "2.0.4",
+    "jquery-validation": "1.11.1",
+    "angularjs-toaster": "~0.4.15",
+    "angular-animate": "~1.4.7",
+    "angular-bootstrap": "~0.14.3"
+  }
+}

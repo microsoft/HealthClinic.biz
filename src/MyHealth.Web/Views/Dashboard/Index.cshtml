@@ -1,0 +1,13 @@
+﻿@{
+    Layout = "_LayoutPrivate";
+}
+
+<div id="app">
+    @await Html.PartialAsync("_Header")
+    @await Html.PartialAsync("_LeftMenu")
+
+    @await Html.PartialAsync("_Content")
+
+    @await Html.PartialAsync("_Footer")
+
+</div>

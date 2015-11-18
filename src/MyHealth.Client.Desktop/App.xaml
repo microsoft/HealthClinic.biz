@@ -1,0 +1,31 @@
+﻿<Application x:Class="MyHealth.Client.Desktop.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MyHealth.Client.Desktop"
+             xmlns:converters="clr-namespace:MyHealth.Client.Desktop.Converters"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <converters:AppointmentAgingConverter x:Key="AppointmentAgingConverter" />
+                    <converters:NotBoolConverter x:Key="NotBoolConverter" />
+                    <converters:ImageDataConverter x:Key="ImageDataConverter" />
+                    <converters:UrgencyConverter x:Key="UrgencyConverter" />
+                    <converters:DoctorSpecialityConverter x:Key="DoctorSpecialityConverter" />
+                    <converters:AppointmentDayConverter x:Key="AppointmentDayConverter" />
+                    <converters:HighlightPastDaysConverter x:Key="HighlightPastDaysConverter" />
+                    <converters:ImageOpacityConverter x:Key="ImageOpacityConverter" />
+                    <converters:AppointmentPickerListVisibilityConverter x:Key="AppointmentPickerListVisibilityConverter" />
+                    <converters:InfoTextVisibilityConverter x:Key="InfoTextVisibilityConverter" />
+                    <converters:PatientHeightConverter x:Key="PatientHeightConverter" />
+                </ResourceDictionary>
+                <ResourceDictionary Source="/Styles/Resources.xaml"/>
+                <ResourceDictionary Source="/Styles/Styles.xaml"/>
+                <ResourceDictionary Source="/Styles/CalendarStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/ComboBoxStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/ListStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

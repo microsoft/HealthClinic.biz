@@ -1,0 +1,6 @@
+﻿<div class="select-wrapper select-wrapper-block">
+    <select ng-model="notification.message">
+        <option value="choose" disabled selected>Choose a reason...</option>
+        <option ng-repeat="messageOption in messageOptions" value="{{messageOption}}">{{messageOption}}</option>
+    </select>
+</div>

@@ -1,0 +1,137 @@
+﻿@import '../../base/_variables.scss';
+
+$margin-items: 85px;
+
+.features-section {
+    padding: 0 17%;
+    margin: $margin-items auto 0 auto;
+
+    @media #{$for-tablet-or-lower} {
+        .feature-item:first-child {
+            margin-bottom: $margin-items;
+        }
+    }
+}
+
+.features-section:nth-child(3) {
+    margin: $margin-items auto;
+}
+
+.feature-item {
+    text-align: right;
+
+    .feature-item-img,
+    .feature-item-text {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    &.right {
+        text-align: right;
+
+        @media #{$for-large-desktop} {
+            padding: 0 40px 0 18px;
+        }
+
+        @media screen and (min-width:1367px) {
+            .feature-item-text {
+                padding-right: 50px;
+            }
+        }
+    }
+
+    &.left {
+        text-align: left;
+
+        @media #{$for-large-desktop} {
+            padding: 0 18px 0 60px;
+        }
+
+         @media screen and (min-width:1367px) {
+            .feature-item-text {
+                padding-left: 50px;
+            }
+        }
+    }
+
+    @media #{$for-desktop} {
+        padding: 0 32px;
+
+        .feature-item-img:first-child {
+            display: block !important;
+        }
+
+        .hidden-md {
+            display: none;
+        }
+    }
+
+    @media #{$for-desktop-or-lower} {
+        display: inherit;
+
+        .feature-item-text {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 0;
+        }
+
+        .feature-item-img {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    }
+}
+
+$img-size: 100px;
+
+.feature-item-text {
+    width: calc(100% - #{$img-size + 20px});
+
+    h2 {
+        font-weight: bolder;
+        font-size: 19px;
+        color: $blue-color;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-weight: normal;
+        font-size: 14px;
+    }
+}
+
+.feature-item-img {
+    background: {
+        repeat: no-repeat;
+        position: center center;
+        size: auto;
+    }
+
+    height: $img-size;
+    width: $img-size + 15px;
+
+    &.img-innovation {
+        background-image: url('../images/public/ico_home_innovation.png');
+    }
+
+    &.img-manage {
+        background-image: url('../images/public/ico_home_manage.png');
+    }
+
+    &.img-professionals {
+        background-image: url('../images/public/ico_home_professionals.png');
+    }
+
+    &.img-hands {
+        background-image: url('../images/public/ico_home_hands.png');
+    }
+
+    &.img-caregiver {
+        background-image: url('../images/public/ico_home_caregiver.png');
+    }
+
+    &.img-healthy {
+        background-image: url('../images/public/ico_home_healthy.png');
+    }
+}

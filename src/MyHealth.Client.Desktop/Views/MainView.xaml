@@ -1,0 +1,32 @@
+﻿<Page x:Class="MyHealth.Client.Desktop.Views.MainView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MyHealth.Client.Desktop"
+      xmlns:controls="clr-namespace:MyHealth.Client.Desktop.Controls"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      d:DataContext="{d:DesignInstance local:DesignMainViewModel, IsDesignTimeCreatable=True}"
+      Title="MainView"
+      Background="{StaticResource MainViewBackground}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource HeaderHeight}"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <controls:Menu Grid.Row="0" Grid.ColumnSpan="3" DataContext="{Binding CurrentHeaderViewModel}" />
+
+        <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Text="Next Appointments" Style="{StaticResource SecondRowHeaderTextStyle}" />
+        <controls:AppointmentList Grid.Row="3" Margin="8,0,10,10" DataContext="{Binding CurrentViewModel}"/>
+        <controls:AppointmentDetails Grid.Column="1" Grid.Row="3" Width="{StaticResource AppointmentDetailsColumnWidth}" Padding="{StaticResource ControlMargin3}" DataContext="{Binding CurrentViewModel.SelectedAppointment}" Effect="{StaticResource DropShadowEffect}"/>
+    </Grid>
+</Page>

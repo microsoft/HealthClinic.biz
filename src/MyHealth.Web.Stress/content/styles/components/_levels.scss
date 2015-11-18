@@ -1,0 +1,50 @@
+﻿@import '../base/_variables.scss';
+
+$level-title-height: 44px;
+$level-items: 6;
+
+.levels {
+    width: 100%; 
+    margin-bottom: 10px;
+    color: $color-white;
+    overflow-y: auto;
+}
+
+.levels-title {
+    height: $level-title-height;
+    width: 100%;
+    line-height: 44px;
+    background-color: $color-blue;
+    color: $color-white;
+    padding: 0 20px;
+    font-size: 13px;
+}
+
+.levels-item {
+    height: calc(100%/#{$level-items} - #{$level-title-height/$level-items});
+    width: 100%;
+    line-height: 53px;
+    background-color: $color-white;
+    color: $color-black;
+    border-bottom: 1px solid $color-grey;
+    padding: 0 20px;
+    position: relative;
+
+    &:last-child {
+        border-bottom: 0;
+    }
+}
+
+.levels-date {
+    color: $color-black;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.levels-level {
+    color: $color-blue;
+    font-weight: 600;
+    position: absolute;
+    right: 20px;
+    font-size: 22px;
+}

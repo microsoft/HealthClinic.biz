@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="MyHealth.Client.Desktop.Controls.PatientSummary"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MyHealth.Client.Desktop"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance local:DesignDetailsViewModel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="768" d:DesignWidth="450"
+             Background="{StaticResource MenuBackground}">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="280"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button Name="PatientInfoButton" Grid.Row="0" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="patientInfo_Click" DataContext="{Binding Patient}">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid Name="ButtonContentGrid" Background="{StaticResource PatientSummaryBackground}" Margin="4,4,4,4"  >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+                        <Rectangle Grid.RowSpan="3" Fill="Transparent"  />
+                        <Canvas Grid.Row="0" Width="208" HorizontalAlignment="Center">
+
+                            <Ellipse Width="{StaticResource LargeImageSize}" Height="{StaticResource LargeImageSize}" Canvas.Left="0" Canvas.Top="-30" Stroke="White" Margin="4" Grid.Row="0" StrokeThickness="5" HorizontalAlignment="Center">
+
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="{Binding Picture, Converter={StaticResource ImageDataConverter} }" />
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Canvas>
+                        <TextBlock  Text="{Binding Name}" HorizontalAlignment="Center" Style="{StaticResource PatientNameTextStyle}" Grid.Row="1" />
+                        <TextBlock  Text="{Binding ClinicId}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource PatientClinicIDTextStyle}" Foreground="#71717F" Grid.Row="2"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonContentGrid" Property="Background" Value="#E8E8E8"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="ButtonContentGrid" Property="Background" Value="LightGray"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Border BorderThickness="0,0,0,1"  BorderBrush="{StaticResource PatientInfoSeparatorLineColor}" Grid.Row="1"/>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" MinWidth="100"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock  Text="Date of birth"  HorizontalAlignment="Left" Style="{StaticResource PatientSummaryTitleStyle}" Grid.Column="0" />
+            <TextBlock  Text="Gender"  HorizontalAlignment="Left" Style="{StaticResource PatientSummaryTitleStyle}"  Grid.Column="1" />
+            <TextBlock  Text="{Binding Patient.DateOfBirth, StringFormat=d}" HorizontalAlignment="Left" Style="{StaticResource PatientSummaryNumberStyle}"  Grid.Column="0" />
+            <TextBlock  Text="{Binding Patient.Gender}"  HorizontalAlignment="Left" Style="{StaticResource PatientSummaryTextStyle}"  Grid.Column="1" />
+        </Grid>
+
+   
+
+    </Grid>
+</UserControl>

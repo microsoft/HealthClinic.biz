@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="MyHealth.Client.Desktop.Controls.PatientDetails"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MyHealth.Client.Desktop.Controls"
+              xmlns:controls="clr-namespace:MyHealth.Client.Desktop.Controls"
+             mc:Ignorable="d" 
+              d:DesignHeight="768" d:DesignWidth="450">
+   
+        <Grid Background="{StaticResource AppointmentDetailsBackground}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"  MinWidth="100"/>
+                <ColumnDefinition Width="auto" MinWidth="100"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <controls:PatientSummary x:Name="PatientSummary" Grid.Row="0"  Grid.ColumnSpan="3"/>
+            <Border BorderThickness="0,0,0,1"  BorderBrush="{StaticResource PatientInfoSeparatorLineColor}" Grid.ColumnSpan="3"/>
+            <Grid Grid.Row="1" Grid.Column="0" >
+                <TextBlock  Text="Weight" HorizontalAlignment="Left" Style="{StaticResource PatientSummaryTitleStyle}" />
+                <TextBlock  Text="{Binding Patient.Weight, StringFormat={}{0} lbs}"  HorizontalAlignment="Left" Style="{StaticResource PatientSummaryNumberStyle}"   />
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="1" >
+                <TextBlock  Text="Height" HorizontalAlignment="Left" Style="{StaticResource PatientSummaryTitleStyle}"  />
+                <TextBlock  Text="{Binding Patient.Height, Converter={StaticResource PatientHeightConverter}}"  HorizontalAlignment="Left" Style="{StaticResource PatientSummaryNumberStyle}"  />
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="2" >
+                <TextBlock  Text="Blood Type" HorizontalAlignment="Left" Style="{StaticResource PatientSummaryTitleStyle}" />
+                <TextBlock  Text="{Binding Patient.BloodType}"  HorizontalAlignment="Left" Style="{StaticResource PatientSummaryNumberStyle}"   Foreground="{StaticResource UrgentBackgroundColor}"/>
+            </Grid>
+
+            <Border BorderThickness="0,0,0,1"  BorderBrush="{StaticResource PatientInfoSeparatorLineColor}" Grid.ColumnSpan="3" Grid.Row="1"/>
+
+
+        </Grid>
+   
+</UserControl>

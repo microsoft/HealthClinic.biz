@@ -1,0 +1,114 @@
+﻿<base:WindowsBasePage
+    x:Class="MyHealth.Client.W10.UWP.Views.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyHealth.Client.W10.UWP.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="using:MyHealth.Client.W10.UWP.Views.Base"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Title="Home">
+
+    <Grid Background="{StaticResource MyHealthBackgroundBlueThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Phone">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth ="320" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target ="SplitView.OpenPaneLength" Value="200" />
+                        <Setter Target ="SplitView.DisplayMode" Value="Overlay"/>
+                        <Setter Target="MainGridImageBackground.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Tablet">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth ="720" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="48"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Image Source="ms-appx:///Assets/Images/bg_splash_photo_2.png" Stretch="UniformToFill"  Grid.Row="2" Grid.ColumnSpan="2" x:Name="MainGridImageBackground"></Image>
+        <ToggleButton x:Name="HamburguerButton"
+                      Style="{StaticResource HamburguerToggleButtonStyle}"
+                      Tag=""
+                      Background="{StaticResource MyHealthSelectedWhiteThemeBrush}" 
+                      Click="HamburguerButton_Click"/>
+        <Grid Grid.Column="1"
+              Background="{StaticResource MyHealthHeaderBlueThemeBrush}"
+              VerticalAlignment="Top"
+              Height="48">
+            <Rectangle Fill="{StaticResource MyHealthAppointmentSelectedThemeBrush}"
+                       Height="0.5"
+                       Opacity="0.7"
+                       VerticalAlignment="Bottom"/>
+            <TextBlock x:Name="PageTitle"
+                       Style="{StaticResource HeaderTextStyle}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"/>
+            <Button x:Name="NewAppointment"
+                    Content=""
+                    Margin="0,0,5,0"
+                    FontSize="20"
+                    Background="Transparent"
+                    Command="{Binding NavigateToAppointmentsCommand}"
+                    FontFamily="/Assets/Fonts/icomoon.ttf#icomoon"
+                    Foreground="{StaticResource MyHealthWhiteThemeBrush}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right" Style="{StaticResource NewAppointmentButtonStyle}"/>
+        </Grid>
+        <SplitView x:Name="SplitView"
+                   OpenPaneLength="300"
+                   CompactPaneLength="48"
+                   Grid.Row="1"
+                   Grid.ColumnSpan="2"
+                   IsPaneOpen="False"
+                   DisplayMode="CompactOverlay">
+            <SplitView.Pane>
+                <Grid Background ="{StaticResource MyHealthSelectedWhiteThemeBrush}">
+                    <StackPanel VerticalAlignment="Top"
+                                x:Name="RadioButtonContainer">
+                        <RadioButton Style ="{StaticResource HamburguerRadioButtonStyle}"
+                                     Content="Home"
+                                     GroupName="Group1"
+                                     Tag=""
+                                     Command="{Binding NavigateToHomeCommand}"
+                                     IsChecked="True"/>
+                        <RadioButton Style ="{StaticResource HamburguerRadioButtonStyle}"   
+                                     Content="Appointments"
+                                     GroupName="Group1"
+                                     Command="{Binding NavigateToAppointmentsCommand}"
+                                     Tag=""/>
+                        <RadioButton Style ="{StaticResource HamburguerRadioButtonStyle}"   
+                                     Content="Treatments"
+                                     GroupName="Group1"
+                                     Command="{Binding NavigateToTreatmentCommand}"
+                                     Tag=""/>
+                        <RadioButton Style ="{StaticResource HamburguerRadioButtonStyle}"   
+                                     Content="User"
+                                     GroupName="Group1"
+                                     Command="{Binding NavigateToUserCommand}"
+                                     Tag=""/>
+                        <RadioButton Style ="{StaticResource HamburguerRadioButtonStyle}"   
+                                     Content="Settings"
+                                     GroupName="Group1"
+                                     Command="{Binding NavigateToSettingsCommand}"
+                                     Tag=""/>
+                    </StackPanel>
+                </Grid>
+            </SplitView.Pane>
+        </SplitView>
+    </Grid>
+</base:WindowsBasePage>

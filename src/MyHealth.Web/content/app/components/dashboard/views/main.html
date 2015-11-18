@@ -1,0 +1,49 @@
+﻿<div class="summaries">
+    <div class="summary-container">
+        <div class="summary patients">
+            <h3 class="summary-quantity">{{summary.NewPatients}}</h3>
+            <h3 class="summary-title">NEW PATIENTS <span class="summary-variation">{{summary.NewPatientsVariation}} %</span></h3>
+        </div>
+    </div>
+    <div class="summary-container">
+        <div class="summary month">
+            <h3 class="summary-quantity">{{summary.MonthProfit | currency: "" : 0 }}</h3>
+            <h3 class="summary-title">MONTH BENEFITS <span class="summary-variation">{{summary.MonthProfitVariation}} %</span></h3>
+        </div>
+    </div>
+    <div class="summary-container">
+        <div class="summary annual">
+            <h3 class="summary-quantity">{{summary.AnualProfit | currency : "" : 0 }}</h3>
+            <h3 class="summary-title">ANNUAL BENEFITS <span class="summary-variation">{{summary.AnualProfitVariation}} %</span></h3>
+        </div>
+    </div>
+</div>
+
+<section class="chart-section">
+    <h3 class="chart-section-title">INCOMES AND EXPENSES</h3>
+    <div class="chart-section-filter">
+        <span class="icon-btn_back chart-filter-btn" ng-click="reduceYearIncomesExpenses()"></span>
+        <span class="chart-section-filter-year">{{incomesExpensesYear}}</span>
+        <span class="icon-btn_back-right chart-filter-btn" ng-click="addYearIncomesExpenses()"></span>
+    </div>
+    <div class="chart-section-container">
+        <canvas chart data-chartdata="chartDataIncomesExpenses" kind="line"></canvas>
+    </div>
+    <div id="legendIncomeExpenses" class="chart-section-legend"></div>
+</section>
+
+<section class="chart-section">
+    <h3 class="chart-section-title">PATIENT VISITS</h3>
+    <div class="chart-section-filter">
+        <span class="icon-btn_back chart-filter-btn" ng-click="reduceYearPatients()"></span>
+        <span class="chart-section-filter-year">{{patientsYear}}</span>
+        <span class="icon-btn_back-right chart-filter-btn" ng-click="addYearPatients()"></span>
+    </div>
+    <div class="chart-section-container">
+        <canvas chart data-chartdata="chartDataPatients" kind="bar"></canvas>
+    </div>
+</section>
+
+
+
+

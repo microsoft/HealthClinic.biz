@@ -1,0 +1,57 @@
+{
+  "manifestVersion": 1,
+  "name": "Nightscout",
+  "description": "Nightscout Blood Sugar",
+  "version": 1,
+  "versionString": "1",
+  "author": "Demo Author",
+  "organization": "Nightscout",
+  "contactEmail": "",
+  "tileIcon": {
+    "46": "icons/tileIcon.png"
+  },
+  "refreshIntervalMinutes": 15,
+  "resources": [
+    {
+      "url": "REPLACEURL",
+      "style": "Simple",
+      "content": {
+        "bgs0sgv": "bgs[0].sgv",
+        "bgs0bgdelta": "bgs[0].bgdelta",
+        "bgs0direction": "bgs[0].direction"
+      }
+    }
+  ],
+  "pages": [
+    {
+      "layout": "MSBand_NoScrollingText",
+      "condition": "true",
+      "textBindings": [
+        {
+          "elementId": "1",
+          "value": "Sugar: {{bgs0sgv}}"
+        },
+        {
+          "elementId": "2",
+          "value": "Delta: {{bgs0bgdelta}}"
+        },
+        {
+          "elementId": "3",
+          "value": "Trend: {{bgs0direction}}"
+        }
+      ]
+    }
+  ],
+  "notifications": [
+    {
+      "condition": "{{bgs0sgv}} >= 150",
+      "title": "Sugar is high!",
+      "body": "Current sugar: {{bgs0sgv}}."
+    },
+    {
+      "condition": "{{bgs0sgv}} <= 75",
+      "title": "Sugar is low!",
+      "body": "Current sugar: {{bgs0sgv}}."
+    }
+  ]
+}

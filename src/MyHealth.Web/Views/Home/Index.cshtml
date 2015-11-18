@@ -1,0 +1,283 @@
+﻿@{
+    ViewData["Title"] = "HealthClinic.biz";
+}
+
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid mh-nav">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle hamburguer collapsed" data-toggle="collapse" data-target="#mh-menu">
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img src="~/images/public/logo_home.png" asp-append-version="true" />
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="mh-menu">
+                <div class="navbar-header visible-xs-block">
+                    <img class="navbar-brand" src="~/images/public/logo_responsive_menu.png" asp-append-version="true" />
+                    <img src="~/images/ico_close_menu.png" class="navbar-toggle collapsed nav-x-close" data-toggle="collapse" data-target="#mh-menu" asp-append-version="true" />
+                </div>
+
+                <ul class="nav navbar-nav">
+                    <li class="actived"><a href="#">HOME</a></li>
+                    <li><a href="#">JOIN US</a></li>
+                    <li><a href="#">TOUR INSIDE</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav login-container hidden-xs">
+                    <li><a asp-controller="Account" asp-action="Login">Private area</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="banner">
+
+        <div id="banner" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#banner" data-slide-to="0" class="active"></li>
+                <li data-target="#banner" data-slide-to="1"></li>
+                <li data-target="#banner" data-slide-to="2"></li>
+                <li data-target="#banner" data-slide-to="3"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <div class="carousel-inner-image-one hidden-xs"></div>
+                    <h2 class="banner-text">
+                        <strong> Connect </strong> with your health
+                        <span class="banner-subtext">Preventive and modern medicine in your hands.</span>
+                    </h2>
+                </div>
+                <div class="item">
+                    <div class="carousel-inner-image-two hidden-xs"></div>
+                    <h2 class="banner-text">
+                        <strong> Manage your health </strong> with our revolutionary app
+                        <span class="banner-subtext">Don't miss any pending appointments and keep track of your health info any time.</span>
+                    </h2>
+                </div>
+                <div class="item">
+                    <div class="carousel-inner-image-three hidden-xs"></div>
+                    <h2 class="banner-text">
+                        <strong> In your hands, </strong> no matter where you are
+                        <span class="banner-subtext">Access all your medical data, get reminders for treatments, manage your appointments.</span>
+                    </h2>
+                </div>
+                <div class="item">
+                    <div class="carousel-inner-image-four hidden-xs"></div>
+                    <h2 class="banner-text">
+                        <strong> Take care </strong> of your loved ones in a simpler form
+                        <span class="banner-subtext">Our technology lets you follow the care and treatment of people who need it most.</span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="banner-footer">
+        <span class="banner-footer-text-left">COME IN,</span>
+        <button class="button button-pinkBordered button-big button-important font-size-20 margin-left-15 margin-right-15 ">JOIN US</button>
+        <span class="banner-footer-text-right">& BE HEALTHY</span>
+    </div>
+</header>
+
+<main class="container-fluid main-container">
+    <section class="row features-section">
+        <div class="col-xs-12 col-md-6 feature-item right">
+            <div class="feature-item-img img-innovation visible-xs-block visible-sm-block"></div>
+            <div class="feature-item-text">
+                <h2>INNOVATION</h2>
+                <p>
+                    HealthClinic.biz in partnership with Microsoft and other companies offers you a set of revolutionary apps and services to help you to <b>stay healthy</b>
+                </p>
+            </div>
+            <div class="feature-item-img img-innovation hidden-xs hidden-sm hidden-md"></div>
+        </div>
+        <div class="col-xs-12 col-md-6 feature-item left">
+            <div class="feature-item-img img-manage visible"></div>
+            <div class="feature-item-text">
+                <h2>MANAGE YOUR HEALTH</h2>
+                <p>
+                    Real time management of appointments, treatments, and test results. Access your medical data: <b>weight, sleep, and physical activity anytime.</b>
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="row features-section">
+        <div class="col-xs-12 col-md-6 feature-item right">
+            <div class="feature-item-img img-professionals visible-xs-block visible-sm-block visible-md-block"></div>
+            <div class="feature-item-text">
+                <h2>PROFESSIONALS</h2>
+                <p>
+                    We connect yout with an extensive network of the best <b>healthcare professionals.</b> Behind our tools are the experts who always take care of you.
+                </p>
+            </div>
+            <div class="feature-item-img img-professionals hidden-xs hidden-sm  hidden-md"></div>
+        </div>
+        <div class="col-xs-12 col-md-6 feature-item left">
+            <div class="feature-item-img img-hands visible"></div>
+            <div class="feature-item-text">
+                <h2>ROUND THE CLOCK HEALTHCARE</h2>
+                <p>
+                    HealthClinic.biz is focused on <b>preventive medicine</b> for not getting sick in the first place. We are here for your 24x7.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="row features-section">
+        <div class="col-xs-12 col-md-6 feature-item right">
+            <div class="feature-item-img img-caregiver visible-xs-block visible-sm-block visible-md-block"></div>
+            <div class="feature-item-text">
+                <h2>CAREGIVER</h2>
+                <p>
+                    We improve the patient and caregiver experience through <b>collaborative tracking tools.</b> The well-being of your loved ones in your hands too.
+                </p>
+            </div>
+            <div class="feature-item-img img-caregiver hidden-xs hidden-sm  hidden-md"></div>
+        </div>
+        <div class="col-xs-12 col-md-6 feature-item left">
+            <div class="feature-item-img img-healthy visible"></div>
+            <div class="feature-item-text">
+                <h2>STAY HEALTHY</h2>
+                <p>
+                    Our nutritionists will help you have a <b>healthy diet, </b> along with exercise, and reminders to drink water. Anything to help you feel better every day.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-info experience-section row">
+        <img src="~/images/public/home_photo_1.jpg" class="visible-sm col-sm-12" asp-append-version="true" />
+        <div class="section-info-box col-xs-12 col-sm-12 col-md-6">
+            <div class="section-info-box-inner">
+                <h2 class="section-info-box-title">A COMPLETELY TRANSFORMED HEALTH EXPERIENCE</h2>
+                <p class="section-info-box-text">Based on global research, scientific evaluation and understanding member usage, we've launched a new app. We provide the best of emerging technologies and best-in-class physicians to provide members with a unique experience.</p>
+                <button class="button button-whiteBordered button-medium button-important font-size-20">GET THE APP</button>
+
+                <div class="section-info-box-inner-icons">
+                    <img src="~/images/public/ico_windows.png" asp-append-version="true" />
+                    <img src="~/images/public/ico_google.png" asp-append-version="true" />
+                    <img src="~/images/public/ico_apple.png" asp-append-version="true" />
+                </div>
+            </div>
+
+        </div>
+        <img src="~/images/public/home_photo_1.jpg" class="hidden-xs hidden-sm col-md-6" asp-append-version="true" />
+    </section>
+
+    <section class="section-info professionals-section row">
+        <img src="~/images/public/home_photo_2.jpg" class="col-sm-12 col-md-6 hidden-xs" asp-append-version="true" />
+        <div class="section-info-box col-xs-12 col-sm-6">
+            <div class="section-info-box-inner">
+                <h2 class="section-info-box-title">THE BEST PROFESSIONALS AT YOUR SERVICE</h2>
+                <p class="section-info-box-text">Licensed, background-checked peditricians for kids, general practice and internal medicine doctors for adults and family practice doctors for the whole family. All of them with many years of experience in the field of medicine and innovation. They are always willing to help, either directly in our clinic, at your home, or through telemedicine. </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-info work-section row">
+        <img src="~/images/public/home_photo_3.jpg" class="visible-sm col-sm-12" asp-append-version="true" />
+        <div class="section-info-box col-xs-12 col-sm-12 col-md-6">
+            <div class="section-info-box-inner">
+                <h2 class="section-info-box-title">WE WORK TOGETHER TO MAKE YOUR LIFE BETTER</h2>
+                <p class="section-info-box-text">With the support of a team of dedicated business experts in healthcare, software engineers, and architects, we created a truly collaborative series of mobile applications and services to greatly help improve and simplify your ability to manage your health care.</p>
+                <p class="section-info-box-text">Our apps and services remove some of the burden patients and caregivers experience. Through features like medication management and collaborative scheduling, we help caregivers and patients address daily medical demands, and better inform their providers of these efforts and outcomes.</p>
+            </div>
+        </div>
+        <img src="~/images/public/home_photo_3.jpg" class="hidden-xs hidden-sm col-md-6" asp-append-version="true" />
+    </section>
+    <section class="health-stories hidden-xs">
+        <h2 class="health-stories-title">HEALTH STORIES</h2>
+        <div id="healthStories" class="carousel slide health-stories-slider" data-ride="carousel" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <div class="health-stories-carousel-inner">
+                        <div class="health-stories-carousel-inner-container">
+                            <img class="health-stories-carousel-inner-container-img" src="~/images/public/home_stories_01.jpg" asp-append-version="true" />
+                        </div>
+                        <div class="health-stories-carousel-inner-info">
+                            <div class="health-stories-carousel-inner-info-inner">
+                                <h3 class="health-stories-carousel-inner-info-name">Jennifer Pratt, <span class="health-stories-carousel-inner-info-city">Seattle</span></h3>
+                                <div class="health-stories-carousel-inner-info-cite">I knew throughout pregnancy that my daughter and I were healthy."</div>
+                                <p class="health-stories-carousel-inner-info-text">Thanks to the MyHealthClinic app in my phone. I could see at any time of day data for each medical test that they made for us: ultrasounds, monitoring, analysis results, and weekly doctor visits. In addition, it helped me organize my life better, since the application sends alerts of upcoming doctor appointments.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="health-stories-carousel-inner ">
+                        <div class="health-stories-carousel-inner-container">
+                            <img class="health-stories-carousel-inner-container-img" src="~/images/public/home_stories_02.jpg" asp-append-version="true"/>
+                        </div>
+                        <div class="health-stories-carousel-inner-info">
+                            <div class="health-stories-carousel-inner-info-inner">
+                                <h3 class="health-stories-carousel-inner-info-name">Harry Brandon, <span class="health-stories-carousel-inner-info-city">Seattle</span></h3>
+                                <div class="health-stories-carousel-inner-info-cite">I'm back to running like before my operation."</div>
+                                <p class="health-stories-carousel-inner-info-text">I suffered an injury in my knee and had to be operated. Thanks to HealthClinic.biz I got through faster recovery. I could see the results of my tests. My improvement and my appointments in rehabilitation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="health-stories-carousel-inner">
+                        <div class="health-stories-carousel-inner-container">
+                            <img class="health-stories-carousel-inner-container-img" src="~/images/public/home_stories_03.jpg" asp-append-version="true" />
+                        </div>
+                        <div class="health-stories-carousel-inner-info">
+                            <div class="health-stories-carousel-inner-info-inner">
+                                <h3 class="health-stories-carousel-inner-info-name">Jacob and Anna Sullivan, <span class="health-stories-carousel-inner-info-city">Seattle</span></h3>
+                                <div class="health-stories-carousel-inner-info-cite">We are much happy since we discovered HealthClinic."</div>
+                                <p class="health-stories-carousel-inner-info-text">At first we were not sure we could use one of those modern gadgets using by our grandchildren, but the truth is that it was very simple. Now we can see our medical data and appointments from our comfy sofa.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="arrow-left carousel-control" href="#healthStories" role="button" data-slide="prev">
+                <span class="glyphicon" aria-hidden="true"></span>
+                <span class="sr-only"></span>
+            </a>
+            <a class="arrow-right carousel-control" href="#healthStories" role="button" data-slide="next">
+                <span class="glyphicon" aria-hidden="true"></span>
+                <span class="sr-only"></span>
+            </a>
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer-container container-fluid row">
+    <span class="footer-container-separator visible-xs"></span>
+    <div class="footer-container-info col-sm-12 col-md-6">
+        <div class="footer-container-info-logo">
+            <img src="~/images/public/logo_home_footer.png" asp-append-version="true" />
+        </div>
+        <div class="footer-container-info-nav">
+            <a href="">HOME</a>
+            <a href="">JOIN US</a>
+            <a href="">TOUR INSIDE</a>
+        </div>
+        <div class="footer-container-info-politics-nav">
+            <a href="">Sitemap</a>
+            <a href="">Contact</a>
+            <a href="">Privacy</a>
+            <a href="">Terms</a>
+            <a href="">&copy; 2015 HealthClinic.biz</a>
+            <p class="footer-container-info-politics-nav-fictitious-text first">Some examples are for illustration only and are fictitious.</p>
+            <p class="footer-container-info-politics-nav-fictitious-text last">No real association is intended or inferred.</p>
+        </div>
+
+    </div>
+    <div class="footer-container-map hidden-xs hidden-sm col-md-6">
+        <div id='mapDiv' class="footer-container-map-bings"></div>
+    </div>
+</footer>
+
+<script charset="UTF-8" type="text/javascript" src="//ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&s=1"></script>

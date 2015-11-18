@@ -1,0 +1,91 @@
+﻿<div class="left-container">
+    <ui-view></ui-view>
+</div>
+<div class="right-container">
+    <section class="stressful-btn shadowed">
+        <div class="stressful-btn-inner">
+            <span class="stressful-btn-logo"></span>
+        </div>
+        <span class="stressful-btn-title">Find the</span>
+        <span class="stressful-btn-subtitle">Most Stressful Time</span>
+    </section>
+    <section class="levels shadowed">
+        <h2 class="levels-title">Maximun Stress Levels</h2>
+        <ul>
+            <li class="levels-item">
+                <span class="levels-date">Nov 16, 2015</span>
+                <span class="levels-level fontsize-30">170</span>
+            </li>
+            <li class="levels-item">
+                <span class="levels-date">Oct 20, 2015</span>
+                <span class="levels-level">130</span>
+            </li>
+            <li class="levels-item">
+                <span class="levels-date">Oct 14, 2015</span>
+                <span class="levels-level">110</span>
+            </li>
+            <li class="levels-item">
+                <span class="levels-date">Sep 03, 2015</span>
+                <span class="levels-level">105</span>
+            </li>
+            <li class="levels-item">
+                <span class="levels-date">Jul 06, 2015</span>
+                <span class="levels-level">102</span>
+            </li>
+            <li class="levels-item">
+                <span class="levels-date">Jul 01, 2015</span>
+                <span class="levels-level">100</span>
+            </li>
+        </ul>
+
+    </section>
+    <section class="appointment shadowed">
+        <h2 class="appointment-title">Next Meeting: Planning meeting</h2>
+        <ul>
+            <li class="appointment-attendee">
+                <div class="appointment-description">
+                    <span class="appointment-name">Erika Ehrli Cabral</span>
+                    <span class="appointment-email">erehrlic@healthclinic.biz</span>
+                </div>
+            </li>
+            <li class="appointment-attendee">
+                <div class="appointment-description">
+                    <span class="appointment-name">David Carmona</span>
+                    <span class="appointment-email">dcarmona@healthclinic.biz</span>
+                </div>
+            </li>
+        </ul>
+        <div class="appointment-graphic">
+            <span class="appointment-hour mini">9:30 am</span>
+            <span class="appointment-image"></span>
+            <span class="appointment-hour mini">1:30 pm</span>
+        </div>
+    </section>
+</div>
+
+
+<div class="overlay top" ng-class="{'visible':stressfulTimeOpened}">
+    <section class="stressful-time" ng-class="{'show-person':showPerson}">
+        <div class="stressful-time-inner">
+            <div class="stressful-time-side front">
+                <h2 class="stressful-time-title">Most stressful time with...</h2>
+                <div class="stressful-time-icon"></div>
+                <h3 class="stressful-time-subtitle">
+                    Finding the<br/>Most Stressful Time
+                </h3>
+                <div class="loading dots">
+                    <div class="loading-dot"></div>
+                    <div class="loading-dot"></div>
+                    <div class="loading-dot"></div>
+                </div>
+            </div>
+            <div class="stressful-time-side back">
+                <h2 class="stressful-time-title">Most stressful time with...</h2>
+                <div class="stressful-time-person"></div>
+            </div>
+        </div>
+        <div class="stressful-time-badge"></div>
+        <div class="stressful-time-podium"></div>
+    </section>
+</div>
+<div class="stressful-time-imgcachehack"></div>

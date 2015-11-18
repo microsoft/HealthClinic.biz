@@ -1,0 +1,13 @@
+﻿@import '../base/_variables.scss';
+
+html{
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    background-color: $color-grey;
+    font-family: 'Raleway';
+    font-weight: 400;
+    color: $color-black;
+}

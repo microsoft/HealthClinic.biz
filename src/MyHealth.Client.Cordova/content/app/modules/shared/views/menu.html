@@ -1,0 +1,36 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-calm">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left" width="304">
+    <ion-header-bar class="bar-light bar-header-menu">
+        <img ng-src="data:image/png;base64,{{activeDoctor.picture}}" alt="" class="bar-header-menu-avatar" />
+        <div class="bar-header-menu-info">
+            <h4>{{activeDoctor.name}}</h4>
+            <p>{{activeDoctor.speciality | capitalize}}</p>
+        </div>
+    </ion-header-bar>
+    <ion-content scroll="false">
+        <ion-list class="ion-item-menu-list">
+            <ion-item class="ion-item-menu-option" menu-close ng-repeat="option in ::menuList track by option.stateName" ui-sref="{{option.stateName}}" ng-class="{'ion-item-menu-option-active': currentStateName === option.stateName}">
+                <span class="icon-{{::option.icon}}-icon"></span> <span>{{::option.value}}</span>
+            </ion-item>
+        </ion-list>
+        <ion-item class="ion-item-menu-option ion-item-menu-option-bottom item item-complex" ng-click="checkForUpdates.action()">
+            <a class="item-content">
+                <span class="icon-refresh-icon" ng-class="{'icon-spin': checkForUpdates.working}"></span> <span>{{checkForUpdates.message}}</span>
+            </a>
+        </ion-item>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

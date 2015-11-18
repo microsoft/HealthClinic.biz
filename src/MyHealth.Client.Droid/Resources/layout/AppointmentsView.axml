@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fadingEdge="none">
+    <Mvx.MvxListView
+        android:id="@+id/appointments_list"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        local:MvxItemTemplate="@layout/item_appointment"
+        local:MvxBind="ItemsSource Appointments; ItemClick ShowDetailsCommand"
+        android:divider="@null"
+        android:scrollbars="vertical"
+        android:choiceMode="singleChoice"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|start"
+        android:background="@color/mh_bg_green" />
+</LinearLayout>

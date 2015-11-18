@@ -1,0 +1,33 @@
+﻿/*Colors*/
+$color-black: #3d3d4c;
+$color-white: #fff;
+$color-pink: #ff1770;
+$color-grey: #f2f2f2;
+$grid-color: #71717f;
+$layout-menus-color: #1D1E2A;
+$header-height: 105px;
+$footer-height: 200px;
+$container-width: 1366px;
+$container-padding: 30px;
+
+$checkbox-border-color: #d2d2d2;
+
+/*Bootstrap query breakpoints*/
+$mobile-max: 768px;
+$tablet-min: 768px;
+$tablet-max: 992px;
+$desktop-min: 992px;
+$desktop-max: 1366px;
+$lgdesktop-min: 1366px;
+
+
+/*Media queries*/
+$for-mobile: "screen and (max-width: #{$mobile-max})";
+$for-tablet: "screen and (min-width: #{$tablet-min}) and (max-width: #{$tablet-max})";
+$for-desktop: "screen and (min-width: #{$desktop-min}) and (max-width: #{$desktop-max})";
+$for-large-desktop: "screen and (min-width: #{$lgdesktop-min})";
+$for-tablet-or-lower: "screen and (max-width: #{$tablet-max})";
+$for-tablet-or-greater: "screen and (min-width: #{$tablet-min})";
+$for-desktop-or-lower: "screen and (max-width: #{$desktop-max})";
+$for-desktop-or-greater: "screen and (min-width: #{$desktop-min})";
+

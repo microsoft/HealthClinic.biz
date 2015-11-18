@@ -1,0 +1,25 @@
+﻿@import '../base/_variables.scss';
+
+html,
+body {
+    background-color: $color-grey;
+    min-width: $container-width;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: $footer-height;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 400;
+}

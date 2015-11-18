@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{D73F8E79-B4DD-4AB0-A767-D9FA3E2FE740};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{9CB37C60-AAAA-4632-95A8-E559BE28F550}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MyHealth.Client.iOSWatchKitApp</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>MyHealth.Client.iOSWatchKitApp</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Developer: Erika Ehrli Cabral (VC432975F2)</CodesignKey>
+    <CodesignProvision>1dfa500c-ab9f-4de0-8d9b-8496af82dac9</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>i386</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Developer: Erika Ehrli Cabral (VC432975F2)</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignProvision>207b5e61-737c-4d5b-a6a2-b42615175f7b</CodesignProvision>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\24x24%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\27.5x27.5%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\29x29%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\29x29%403x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\40x40%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\44x44%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\86x86%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\98x98%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Interface.storyboard" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.WatchApp.CSharp.targets" />
+  <ItemGroup>
+    <BundleResource Include="Resources\heartwatch.png" />
+    <BundleResource Include="Resources\countdownWatch0.png" />
+    <BundleResource Include="Resources\countdownWatch1.png" />
+    <BundleResource Include="Resources\countdownWatch10.png" />
+    <BundleResource Include="Resources\countdownWatch100.png" />
+    <BundleResource Include="Resources\countdownWatch11.png" />
+    <BundleResource Include="Resources\countdownWatch12.png" />
+    <BundleResource Include="Resources\countdownWatch13.png" />
+    <BundleResource Include="Resources\countdownWatch14.png" />
+    <BundleResource Include="Resources\countdownWatch15.png" />
+    <BundleResource Include="Resources\countdownWatch16.png" />
+    <BundleResource Include="Resources\countdownWatch17.png" />
+    <BundleResource Include="Resources\countdownWatch18.png" />
+    <BundleResource Include="Resources\countdownWatch19.png" />
+    <BundleResource Include="Resources\countdownWatch2.png" />
+    <BundleResource Include="Resources\countdownWatch20.png" />
+    <BundleResource Include="Resources\countdownWatch21.png" />
+    <BundleResource Include="Resources\countdownWatch22.png" />
+    <BundleResource Include="Resources\countdownWatch23.png" />
+    <BundleResource Include="Resources\countdownWatch24.png" />
+    <BundleResource Include="Resources\countdownWatch25.png" />
+    <BundleResource Include="Resources\countdownWatch26.png" />
+    <BundleResource Include="Resources\countdownWatch27.png" />
+    <BundleResource Include="Resources\countdownWatch28.png" />
+    <BundleResource Include="Resources\countdownWatch29.png" />
+    <BundleResource Include="Resources\countdownWatch3.png" />
+    <BundleResource Include="Resources\countdownWatch30.png" />
+    <BundleResource Include="Resources\countdownWatch31.png" />
+    <BundleResource Include="Resources\countdownWatch32.png" />
+    <BundleResource Include="Resources\countdownWatch33.png" />
+    <BundleResource Include="Resources\countdownWatch34.png" />
+    <BundleResource Include="Resources\countdownWatch35.png" />
+    <BundleResource Include="Resources\countdownWatch36.png" />
+    <BundleResource Include="Resources\countdownWatch37.png" />
+    <BundleResource Include="Resources\countdownWatch38.png" />
+    <BundleResource Include="Resources\countdownWatch39.png" />
+    <BundleResource Include="Resources\countdownWatch4.png" />
+    <BundleResource Include="Resources\countdownWatch40.png" />
+    <BundleResource Include="Resources\countdownWatch41.png" />
+    <BundleResource Include="Resources\countdownWatch42.png" />
+    <BundleResource Include="Resources\countdownWatch43.png" />
+    <BundleResource Include="Resources\countdownWatch44.png" />
+    <BundleResource Include="Resources\countdownWatch45.png" />
+    <BundleResource Include="Resources\countdownWatch46.png" />
+    <BundleResource Include="Resources\countdownWatch47.png" />
+    <BundleResource Include="Resources\countdownWatch48.png" />
+    <BundleResource Include="Resources\countdownWatch49.png" />
+    <BundleResource Include="Resources\countdownWatch5.png" />
+    <BundleResource Include="Resources\countdownWatch50.png" />
+    <BundleResource Include="Resources\countdownWatch51.png" />
+    <BundleResource Include="Resources\countdownWatch52.png" />
+    <BundleResource Include="Resources\countdownWatch53.png" />
+    <BundleResource Include="Resources\countdownWatch54.png" />
+    <BundleResource Include="Resources\countdownWatch55.png" />
+    <BundleResource Include="Resources\countdownWatch56.png" />
+    <BundleResource Include="Resources\countdownWatch57.png" />
+    <BundleResource Include="Resources\countdownWatch58.png" />
+    <BundleResource Include="Resources\countdownWatch59.png" />
+    <BundleResource Include="Resources\countdownWatch6.png" />
+    <BundleResource Include="Resources\countdownWatch60.png" />
+    <BundleResource Include="Resources\countdownWatch61.png" />
+    <BundleResource Include="Resources\countdownWatch62.png" />
+    <BundleResource Include="Resources\countdownWatch63.png" />
+    <BundleResource Include="Resources\countdownWatch64.png" />
+    <BundleResource Include="Resources\countdownWatch65.png" />
+    <BundleResource Include="Resources\countdownWatch66.png" />
+    <BundleResource Include="Resources\countdownWatch67.png" />
+    <BundleResource Include="Resources\countdownWatch68.png" />
+    <BundleResource Include="Resources\countdownWatch69.png" />
+    <BundleResource Include="Resources\countdownWatch7.png" />
+    <BundleResource Include="Resources\countdownWatch70.png" />
+    <BundleResource Include="Resources\countdownWatch71.png" />
+    <BundleResource Include="Resources\countdownWatch72.png" />
+    <BundleResource Include="Resources\countdownWatch73.png" />
+    <BundleResource Include="Resources\countdownWatch74.png" />
+    <BundleResource Include="Resources\countdownWatch75.png" />
+    <BundleResource Include="Resources\countdownWatch76.png" />
+    <BundleResource Include="Resources\countdownWatch77.png" />
+    <BundleResource Include="Resources\countdownWatch78.png" />
+    <BundleResource Include="Resources\countdownWatch79.png" />
+    <BundleResource Include="Resources\countdownWatch8.png" />
+    <BundleResource Include="Resources\countdownWatch80.png" />
+    <BundleResource Include="Resources\countdownWatch81.png" />
+    <BundleResource Include="Resources\countdownWatch82.png" />
+    <BundleResource Include="Resources\countdownWatch83.png" />
+    <BundleResource Include="Resources\countdownWatch84.png" />
+    <BundleResource Include="Resources\countdownWatch85.png" />
+    <BundleResource Include="Resources\countdownWatch86.png" />
+    <BundleResource Include="Resources\countdownWatch87.png" />
+    <BundleResource Include="Resources\countdownWatch88.png" />
+    <BundleResource Include="Resources\countdownWatch89.png" />
+    <BundleResource Include="Resources\countdownWatch9.png" />
+    <BundleResource Include="Resources\countdownWatch90.png" />
+    <BundleResource Include="Resources\countdownWatch91.png" />
+    <BundleResource Include="Resources\countdownWatch92.png" />
+    <BundleResource Include="Resources\countdownWatch93.png" />
+    <BundleResource Include="Resources\countdownWatch94.png" />
+    <BundleResource Include="Resources\countdownWatch95.png" />
+    <BundleResource Include="Resources\countdownWatch96.png" />
+    <BundleResource Include="Resources\countdownWatch97.png" />
+    <BundleResource Include="Resources\countdownWatch98.png" />
+    <BundleResource Include="Resources\countdownWatch99.png" />
+  </ItemGroup>
+</Project>

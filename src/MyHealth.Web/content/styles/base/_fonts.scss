@@ -1,0 +1,13 @@
+﻿@import '../base/_variables.scss';
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900);
+//font-family: 'Raleway', sans-serif;
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300italic,300,400italic,500,500italic,700,900,700italic,900italic);
+//font-family: 'Roboto', sans-serif;
+
+body {
+    font-family: 'Raleway';
+    font-weight: 400;
+    color: $black-color;
+}

@@ -1,0 +1,229 @@
+﻿@import '../../base/_variables.scss';
+
+$nav-height: 85px;
+$padding-top: 15px;
+
+.navbar {
+    border-radius: 0;
+    border-width: 0;
+}
+
+.navbar-default {
+    .navbar-toggle {
+        background-color: transparent;
+        border: 0;
+
+        .icon-bar {
+            background-color: $pink-color;
+        }
+    }
+
+    .hamburguer {
+        transition: opacity .5s ease-in;
+
+        &:not(.collapsed) {
+            opacity: 0;
+            transition-duration: .2s;
+
+            & ~ .navbar-brand {
+                opacity: 0;
+                transition-duration: .2s;
+            }
+        }
+    }
+}
+
+@media #{$for-tablet} {
+    .mh-nav {
+        width: 100%;
+        padding: 0 15px;
+        height: $nav-height;
+        line-height: $nav-height;
+        vertical-align: middle;
+    }
+
+    .navbar-brand {
+        margin-top: $padding-top + 5px;
+
+        img {
+            width: 200px;
+        }
+    }
+
+    .navbar-default {
+        .navbar-nav {
+            > li {
+                height: $nav-height;
+                border-top: 8px solid transparent;
+
+                &.actived {
+                    border-top: 8px solid $pink-color;
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+}
+
+@media #{$for-desktop} {
+    .mh-nav {
+        width: 100%;
+        padding: 0 80px;
+        height: $nav-height;
+        line-height: $nav-height;
+        vertical-align: middle;
+    }
+
+    .navbar-brand {
+        margin-top: $padding-top;
+    }
+
+    .navbar-default {
+        .navbar-nav {
+            > li {
+                margin-left: 15px;
+                height: $nav-height;
+                border-top: 8px solid transparent;
+
+                &.actived {
+                    border-top: 8px solid $pink-color;
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+}
+
+@media #{$for-large-desktop} {
+    .mh-nav {
+        width: $bg-content-size;
+        height: $nav-height;
+        line-height: $nav-height;
+        vertical-align: middle;
+    }
+
+    .navbar-brand {
+        margin-top: $padding-top;
+        margin-right: 100px;
+    }
+
+    .navbar-default {
+        .navbar-nav {
+            line-height: $nav-height;
+            vertical-align: middle;
+
+            > li {
+                height: $nav-height;
+                border-top: 8px solid transparent;
+                margin-left: 25px;
+
+                &.actived {
+                    border-top: 8px solid $pink-color;
+                    background-color: transparent;
+                }
+
+                > a {
+                    color: $pink-color;
+                    transform: translateY(15px);
+                    font-size: 13px;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+
+.navbar-default {
+    background-color: $white-color;
+
+    .navbar-nav {
+        line-height: $nav-height;
+        vertical-align: middle;
+
+        > li {
+            height: $nav-height;
+            border-top: 8px solid transparent;
+
+            &.actived {
+                background-color: transparent;
+            }
+
+            > a {
+                color: $pink-color;
+                transform: translateY(15px);
+                font-size: 13px;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+.login-container {
+    float: right;
+
+    > li {
+        float: right;
+
+        &:first-child > a {
+            color: $black-color;
+            font-weight: 400;
+        }
+    }
+}
+
+@media #{$for-mobile} {
+    body {
+        .navbar-collapse.in & {
+            overflow: hidden;
+        }
+    }
+
+    .mh-nav {
+        width: 100%;
+    }
+
+    .navbar-brand {
+        padding: 9px;
+    }
+
+    .navbar-collapse {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 100;
+        background-color: $shadow-blue-color;
+        width: 100%;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .nav-x-close {
+        cursor: pointer;
+    }
+
+    .navbar-default .navbar-nav > li {
+        text-align: center;
+        margin-left: 0;
+        margin: 55px 0;
+
+        &:last-child {
+            margin-bottom: 270px;
+        }
+
+        &.actived {
+            border-top: 0;
+
+            > a {
+                border-bottom: 6px solid $white-color;
+            }
+        }
+
+        > a {
+            color: white;
+            display: inline;
+            font-size: 25px;
+            font-weight: normal;
+        }
+    }
+}

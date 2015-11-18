@@ -1,0 +1,79 @@
+﻿<form name="doctorForm" novalidate>
+    <div class="row margin-bottom-15">
+        <button class="pull-left button button-white button-action" ng-click="navigateBack()">
+            <span class="icon-btn_back margin-right-10"></span>
+            Back to doctors
+        </button>
+        <button type="submit" class="pull-right button button-pink button-action" ng-click="save()" ng-show="!editMode" ng-disabled="!doctorForm.$valid">
+            <span class="icon-btn_tick margin-right-10"></span> Add
+        </button>
+        <button type="submit" class="pull-right button button-pink button-action" ng-click="save()" ng-show="editMode" ng-disabled="!doctorForm.$valid">
+            <span class="icon-btn_tick margin-right-10"></span> Save
+        </button>
+        <button class="pull-right button button-white button-action margin-right-10" ng-click="nagivateToPatientList()" ng-show="editMode">
+            <span class="icon-btn_menu_doctors margin-right-10"></span> Patients
+        </button>
+    </div>
+
+    <div class="row form-container margin-bottom-15">
+        <div class="form-container-inner-left">
+            <div class="form-image-doctor form-image-doctor-up visible-xs visible-sm">
+                <input type="file" accept="image/*" class="form-image-doctor-file" file-base64 data-b64="doctor.Picture" />
+                <button class="form-image-doctor-button" ng-if="!doctor.Picture">
+                    <span class="icon-btn_new"></span>
+                    <span>Add a profile photo</span>
+                </button>
+                <div class="form-image-doctor-img" style="background-image:url('{{doctor.Picture}}');" ng-if="doctor.Picture"></div>
+            </div>
+            <div class="input" ng-class="{'input-edit' : editMode}">
+                <label for="formName" class="margin-bottom-10">Name</label>
+                <input type="text" id="formName" class="font-size-30" ng-model="doctor.Name" required/>
+            </div>
+            <div class="input" ng-class="{'textarea-edit' : editMode}">
+                <label for="formDescription">Description</label>
+                <textarea id="formDescription" ng-model="doctor.Description" required></textarea>
+            </div>
+            <div class="input" ng-class="{'input-edit' : editMode}">
+                <label for="formAddress">Address</label>
+                <input type="text" id="formAddress" ng-model="doctor.Address" required/>
+            </div>
+            <div class="inline-input input input-padding-right fix-after-icon" ng-class="{'input-edit' : editMode}">
+                <label for="formEmail">E-mail</label>
+                <input type="email" id="formEmail" ng-model="doctor.Email" required/>
+            </div>
+            <div class="inline-input input input-telephone fix-after-icon" ng-class="{'input-edit' : editMode}">
+                <label for="formTelephone">Phone</label>
+                <input type="text" id="formTelephone" ng-model="doctor.Phone" required/>
+            </div>
+            <div class="inline-input input input-padding-left" ng-class="{'input-edit' : editMode}">
+                <label for="formMobile">Mobile</label>
+                <input type="text" id="formMobile" ng-model="doctor.Mobile" required/>
+            </div>
+        </div>
+
+        <div class="form-container-inner-right">
+            <div class="form-image-doctor visible-md visible-lg">
+                <input type="file" accept="image/*" class="form-image-doctor-file" file-base64 data-b64="doctor.Picture"/>
+                <button class="form-image-doctor-button" ng-if="!doctor.Picture">
+                    <span class="icon-btn_new"></span>
+                    <span>Add a profile photo</span>
+                </button>
+                <div class="form-image-doctor-img" style="background-image: url('{{doctor.Picture}}');" ng-if="doctor.Picture">
+
+                </div>
+            </div>
+            <div class="form-patients-number">
+                <span class="form-patients-number-quantity" ng-bind="doctor.PatientCount || 0"></span>
+                <span class="form-patients-number-patients">PATIENTS</span>
+            </div>
+            <div class="form-register-date">
+                <span class="form-register-date-title">Registration Date</span>
+                <span class="form-register-date-date" ng-bind="doctor.CreatedAt || '---' | date: 'mediumDate'"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row margin-bottom-100" ng-show="editMode">
+        <a class="delete-button" href="" ng-click="removeDoctor()"><span class="icon-btn_delete"></span> Delete this doctor</a>
+    </div>
+</form>

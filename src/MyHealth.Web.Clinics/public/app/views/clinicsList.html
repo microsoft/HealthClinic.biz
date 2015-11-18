@@ -1,0 +1,43 @@
+﻿<div class="clearfix margin-bottom-15">
+    <div class="btn btn-white float-left">
+        <input type="checkbox" id="selectAll"/>
+        <label for="selectAll">Select all</label>
+    </div>
+    <button class="btn btn-pink float-right">
+        <span class="icon-add margin-right-5"></span>
+        New clinic
+    </button>
+</div>
+
+<div class="grid">
+    <div class="grid-header">
+        <div class="grid-col-8" title="check"></div>
+        <div class="grid-col-31 grid-ellipsis" title="Name">Name</div>
+        <div class="grid-col-30 grid-ellipsis" title="Address">Address</div>
+        <div class="grid-col-31 grid-ellipsis" title="City">City</div>
+    </div>
+    <div class="grid-body">
+        <div class="grid-row" ng-repeat="clinic in ::clinics">
+            <div class="grid-col-8 text-center">
+                <input type="checkbox" id="{{::$index}}" />
+                <label for="{{::$index}}"></label>
+            </div>
+            <div class="grid-col-31 grid-ellipsis" ng-bind="::clinic.Name"></div>
+            <div class="grid-col-30 grid-ellipsis" ng-bind="::clinic.Address"></div>
+            <div class="grid-col-15 grid-ellipsis" ng-bind="::clinic.City"></div>
+            <div class="grid-col-16 text-center">
+                <span class="icon-edit margin-right-8"></span>
+                <span class="icon-remove"></span>
+            </div>
+        </div>
+        <div class="grid-row" ng-show="noData">
+            <div class="grid-col-100 text-center">
+                <span>NO DATA</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="text-center margin-top-20">
+    <button class="btn btn-pink btn-bold">LOAD MORE</button>    
+</div>

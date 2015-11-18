@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!--
+ Copyright (c) Microsoft Open Technologies, Inc.  All Rights Reserved.
+ Licensed under the Apache License, Version 2.0.  See License.txt in the project root for license information.
+-->
+
+<plugin id="cordova-plugin-ms-appinsights"
+        version="0.0.2"
+        xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <license>Apache 2.0</license>
+    <name>Application Insights</name>
+    <description>Application Insights Cordova plugin.</description>
+    <keywords>microsoft, azure, application, insights</keywords>
+    <repo>https://github.com/MSOpenTech/cordova-plugin-appinsights</repo>
+    <issue>https://github.com/MSOpenTech/cordova-plugin-appinsights/issues</issue>
+
+    <dependency id="cordova-plugin-device" />
+
+    <!-- FIXME: There is currently a bug in cordova-lib which makes usage of mandatory plugin
+    variables impossible. The following line should be uncommented once this bug is fixed -->
+    <preference name="INSTRUMENTATION_KEY" />
+
+    <js-module name="AppInsights" src="www/AppInsights.js">
+        <clobbers target="window.appInsights.config"/>
+    </js-module>
+
+    <js-module name="AppInsightsLibrary" src="www/AppInsights.lib.js">
+        <runs />
+    </js-module>
+
+    <hook type="before_prepare" src="scripts/appinsights_before_prepare.js" />
+
+    <!-- Set up whitelist rule to allow access to AppInsights endpoint -->
+    <config-file target="config.xml" parent="/*">
+        <access origin="https://dc.services.visualstudio.com/v2/track" />
+    </config-file>
+
+    <config-file target="../../config.xml" parent="/*">
+        <preference name="instrumentation_key" value="$INSTRUMENTATION_KEY" />
+    </config-file>
+
+    <platform name="android">
+    </platform>
+
+    <platform name="ios">
+    </platform>
+
+    <platform name="windows">
+    </platform>
+
+</plugin>

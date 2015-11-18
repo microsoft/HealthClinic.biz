@@ -1,0 +1,60 @@
+﻿/*****************************************************
+/* VENDORS
+/*****************************************************/
+
+// BOOTSTRAP
+@import "vendor/bootstrap/_bootstrap.scss";
+
+
+/*****************************************************
+/* BASE STYLES
+/*****************************************************/
+
+// Definition of variables to use across the project.
+
+// Do not import in this file!
+//"base/variables.less"
+
+// Cross-browser reset by Nicolas Gallagher (http://necolas.github.io/normalize.css/)
+@import "base/_normalize.scss";
+
+// Custom reset
+@import "base/_custom-normalize.scss";
+
+// Custom fonts definition
+@import "base/_fonts.scss";
+
+// Icommon definition
+@import "base/_icomoon.scss";
+
+
+/*****************************************************
+/* COMPONENTS
+/*****************************************************/
+
+@import "components/_buttons.scss";
+@import "public/components/_features.scss";
+@import "public/components/_sections.scss";
+@import "public/components/_gallery.scss";
+
+
+/*****************************************************
+/* LAYOUT STYLES
+/*****************************************************/
+
+@import "private/layout/_error.scss";
+@import "public/layout/_header.scss";
+@import "public/layout/_navbar.scss";
+@import "public/layout/_footer.scss";
+
+//Login
+@import "public/layout/_login.scss";
+
+
+/*****************************************************
+/* HELPERS
+/*****************************************************/
+
+@import "helpers/_valign.scss";
+@import "helpers/_separators.scss";
+@import "helpers/_font-sizes.scss";

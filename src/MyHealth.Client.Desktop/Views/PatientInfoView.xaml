@@ -1,0 +1,49 @@
+﻿<Page x:Class="MyHealth.Client.Desktop.Views.PatientInfoView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MyHealth.Client.Desktop.Views"
+      xmlns:controls="clr-namespace:MyHealth.Client.Desktop.Controls"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="PatientInfoView"
+       Background="{StaticResource MainViewBackground}"
+       Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="420" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource HeaderHeight}"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <controls:Menu Grid.Row="0" Grid.ColumnSpan="3" DataContext="{Binding CurrentHeaderViewModel}" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Appointments" Style="{StaticResource SecondRowHeaderTextStyle}" />
+        <controls:PatientInfo Grid.Column="0" Grid.Row="2" Width="{StaticResource AppointmentDetailsColumnWidth}" Padding="{StaticResource ControlMargin2}" DataContext="{Binding CurrentViewModel}" Effect="{StaticResource DropShadowEffect}"/>
+        <controls:PatientAppointments Grid.Row="3" Margin="{StaticResource ControlMargin}" Grid.Column="1" DataContext="{Binding CurrentViewModel}" />
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="Calendar" Style="{StaticResource SecondRowHeaderTextStyle}" />
+        <Viewbox Grid.Row="2" Grid.Column="2" Margin="0,0,7,0" VerticalAlignment="Top">
+            <controls:AppointmentCalendar  x:Name="PatientCalendar"  
+                      HorizontalAlignment="Stretch" 
+                      IsTodayHighlighted="True"  
+                      VerticalAlignment="Top"  
+                      PatientAppointmentDates="{Binding CurrentViewModel.AppointmentDates, Mode=OneWay}" 
+                      DisplayDate="{Binding CurrentViewModel.CalendarDisplayDate}" 
+                      SelectedDate="{Binding CurrentViewModel.CalendarSelectedDate}" 
+                      IsEnabled="{Binding CurrentViewModel.IsLoadingDetails, Converter={StaticResource NotBoolConverter}}"
+                      IsEnabledChanged="PatientCalendar_IsEnabledChanged"
+                      SelectedDatesChanged="PatientCalendar_SelectedDatesChanged" 
+                      CalendarDayButtonStyle="{DynamicResource PatientCalendarDayButtonStyle}" 
+                      CalendarItemStyle="{DynamicResource CalendarItemStyle1}" 
+                      Style="{DynamicResource CalendarStyle1}" 
+                      Effect="{StaticResource DropShadowEffect}">
+            </controls:AppointmentCalendar>
+        </Viewbox>
+    </Grid>
+</Page>

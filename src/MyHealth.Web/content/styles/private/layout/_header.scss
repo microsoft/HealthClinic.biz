@@ -1,0 +1,123 @@
+﻿@import '../../base/_variables.scss';
+
+.header {
+    height: $header-height;
+    line-height: $header-height;
+    background: $back-color-nocontent;
+    padding: 0 30px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    line-height: $header-height;
+    vertical-align: middle;
+    z-index: 1000;
+}
+
+.header-logo {
+    float: left;
+    background: url('/images/private/logo_private_area.png') no-repeat left center;
+    width: 250px;
+    height: 100%;
+    background-size: 90%;
+}
+
+.header-separator {
+    float: left;
+    position: relative;
+    height: 100%;
+    width: 1px;
+
+    &::after {
+        $separation: 20px;
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 1px;
+        top: $separation;
+        bottom: $separation;
+        background: $header-tittle-separator-color;
+    }
+}
+
+.header-title {
+    float: left;
+    margin-left: 20px;
+    color: $white-color;
+    font-size: 1.1em;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: $header-height;
+}
+
+.left-menu-chevron {
+    color: $pink-color;
+    cursor: pointer;
+}
+
+.header-hamburguer {
+    color: $pink-color;
+    cursor: pointer;
+    float: left;
+    height: 100%;
+    vertical-align: middle;
+    line-height: 105px;
+    margin-right: 30px;
+}
+
+.header-container {
+    float: left;
+    height: 100%;
+
+    @media #{$for-mobile} {
+        display: none;
+    }
+
+    span {
+        margin-right: 15px;
+    }
+}
+
+.header-subtitle {
+    color: $color-low;
+    font-size: 1.2em;
+    line-height: $header-height;
+
+    &:before {
+        content: '-';
+        margin-right: 15px;
+    }
+}
+
+.header-avatar {
+    float: right;
+    height: 100%;
+}
+
+.header-name {
+    vertical-align: middle;
+    line-height: $header-height;
+    color: white;
+    text-transform: capitalize;
+    float: right;
+    margin-right: 10px;
+
+    @media #{$for-mobile} {
+        display: none;
+    }
+}
+
+.header-image {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: url('../api/users/current/avatar') no-repeat center;
+    line-height: 100%;
+    vertical-align: middle;
+    margin-top: 18px;
+    float: right;
+    margin-right: 20px;
+
+    @media #{$for-mobile} {
+        display: none;
+    }
+}

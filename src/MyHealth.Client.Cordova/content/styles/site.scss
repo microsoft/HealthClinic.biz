@@ -1,0 +1,15 @@
+﻿// VARIABLES
+@import "base/_variables.scss";
+
+// IONIC VARIABLES
+@import "../lib/ionic/scss/_variables.scss";
+
+// GLOBAL
+@import "base/_global.scss";
+@import "base/_inputs.scss";
+@import "base/_menu.scss";
+
+// COMPONENTS
+@import "components/_card-home-appointment.scss";
+@import "components/_loader.scss";
+@import "components/_popup-container-home-appointment-notification.scss";

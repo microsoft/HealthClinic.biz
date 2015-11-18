@@ -1,0 +1,53 @@
+﻿<UserControl
+    x:Class="MyHealth.Client.W10.UWP.Controls.CircularProgressBar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyHealth.Client.W10.UWP.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Name="userControl"
+    d:DesignHeight="300"
+    d:DesignWidth="300">
+
+    <Grid Loaded="ControlLoaded">
+        <Path x:Name="fullPath" Stroke="{Binding Foreground, ElementName=userControl}"
+              StrokeThickness="{Binding StrokeThickness, ElementName=userControl}"
+              HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Path.Data>
+                <PathGeometry>
+                    <PathGeometry.Figures>
+                        <PathFigureCollection>
+                            <PathFigure x:Name="fullFigure">
+                                <PathFigure.Segments>
+                                    <PathSegmentCollection>
+                                        <ArcSegment x:Name="fullSegment" SweepDirection="Clockwise" />
+                                    </PathSegmentCollection>
+                                </PathFigure.Segments>
+                            </PathFigure>
+                        </PathFigureCollection>
+                    </PathGeometry.Figures>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+        <Path x:Name="pathRoot" Stroke="{Binding SegmentColor, ElementName=userControl}"
+              StrokeThickness="{Binding StrokeThickness, ElementName=userControl}"
+              HorizontalAlignment="Left" VerticalAlignment="Top" StrokeStartLineCap="Round" StrokeEndLineCap="Round">
+            <Path.Data>
+                <PathGeometry>
+                    <PathGeometry.Figures>
+                        <PathFigureCollection>
+                            <PathFigure x:Name="pathFigure">
+                                <PathFigure.Segments>
+                                    <PathSegmentCollection>
+                                        <ArcSegment x:Name="arcSegment" SweepDirection="Clockwise"/>
+                                    </PathSegmentCollection>
+                                </PathFigure.Segments>
+                            </PathFigure>
+                        </PathFigureCollection>
+                    </PathGeometry.Figures>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+    </Grid>
+</UserControl>

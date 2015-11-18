@@ -1,0 +1,93 @@
+﻿/*Main Sizes*/
+$bg-content-size: 1148px;
+$bg-content-size-half: 574px;
+$bg-content-inner-size: 666px;
+$min-width:520px;
+
+/*Basic Colors*/
+$black-color: #3d3d4c;
+$white-color: #fff;
+$skyblue-color: #ddf7f5;
+$blue-color: #00d7cc;
+$pink-color: #ff1770;
+$grey-color:#f2f2f2;
+
+$tooltip-color: #13141d;
+
+$summary-blue-color: #00d8cc;
+$summary-black-color: #71717f;
+$summary-grey-color: #b8b8b9;
+
+$dark-grey-color: darken($grey-color, 20%);
+$border-grey-color: #60606c;
+$shadow-blue-color: rgba(3, 208, 197, .95);
+
+$left-menu-selected-color : #f0f0f0;
+$left-menu-color : #717171;
+
+$title-color: #7c7c81;
+$selected-grid-color: #e5fbfa;
+$checkbox-border-color: #d2d2d2;
+
+$grid-letter-color:#71717f;
+$border-bottom-input-color: #d4d4d8;
+
+$container-width: 1366px;
+$container-padding: 30px;
+
+/*Bootstrap query breakpoints*/
+
+//Mobile
+$mobile-max:768px;
+//Tablet
+$tablet-min:768px;
+$tablet-max:992px;
+//Desktop
+$desktop-min:992px;
+$desktop-max:1366px;
+//Large desktop
+$lgdesktop-min:1366px;
+
+
+/*Media queries*/
+
+$for-mobile:           "screen and (max-width: #{$mobile-max})";
+$for-tablet:           "screen and (min-width: #{$tablet-min}) and (max-width: #{$tablet-max})";
+$for-desktop:          "screen and (min-width: #{$desktop-min}) and (max-width: #{$desktop-max})";
+$for-large-desktop:    "screen and (min-width: #{$lgdesktop-min})";
+
+$for-tablet-or-lower:   "screen and (max-width: #{$tablet-max})";
+$for-tablet-or-greater: "screen and (min-width: #{$tablet-min})";
+
+$for-desktop-or-lower:   "screen and (max-width: #{$desktop-max})";
+$for-desktop-or-greater: "screen and (min-width: #{$desktop-min})";
+
+
+/*Lost queries of bootstrap*/
+
+$for-lost-tablet: "(min-width:992px) and (max-width:1200px)";
+$for-lost-desktop: "(min-width:1200px) and (max-width:1400px)";
+$for-lost-large-desktop: "(min-width:1400px)";
+
+$back-color-nocontent: rgb(29,30,42);          // No Content Back Color (header, footer)
+$back-color-content: rgb(240,240,240);         // Content back color
+
+$color-high: white;
+$color-text: darken($color-high, 15%);
+$color-low: darken($color-high, 30%);
+$header-tittle-separator-color: #363744;
+
+$header-height: 105px;
+$footer-height: 200px;
+$menu-width: 348px;
+
+// Left margin for first header element and menu items
+$spacing-margin-left: 30px;
+// Space between menu and content
+$spacing-menu-content: 30px;
+// Space between header and content
+$spacing-header-content: 30px;
+// Space between content and footer
+$spacing-content-footer: 30px;
+// Right margin for last header element
+$spacing-header-right: 50px;

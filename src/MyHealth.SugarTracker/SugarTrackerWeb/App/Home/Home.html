@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>Daily Blood Sugar Tracker</title>
+
+    <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/blitzer/jquery-ui.css">
+    <script src="../../Content/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+    <link rel="stylesheet" href="../../Content/jquery-ui-1.11.4.custom/jquery-ui.theme.css">
+
+    <link href="../../Content/Office.css" rel="stylesheet" type="text/css" />
+
+    <script src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+
+    <link href="../App.css" rel="stylesheet" type="text/css" />
+    <script src="../App.js" type="text/javascript"></script>
+
+    <link href="Home.css" rel="stylesheet" type="text/css" />
+    <script src="Home.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="//appsforoffice.microsoft.com/fabric/1.0/fabric.min.css">
+    <link rel="stylesheet" href="//appsforoffice.microsoft.com/fabric/1.0/fabric.components.min.css">
+</head>
+<body class="ms-font-m">
+    <div id="content-header">
+        <div class="padding">
+            <img src="/Images/logo.png" />
+        </div>
+    </div>
+    <div id="content-main">
+        <div class="padding">
+            <div id="tabs">
+                <ul>
+                    <li><a href="#tabs-1">Dashboard</a></li>
+                    <li><a href="#tabs-2">Settings</a></li>
+                </ul>
+                <div id="tabs-1">
+                    <p>Hello, Scott!</p>
+                    <p>Keep on track! See how you're doing today.</p>
+                    <button class="ms-Button" id="sync-data">Refresh</button>
+                    <br />
+                    <hr />
+                    <p>Select the time slice you want to view.</p>
+                    <div id="checkbox-set">
+                        <input type="radio" id="Afternoon" class="timeSlice" name="timeslice" value="Afternoon" /><label for="Afternoon">Afternoon</label><br />
+                        <input type="radio" id="Evening" class="timeSlice" name="timeslice" value="Evening" /><label for="Evening">Evening</label><br />
+                        <input type="radio" id="Night" class="timeSlice" name="timeslice" value="Night" /><label for="Night">Night</label><br />
+                        <input type="radio" id="Morning" class="timeSlice" name="timeslice" value="Morning" checked="checked" /><label for="Morning">Morning</label><br />
+                    </div>
+                    <br />
+                </div>
+                <div id="tabs-2">
+                    <h2>Blood sugar range    </h2>
+                    <br />
+                    <label for="normal-range">Target range:</label>
+                    <input type="text" id="normal-range" readonly style="border: 0; color: #47EDED; font-weight: bold;">
+                    <input type="text" id="normal-range-start" readonly hidden style="border:0; color:#f6931f; font-weight:bold;">
+                    <input type="text" id="normal-range-end" readonly hidden style="border:0; color:#f6931f; font-weight:bold;">
+                    <div id="slider-normal-range"></div>
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

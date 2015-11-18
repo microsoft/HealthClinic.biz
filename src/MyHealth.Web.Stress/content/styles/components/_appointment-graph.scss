@@ -1,0 +1,39 @@
+﻿@import '../base/_variables.scss';
+
+.appointment-graph {
+    width: 308px;
+    position: absolute;
+    left: 222px;
+    height: 160px;
+    top: -8px;
+    background-color: $color-white;
+
+    .appointment-name {
+        color: $color-blue;
+    }
+
+    .appointment-email {
+        color: $color-black;
+    }
+
+    &:before {
+        $graph-height-halo: 447px;
+        content: '';
+        display: block;
+        width: 100%;
+        height: $graph-height-halo;
+        position: absolute;
+        background-color: $color-blue;
+        opacity: 0.2;
+        top: -$graph-height-halo;
+        z-index: 1;
+    }
+
+    > ul {
+        height: 120px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        border: 1px solid $color-grey;
+        border-top: 0;
+    }
+}

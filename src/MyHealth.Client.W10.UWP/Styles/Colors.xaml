@@ -1,0 +1,27 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyHealth.Client.W10.UWP.Styles">
+
+    <SolidColorBrush x:Key="MyHealthBlackThemeBrush" Color="#FF181818"/>
+    <SolidColorBrush x:Key="MyHealthWhiteThemeBrush" Color="White"/>
+    <SolidColorBrush x:Key="MyHealthSelectedWhiteThemeBrush" Color="#FFF8F8F8"/>
+    <SolidColorBrush x:Key="MyHealthAppointmentSelectedThemeBrush" Color="#FFF3F3F3"/>
+    <SolidColorBrush x:Key="MyHealthHoverWhiteThemeBrush" Color="#FFE5E5E5"/>
+    <SolidColorBrush x:Key="MyHealthPressedWhiteThemeBrush" Color="#FFC0BFBF"/>
+    <SolidColorBrush x:Key="MyHealthHeaderBlueThemeBrush" Color="#FF33E0D6"/>
+    <SolidColorBrush x:Key="MyHealthBackgroundBlueThemeBrush" Color="#FF00D8CC"/>
+    <SolidColorBrush x:Key="MyHealthBackgroundCircularBarThemeBrush" Color="#FFE5FBFA"/>
+    <SolidColorBrush x:Key="MyHealthPinkLogoThemeBrush" Color="#FFFF166F"/>
+    <SolidColorBrush x:Key="MyHealthDarkPinkLogoThemeBrush" Color="#FFC41F46"/>
+    <SolidColorBrush x:Key="MyHealthDarkGrayThemeBrush" Color="#FFBEBEC0"/>
+    <SolidColorBrush x:Key="MyHealthMediumGrayThemeBrush" Color="#FFC4C4C7"/>
+    <SolidColorBrush x:Key="MyHealthLightGrayThemeBrush" Color="#FFEEEEEF"/>
+    <SolidColorBrush x:Key="MyHealthExtraLightGrayThemeBrush" Color="#FFF8F8F8"/>
+
+    <LinearGradientBrush x:Key="MyHealthProgressBarGradientThemeBrush">
+        <GradientStop Color="#FFFF166F" Offset="0.1"/>
+        <GradientStop Color="#FF00D8CC" Offset="0.9"/>
+    </LinearGradientBrush>
+
+</ResourceDictionary>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+  <dimen name="drawer_width">240dp</dimen>
+  <dimen name="dimen_margin_circle">14dp</dimen>
+  <dimen name="dimen_margin_circle.negative">-14dp</dimen>
+  <dimen name="calendar_text_small">12dp</dimen>
+  <dimen name="calendar_month_text_size">12dp</dimen>
+</resources>

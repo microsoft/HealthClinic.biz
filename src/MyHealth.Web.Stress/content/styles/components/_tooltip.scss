@@ -1,0 +1,53 @@
+﻿@import '../base/_variables.scss';
+
+.tooltip {
+    position: absolute;
+    padding: 15px;
+    border-radius: 3px;
+    transition: all, .1s ease, opacity .1s linear .2s;
+    pointer-events: none;
+    z-index: 1001;
+    width: 180px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.tooltip-section {
+    overflow: hidden;
+    margin-bottom: 10px;
+    line-height: 20px;
+
+    &:last-child {
+        margin: 0;
+    }
+}
+
+.tooltip-key {
+    float: left;
+    color: $color-black;
+    font-size: 15px;
+    width: 50%;
+    text-align: right;
+    padding-right: 5px;
+}
+
+.tooltip-value {
+    padding-left: 5px;
+    float: left;
+    width: 10px;
+    font-size: 19px;
+    height: 10px;
+    font-weight: 600;
+    width: 50%;
+
+    &.stress {
+        color: #F93380;
+    }
+
+    &.glucose {
+        color: #10DBCF;
+    }
+
+    &.heart {
+        color: #BFBFBF;
+    }
+}

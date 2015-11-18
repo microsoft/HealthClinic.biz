@@ -1,0 +1,31 @@
+﻿<Page x:Class="MyHealth.Client.HealthCloudAPI.Selection"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MyHealth.Client.HealthCloudAPI"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="Selection"
+      DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" TextWrapping="Wrap">This application retrieves data from your Microsoft Health account. Choose a timeframe below</TextBlock>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <DatePicker Name="StartDate" Grid.Column="0"/>
+                <DatePicker Name="EndDate" Grid.Column="1"/>
+            </Grid>
+            <Button Name="GoButton" Content="Go!" Grid.Row="2" Command="{Binding NavigateCommand}"/>
+        </Grid>
+    </Grid>
+</Page>

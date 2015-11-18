@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="?attr/colorPrimary"
+    android:layout_width="@dimen/drawer_width"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@drawable/bg_header"
+        android:orientation="horizontal">
+        <rocket.droid.CircleImageView
+            android:src="@android:drawable/ic_menu_gallery"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:id="@+id/imageView1"
+            android:layout_marginLeft="12dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="26dp"
+            android:layout_marginBottom="16dp"
+            local:MvxBind="Bitmap InMemoryImage(CurrentUser.Picture)"
+            local:border_color="@color/white"
+            local:border_width="3dp" />
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                local:MvxBind="Text CurrentUser.Name" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                local:MvxBind="Text CurrentUser.ClinicId" />
+        </LinearLayout>
+    </LinearLayout>
+    <Mvx.MvxListView
+        android:id="@+id/navigation_drawer_list"
+        local:MvxItemTemplate="@layout/item_menu"
+        local:MvxBind="ItemsSource MenuItems; ItemClick ItemSelectedCommand"
+        android:divider="@null"
+        android:scrollbars="vertical"
+        android:choiceMode="singleChoice"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|start"
+        android:background="#FFFFFF" />
+</LinearLayout>

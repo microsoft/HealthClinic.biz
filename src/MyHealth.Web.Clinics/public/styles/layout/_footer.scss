@@ -1,0 +1,60 @@
+﻿@import '../base/_variables.scss';
+
+$footer-background: $layout-menus-color;
+$footer-text-color: #b3b3b3;
+$footer-extra-padding-bottom: 30px;
+$footer-text-line-height: 25px;
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+    background: $footer-background;
+    overflow: hidden;
+    font-size: 0.8em;   
+    color: $footer-text-color;   
+}
+
+.footer-inner{
+    display: flex;
+    align-items: flex-end;
+    padding: $container-padding;
+    padding-bottom: $container-padding + $footer-extra-padding-bottom;
+    max-width: $container-width;
+    margin: 0 auto;    
+}
+
+.footer-logo {  
+    opacity: .2;
+}
+
+.footer-info {
+    flex: 1;
+    text-align: right;
+    padding-left: 50px;
+}
+
+.footer-sitemap {
+    margin-left: 50px;
+    display: inline-block;
+   
+  
+    li {
+        display: inline-block;
+    }
+}
+
+.footer-copyright {
+    line-height: $footer-text-line-height; 
+}
+
+.footer-link {
+    line-height: $footer-text-line-height;
+    margin-left: 30px;
+    color: $footer-text-color;
+
+    &:hover {
+        color: darken($footer-text-color, 10%);
+    }
+}

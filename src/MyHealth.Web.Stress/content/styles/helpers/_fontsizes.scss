@@ -1,0 +1,5 @@
+﻿@for $i from 1 through 20 {
+    .fontsize-#{$i*5} {
+        font-size: #{$i*5}px !important;
+    }
+}

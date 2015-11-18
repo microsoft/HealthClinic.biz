@@ -1,0 +1,9 @@
+﻿@import '../base/_variables.scss';
+
+//This styles overwrite the vendor toaster styles
+#toast-container {
+    > div {
+        width: 250px;
+        border-radius: 0;
+    }
+}

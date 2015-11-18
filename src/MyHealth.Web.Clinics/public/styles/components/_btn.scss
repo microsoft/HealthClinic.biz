@@ -1,0 +1,32 @@
+﻿@import '../base/_variables.scss';
+
+.btn {
+    border: none;
+	border-radius: 2px;
+	-webkit-appearance: none;
+	padding: 15px 25px;	
+	font-size: .9em;
+}
+.btn-white {
+	color:rgb(113, 113, 127);
+	background: #FFF;
+	border: 1px solid #FFF;
+	
+	&:hover {
+		border-color: currentColor;
+	}	
+}
+
+.btn-pink {
+	$background: $color-pink;
+	color: #FFF;
+	background: $background;
+		
+	&:hover {
+		background: darken($background, 5%);	
+	}
+}
+
+.btn-bold{
+    font-weight: 600;
+}

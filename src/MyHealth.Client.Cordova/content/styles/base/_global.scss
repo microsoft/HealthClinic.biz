@@ -1,0 +1,124 @@
+﻿/*
+    CUSTOM MENU APPEARANCE BEHAVIOUR
+*/
+body {
+    background-color: black;
+}
+
+.pane.view {
+    background-color: black;
+}
+
+.menu {
+    -moz-transform: translate3d(-100%, 0, 0);
+    -ms-transform: translate3d(-100%, 0, 0);
+    -o-transform: translate3d(-100%, 0, 0);
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    -moz-transition: all $menu-animation-speed ease;
+    -o-transition: all $menu-animation-speed ease;
+    -webkit-transition: all $menu-animation-speed ease;
+    transition: all $menu-animation-speed ease;
+    z-index: 1 !important;
+
+    body.menu-open & {
+        -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        -o-transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.menu-content {
+    -moz-transform: translate3d(0, 0, 0) !important;
+    -ms-transform: translate3d(0, 0, 0) !important;
+    -o-transform: translate3d(0, 0, 0) !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    transform: translate3d(0, 0, 0) !important;
+    -moz-transition: opacity $menu-animation-speed ease;
+    -o-transition: opacity $menu-animation-speed ease;
+    -webkit-transition: opacity $menu-animation-speed ease;
+    transition: opacity $menu-animation-speed ease;
+    background-color: $base-background-color;
+
+    body.menu-open & {
+        opacity: 0.5;
+    }
+}
+
+/*
+    Custom Ionic Bars and Menu Bar
+*/
+$bar-inner-glow-color: rgba(255,255,255,0.1);
+$bar-inner-glow-width: 1px;
+$bar-shadow-color: rgba(0, 0, 0, 0.3);
+
+$bar-header-menu-title-size: 18px;
+$bar-header-menu-subtitle-size: 14px;
+$bar-header-menu-info-line-height: 1.5;
+
+$bar-header-title-vertical-adjust: 2px;
+
+.bar.bar-header {
+    border: 0 solid $bar-inner-glow-color !important;
+    border-width: $bar-inner-glow-width 0;
+    box-shadow: 0px 0px 6px $bar-shadow-color;
+
+    padding: {
+        left: 15px;
+        right: 15px;
+    }
+
+    .title {
+        line-height: $bar-height - ($bar-inner-glow-width*2);
+        margin-left: 20px;
+        margin-top: $bar-header-title-vertical-adjust;
+
+        .platform-ios & {
+            margin-left: 10px;
+        }
+    }
+
+    .button {
+        max-height: $bar-height;
+        color: $bar-calm-text;
+    }
+}
+
+/*
+    Fix extra padding under card-home-appointment-detail
+    This is because ionic's scrolling behaviour and top margin without any padding
+*/
+.scroll-content-padding-top {
+    div.scroll {
+        padding-top: 1px;
+        padding-bottom: 1px;
+    }
+}
+
+/*
+    Settings card
+*/
+div.settings-section-card-container {
+    padding: 10px 10px 0 10px;
+    div.card {
+        margin: 0;
+        border-radius: 0;
+
+        div.item.item-divider {
+            background-color: #f8f8f8;
+            box-shadow: inset 0 0 0 4px #ffffff;
+            padding: 10px 16px 11px 16px;
+            color: $calm-for-buttons;
+            font-size: 16px;
+            font-weight: normal;
+            line-height: 1.2em;
+        }
+
+        div.item.item-text-wrap {
+            border-color: #f2f2f2;
+            padding: 0;
+        }
+    }
+}

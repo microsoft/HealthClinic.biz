@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>MyHealth.Web.Clinics</Name>
+    <RootNamespace>MyHealth.Web.Clinics</RootNamespace>
+    <EnableTypeScript>true</EnableTypeScript>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>20af3be5-6314-4926-8462-285219125bd2</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>bin\www</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <ProjectView>ShowAllFiles</ProjectView>
+    <NodejsPort>1337</NodejsPort>
+    <StartWebBrowser>true</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="app.js" />
+    <Compile Include="database\config.js" />
+    <Compile Include="database\mssqlClient.js" />
+    <Compile Include="database\request.js" />
+    <Compile Include="gulpfile.js" />
+    <Compile Include="gulp\options\paths.js" />
+    <Compile Include="gulp\tasks\lint.js" />
+    <Compile Include="gulp\tasks\sass.js" />
+    <Compile Include="gulp\tasks\ts.js" />
+    <Compile Include="gulp\tasks\zip.js" />
+    <Compile Include="public\app\app.js" />
+    <Compile Include="public\lib\angular-ui-router\release\angular-ui-router.js" />
+    <Compile Include="public\lib\angular-ui-router\release\angular-ui-router.min.js" />
+    <Compile Include="public\lib\angular-ui-router\src\common.js" />
+    <Compile Include="public\lib\angular-ui-router\src\resolve.js" />
+    <Compile Include="public\lib\angular-ui-router\src\state.js" />
+    <Compile Include="public\lib\angular-ui-router\src\stateDirectives.js" />
+    <Compile Include="public\lib\angular-ui-router\src\stateFilters.js" />
+    <Compile Include="public\lib\angular-ui-router\src\templateFactory.js" />
+    <Compile Include="public\lib\angular-ui-router\src\urlMatcherFactory.js" />
+    <Compile Include="public\lib\angular-ui-router\src\urlRouter.js" />
+    <Compile Include="public\lib\angular-ui-router\src\view.js" />
+    <Compile Include="public\lib\angular-ui-router\src\viewDirective.js" />
+    <Compile Include="public\lib\angular-ui-router\src\viewScroll.js" />
+    <Compile Include="public\lib\angularjs\angular.js" />
+    <Compile Include="public\lib\angularjs\angular.min.js" />
+    <Compile Include="public\lib\angularjs\index.js" />
+    <Compile Include="public\lib\angular\angular.js" />
+    <Compile Include="public\lib\angular\angular.min.js" />
+    <Compile Include="public\lib\angular\index.js" />
+    <Compile Include="queries\clinics.js" />
+    <Compile Include="routes\index.js" />
+    <Compile Include="routes\clinics.js" />
+    <Content Include=".bowerrc" />
+    <Content Include="bin\www" />
+    <Content Include="bower.json" />
+    <Content Include="jsconfig.json" />
+    <Content Include="package.json" />
+    <Content Include="public\app\tsconfig.json" />
+    <Content Include="public\app\tslint.json" />
+    <Content Include="public\app\views\clinicsList.html" />
+    <Content Include="public\app\views\error.html" />
+    <Content Include="public\favicon.ico" />
+    <Content Include="public\fonts\icomoon.eot" />
+    <Content Include="public\fonts\icomoon.svg" />
+    <Content Include="public\fonts\icomoon.ttf" />
+    <Content Include="public\fonts\icomoon.woff" />
+    <Content Include="public\images\ico_check.png" />
+    <Content Include="public\images\logo1.png" />
+    <Content Include="public\images\logo2.png" />
+    <Content Include="public\index.html" />
+    <Content Include="public\lib\angular-ui-router\.bower.json" />
+    <Content Include="public\lib\angular-ui-router\bower.json" />
+    <Content Include="public\lib\angular-ui-router\CHANGELOG.md" />
+    <Content Include="public\lib\angular-ui-router\CONTRIBUTING.md" />
+    <Content Include="public\lib\angular-ui-router\LICENSE" />
+    <Content Include="public\lib\angular-ui-router\README.md" />
+    <Content Include="public\lib\angularjs\.bower.json" />
+    <Content Include="public\lib\angularjs\angular-csp.css" />
+    <Content Include="public\lib\angularjs\angular.min.js.gzip" />
+    <Content Include="public\lib\angularjs\angular.min.js.map" />
+    <Content Include="public\lib\angularjs\bower.json" />
+    <Content Include="public\lib\angularjs\package.json" />
+    <Content Include="public\lib\angularjs\README.md" />
+    <Content Include="public\lib\angular\.bower.json" />
+    <Content Include="public\lib\angular\angular-csp.css" />
+    <Content Include="public\lib\angular\angular.min.js.gzip" />
+    <Content Include="public\lib\angular\angular.min.js.map" />
+    <Content Include="public\lib\angular\bower.json" />
+    <Content Include="public\lib\angular\package.json" />
+    <Content Include="public\lib\angular\README.md" />
+    <Content Include="public\styles\base\_base.scss" />
+    <Content Include="public\styles\base\_custom-normalize.scss" />
+    <Content Include="public\styles\base\_icomoon.scss" />
+    <Content Include="public\styles\base\_fonts.scss" />
+    <Content Include="public\styles\base\_normalize.scss" />
+    <Content Include="public\styles\base\_variables.scss" />
+    <Content Include="public\styles\components\_btn.scss" />
+    <Content Include="public\styles\components\_checkbox.scss" />
+    <Content Include="public\styles\components\_grid.scss" />
+    <Content Include="public\styles\components\_loading.scss" />
+    <Content Include="public\styles\helpers\_clearfix.scss" />
+    <Content Include="public\styles\helpers\_align.scss" />
+    <Content Include="public\styles\helpers\_float.scss" />
+    <Content Include="public\styles\helpers\_separators.scss" />
+    <Content Include="public\styles\layout\_error.scss" />
+    <Content Include="public\styles\layout\_footer.scss" />
+    <Content Include="public\styles\layout\_main.scss" />
+    <Content Include="public\styles\layout\_header.scss" />
+    <Content Include="public\styles\layout\_overlay.scss" />
+    <Content Include="public\styles\site.css" />
+    <Content Include="public\styles\site.css.map" />
+    <Content Include="public\styles\site.scss" />
+    <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\" />
+    <Folder Include="database\" />
+    <Folder Include="gulp\" />
+    <Folder Include="gulp\options\" />
+    <Folder Include="gulp\tasks\" />
+    <Folder Include="public\app\views\" />
+    <Folder Include="public\fonts\" />
+    <Folder Include="public\styles\helpers\" />
+    <Folder Include="typings\" />
+    <Folder Include="public\" />
+    <Folder Include="public\app\" />
+    <Folder Include="public\app\controllers\" />
+    <Folder Include="public\app\services\" />
+    <Folder Include="public\images\" />
+    <Folder Include="public\lib\" />
+    <Folder Include="public\lib\angular-ui-router\" />
+    <Folder Include="public\lib\angular-ui-router\api\" />
+    <Folder Include="public\lib\angular-ui-router\release\" />
+    <Folder Include="public\lib\angular-ui-router\src\" />
+    <Folder Include="public\lib\angularjs\" />
+    <Folder Include="public\lib\angular\" />
+    <Folder Include="public\styles\" />
+    <Folder Include="public\styles\base\" />
+    <Folder Include="public\styles\components\" />
+    <Folder Include="public\styles\layout\" />
+    <Folder Include="queries\" />
+    <Folder Include="routes\" />
+    <Folder Include="public\typings\" />
+    <Folder Include="public\typings\angularjs\" />
+    <Folder Include="typings\express\" />
+    <Folder Include="public\typings\jquery\" />
+    <Folder Include="typings\mime\" />
+    <Folder Include="typings\serve-static\" />
+    <Folder Include="typings\node\" />
+    <Folder Include="views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="public\typings\jquery\jquery-tests.ts.tscparams" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="public\app\app.ts" />
+    <TypeScriptCompile Include="public\app\controllers\clinicsListController.ts" />
+    <TypeScriptCompile Include="public\app\services\dataService.ts" />
+    <TypeScriptCompile Include="public\lib\angular-ui-router\api\angular-ui-router.d.ts" />
+    <TypeScriptCompile Include="public\typings\angularjs\angular-route.d.ts" />
+    <TypeScriptCompile Include="public\typings\angularjs\angular.d.ts" />
+    <TypeScriptCompile Include="typings\express\express.d.ts" />
+    <TypeScriptCompile Include="public\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="typings\mime\mime.d.ts" />
+    <TypeScriptCompile Include="typings\node\node.d.ts" />
+    <TypeScriptCompile Include="typings\serve-static\serve-static.d.ts" />
+  </ItemGroup>
+  <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

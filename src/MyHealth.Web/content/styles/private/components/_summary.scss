@@ -1,0 +1,125 @@
+﻿@import '../../base/_variables.scss';
+
+.summaries {
+    overflow: hidden;
+}
+
+.summary-container {
+    width: 100%;
+
+    @media #{$for-desktop-or-greater} {
+        width: 33.333%;
+        float: left;
+
+        &:first-child {
+            padding-right: 20px;
+        }
+
+        &:nth-child(3n+2) {
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+
+        &:last-child {
+            padding-left: 20px;
+        }
+    }
+}
+
+.summary {
+    min-height: 197px;
+    color: $white-color;
+    padding: 35px;
+    display: inline-block;
+    border-radius: 2px;
+    width: 100%;
+
+    @media #{$for-tablet-or-lower} {
+        margin-bottom: 20px;
+    }
+
+    &.patients {
+        background: $summary-blue-color url('/images/dashboard/summary/bg_graph_01.png');
+        background-size: cover;
+
+        @media #{$for-tablet-or-lower} {
+            background-image: url('/images/dashboard/summary/bg_graph_01_snap.png');
+        }
+    }
+
+    &.month {
+        background: $summary-black-color url('/images/dashboard/summary/bg_graph_02.png');
+        background-size: cover;
+
+        @media #{$for-tablet-or-lower} {
+            background-image: url('/images/dashboard/summary/bg_graph_02_snap.png');
+        }
+
+        .summary-quantity {
+            &:before {
+                content: '$';
+                font-size: 30px;
+                vertical-align: top;
+                line-height: 55px;
+                margin-right: 5px;
+            }
+        }
+    }
+
+    &.annual {
+        background: $summary-grey-color url('/images/dashboard/summary/bg_graph_03.png');
+        background-size: cover;
+
+        @media #{$for-tablet-or-lower} {
+            background-image: url('/images/dashboard/summary/bg_graph_03_snap.png');
+        }
+
+        .summary-quantity {
+            font-size: 51px;
+            margin-bottom: 51px;
+
+            &:before {
+                content: '$';
+                font-size: 30px;
+                vertical-align: top;
+                line-height: 45px;
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+.summary-quantity {
+    font-family: 'Roboto', sans-serif;
+    font-size: 70px;
+    font-weight: 200;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.summary-title,
+.summary-variation {
+    font-size: 19px;
+    display: inline-block;
+}
+
+.summary-title {
+    width: 100%;
+}
+
+.summary-variation {
+    float: right;
+    font-weight: 200;
+    position: relative;
+
+    &:before {
+        content: url('/images/dashboard/arrow_01.png');
+        width: 23px;
+        height: 42px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+}

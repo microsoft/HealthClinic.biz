@@ -1,0 +1,76 @@
+﻿/*****************************************************
+/* VENDORS
+/*****************************************************/
+
+// Bootstrap
+@import "vendor/bootstrap/_bootstrap.scss";
+
+// AngulasJS-Toaster
+// Override of default variables
+@import "vendor/toaster/_toaster-overrides.scss";
+// Lib
+@import "vendor/toaster/_toaster.scss";
+
+
+/*****************************************************
+/* BASE STYLES
+/*****************************************************/
+
+// Definition of variables to use across the project.
+
+// Do not import in this file!
+//"base/variables.less"
+
+// Cross-browser reset by Nicolas Gallagher (http://necolas.github.io/normalize.css/)
+@import "base/_normalize.scss";
+
+// Custom reset
+@import "base/_custom-normalize.scss";
+
+// Custom fonts definition
+@import "base/_fonts.scss";
+
+// icomoon definition
+@import "base/_icomoon.scss";
+@import "private/base/_general.scss";
+
+
+/*****************************************************
+/* COMPONENTS
+/*****************************************************/
+
+@import "components/_buttons.scss";
+@import "components/_inputs.scss";
+@import "components/_checkbox.scss";
+@import "components/_grid.scss";
+@import "components/_loading.scss";
+@import "components/_modal.scss";
+
+@import "private/components/_summary.scss";
+@import "private/components/_charts.scss";
+
+
+/*****************************************************
+/* LAYOUT
+/*****************************************************/
+
+@import "private/layout/_error.scss";
+@import "private/layout/_main.scss";
+@import "private/layout/_header.scss";
+@import "private/layout/_menu.scss";
+@import "private/layout/_footer.scss";
+@import "private/layout/_overlay.scss";
+
+//Doctors
+@import "private/layout/_doctors.scss";
+@import "private/layout/_new-doctor.scss";
+
+
+/*****************************************************
+/* HELPERS
+/*****************************************************/
+
+@import "helpers/_colors.scss";
+@import "helpers/_clearfix.scss";
+@import "helpers/_font-sizes.scss";
+@import "helpers/_separators.scss";

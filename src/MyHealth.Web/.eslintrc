@@ -1,0 +1,61 @@
+﻿{
+  "ecmaFeatures": {
+    "arrowFunctions": true,
+    "binaryLiterals": true,
+    "blockBindings": true,
+    "classes": true,
+    "defaultParams": true,
+    "destructuring": true,
+    "forOf": true,
+    "modules": true,
+    "generators": true,
+    "objectLiteralComputedProperties": true,
+    "objectLiteralDuplicateProperties": true,
+    "objectLiteralShorthandMethods": true,
+    "objectLiteralShorthandProperties": true,
+    "octalLiterals": true,
+    "regexUFlag": true,
+    "regexYFlag": true,
+    "restParams": true,
+    "spread": true,
+    "superInFunctions": true,
+    "templateStrings": true,
+    "unicodeCodePointEscapes": true,
+    "globalReturn": true
+  },
+  "rules": {
+	  "comma-dangle": 2,
+	  "no-cond-assign": 2,
+	  "no-dupe-args": 2,
+	  "no-dupe-keys": 2,
+	  "no-duplicate-case": 2,
+	  "no-empty-character-class": 2,
+	  "no-empty": 2,
+	  "no-extra-parens": 2,
+	  "no-extra-semi": 2,
+	  "no-unexpected-multiline": 2,
+	  "no-irregular-whitespace": 2,
+      "semi": 2,
+	  "default-case": 2,
+	  "eqeqeq": 2,
+	  "no-eval": 2,
+	  "quotes": [2, "single", "avoid-escape"],
+	  "semi-spacing": [2, {"before": false, "after": true}],
+    "comma-spacing": [
+      2,
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+    "indent": 2,
+	"array-bracket-spacing": [2, "never"],
+	"arrow-spacing": [2, { "before": true, "after": true }],
+	"arrow-parens": [2, "always"],
+	"no-multi-spaces": 2,
+	"no-spaced-func": 2,
+	"no-trailing-spaces": 2,
+	"space-after-keywords": 2,
+	"space-before-blocks": [2, { "functions": "always", "keywords": "always" }]
+  }
+}

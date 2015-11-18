@@ -1,0 +1,31 @@
+﻿<resources>
+
+  <color name="white">#FFFFFF</color>
+  <color name="black">#000</color>
+  <color name="normal_text">#3d3d4c</color>
+
+  <color name="primary">#00d7cb</color>
+  <color name="primaryDark">#00C7BC</color>
+  <color name="accent">#E91E63</color>
+  
+  <color name="material_blue_500">#2196F3</color>
+  <color name="material_blue_700">#1976D2</color>
+  <color name="material_green_A200">#69F0AE</color>
+  
+  <color name="mh_bg_green">#00d7cb</color>
+  <color name="mh_bg_green_light">#33E0D6</color>
+  
+  <color name="mh_tc_grey">#545460</color>
+  <color name="mh_tc_lightgrey">#f8f8f8</color>
+
+  <color name="custom_header_text">#000</color>
+  <color name="custom_selected">#00d7cb</color>
+  <color name="custom_background">#ffffff</color>
+  <color name="custom_background_today">#00d7cb</color>
+  <color name="custom_background_disabled">#ffffff</color>
+  <color name="custom_text_selected">#FFFFFFFF</color>
+  <color name="custom_text_inactive">#ccc</color>
+  <color name="transparent">#00000000</color>
+  <color name="calendar_active_month_bg">#808080</color>
+  
+</resources>

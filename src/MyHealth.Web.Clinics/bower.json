@@ -1,0 +1,8 @@
+{
+  "name": "MyHealth.Web.Clinics",
+  "version": "1.0.0",
+  "dependencies": {
+    "angularjs": "~1.4.7",   
+    "angular-ui-router": "~0.2.15"
+  }
+}

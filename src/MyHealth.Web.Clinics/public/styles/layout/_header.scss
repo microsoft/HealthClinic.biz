@@ -1,0 +1,57 @@
+﻿@import '../base/_variables.scss';
+
+$header-background: rgb(29,30,42);
+$header-tittle-separator-color: #363744;
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: $header-height;
+    background: $header-background;
+    padding: 0 10px;
+    z-index: 1;
+}
+
+@media #{$for-tablet-or-greater} {
+    .header {
+        padding: 0 80px;
+    }
+}
+
+.header-logo {
+    float: left;
+    background: url('/images/logo1.png') no-repeat center center;
+    width: 250px;
+    height: 100%;
+}
+
+.header-separator {
+    $width: 1px;
+    float: left;
+    position: relative;
+    height: 100%;
+    width: $width;
+    margin: 0 20px;
+
+    &::after {
+        $vertical-separation: 20px;
+        content: '';
+        position: absolute;
+        left: 0;
+        width: $width;
+        top: $vertical-separation;
+        bottom: $vertical-separation;
+        background: $header-tittle-separator-color;
+    }
+}
+
+
+.header-title {
+    float: left;
+    color: $color-white;
+    font-size: 1.1em;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: $header-height;
+}

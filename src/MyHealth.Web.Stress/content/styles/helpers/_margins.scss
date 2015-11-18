@@ -1,0 +1,9 @@
+﻿@for $i from 1 through 20 {
+    .margin-left-#{$i*5} {
+        margin-left: $i*5 + px !important;
+    }
+
+    .margin-left-#{$i*5}-neg {
+        margin-left: -$i*5 + px !important;
+    }
+}

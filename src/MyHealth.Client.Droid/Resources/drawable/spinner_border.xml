@@ -1,0 +1,20 @@
+﻿<selector xmlns:android="http://schemas.android.com/apk/res/android">
+  <item>
+    <layer-list>
+      <item>
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+          <solid android:color="#f8f8f8" />
+          <corners android:radius="0dip" />
+          <stroke
+              android:color="#d8d8d8"
+              android:width="2dp" />
+        </shape>
+      </item>
+      <item android:right="10dp">
+        <bitmap android:gravity="center_vertical|right" android:src="@drawable/ic_arrow" />
+      </item>
+    </layer-list>
+  </item>
+
+</selector>

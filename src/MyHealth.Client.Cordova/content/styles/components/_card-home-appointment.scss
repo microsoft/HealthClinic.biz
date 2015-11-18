@@ -1,0 +1,245 @@
+﻿// Card Avatar
+$card-avatar-height: 72px;
+$card-avatar-img-size: 45px;
+$card-avatar-img-margin: ($card-avatar-height - $card-avatar-img-size)/2;
+
+$name-font-size: 20px;
+$name-line-height: 1.25;
+$name-margin-bottom: 1px;
+
+$subtitle-font-size: 14px;
+$subtitle-line-height: 1;
+
+$card-avatar-vertical-padding: ($card-avatar-height - (( ($name-font-size*$name-line-height)+$name-margin-bottom ) + ( $subtitle-font-size*$subtitle-line-height )))/2;
+$card-avatar-vertical-padding-adjust: -2px;
+$card-avatar-inner-border-width: 4px;
+$card-avatar-tag-separation: $card-avatar-inner-border-width*2;
+
+// Card Header (Detail)
+$card-header-padding: 16px;
+$card-header-img-size: 120px;
+$card-header-img-margin-top: -48px - $card-header-padding;
+
+$card-arrow-size: 20px;
+$card-arrow-margin: 20px;
+
+/**
+ * This is not a good practice, but
+ * because an Ionic+iOS related
+ * I need to do this to prevent a
+ * wrong behaviour with bottom
+ * margins in scrollable divs
+ */
+card-home-appointment {
+    display: block;
+    padding: 0px 10px 10px 10px;
+
+    &:first-child {
+        padding-top: 10px;
+    }
+}
+
+.card.card-home-appointment {
+    margin: 0px;
+    margin-bottom: 0px !important;
+    border-radius: 0;
+    
+    &.card-home-appointment-detail {
+        overflow: visible;
+        margin-top: -($card-header-img-margin-top + 14px);
+    }
+
+    .item {
+        border-color: #f2f2f2;
+        border-radius: 0;
+    }
+    
+    .item-avatar {
+        padding: {
+            top: $card-avatar-vertical-padding + $card-avatar-vertical-padding-adjust;
+            bottom: $card-avatar-vertical-padding - $card-avatar-vertical-padding-adjust;
+        }
+
+        img:first-child {
+            top: $card-avatar-img-margin;
+            left: $card-avatar-img-margin;
+            max-width: $card-avatar-img-size;
+            max-height: $card-avatar-img-size;
+            border: 2px solid white;
+        }
+        .item-avatar-title {
+            font-size: 20px;
+            color: $title-text-color;
+            line-height: #{$name-line-height}em;
+            margin-bottom: 1px;
+        }
+        .item-avatar-subtitle {
+            line-height: #{$subtitle-line-height}em;
+            color: $subtitle-text-color;
+        }
+        .item-avatar-urgent-tag {
+            display: none;
+            position: absolute;
+            bottom: $card-avatar-tag-separation;
+            right: $card-avatar-tag-separation;
+            font-size: 11px;
+            line-height: 1em;
+            background-color: #ff166f;
+            padding: 3px 4px 4px 4px;
+            color: white;
+        }
+        .item-avatar-date-tag {
+            position: absolute;
+            top: $card-avatar-tag-separation;
+            right: $card-avatar-tag-separation;
+            color: $title-text-color;
+            font-size: 14px;
+            line-height: 1em;
+            text-align: right;
+        }
+    }
+
+    .item-header {
+        overflow: visible;
+        background-color: #f8f8f8;
+        box-shadow: inset 0px 0px 0px $card-avatar-inner-border-width white;
+
+        > img {
+            width: $card-header-img-size;
+            height: $card-header-img-size;
+            display: block;
+            margin: $card-header-img-margin-top auto 0 auto;
+            border: 4px solid white;
+            border-radius: 50%;
+        }
+
+        .item-header-title {
+            font-size: 18px;
+            line-height: 1.2em;
+            font-weight: 600;
+            color: $title-text-color;
+            text-align: center;
+            display: block;
+            margin-top: 15px;
+        }
+
+        .item-header-subtitle {
+            font-size: 14px;
+            line-height: 1.2em;
+            color: $subtitle-text-color;
+            display: block;
+            text-align: center;
+            margin-top: 7px;
+        }
+    }
+
+    .item-image {
+        height: 202px;
+    }
+
+    .item-date {
+        .row,
+        .col {
+            padding: 0;
+        }
+
+        .item-date-key,
+        .item-date-val {
+            margin: 0;
+
+            &.item-date-key {
+                font-size: 14px;
+                color: $subtitle-text-color;
+            }
+
+            &.item-date-val {
+                font-size: 24px;
+                color: #3ddfdf;
+                line-height: 1.3em;
+            }
+        }
+    }
+
+    .item-body {
+        p {
+            font-size: 14px;
+            color: $subtitle-text-color;
+            
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+        .item-body-address {
+            font-size: 16px;
+            line-height: 1.3em;
+            margin: 0;
+            color: $subtitle-text-color;
+            width: 60%;
+        }
+        .item-body-arrow {
+            position: absolute;
+            top: 50%;
+            right: $card-arrow-margin;
+            height: $card-arrow-size;
+            width: $card-arrow-size;
+            margin-top: -($card-arrow-size/2);
+            background-image: url(../images/arrow-right.svg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+    }
+
+    .item-drug {
+        span {
+            font-size: 20px;
+            color: $title-text-color;
+            margin: 5px 0;
+            display: block;
+        }
+    }
+
+    .item-button {
+        padding: 3px;
+        button {
+            font-size: 18px;
+            border-radius: 0;
+            border: none;
+            color: #ffffff;
+            margin: 0;
+        }
+    }
+
+    &.activated {
+        .item-avatar {
+            background-color: #f8f8f8;
+            box-shadow: inset 0px 0px 0px $card-avatar-inner-border-width white;
+        }
+    }
+
+    &.card-home-appointment-urgent {
+        .item-avatar-urgent-tag {
+            display: block;
+        }
+    }
+
+    &.card-home-appointment-detail {
+        .item-body {
+            .item-body-arrow {
+                display: none;
+            }
+        }
+    }
+
+    &.card-home-appointment-visited {
+        .item-avatar {
+            background-color: #f8f8f8;
+            box-shadow: inset 0px 0px 0px $card-avatar-inner-border-width white;
+            background-color: $subtitle-text-color;
+
+            .item-avatar-subtitle {
+                color: white;
+            }
+        }
+    }
+}

@@ -1,0 +1,271 @@
+﻿@import '../../base/_variables.scss';
+
+.health-stories {
+    background-color: $grey-color;
+    text-align: center;
+    padding-bottom: 120px;
+
+    .health-stories-title {
+        padding: 75px 0 40px 0;
+        font-size: 26px;
+        width: 100%;
+        font-weight: bold;
+    }
+
+    .health-stories-slider {
+
+        @media #{$for-desktop} {
+            width: $tablet-max - 120px;
+
+            .health-stories-carousel-inner-info {
+                height: 259px;
+            }
+
+            .health-stories .item.active .health-stories-carousel-inner-info-inner {
+                width: 82%;
+            }
+
+            .health-stories-carousel-inner-info-inner {
+                margin: 28px 63px 15px 66px;
+            }
+
+            .health-stories-carousel-inner-info-name {
+                font-size: 22px;
+                margin-bottom: 12px;
+            }
+
+            .health-stories-carousel-inner-info-city {
+                font-size: 18px;
+            }
+
+            .health-stories-carousel-inner-info-cite {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+
+            .health-stories-carousel-inner-info-text {
+                font-size: 12px;
+            }
+        }
+
+        @media #{$for-tablet-or-lower} {
+            width: 70%;
+
+            .health-stories-carousel-inner-container {
+                display: none;
+            }
+
+            .health-stories-carousel-inner-info {
+                width: 100%;
+                left: 0;
+            }
+        }
+
+        @media screen and (min-width:1367px) {
+            width: $bg-content-size;
+        }
+
+        margin: auto;
+
+        .arrow-left, .arrow-right {
+            background-position: left center;
+            background-repeat: no-repeat;
+
+            &:hover {
+                background-image: url('../images/btn_arrow_1_press.png');
+            }
+        }
+
+        .arrow-left {
+            margin-left: -50px;
+            background-image: url('../images/btn_arrow_1.png');
+            left: 0;
+            right: auto;
+        }
+
+        .arrow-right {
+            margin-right: -50px;
+            background-image: url('../images/btn_arrow_1.png');
+            transform: rotate(180deg);
+            left: auto;
+            right: 0;
+        }
+    }
+
+    .carousel-inner {
+        display: normal !important;
+        overflow: hidden;
+        position: relative;
+        height: 320px;
+
+        @media #{$for-desktop} {
+            height: 259px;
+        }
+
+        width: 100%;
+    }
+
+    .health-stories-carousel-inner {
+        position: absolute;
+        top: 0;
+        height: 320px;
+
+        @media #{$for-desktop} {
+            height: 259px;
+        }
+
+        width: 100%;
+    }
+
+    .health-stories-carousel-inner-container {
+        position: absolute !important;
+        top: 0;
+        overflow: hidden;
+        height: 320px;
+
+        @media #{$for-desktop} {
+            height: 259px;
+        }
+
+        width: 50%;
+    }
+
+    .health-stories-carousel-inner-container-img {
+        position: absolute !important;
+        top: 0;
+        width: 100%;
+    }
+
+    .health-stories-carousel-inner-info {
+        width: 50%;
+        position: absolute !important;
+        top: 0;
+        left: 50%;
+        background-color: $white-color;
+        height: 320px;
+        z-index: 998;
+        opacity: 0;
+        box-shadow: 40px 0px 66px 1px white inset;
+        overflow: hidden;
+        transition: all 1s ease-in-out;
+    }
+    
+    .item {
+        transform: none !important;
+        perspective: 0 !important;
+        width: 100%;
+        display: inline-block !important;
+    }
+    
+    .health-stories-carousel-inner-container-img {
+        position: absolute;
+        transition: all 1s ease-in-out;
+        transition-delay: 0;
+    }
+
+    .item:not(.active) .health-stories-carousel-inner-container-img {
+        left: -100% !important;
+        z-index: 0;
+        opacity: 0;
+    }
+
+    .item.active .health-stories-carousel-inner-container-img {
+        left: 0% !important;
+        z-index: 500;
+        opacity: 1;
+    }
+
+    .item.active ~ .item .health-stories-carousel-inner-container-img {
+        left: 100% !important;
+        z-index: 0;
+        opacity: 0;
+    }
+
+    .item.active.right .health-stories-carousel-inner-container-img {
+        left: 0% !important;
+        opacity: 1;
+    }
+
+    .item.active.left .health-stories-carousel-inner-container-img {
+        left: -0% !important;
+        opacity: 1;
+    }
+
+    .item.prev.right .health-stories-carousel-inner-container-img {
+        left: 0% !important;
+        z-index: 0;
+        opacity: 0;
+    }
+
+    .item.next.left .health-stories-carousel-inner-container-img {
+        left: 0% !important;
+        z-index: 0;
+        opacity: 0;
+    }
+    
+    .health-stories-carousel-inner-info-inner {
+        width: 77%;
+        margin: 25px 70px 25px 90px;
+        position: absolute;
+        transition: all 1s ease-in-out;
+    }
+
+    .item.active .health-stories-carousel-inner-info {
+        opacity: 1;
+        transition: all 1s ease-in-out;
+    }
+
+    .item:not(.active) .health-stories-carousel-inner-info-inner {
+        left: 100% !important;
+    }
+
+    .item.active .health-stories-carousel-inner-info-inner {
+        left: 0% !important;
+    }
+
+    .item.active ~ .health-stories-carousel-inner-info-inner {
+        left: -100% !important;
+    }
+
+
+    .item.prev.right .health-stories-carousel-inner-info-inner {
+        left: 0% !important;
+    }
+
+    .item.next.left .health-stories-carousel-inner-info-inner {
+        left: 0% !important;
+    }
+
+    .health-stories-carousel-inner-info-name {
+        color: $pink-color;
+        font-weight: bolder;
+        font-size: 28px;
+        text-align: left;
+        margin-bottom: 22px;
+    }
+
+    .health-stories-carousel-inner-info-city {
+        font-size: 25px;
+        color: $black-color;
+        font-weight: 400;
+    }
+
+    .health-stories-carousel-inner-info-cite {
+        font-size: 23px;
+        text-align: left;
+        margin-bottom: 25px;
+
+        &:before {
+            content: url('/images/public/quotes.png');
+            width: 20px;
+            height: 20px;
+            margin-left: -50px;
+            margin-right: 25px;
+        }
+    }
+
+    .health-stories-carousel-inner-info-text {
+        font-size: 14px;
+        text-align: left;
+    }
+}

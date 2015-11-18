@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="MyHealth.Client.Desktop.Controls.AppointmentSuggestionList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MyHealth.Client.Desktop"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance local:DesignAppointmentSuggestions, IsDesignTimeCreatable=True}"
+             d:DesignHeight="500" d:DesignWidth="350">
+    <Grid>
+        <ListBox Name="SuggestionList"
+                  Background="{StaticResource AppointmentDetailsBackground}"
+                  Style="{StaticResource ListBoxWithoutMarginStyle}" 
+                  ItemContainerStyle="{StaticResource AppointmentSuggestionItemStyle}"
+                  HorizontalAlignment="Stretch"
+                  HorizontalContentAlignment="Stretch"
+                  SelectedItem="{Binding CurrentViewModel.SelectedAppointment, Mode=TwoWay}"
+                  ItemsSource="{Binding CurrentViewModel.PossibleAppointments}">
+        </ListBox>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,198 @@
+﻿@import '../base/_variables.scss';
+
+//This styles overwrite the vendor calendar styles
+.stress-calendar {
+
+    .fc-body > tr > .fc-widget-content {
+        border-left-width: 0;
+        border-right-width: 0;
+    }
+
+    .fc-toolbar {
+        margin-bottom: 20px !important;
+    }
+
+    .fc-content-skeleton {
+        height: 100%;
+        pointer-events: none;
+
+        table {
+            border: 0;
+        }
+
+        table, thead, tbody, tr, td, a {
+            height: 100%;
+            border: none !important;
+        }
+
+        .fc-day-grid-event {
+            margin: 0;
+        }
+    }
+
+    .fc-day-number {
+        position: relative;
+        z-index: 1000;
+        text-align: left !important;
+        color: #89898d;
+        padding: 10px;
+        color: black;
+        opacity: .5;
+        top: 4px;
+        font-size: 12px;
+    }
+
+    .fc-widget-header {
+        border-top: white !important;
+        border-left: white !important;
+        border-right: white !important;
+
+        thead {
+            tr, td {
+                height: 50px;
+                line-height: 50px;
+                text-align: left !important;
+                text-transform: uppercase;
+                color: #686868;
+
+                th {
+                    text-align: left !important;
+                    padding: 0 20px;
+                    font-weight: 400 !important;
+                    font-size: 12px;
+                    font-family: 'Roboto', sans-serif;
+                }
+            }
+        }
+    }
+
+    .fc-bg {
+        .fc-today {
+            background-color: transparent !important;
+            position: relative;
+
+            &:before,
+            &:after {
+                content: '';
+                position: absolute;
+                z-index: 9999999;
+            }
+
+            &:before {
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: $color-blue;
+            }
+
+            &:after {
+                top: 2px;
+                left: 2px;
+                right: 2px;
+                bottom: 2px;
+                background: #FFF;
+            }
+        }
+    }
+
+    .fc-today {
+        color: $color-blue;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .fc-right {
+        padding: 20px 20px 0 0;
+
+        h2 {
+            font-size: 15px;
+            font-weight: 400;
+            font-family: 'Raleway', sans-serif;
+            margin-top: 8px;
+            text-transform: uppercase;
+            color: $color-dark-grey;
+        }
+
+        .fc-button {
+            border: 0;
+            background: none;
+            z-index: 200;
+            box-shadow: none;
+
+            &.fc-state-hover, &.fc-state-down {
+                border: 0;
+                background: none;
+                outline: none;
+                z-index: 200;
+            }
+        }
+
+        .fc-prev-button {
+            .fc-icon-left-single-arrow {
+                background: url('/images/back.png') no-repeat;
+                width: 12px;
+                height: 18px;
+
+                &:after {
+                    content: none;
+                }
+            }
+        }
+
+        .fc-next-button {
+            .fc-icon-right-single-arrow {
+                background: url('/images/back.png') no-repeat;
+                transform: rotate(180deg);
+                width: 12px;
+                height: 18px;
+
+                &:after {
+                    content: none;
+                }
+            }
+        }
+    }
+
+    .fc-day-header {
+        border: 0 !important;
+    }
+
+    .fc-event-container {
+        position: relative;
+
+        .fc-day-grid-event {
+            border-radius: 0;
+        }
+
+        .fc-content {
+            position: absolute;
+            bottom: 0;
+            text-align: right;
+            display: block;
+            width: 100%;
+
+            .fc-time {
+                display: none;
+            }
+
+            .fc-title {
+                text-align: right;
+                display: block;
+                margin: 0 10px 5px 0;
+                font-size: 18px;
+                line-height: 18px;
+                font-weight: bold;
+
+                &:before {
+                    content: 'Meetings';
+                    font-weight: 400;
+                    color: #000;
+                    opacity: .7;
+                    margin-right: 5px;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}

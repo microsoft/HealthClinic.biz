@@ -1,0 +1,59 @@
+﻿@import '../base/_variables.scss';
+
+$grid-row-height: 100px;
+$grid-header-height: 55px;
+
+.grid {
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 0 18px -10px $color-black;
+}
+
+@for $i from 1 to 101 {
+    .grid-col-#{$i} {
+        width: #{$i}%;
+    }
+}
+
+[class^="grid-col"] {
+    float: left;
+    vertical-align: middle;
+}
+
+.grid-header {
+    height: $grid-header-height;
+    line-height: $grid-header-height;
+    vertical-align: bottom;
+    background-color: $color-white;
+    color: $grid-color;
+    font-weight: 500;
+    overflow: hidden;
+
+    [class^="grid-col"] {
+        line-height: $grid-header-height + 10px;
+        height: $grid-header-height;
+        padding-left: 20px;
+    }
+}
+
+.grid-row {
+    overflow: hidden;
+    line-height: $grid-row-height;
+    vertical-align: middle;
+    height: $grid-row-height;
+    background-color: $color-white;
+    color: $grid-color;
+
+    [class^="grid-col"] {
+        border-top: 1px solid $color-grey;
+        height: $grid-row-height;
+        line-height: $grid-row-height;
+        padding: 0 20px;
+    }
+}
+
+.grid-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

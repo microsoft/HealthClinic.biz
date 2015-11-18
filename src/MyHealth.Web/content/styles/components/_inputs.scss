@@ -1,0 +1,65 @@
+﻿@import '../base/_variables.scss';
+
+.input {
+    position: relative;
+
+    label {
+        color: $blue-color;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+        width: 100%;
+        border: 0;
+        font-size: 15px;
+        color: $black-color;
+        border-bottom: 1px solid $border-bottom-input-color;
+        font-weight: 300;
+    }
+}
+
+.input-edit {
+    &:after {
+        content: url('/images/dashboard/icon-edit-15.png');
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        top: 35px;
+        right: 11px;
+        bottom: 45px;
+    }
+}
+
+.textarea-edit {
+    &:after {
+        content: url('/images/dashboard/icon-edit-15.png');
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        bottom: 45px;
+        right: 11px;
+    }
+}
+
+.invisible-input {
+    border: 0;
+    outline: 0;
+    font-size: 15px;
+    color: $title-color;
+    border-bottom: 1px solid $border-bottom-input-color;
+    font-size: 19px;
+    font-weight:700;
+    text-align:center;
+    width: 70px;
+}
+
+.invisible-input::-webkit-outer-spin-button,
+.invisible-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

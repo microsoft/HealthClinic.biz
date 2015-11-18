@@ -1,0 +1,97 @@
+﻿@import '../base/_variables.scss';
+
+$iterations: 101;
+
+@for $i from 1 to $iterations {
+    .grid-col-#{$i} {
+        width: #{$i}%;
+    }
+}
+
+.grid {
+    box-shadow: 0px 0px 18px -10px $black-color;
+    border-radius: 2px;
+    background-color: $white-color;
+}
+
+$header-height: 55px;
+
+.grid-header {
+    height: $header-height;
+    line-height: $header-height;
+    vertical-align: bottom;
+    color: $grid-letter-color;
+    font-weight: 500;
+    overflow: hidden;
+
+    [class^="grid-col"] {
+        line-height: $header-height + 10px;
+        height: $header-height;
+    }
+}
+
+$row-height: 100px;
+
+.grid-body {
+    width: 100%;
+
+    .grid-row {
+        overflow: hidden;
+        line-height: $row-height;
+        vertical-align: middle;
+        height: $row-height;
+        color: $grid-letter-color;
+        border-top: 1px solid $grey-color;
+
+        div {
+            float: left;
+        }
+
+        &.selected {
+            background-color: $selected-grid-color;
+        }
+
+        &:last-child {
+            border-bottom: 1px solid $grey-color;
+        }
+    }
+
+    [class^="grid-col"] {
+        height: $row-height;
+        line-height: $row-height;
+    }
+}
+
+[class^="grid-col"] {
+    float: left;
+    vertical-align: middle;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 5px;
+}
+
+$img-size: 60px;
+
+.grid-image {
+    height: $img-size;
+    width: $img-size;
+    border-radius: 100%;
+
+    @media #{$for-desktop-or-greater} {
+        margin-left: 20px;
+    }
+}
+
+.grid-load-more {
+    font-size: 14px;
+    text-transform: uppercase;
+    display: block;
+    text-align: center;
+    color: $pink-color;
+    font-weight: 600;
+
+    button {
+        margin-top: 20px;
+    }
+}

@@ -1,0 +1,57 @@
+﻿<section class="daily-calendar bg-white">
+    <header class="graph-header">
+        <span class="graph-header-back" ng-click="goBack()">
+            <i class="graph-header-back-icon"></i>
+            <span ng-bind="dailyData.Today | date:'mediumDate'"></span>
+        </span>
+        <div class="legend">
+            <div class="legend-item">
+                <span class="legend-key">HEART</span>
+                <span class="legend-value grey"></span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-key">GLUCOSE</span>
+                <span class="legend-value blue"></span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-key">STRESS</span>
+                <span class="legend-value pink"></span>
+            </div>
+        </div>
+    </header>
+
+    <canvas class="graph" daily-graph data-daily-data="dailyData.HealthReports"></canvas>
+</section>
+
+<div class="graph-meeting-container bg-white">
+    <ul>
+        <li>6:00 am</li>
+        <li>7:00 am</li>
+        <li>8:00 am</li>
+        <li>9:00 am</li>
+        <li>10:00 am</li>
+        <li>11:00 am</li>
+        <li>12:00 am</li>
+        <li>1:00 pm</li>
+        <li>2:00 pm</li>
+        <li>3:00 pm</li>
+        <li>4:00 pm</li>
+        <li>5:00 pm</li>
+    </ul>
+    <!-- Position calculated by left position -->
+    <!-- 12px -> It's the padding parent container -->
+    <!-- 12 -> The number of hour items -->
+    <!-- we multiplicate by the number item, the hour minus 5 to normalize the number -->
+    <!-- 'left' : 'calc((100% - 12px) /12 * ({{appointment.Start | date:'HH'}} - 5)) -->
+    <div class="appointment appointment-graph" ng-style="{ 'left' : 'calc((100% - 12px) /12 * ({{appointment.Start | date:'HH'}} - 5))', 'width': 'calc((100%) / 12 * {{appointment.Duration}})' }" ng-class="{'margin-left-35-neg': {{ appointment.Start | date:'mm' }} != '30', 'margin-left-5': {{ appointment.Start | date:'mm' }} == '30' }" ng-repeat="appointment in ::dailyData.Appointments">
+        <h2 class="appointment-title" title="{{appointment.Start | date:'shortTime'}}. {{ ::appointment.Description }}"><span class="appointment-hour" ng-bind="appointment.Start | date:'shortTime'"></span>. {{ ::appointment.Description }}</h2>
+        <ul>
+            <li class="appointment-attendee" ng-repeat="attendee in ::appointment.Attendees">
+                <div class="appointment-description">
+                    <span class="appointment-name" ng-bind="::attendee.Name" title="{{::attendee.Name}}"></span>
+                    <span class="appointment-email" ng-bind="::attendee.Email" title="{{::attendee.Email}}"></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

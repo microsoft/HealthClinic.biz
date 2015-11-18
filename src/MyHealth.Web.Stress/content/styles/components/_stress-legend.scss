@@ -1,0 +1,18 @@
+﻿@import '../base/_variables.scss';
+
+.stress-legend {
+    width: 70%;
+    float: left;
+    font-size: 12px;
+    color: $color-dark-grey;
+    padding: 20px 0 0 20px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.stress-legend-image {
+    display: inline-block;
+    margin: 0 15px;
+    background: url('/images/stress_level_gradient.png') no-repeat;
+    width: 298px;
+    height: 8px;
+}

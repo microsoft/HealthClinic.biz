@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="~/css/site.min.css" asp-file-version="true" />
+    </environment>
+</head>
+<body id="app">
+    @RenderBody()
+
+    <environment names="Development">
+        <script src="~/lib/js/lib.js"></script>
+        <script src="~/app/app.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/lib/js/lib.min.js"></script>
+        <script src="~/app/app.min.js"></script>
+    </environment>
+
+    @RenderSection("scripts", required: false)
+
+    <script>
+        window.MY_HEALTH = window.MY_HEALTH || {};
+        window.MY_HEALTH.config = {
+            userEmail: '@ViewData["UserEmail"]'
+        };
+    </script>
+</body>
+</html>

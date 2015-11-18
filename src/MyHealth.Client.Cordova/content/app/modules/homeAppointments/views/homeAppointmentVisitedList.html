@@ -1,0 +1,8 @@
+﻿<ion-view view-title="Visited">
+    <div class="loader" ng-class="{hidden: homeAppointments.length !== 0}">Loading...</div>
+    <ion-content>
+
+        <card-home-appointment ng-model="homeAppointment" ng-repeat="homeAppointment in homeAppointments | filter: {visited:true} | orderBy: '-dateTime' as filtered_result track by homeAppointment.appointmentId" ng-click="navigate(homeAppointment)"></card-home-appointment>
+
+    </ion-content>
+</ion-view>

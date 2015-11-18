@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="ApplicationName">Patients</string>
+  <string name="drawer_open">Open</string>
+  <string name="drawer_close">Close</string>
+  <string name="header_month_name_format">MMMM \'yy</string>
+
+  <string name="home_view_title">Home</string>
+  <string name="newappointment_estimated_waiting_time">Average wait time</string>
+  <string name="accept">ACCEPT</string>
+  <string name="cancel">CANCEL</string>
+</resources>

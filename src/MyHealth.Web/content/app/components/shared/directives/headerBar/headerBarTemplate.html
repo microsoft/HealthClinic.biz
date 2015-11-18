@@ -1,0 +1,11 @@
+﻿<div class="header-hamburguer icon-btn_menu" ng-click="menuOpen = !menuOpen"></div>
+<a href="/" class="header-logo"></a>
+<div class="header-separator"></div>
+<div class="header-title-container">
+    <span class="header-title">{{vm.title | camelCase}} </span>
+    <span class="header-subtitle" ng-show="vm.subtitle">{{vm.subtitle}}</span>
+</div>
+<div class="header-avatar">
+    <div class="header-image"></div>
+    <span class="header-name">Hi {{vm.userName}}!</span>
+</div>

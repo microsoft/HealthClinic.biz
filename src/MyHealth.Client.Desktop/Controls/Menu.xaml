@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="MyHealth.Client.Desktop.Controls.Menu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MyHealth.Client.Desktop"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance local:DesignHeaderViewModel, IsDesignTimeCreatable=True}"
+             x:Name="MenuUserControl">
+
+    <Grid  Effect="{StaticResource DropShadowEffect}">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                <GradientStop Color="#33E0D6" Offset="0.9"/>
+                <GradientStop Color="#80ece6" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>            
+            <ColumnDefinition Width="*" />            
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Button Grid.Column="0" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Command="{Binding NavCommand}" Content="{Binding HeaderText}">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid SnapsToDevicePixels="True" Margin="{TemplateBinding Padding}">
+                        <Rectangle Width="50" Fill="Transparent" Visibility="{Binding NavImgVisible}"  />
+                        <Image Name="imgGoBack"  Style="{StaticResource DashboardHeaderNavBackImageStyle}" Source="{Binding NavImgPath}" Visibility="{Binding NavImgVisible}"></Image>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="imgGoBack" Property="Source" Value="{Binding NavImgPath_Hover}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="imgGoBack" Property="Source" Value="{Binding NavImgPath_Press}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <TextBlock Grid.Column="1" Text="{Binding HeaderText}" Style="{StaticResource DashboardHeaderTextStyle}" Margin="5,10,10,10" VerticalAlignment="Center"/>
+        <TextBlock Name="InfoText" Text="{Binding InfoText}" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,10,30,10" Style="{StaticResource DashboardHeaderTextStyle}" FontWeight="SemiBold"/>        
+        <Button Name="NewAppointment" Grid.Column="3" Background="Transparent" BorderBrush="Transparent" Command="{Binding ActionCommand}" >
+            <Button.Template>
+                <ControlTemplate  TargetType="{x:Type Button}">
+                    <Grid SnapsToDevicePixels="True" Margin="{TemplateBinding Padding}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Grid.ColumnSpan="2" Fill="Transparent"></Rectangle>
+                        <Image  Name="imgNewAppointment" Grid.Column="0" HorizontalAlignment="Left" Source="{Binding ActionImgPath}" Style="{StaticResource DashboardHeaderActionImageStyle}" Opacity="{Binding ActionText, Converter={StaticResource ImageOpacityConverter}}"/>
+                        <TextBlock Name="textNewAppointment" Style="{StaticResource DashboardHeaderTextStyle}" Grid.Column="1"  HorizontalAlignment="Right" Text="{Binding ActionText}"  />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="imgNewAppointment" Property="Source" Value="{Binding ActionImgPath_Hover}"/>
+                            <Setter TargetName="imgNewAppointment" Property="Opacity" Value=".5"/>
+                            <Setter TargetName="textNewAppointment" Property="Foreground" Value="{StaticResource FontColorButtonHover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="imgNewAppointment" Property="Source" Value="{Binding ActionImgPath_Press}"/>
+                            <Setter TargetName="imgNewAppointment" Property="Opacity" Value="1"/>
+                            <Setter TargetName="textNewAppointment" Property="Foreground" Value="{StaticResource FontColorButtonPressed}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Border BorderThickness="0,0,0,0.5" BorderBrush="#80ece6" Grid.Row="1" Grid.ColumnSpan="4"/>
+    </Grid>
+</UserControl>

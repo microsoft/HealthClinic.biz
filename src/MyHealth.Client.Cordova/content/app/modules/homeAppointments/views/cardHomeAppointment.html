@@ -1,0 +1,55 @@
+﻿<div class="list card card-home-appointment" ng-class="{'card-home-appointment-first': $first, 'card-home-appointment-urgent': homeAppointment.isUrgent, 'card-home-appointment-detail': detail, 'card-home-appointment-visited': homeAppointment.visited}" ng-click="navigate()">
+
+    <div class="item item-avatar" ng-if="!detail">
+        <img ng-src="data:image/png;base64,{{homeAppointment.patient.picture}}">
+        <h2 class="item-avatar-title">{{homeAppointment.patient.name}}</h2>
+        <p class="item-avatar-subtitle">{{homeAppointment.patient.clinicId}}</p>
+        <span class="item-avatar-urgent-tag" ng-if="!homeAppointment.visited">Urgent</span>
+        <span class="item-avatar-date-tag">{{homeAppointment.dateTime | appointmentDate}}<br />{{homeAppointment.dateTime | appointmentTime}} {{homeAppointment.dateTime | appointmentTimeMeridiem}}</span>
+    </div>
+
+    <div class="item item-header" ng-if="detail">
+        <img ng-src="data:image/png;base64,{{homeAppointment.patient.picture}}">
+        <h2 class="item-header-title">{{homeAppointment.patient.name}}</h2>
+        <p class="item-header-subtitle">{{homeAppointment.patient.clinicId}}</p>
+    </div>
+
+    <div class="item item-date" ng-if="detail">
+        <div class="row">
+            <div class="col col-50">
+                <p class="item-date-key">Date</p>
+                <p class="item-date-val">{{homeAppointment.dateTime | appointmentDate}}</p>
+            </div>
+            <div class="col col-50">
+                <p class="item-date-key">Hour</p>
+                <p class="item-date-val">{{homeAppointment.dateTime | appointmentTime}} <small>{{homeAppointment.dateTime | appointmentTimeMeridiem}}</small></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="item item-image" ng-if="$first || detail">
+        <static-bing-map center="homeAppointment.geolocation" zoom="16" height="200"></static-bing-map>
+    </div>
+
+    <div class="item item-button" ng-if="detail">
+        <button class="button button-calm button-block" ng-click="openNotificationPopup()">Send notification</button>
+    </div>
+
+    <div class="item item-body" ng-if="$first || detail">
+        <p class="item-body-address" ng-bind-html="homeAppointment.address | appointmentAddress"></p>
+        <div class="item-body-arrow"></div>
+    </div>
+
+    <div class="item item-body" ng-if="detail && homeAppointment.description">
+        <p>{{homeAppointment.description}}</p>
+    </div>
+
+    <div class="item item-drug" ng-if="detail && homeAppointment.drug">
+        <span>{{homeAppointment.drug}}</span>
+    </div>
+
+    <div class="item item-button" ng-if="detail">
+        <button class="button button-block" ng-class="{'button-dark': homeAppointment.visited, 'button-calm': !homeAppointment.visited}" ng-click="markAsVisited()">{{homeAppointment.visited ? 'Visited' : 'Mark as visited'}}</button>
+    </div>
+
+</div>

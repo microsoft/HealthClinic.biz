@@ -1,0 +1,6 @@
+﻿@import '../../base/_variables.scss';
+
+//This styles overwrite the vendor toaster styles
+$toaster-top-offset: 12px;
+$toastPossitionTop: $header-height + $toaster-top-offset;
+$toastError: #DE5347;

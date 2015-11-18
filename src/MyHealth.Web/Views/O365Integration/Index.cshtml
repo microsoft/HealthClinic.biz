@@ -1,0 +1,104 @@
+﻿@model MyHealth.Web.Services.AppState
+@{
+    ViewBag.Title = "Authorize O365 access as Daemon App (app-only)";
+}
+
+<div id="content-container">
+
+    <h2>Access Calendars As Daemon App (app-only)</h2>
+
+    @if (Model.AppIsAuthorized == false)
+    { // App is not yet authorized !
+        if (!String.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <p>
+                <b>Error: Authorization failed with: [<i>@Model.ErrorMessage</i>]</b><br />
+            </p>
+        }
+        using (Html.BeginForm("Authorize", "O365Integration", FormMethod.Post))
+        {
+            <p>
+                <b>You need to sign-up your organization to use this app.</b><br />
+                The sign-up requires an administrator of your organization.
+            </p>
+            <table>
+                <tr>
+                    <td>Authorize this Application to read Calendar and Contacts in your Organization: <input width="300" type="submit" name="action:Authorize" value="Sign-Up !" />  </td>
+                </tr>
+            </table>
+        }
+    }
+    @if (Model.AppIsAuthorized == true)
+    { // We are authorized and hopefully get tokens ...
+        <p>
+            <b>Access enabled to Organization: [@Model.TenantDomain]</b><br />
+            Current logged on as user: [@Model.LoggedOnUser]<br /><br />
+        </p>
+
+        using (Html.BeginForm("StartOver", "O365Integration", FormMethod.Post))
+        {
+            if (Model.AccessTokenAquiredWithoutError)
+            {// we can do work
+                <p>
+                    <table>
+                        <tr>
+                            <td><input type="submit" name="action:StartOver" value="Sign up as another tenant." /></td>
+                        </tr>
+                    </table>
+                </p>
+            }
+            else // Token aquesition had an error display error message
+            {
+                <p>
+                    <b>Error Aquiring Access Token for Office365 Resources: [@Model.ErrorMessage]</b><br />
+                </p>
+                <p>
+                    <table>
+                        <tr>
+                            <td><input type="submit" name="action:StartOver" value="Restart App !" /></td>
+                        </tr>
+                    </table>
+                </p>
+            }
+            <table>
+                <tr hidden>
+                    <td colspan="4">@Html.TextBoxFor(model => model.TenantId)</td>
+                </tr>
+                <tr hidden>
+                    <td colspan="4">@Html.TextBoxFor(model => model.TenantDomain)</td>
+                </tr>
+                <tr hidden>
+                    <td colspan="4">@Html.TextBoxFor(model => model.LoggedOnUser)</td>
+                </tr>
+                <tr hidden>
+                    <td colspan="4">@Html.TextBoxFor(model => model.AppIsAuthorized)</td>
+                </tr>
+                <tr hidden>
+                    <td colspan="4">@Html.TextBoxFor(model => model.AccessTokenAquiredWithoutError)</td>
+                </tr>
+                <tr hidden>
+                    <td colspan="4">@Html.TextBoxFor(model => model.AccessToken)</td>
+                </tr>
+                <tr hidden>
+                    <td colspan="4">@Html.TextBoxFor(model => model.MailboxSmtpAddress)</td>
+                </tr>
+            </table>
+        } // form
+    }
+
+    @if (!String.IsNullOrEmpty(Model.Request))
+    {
+        <hr />
+        <div>
+            <b>Request:</b><br />
+            Get @Model.Request Http/1.1<br />
+            Authorization: Bearer <a href="http://jwt.calebb.net/#jwt=@Model.AccessToken" target="_blank">@Model.AccessToken</a><br />
+        </div>
+                    <hr />
+                    <div style="width:600px">
+                        <b>Response:</b><br />
+                        <div style="width:100%">@Model.Response</div>
+                    </div>
+    }
+
+</div>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:orientation="horizontal">
+    <Mvx.MvxImageView
+        local:MvxBind="DrawableId MenuOptionToIconAssetName(Option); TintColor MenuItemToTextColor(IsSelected)"
+        android:layout_width="42dp"
+        android:scaleType="fitCenter"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical" />
+    <TextView
+        android:id="@android:id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:singleLine="true"
+        android:minHeight="?android:attr/listPreferredItemHeight"
+        local:MvxBind="Text Title; TextColor MenuItemToTextColor(IsSelected)" />
+</LinearLayout>

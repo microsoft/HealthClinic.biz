@@ -1,0 +1,73 @@
+﻿@import "../../lib/ionic/scss/_variables.scss";
+
+$select-background-color: #f8f8f8;
+$select-border-color: #e1e1e1;
+$select-border-width: 2px;
+$select-chevron-size: 0.9em;
+$select-chevron-size-height: 0.55em;
+$select-horizontal-padding: 6px;
+$select-after-width: calc(#{$select-horizontal-padding*3} + #{$select-chevron-size});
+
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+    font-size: inherit;
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: $select-border-width;
+        right: $select-border-width;
+        width: $select-after-width;
+        height: calc(100% - #{$select-border-width*2});
+        pointer-events: none;
+        background-color: $select-background-color;
+    }
+
+    &:before {
+        content: '\e902';
+        position: absolute;
+        top: 50%;
+        right: $select-after-width;
+        width: 0;
+        height: 0;
+        font-family: "icomoon";
+        speak: none;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        pointer-events: none;
+        font-size: 8px;
+        z-index: 1;
+        line-height: 0;
+        color: #707070;
+    }
+
+    select {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        background-color: $select-background-color;
+        border: $select-border-width solid $select-border-color;
+        position: relative;
+        font-size: inherit;
+        line-height: 1.3em;
+        color: #3d3d4c;
+        padding: 8px $select-after-width 8px $select-horizontal-padding;
+        font-family: $font-family-sans-serif;
+        white-space: normal;
+        border-radius: 0px;
+    }
+
+    &.select-wrapper-block {
+        display: block;
+
+        select {
+            display: block;
+            width: 100%;
+        }
+    }
+}

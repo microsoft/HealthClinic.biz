@@ -1,0 +1,41 @@
+﻿@import '../base/_variables.scss';
+
+.legend {
+    float: right;
+    display: inherit;
+    background-color: $color-white;
+    padding: 20px;
+}
+
+.legend-item {
+    display: inline-block;
+    line-height: $graph-header-height;
+}
+
+.legend-key {
+    display: inline-block;
+    font-size: 13px;
+    color: $color-black;
+    margin-right: 5px;
+}
+
+.legend-value {
+    display: inline-block;
+    width: 27px;
+    height: 8px;
+    border-radius: 20px;
+    margin-right: 15px;
+
+    &.grey {
+        background-color: #dddddd;
+    }
+
+    &.blue {
+        background-color: #b8efec;
+    }
+
+    &.pink {
+        background-color: #fd9bc0;
+        margin-right: 0;
+    }
+}
