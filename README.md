@@ -1,5 +1,5 @@
-# MyHealthClinic #
-MyHealthClinic is a regular doctor practice specialized in offering healthcare preventive care. This clinic is using Microsoft technologies to grow their business and modernize their customer experience. They also innovate and offer multiple apps and services that empower their patient’s well-being with easy access to manage their healthcare data and stay healthy. 
+HealthClinic.biz
+The samples contained in this repo are used to present an end-to-end demo scenario based on a fictitious B2B and multitenant system, named “HealthClinic.biz” that provides different websites, mobile apps, wearable apps, and services running on the latest Microsoft and open technologies aligned with announcements to showcase during the Connect(); 2015 event.
 
 # Licenses #
 This project uses some third-party assets with a license that requires attribution:
