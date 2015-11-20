@@ -1,4 +1,4 @@
-﻿using Microsoft.Framework.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using MyHealth.Data.Infraestructure;
 using MyHealth.Data.Repositories;
 using MyHealth.Office365;

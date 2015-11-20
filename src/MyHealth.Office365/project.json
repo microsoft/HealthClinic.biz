@@ -6,10 +6,10 @@
     "dependencies": {
         "System.Net.Http": "4.0.1-beta-*",
         "Microsoft.IdentityModel.Clients.ActiveDirectory": "3.5.208051316-alpha",
-        "Microsoft.Framework.Configuration.Json": "1.0.0-beta8",
+        "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
         "Newtonsoft.Json": "7.0.1",
         "MyHealth.Model": "",
-        "Microsoft.Framework.Configuration.EnvironmentVariables": "1.0.0-beta8"
+        "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0-rc1-final"
     },
 
     "frameworks": {

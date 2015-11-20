@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Metadata;
 using MyHealth.Model;
 
 namespace MyHealth.Data
@@ -14,7 +15,17 @@ namespace MyHealth.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<ClinicAppointment>().Property(a => a.AppointmentId).UseSqlServerIdentityColumn();
+
+            builder.Entity<ClinicAppointment>().HasOne(c => c.Patient).WithMany(p => p.ClinicAppointment).OnDelete(DeleteBehavior.Restrict);
+            builder.Entity<ClinicAppointment>().HasOne(c => c.Tenant).WithOne().OnDelete(DeleteBehavior.Restrict);
+
             builder.Entity<HomeAppointment>().Property(a => a.AppointmentId).UseSqlServerIdentityColumn();
+
+            builder.Entity<HomeAppointment>().HasOne(a => a.Patient).WithMany(p => p.HomeAppointments).OnDelete(DeleteBehavior.Restrict);
+            builder.Entity<HomeAppointment>().HasOne(a => a.Tenant).WithOne().OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Medicine>().HasOne(m => m.Tenant).WithOne().OnDelete(DeleteBehavior.Restrict);
+
             builder.Entity<Doctor>().Property(d => d.DoctorId).UseSqlServerIdentityColumn();
             builder.Entity<Patient>().Property(p => p.PatientId).UseSqlServerIdentityColumn();
 

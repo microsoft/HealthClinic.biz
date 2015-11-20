@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyHealth.Model
 {
@@ -40,6 +41,7 @@ namespace MyHealth.Model
 
         public bool Synchronized { get; set; }
 
+        [NotMapped]
         public ICollection<Patient> Patients { get; set; }
 
         public ICollection<ClinicAppointment> ClinicAppointments { get; set; }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.Hosting;
-using Microsoft.Dnx.Runtime;
-using Microsoft.Framework.Configuration;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using MyHealth.Model;
 using Newtonsoft.Json;

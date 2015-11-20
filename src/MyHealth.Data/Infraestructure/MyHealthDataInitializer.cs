@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNet.Identity;
 using System;
 using System.Threading.Tasks;
-using Microsoft.Framework.Configuration;
-using Microsoft.Framework.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using MyHealth.Model;
 using System.Security.Claims;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Dnx.Runtime;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace MyHealth.Data.Infraestructure
 {

@@ -1,15 +1,14 @@
 ﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Diagnostics.Entity;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Framework.Configuration;
-using Microsoft.Framework.DependencyInjection;
-using Microsoft.Framework.Logging;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using MyHealth.Data;
 using MyHealth.Data.Infraestructure;
 using MyHealth.Model;
 using MyHealth.Web.AppBuilderExtensions;
-using Microsoft.Dnx.Runtime;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace MyHealth.Web
 {
@@ -55,12 +54,6 @@ namespace MyHealth.Web
                 .AddEntityFrameworkStores<MyHealthContext>()
                 .AddDefaultTokenProviders();
 
-
-            CookieServiceCollectionExtensions.AddCookieAuthentication(services, options =>
-            {
-                options.LoginPath = new Microsoft.AspNet.Http.PathString("/Account/Login");
-            });
-
             services.AddApplicationInsightsTelemetry(Configuration);
 
             // Add MVC services to the services container.
@@ -87,7 +80,7 @@ namespace MyHealth.Web
             {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage(DatabaseErrorPageOptions.ShowAll);
+                app.UseDatabaseErrorPage(options => options.EnableAll());
             }
             else
             {
@@ -110,7 +103,9 @@ namespace MyHealth.Web
             app.UseIISPlatformHandler();
 
             await dataInitializer.InitializeDatabaseAsync(app.ApplicationServices);
-
         }
+
+        // Entry point for the application.
+        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }

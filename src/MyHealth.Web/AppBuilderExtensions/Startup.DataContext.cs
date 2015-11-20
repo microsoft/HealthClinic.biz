@@ -1,6 +1,6 @@
 using MyHealth.Data;
-using Microsoft.Framework.Configuration;
-using Microsoft.Framework.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Data.Entity;
 using System;
 

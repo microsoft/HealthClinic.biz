@@ -1,4 +1,4 @@
-﻿using Microsoft.Framework.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Data.Entity.Infrastructure;
 
 namespace MyHealth.Web.AppBuilderExtensions

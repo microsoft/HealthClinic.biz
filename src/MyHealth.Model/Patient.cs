@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyHealth.Model
 {
@@ -39,6 +40,7 @@ namespace MyHealth.Model
 
         public Tenant Tenant { get; set; }
 
+        [NotMapped]
         public ICollection<Doctor> Doctors { get; set; }
 
         public ICollection<ClinicAppointment> ClinicAppointment { get; set; }

@@ -3,8 +3,7 @@
   "description": "MyHealth",
   "authors": [ "Microsoft" ],
   "dependencies": {
-    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-beta8" 
-
+    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final"
   },
   "frameworks": {
     "dnx451": { },

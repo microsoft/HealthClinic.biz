@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNet.Http;
-using Microsoft.Framework.Primitives;
+using Microsoft.Extensions.Primitives;
 using System.Linq;
 
 namespace MyHealth.API.AppExtensions
