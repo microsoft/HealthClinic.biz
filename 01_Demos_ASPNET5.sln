@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2FC5C601-EA9C-482C-B5B7-3442E9A8357D}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
+		NuGet.Config = NuGet.Config
 	EndProjectSection
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MyHealth.Model", "src\MyHealth.Model\MyHealth.Model.xproj", "{FB798BC9-D2CE-40A8-ADD4-5E59870425E0}"
