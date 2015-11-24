@@ -1,5 +1,5 @@
-﻿using Microsoft.Framework.Configuration;
-using Microsoft.Framework.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using MyHealth.Web.Stress.Data.Infraestructure;
 using MyHealth.Web.Stress.Data.Infraestructure.Initializer;
 using MyHealth.Web.Stress.Data.Office365;

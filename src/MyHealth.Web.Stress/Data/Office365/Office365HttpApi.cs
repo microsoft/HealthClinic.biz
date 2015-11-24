@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.Framework.OptionsModel;
+using Microsoft.Extensions.OptionsModel;
 using MyHealth.Web.Stress.Data.Infraestructure.HttpRequest;
 using MyHealth.Web.Stress.Options;
 using Newtonsoft.Json;

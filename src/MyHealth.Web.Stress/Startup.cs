@@ -1,18 +1,14 @@
 ﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Diagnostics.Entity;
 using Microsoft.AspNet.Hosting;
-using Microsoft.CodeAnalysis;
 using Microsoft.Data.Entity;
-using Microsoft.Dnx.Runtime;
-using Microsoft.Framework.Caching.Memory;
-using Microsoft.Framework.Configuration;
-using Microsoft.Framework.DependencyInjection;
-using Microsoft.Framework.Logging;
+using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using MyHealth.Web.Stress.AppBuilderExtensions;
 using MyHealth.Web.Stress.Data;
-using MyHealth.Web.Stress.Data.Infraestructure;
 using MyHealth.Web.Stress.Data.Infraestructure.Initializer;
-using MyHealth.Web.Stress.Models;
 using MyHealth.Web.Stress.Options;
 
 
@@ -22,7 +18,8 @@ namespace MyHealth.Web.Stress
     {
         private readonly Platform _Platform;
 
-        public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv, IRuntimeEnvironment runtimeEnvironment)
+        public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv
+            , IRuntimeEnvironment runtimeEnvironment)
         {
             // Setup configuration sources.
 
@@ -33,10 +30,9 @@ namespace MyHealth.Web.Stress
 
             if (env.IsDevelopment())
             {
-                // This reads the configuration keys from the secret store.
-                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 builder.AddUserSecrets();
             }
+
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
             _Platform = new Platform(runtimeEnvironment);
@@ -87,7 +83,7 @@ namespace MyHealth.Web.Stress
             {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage(DatabaseErrorPageOptions.ShowAll);
+                app.UseDatabaseErrorPage(options => options.EnableAll());
             }
             else
             {
@@ -107,5 +103,7 @@ namespace MyHealth.Web.Stress
 
             await dataInitializer.InitializeDatabaseAsync(app.ApplicationServices, Configuration);
         }
+        // Entry point for the application.
+        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }

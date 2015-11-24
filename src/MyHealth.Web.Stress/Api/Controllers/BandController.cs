@@ -4,9 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Mvc;
-using Microsoft.Framework.Caching.Memory;
-using Microsoft.Framework.OptionsModel;
-// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.OptionsModel;
 
 namespace MyHealth.Web.Stress.Api.Controllers
 {

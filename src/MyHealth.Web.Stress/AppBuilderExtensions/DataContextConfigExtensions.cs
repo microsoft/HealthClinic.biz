@@ -1,5 +1,5 @@
 ﻿using Microsoft.Data.Entity.Infrastructure;
-using Microsoft.Framework.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MyHealth.Web.Stress.AppBuilderExtensions
 {

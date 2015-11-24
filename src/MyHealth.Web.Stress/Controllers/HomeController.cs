@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNet.Mvc;
-using Microsoft.Framework.OptionsModel;
+using Microsoft.Extensions.OptionsModel;
 using MyHealth.Web.Stress.Options;
 
 namespace MyHealth.Web.Stress.Controllers
