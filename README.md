@@ -12,5 +12,12 @@ This project uses some third-party assets with a license that requires attributi
 
 For extra information about licenses, you can see it at the dependency repositories.
 
+# Prerequisites #
 
-
+ - Windows 10
+ - Visual Studio 2015 Update 1 (make sure you install UWP Development tools, Cross Platform Mobile Development, and Office Developer Tools).
+ - [Xamarin for Visual Studio](https://xamarin.com/visual-studio)
+ - [Microsoft Azure SDK](http://go.microsoft.com/fwlink/?LinkId=617168) for Visual Studio 2015
+ - Microsoft Office 2016
+ - Bing Maps Key [Getting a Bing Maps Key)(https://msdn.microsoft.com/en-us/library/ff428642.aspx] para la app Cordova.
+ - Microsoft [Azure subscription](https://azure.com/)
