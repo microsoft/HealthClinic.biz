@@ -19,5 +19,5 @@ For extra information about licenses, you can see it at the dependency repositor
  - [Xamarin for Visual Studio](https://xamarin.com/visual-studio)
  - [Microsoft Azure SDK](http://go.microsoft.com/fwlink/?LinkId=617168) for Visual Studio 2015
  - Microsoft Office 2016
- - Bing Maps Key [Getting a Bing Maps Key)(https://msdn.microsoft.com/en-us/library/ff428642.aspx] para la app Cordova.
+ - Bing Maps Key - [Getting a Bing Maps Key](https://msdn.microsoft.com/en-us/library/ff428642.aspx)
  - Microsoft [Azure subscription](https://azure.com/)
