@@ -44,5 +44,13 @@ namespace MyHealth.Client.W10.UWP.Views
 
             NewAppointment.IsEnabled = PageTitle.Text.CompareTo("Appointment") == 0 ? false : true;
         }
+
+        public MainViewModel MainViewModel
+        {
+            get
+            {
+                return ViewModel as MainViewModel;
+            }
+        }
     }
 }

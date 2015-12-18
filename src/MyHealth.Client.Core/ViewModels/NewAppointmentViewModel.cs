@@ -43,10 +43,13 @@ namespace MyHealth.Client.Core
             get { return _selectedDoctor; }
             set
             {
-                _selectedDoctor = value;
-                RaisePropertyChanged(() => SelectedDoctor);
+                if (value != _selectedDoctor)
+                {
+                    _selectedDoctor = value;
+                    RaisePropertyChanged(() => SelectedDoctor);
 
-                SelectedDate = DateTime.Today;
+                    SelectedDate = DateTime.Today;
+                }
             }
         }
 
@@ -61,10 +64,13 @@ namespace MyHealth.Client.Core
             get { return _selectedHour; }
             set
             {
-                _selectedHour = value;
-                _selectedAppointmentDateAndHour = SelectedDate.WithTime(_selectedHour);
-                IsEverythingCorrectlyFilled = !string.IsNullOrWhiteSpace(_selectedHour);
-                RaisePropertyChanged(() => SelectedHour);
+                if (value != _selectedHour)
+                {
+                    _selectedHour = value;
+                    _selectedAppointmentDateAndHour = SelectedDate.WithTime(_selectedHour);
+                    IsEverythingCorrectlyFilled = !string.IsNullOrWhiteSpace(_selectedHour);
+                    RaisePropertyChanged(() => SelectedHour);
+                }
             }
         }
 
@@ -78,12 +84,15 @@ namespace MyHealth.Client.Core
             get { return _selectedSpeciality; }
             set
             {
-                _selectedSpeciality = value;
+                if (value != _selectedSpeciality)
+                { 
+                    _selectedSpeciality = value;
 
-                RaisePropertyChanged(() => SelectedSpeciality);
+                    RaisePropertyChanged(() => SelectedSpeciality);
 
-                SelectedDoctor = null;
-                GetDoctorsForSpecialtyAsync(_selectedSpeciality).Forget();
+                    SelectedDoctor = null;
+                    GetDoctorsForSpecialtyAsync(_selectedSpeciality).Forget();
+                }
             }
         }
 

@@ -95,7 +95,7 @@
         </VisualStateManager.VisualStateGroups>
         <Grid x:Name="ContentGrid" Margin="20,0">
             <Grid x:Name="relativePanel"
-                           Visibility="{Binding IsBusy, Converter={StaticResource InverseBoolToVisibilityConverter}}">
+                           Visibility="{x:Bind HomeViewModel.IsBusy, Converter={StaticResource InverseBoolToVisibilityConverter}, Mode=OneWay}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition x:Name="ContentColumn1" Width="*"></ColumnDefinition>
                     <ColumnDefinition x:Name="ContentColumn2" Width="*"></ColumnDefinition>
@@ -137,15 +137,15 @@
                             <RadioButton Style="{StaticResource NextPillRadioButtonStyle}"
                                      Margin="10"
                                      GroupName="NextPillGroup"
-                                     Content="{Binding FirstMedicine.Medicine, FallbackValue='Tylenol 100ml', Converter={StaticResource MedicineToNameWithDosisConverter}}"
-                                     Command="{Binding ChangeToFirstMedicineCommand}"
+                                     Content="{x:Bind HomeViewModel.FirstMedicine.Medicine, FallbackValue='Tylenol 100ml', Converter={StaticResource MedicineToNameWithDosisConverter}, Mode=OneWay}"
+                                     Command="{x:Bind HomeViewModel.ChangeToFirstMedicineCommand}"
                                      x:Name="NextPillButton1"
                                      IsChecked="True"/>
                             <RadioButton Style="{StaticResource NextPill2RadioButtonStyle}"
                                      Margin="10"
                                      x:Name="NextPillButton2"
-                                     Content="{Binding SecondMedicine.Medicine, FallbackValue='Tylenol 100ml', Converter={StaticResource MedicineToNameWithDosisConverter}}"
-                                     Command="{Binding ChangeToSecondMedicineCommand}"
+                                     Content="{x:Bind HomeViewModel.SecondMedicine.Medicine, FallbackValue='Tylenol 100ml', Converter={StaticResource MedicineToNameWithDosisConverter}, Mode=OneWay}"
+                                     Command="{x:Bind HomeViewModel.ChangeToSecondMedicineCommand}"
                                      GroupName="NextPillGroup"
                                      Grid.Column="1"/>
                         </Grid>
@@ -156,7 +156,7 @@
                             <StackPanel Orientation="Vertical" 
                                     Margin="20,16,20,0">
                                 <TextBlock 
-                                       Text="{Binding CurrentMedicine.Medicine, FallbackValue='Tylenol 100ml', Converter={StaticResource MedicineToNameWithDosisConverter}}"
+                                       Text="{x:Bind HomeViewModel.CurrentMedicine.Medicine, FallbackValue='Tylenol 100ml', Converter={StaticResource MedicineToNameWithDosisConverter}, Mode=OneWay}"
                                        VerticalAlignment="Top"
                                        Style="{StaticResource RegularTextStyle}"
             		                   HorizontalAlignment="Left"
@@ -169,7 +169,7 @@
             		                   FontSize="16">   
             		        <Run Text="Next pills in "
                                  Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
-            		        <Run Text="{Binding CurrentMedicine.NextDoseTime, Converter={StaticResource TimeOfDayToStringConverter}}"
+            		        <Run Text="{x:Bind HomeViewModel.CurrentMedicine.NextDoseTime, Converter={StaticResource TimeOfDayToStringConverter}, Mode=OneWay}"
                                  Foreground="{StaticResource MyHealthHeaderBlueThemeBrush}"/>
                                 </TextBlock>
                             </StackPanel>
@@ -179,7 +179,7 @@
                           Margin="10,10,10,18">
                             <controls:CircularProgressBar x:Name="Countdown" 
                                                   Style="{StaticResource BigCircularProgressBarStyle}" 
-                                                  Percentage="{Binding CountDown}"
+                                                  Percentage="{x:Bind HomeViewModel.CountDown, Mode=OneWay}"
                                                   VerticalAlignment="Center"/>
                             <TextBlock x:Name="textBlock" Text=""
                                Style="{StaticResource IconTextStyle}"
@@ -208,7 +208,7 @@
                                     Style="{StaticResource RegularTextStyle}">
             		        <Run Text="Breakfast "
             			        Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
-            		        <Run Text="{Binding CurrentMedicine.BreakfastDoses}"
+            		        <Run Text="{x:Bind HomeViewModel.CurrentMedicine.BreakfastDoses, Mode=OneWay}"
             			        Foreground="{StaticResource MyHealthHeaderBlueThemeBrush}"/>
                             </TextBlock>
                             <TextBlock VerticalAlignment="Center"
@@ -218,7 +218,7 @@
                                     Grid.Column="1">
             		        <Run Text="Lunch "
             			        Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
-            		        <Run Text="{Binding CurrentMedicine.LunchDoses}"
+            		        <Run Text="{x:Bind HomeViewModel.CurrentMedicine.LunchDoses, Mode=OneWay}"
             			        Foreground="{StaticResource MyHealthHeaderBlueThemeBrush}"/>
                             </TextBlock>
                             <TextBlock VerticalAlignment="Center"
@@ -228,7 +228,7 @@
                                    Grid.Column="2">
             		        <Run Text="Dinner "
             			        Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
-            		        <Run Text="{Binding CurrentMedicine.DinnerDoses}"
+            		        <Run Text="{x:Bind HomeViewModel.CurrentMedicine.DinnerDoses, Mode=OneWay}"
             			        Foreground="{StaticResource MyHealthHeaderBlueThemeBrush}"/>
                             </TextBlock>
                         </Grid>
@@ -276,7 +276,7 @@
                 				        Stroke="{StaticResource MyHealthWhiteThemeBrush}"
                         				StrokeThickness="2">
                                         <Ellipse.Fill>
-                                            <ImageBrush Stretch="Fill" ImageSource="{Binding FirstAppointment.Doctor.Picture, Converter={StaticResource ByteArrayToImageConverter}}"/>
+                                            <ImageBrush Stretch="Fill" ImageSource="{x:Bind HomeViewModel.FirstAppointment.Doctor.Picture, Converter={StaticResource ByteArrayToImageConverter}, Mode=OneWay}"/>
                                         </Ellipse.Fill>
                                     </Ellipse>
                                     <Grid Grid.Column="1"
@@ -286,13 +286,13 @@
                                             <RowDefinition />
                                             <RowDefinition />
                                         </Grid.RowDefinitions>
-                                        <TextBlock Text="{Binding FirstAppointment.Doctor.Name, FallbackValue='Amanda Silver'}" 
+                                        <TextBlock Text="{x:Bind HomeViewModel.FirstAppointment.Doctor.Name, FallbackValue='Amanda Silver', Mode=OneWay}" 
                 					            FontSize="26"
                 					            VerticalAlignment="Center"
                                                TextTrimming="CharacterEllipsis"
                                                 Style="{StaticResource RegularTextStyle}"
                 					            Foreground="{StaticResource MyHealthHeaderBlueThemeBrush}"/>
-                                        <TextBlock Text="{Binding FirstAppointment.Doctor.Speciality, FallbackValue='Cardiologist'}" 
+                                        <TextBlock Text="{x:Bind HomeViewModel.FirstAppointment.Doctor.Speciality, FallbackValue='Cardiologist', Mode=OneWay}" 
                 					           FontSize="18"
                                                Opacity="0.87"
                                                 Style="{StaticResource RegularTextStyle}"
@@ -306,7 +306,7 @@
                 				        VerticalAlignment="Top"
                 				        Margin="3"
                 				        Background="{StaticResource MyHealthPinkLogoThemeBrush}"
-                				        Visibility="{Binding AppointmentSelectedItem.IsUrgent, FallbackValue='true', Converter={StaticResource BoolToVisibilityConverter}}">
+                				        Visibility="{x:Bind HomeViewModel.FirstAppointment.IsUrgent, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
                                         <TextBlock Text="Urgent"
                 					           Margin="4,1"
                 					           FontSize="14"
@@ -335,7 +335,7 @@
                 			                VerticalAlignment="Center"
                                             Style="{StaticResource RegularTextStyle}"
                 			                Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
-                                    <TextBlock Text="{Binding FirstAppointment.DateTime, FallbackValue='Nov 20, 2015', Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:MMM d, yyyy}'}" 
+                                    <TextBlock Text="{x:Bind HomeViewModel.FirstAppointment.DateTime, FallbackValue='Nov 20, 2015', Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:MMM d, yyyy}', Mode=OneWay}" 
                                             FontSize="28"
                                             Style="{StaticResource RegularTextStyle}"
                 			                VerticalAlignment="Center"
@@ -361,7 +361,7 @@
                                            FontSize="28"
                                            Style="{StaticResource RegularTextStyle}"
                 			               Foreground="{StaticResource MyHealthHeaderBlueThemeBrush}"
-                                           Text="{Binding SecondAppointment.DateTime, FallbackValue='10:00am', Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:h:mm tt}'}">
+                                           Text="{x:Bind  HomeViewModel.FirstAppointment.DateTime, FallbackValue='10:00am', Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:h:mm tt}', Mode=OneWay}">
                                     </TextBlock>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical"
@@ -375,7 +375,7 @@
                 			           VerticalAlignment="Center"
                                            Style="{StaticResource RegularTextStyle}"
                 			           Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
-                                    <TextBlock Text="{Binding FirstAppointment.RoomNumber, FallbackValue='4'}" 
+                                    <TextBlock Text="{x:Bind HomeViewModel.FirstAppointment.RoomNumber, FallbackValue='4', Mode=OneWay}" 
                                        FontSize="28"
                 			           VerticalAlignment="Center"
                                            Style="{StaticResource RegularTextStyle}"
@@ -386,7 +386,7 @@
                                 <Rectangle Fill="{StaticResource MyHealthAppointmentSelectedThemeBrush}"
                                        Height="1"
                                        VerticalAlignment="Top"/>
-                                <TextBlock Text="{Binding FirstAppointment.Description, FallbackValue='Follow up in order to determine the effectiveness of treatment received'}" 
+                                <TextBlock Text="{x:Bind HomeViewModel.FirstAppointment.Description, FallbackValue='Follow up in order to determine the effectiveness of treatment received', Mode=OneWay}" 
                                            FontSize="17"
                                            Grid.Row="1"
                                            Margin="20"
@@ -415,7 +415,7 @@
                                  Stroke="{StaticResource MyHealthWhiteThemeBrush}"
                                  StrokeThickness="2">
                                 <Ellipse.Fill>
-                                    <ImageBrush Stretch="Fill" ImageSource="{Binding SecondAppointment.Doctor.Picture, Converter={StaticResource ByteArrayToImageConverter}}"/>
+                                    <ImageBrush Stretch="Fill" ImageSource="{x:Bind HomeViewModel.SecondAppointment.Doctor.Picture, Converter={StaticResource ByteArrayToImageConverter}, Mode=OneWay}"/>
                                 </Ellipse.Fill>
                             </Ellipse>
                             <Grid Grid.Column="1"
@@ -425,14 +425,14 @@
                                     <RowDefinition/>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Text="{Binding SecondAppointment.Doctor.Name}" 
+                                <TextBlock Text="{x:Bind HomeViewModel.SecondAppointment.Doctor.Name, Mode=OneWay}" 
                                        FontSize="22"
                                         Margin="0,-5,0,0"
                 			            VerticalAlignment="Center"
                                        TextTrimming="CharacterEllipsis"
                                        Style="{StaticResource RegularTextStyle}"
                 			            Foreground="{StaticResource MyHealthHeaderBlueThemeBrush}"/>
-                                <TextBlock Text="{Binding SecondAppointment.Doctor.Speciality}" 
+                                <TextBlock Text="{x:Bind HomeViewModel.SecondAppointment.Doctor.Speciality, Mode=OneWay}" 
                                        FontSize="14"
                                        Grid.Row="1"
                                        Opacity="0.87"
@@ -449,7 +449,7 @@
                                     <RowDefinition/>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Text="{Binding SecondAppointment.DateTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:MMM dd, yyyy}'}" 
+                                <TextBlock Text="{x:Bind HomeViewModel.SecondAppointment.DateTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:MMM dd, yyyy}', Mode=OneWay}" 
                                    FontSize="14"
                 			        VerticalAlignment="Center"
                                    HorizontalAlignment="Right"
@@ -462,7 +462,7 @@
                                          HorizontalAlignment="Right"
                                        Style="{StaticResource RegularTextStyle}"
                 			         Foreground="{StaticResource MyHealthHeaderBlueThemeBrush}">
-                                <Run Text="{Binding SecondAppointment.DateTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:h:mm tt}'}"/>
+                                <Run Text="{x:Bind HomeViewModel.SecondAppointment.DateTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:h:mm tt}', Mode=OneWay}"/>
                                 </TextBlock>
                             </Grid>
                         </Grid>
@@ -476,7 +476,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="{Binding Tip.Title}"
+                    <TextBlock Text="{x:Bind HomeViewModel.Tip.Title, Mode=OneWay}"
                                Style="{StaticResource LightTextStyle}"
                                FontSize="30"
                                Opacity="0.87"
@@ -494,7 +494,7 @@
                                        FontSize="150"
                                        Style="{StaticResource IconTextStyle}"
                                        Foreground="#FF80ECE6"/>
-                            <TextBlock Text="{Binding Tip.Content, FallbackValue='Drinking two glassess of water in the morning helps activate internal organs.Drinking one glass of water before a meal will help with digestion.Drinking one glass of water before taking a shower helps prevent high blood pressure.Drinking a glass of water before bedtime helps prevent strokes or heart attack.'}" 
+                            <TextBlock Text="{x:Bind HomeViewModel.Tip.Content, FallbackValue='Drinking two glassess of water in the morning helps activate internal organs. Drinking one glass of water before a meal will help with digestion. Drinking one glass of water before taking a shower helps prevent high blood pressure. Drinking a glass of water before bedtime helps prevent strokes or heart attack.', Mode=OneWay}" 
                                        FontSize="17"
                                        Grid.Row="1"
                                        Opacity="0.87"
@@ -511,7 +511,7 @@
             </Grid>
 
             <!--Loading-->
-            <Grid Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid Visibility="{x:Bind HomeViewModel.IsBusy, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
                 <ProgressRing Width="100" 
                               Height="100"
                               Foreground="{StaticResource MyHealthWhiteThemeBrush}"
