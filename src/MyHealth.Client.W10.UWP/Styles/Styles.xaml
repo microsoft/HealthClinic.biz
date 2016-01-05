@@ -56,7 +56,7 @@
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
-                                    
+
                                 </VisualState>
                                 <VisualState x:Name="PointerOver">
                                     <Storyboard>
@@ -187,7 +187,7 @@
                                 <VisualState x:Name="Checked">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="SegmentColor" Storyboard.TargetName="ProgressBar1">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource MyHealthHeaderBlueThemeBrush}"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource MyHealthHeaderBlueGradientThemeBrush}"/>
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource MyHealthHeaderBlueThemeBrush}"/>
@@ -229,7 +229,7 @@
                                                           Style="{StaticResource SmallCircularProgressBarStyle}" 
                     		                              Percentage="{Binding FirstMedicineCountDown}"
                     		                              VerticalAlignment="Center"/>
-                          
+
                             <TextBlock x:Name="ContentPresenter"
                                        FontSize="16"
                                        Grid.Column="1"
@@ -284,7 +284,7 @@
                                 <VisualState x:Name="Checked">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="SegmentColor" Storyboard.TargetName="ProgressBar1">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource MyHealthHeaderBlueThemeBrush}"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource MyHealthHeaderBlueGradientThemeBrush}"/>
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource MyHealthHeaderBlueThemeBrush}"/>
@@ -374,7 +374,7 @@
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
-                                    
+
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
                                 </VisualState>
@@ -433,7 +433,7 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Foreground" Value="{StaticResource MyHealthLightGrayThemeBrush}"/>
-        <Setter Property="SegmentColor" Value="{StaticResource MyHealthMediumGrayThemeBrush}"/>
+        <Setter Property="SegmentColor" Value="{StaticResource MyHealthMediumGrayGradientThemeBrush}"/>
         <Setter Property="StrokeThickness" Value="4"/>
         <Setter Property="Radius" Value="20"/>
     </Style>
@@ -442,7 +442,7 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Foreground" Value="{StaticResource MyHealthLightGrayThemeBrush}"/>
-        <Setter Property="SegmentColor" Value="{StaticResource MyHealthBackgroundBlueThemeBrush}"/>
+        <Setter Property="SegmentColor" Value="{StaticResource MyHealthBlueGradientThemeBrush}"/>
         <Setter Property="StrokeThickness" Value="4"/>
         <Setter Property="Radius" Value="20"/>
     </Style>
@@ -455,7 +455,7 @@
         <Setter Property="StrokeThickness" Value="25"/>
         <Setter Property="Radius" Value="116"/>
     </Style>
-    
+
     <Style x:Key="SettingsTextBoxStyle" TargetType="TextBox">
         <Setter Property="MinWidth" Value="{ThemeResource TextControlThemeMinWidth}"/>
         <Setter Property="MinHeight" Value="{ThemeResource TextControlThemeMinHeight}"/>
@@ -606,7 +606,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style x:Key="SettingsButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>
         <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
@@ -670,92 +670,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-    <DataTemplate x:Key="AppointmentDataTemplate">
-        <Grid Height="100"
-              BorderBrush="{StaticResource MyHealthWhiteThemeBrush}"
-              BorderThickness="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Ellipse Margin="10,10,10,10"
-                     Width="50"
-                     Height="50"
-                     x:Name="Picture2"
-                     Stroke="{StaticResource MyHealthWhiteThemeBrush}"
-                     StrokeThickness="2">
-                <Ellipse.Fill>
-                    <ImageBrush Stretch="Fill" 
-                                ImageSource="{Binding Doctor.Picture, Converter={StaticResource ByteArrayToImageConverter}}"/>
-                </Ellipse.Fill>
-            </Ellipse>
-            <StackPanel Orientation="Vertical"
-                        Grid.Column="1"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center">
-                <TextBlock Text="{Binding Doctor.Name}" 
-                           FontSize="22"
-                		   VerticalAlignment="Center"
-                		   TextTrimming="CharacterEllipsis"/>
-                <TextBlock Text="{Binding Doctor.Speciality}" 
-                           FontSize="14"
-                           TextTrimming="CharacterEllipsis"
-                		   VerticalAlignment="Center"
-                		   Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical"
-                        Grid.Column="2"
-                        Margin="5,3,20,0"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Top">
-                <TextBlock Text="{Binding DateTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:MMM dd, yyyy}'}" 
-                            FontSize="16"
-                			VerticalAlignment="Center"
-                            HorizontalAlignment="Right"
-                			/>
-                <TextBlock FontSize="16"
-                		   VerticalAlignment="Center"
-                           HorizontalAlignment="Right"
-                		  >
-                    <Run Text="{Binding DateTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:h:mm tt}'}"/>
-                </TextBlock>
-            </StackPanel>
-        </Grid>
-    </DataTemplate>
-
-    <DataTemplate x:Key="AppointmentHistoryDataTemplate">
-        <Grid Height="100"
-              Margin="0,0,0,5"
-              Background="{StaticResource MyHealthWhiteThemeBrush}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Vertical"
-                        Margin="20,0"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center">
-                <TextBlock Text="{Binding Doctor.Name}" 
-                           FontSize="22"
-                		   VerticalAlignment="Center"
-                           Foreground="{StaticResource MyHealthBackgroundBlueThemeBrush}"/>
-                <TextBlock Text="{Binding Doctor.Speciality}" 
-                           FontSize="14"
-                		   VerticalAlignment="Center"
-                           Opacity="0.87"
-                		   Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
-            </StackPanel>
-            <TextBlock Text="{Binding DateTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:MMM dd, yyyy}'}" 
-                       FontSize="16"
-                       Foreground="{StaticResource MyHealthBackgroundBlueThemeBrush}"
-                       Grid.Column="1"
-                       Margin="5,3,20,0"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Top"/>
-        </Grid>
-    </DataTemplate>
 
     <Style x:Key="CalendarDayButtonStyle"
             TargetType="primitives:CalendarDayButton">
@@ -839,7 +753,7 @@
                                     x:Name="Unselected" />
                                 <VisualState
                                     x:Name="Selected">
-                                    
+
                                     <Storyboard>
                                         <DoubleAnimationUsingKeyFrames
                                             Storyboard.TargetName="SelectedBackground"
@@ -921,7 +835,7 @@
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
-                                
+
                             </VisualStateGroup>
                             <VisualStateGroup
                                 x:Name="BlackoutDayStates">
@@ -1688,7 +1602,7 @@
                     <Grid x:Name="ContentBorder"
                           Background="{TemplateBinding Background}"
                           BorderBrush="{TemplateBinding BorderBrush}"
-                          BorderThickness="{TemplateBinding BorderThickness}">    
+                          BorderThickness="{TemplateBinding BorderThickness}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
@@ -2370,48 +2284,6 @@
         </Setter>
     </Style>
 
-    <DataTemplate x:Key="TreatmentDataTemplate">
-        <Grid Height="100"
-              BorderBrush="{StaticResource MyHealthWhiteThemeBrush}"
-              BorderThickness="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <controls:CircularProgressBar x:Name="ProgressBar" 
-                                            Style="{StaticResource BigCircularProgressBarStyle}" 
-                    		                Percentage="{Binding Converter={StaticResource MedicineToCountdownConverter}}"
-                    		                VerticalAlignment="Center"
-                                            HorizontalAlignment="Center"
-                                          Radius="30"
-                                          StrokeThickness="4"
-                                            Margin="20,10"/>
-            <TextBlock Text="{Binding Medicine, Converter={StaticResource MedicineToNameWithDosisConverter}}"
-                        FontSize="20"
-                        HorizontalAlignment="Left"
-                        Grid.Column="1"
-                       TextTrimming="CharacterEllipsis"
-                        Style="{StaticResource RegularTextStyle}"
-                        VerticalAlignment="Center"/>
-            <StackPanel  VerticalAlignment="Top"
-            		    HorizontalAlignment="Right"
-                            Grid.Column="2"
-                            Margin="0,5,5,0">
-                <TextBlock Text="Next pills in"
-                        Style="{StaticResource RegularTextStyle}"
-                            Foreground="{StaticResource MyHealthBlackThemeBrush}"
-                            Opacity="0.87"
-            		    FontSize="13"/>
-                <TextBlock
-                    HorizontalAlignment="Right"
-                        Text="{Binding NextDoseTime, Converter={StaticResource TimeOfDayToStringConverter}}"
-                        Style="{StaticResource RegularTextStyle}"
-            		    FontSize="13"/>
-            </StackPanel>
-        </Grid>
-    </DataTemplate>
-    
     <Style x:Key="NewAppointmentCalendarButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>
         <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
@@ -2475,7 +2347,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style x:Key="AppointmentsComboBoxItemStyle" TargetType="ComboBoxItem">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="TabNavigation" Value="Local"/>
@@ -2618,11 +2490,11 @@
                                                            Storyboard.TargetProperty="Opacity"
                                                            Duration="0"
                                                            To="1"/>
-                                        
+
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Selected">
-                                   
+
                                 </VisualState>
                                 <VisualState x:Name="PointerOverSelected">
                                     <Storyboard>
@@ -2954,7 +2826,7 @@
                                     <Setter Property="BorderThickness" Value="0"/>
                                     <Setter Property="BorderBrush" Value="Transparent"/>
                                     <Setter Property="Background" Value="Transparent"/>
-                                    
+
                                 </Style>
                             </ScrollViewer.Style>
                             <ItemsPresenter FooterTransitions="{TemplateBinding FooterTransitions}" FooterTemplate="{TemplateBinding FooterTemplate}" Footer="{TemplateBinding Footer}" 

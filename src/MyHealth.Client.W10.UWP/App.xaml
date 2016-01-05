@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MyHealth.Client.W10.UWP"
     xmlns:converters="using:MyHealth.Client.W10.UWP.Converters"
+    xmlns:styles="using:MyHealth.Client.W10.UWP.Styles"
     RequestedTheme="Light">
     <Application.Resources>
         <ResourceDictionary>
@@ -11,6 +12,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/Styles.xaml"/>
                 <ResourceDictionary Source="/Styles/Colors.xaml"/>
+                <ResourceDictionary Source="/Styles/DataTemplates.xaml"/>
+                <styles:DataTemplates/>
             </ResourceDictionary.MergedDictionaries>
             
             <!--Converters-->
@@ -22,6 +25,7 @@
             <converters:BoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter" Inverse="True"/>
             <converters:NativeMedicineToNameWithDosisConverter x:Key="MedicineToNameWithDosisConverter"/>
             <converters:NativeMedicineToCountdownConverter x:Key="MedicineToCountdownConverter"/>
+            <converters:NoOpConverter x:Key="NoOpConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

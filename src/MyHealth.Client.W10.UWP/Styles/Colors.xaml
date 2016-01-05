@@ -24,4 +24,12 @@
         <GradientStop Color="#FF00D8CC" Offset="0.9"/>
     </LinearGradientBrush>
 
+    <LinearGradientBrush x:Key="MyHealthMediumGrayGradientThemeBrush">
+        <GradientStop Color="#FFC4C4C7" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="MyHealthHeaderBlueGradientThemeBrush">
+        <GradientStop Color="#FF33E0D6" Offset="1.0"/>
+    </LinearGradientBrush>
+
 </ResourceDictionary>

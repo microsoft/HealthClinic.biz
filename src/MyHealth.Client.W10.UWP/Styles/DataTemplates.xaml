@@ -1,0 +1,135 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="MyHealth.Client.W10.UWP.Styles.DataTemplates"
+     xmlns:controls="using:MyHealth.Client.W10.UWP.Controls"
+    xmlns:model="using:MyHealth.Client.Core.Model"
+    xmlns:local="using:MyHealth.Client.W10.UWP.Styles">
+
+    <DataTemplate x:Key="TreatmentDataTemplate" x:DataType="model:MedicineWithDoses">
+        <Grid Height="100"
+              BorderBrush="{StaticResource MyHealthWhiteThemeBrush}"
+              BorderThickness="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <controls:CircularProgressBar x:Name="ProgressBar" 
+                                            Style="{StaticResource BigCircularProgressBarStyle}" 
+                    		                Percentage="{x:Bind Converter={StaticResource MedicineToCountdownConverter}}"
+                    		                VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"
+                                            Radius="30"
+                                            StrokeThickness="4"
+                                            Margin="20,10"/>
+            <TextBlock Text="{x:Bind Medicine, Converter={StaticResource MedicineToNameWithDosisConverter}}"
+                       FontSize="20"
+                       HorizontalAlignment="Left"
+                       Grid.Column="1"
+                       TextTrimming="CharacterEllipsis"
+                       Style="{StaticResource RegularTextStyle}"
+                       VerticalAlignment="Center"/>
+            <StackPanel  VerticalAlignment="Top"
+            		     HorizontalAlignment="Right"
+                         Grid.Column="2"
+                         Margin="0,5,5,0">
+                <TextBlock Text="Next pills in"
+                           Style="{StaticResource RegularTextStyle}"
+                           Foreground="{StaticResource MyHealthBlackThemeBrush}"
+                           Opacity="0.87"
+            		       FontSize="13"/>
+                <TextBlock HorizontalAlignment="Right"
+                           Text="{x:Bind NextDoseTime, Converter={StaticResource TimeOfDayToStringConverter}}"
+                           Style="{StaticResource RegularTextStyle}"
+            		       FontSize="13"/>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="AppointmentDataTemplate" x:DataType="model:ClinicAppointment">
+        <Grid Height="100"
+              BorderBrush="{StaticResource MyHealthWhiteThemeBrush}"
+              BorderThickness="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Ellipse Margin="10,10,10,10"
+                     Width="50"
+                     Height="50"
+                     x:Name="Picture2"
+                     Stroke="{StaticResource MyHealthWhiteThemeBrush}"
+                     StrokeThickness="2">
+                <Ellipse.Fill>
+                    <ImageBrush Stretch="Fill" 
+                                ImageSource="{x:Bind Doctor.Picture, Converter={StaticResource ByteArrayToImageConverter}}"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            <StackPanel Orientation="Vertical"
+                        Grid.Column="1"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center">
+                <TextBlock Text="{x:Bind Doctor.Name}" 
+                           FontSize="22"
+                		   VerticalAlignment="Center"
+                		   TextTrimming="CharacterEllipsis"/>
+                <TextBlock Text="{x:Bind Doctor.Speciality}" 
+                           FontSize="14"
+                           TextTrimming="CharacterEllipsis"
+                		   VerticalAlignment="Center"
+                		   Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical"
+                        Grid.Column="2"
+                        Margin="5,3,20,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top">
+                <TextBlock Text="{x:Bind DateTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:MMM dd, yyyy}'}" 
+                            FontSize="16"
+                			VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                			/>
+                <TextBlock FontSize="16"
+                		   VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                		  >
+                    <Run Text="{x:Bind DateTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:h:mm tt}'}"/>
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="AppointmentHistoryDataTemplate" x:DataType="model:ClinicAppointment">
+        <Grid Height="100"
+              Margin="0,0,0,5"
+              Background="{StaticResource MyHealthWhiteThemeBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical"
+                        Margin="20,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center">
+                <TextBlock Text="{x:Bind Doctor.Name}" 
+                           FontSize="22"
+                		   VerticalAlignment="Center"
+                           Foreground="{StaticResource MyHealthBackgroundBlueThemeBrush}"/>
+                <TextBlock Text="{x:Bind Doctor.Speciality}" 
+                           FontSize="14"
+                		   VerticalAlignment="Center"
+                           Opacity="0.87"
+                		   Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
+            </StackPanel>
+            <TextBlock Text="{x:Bind DateTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:MMM dd, yyyy}'}" 
+                       FontSize="16"
+                       Foreground="{StaticResource MyHealthBackgroundBlueThemeBrush}"
+                       Grid.Column="1"
+                       Margin="5,3,20,0"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Top"/>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

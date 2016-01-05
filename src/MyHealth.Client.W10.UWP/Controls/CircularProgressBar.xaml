@@ -11,8 +11,8 @@
     d:DesignWidth="300">
 
     <Grid Loaded="ControlLoaded">
-        <Path x:Name="fullPath" Stroke="{Binding Foreground, ElementName=userControl}"
-              StrokeThickness="{Binding StrokeThickness, ElementName=userControl}"
+        <Path x:Name="fullPath" Stroke="{x:Bind Foreground}"
+              StrokeThickness="{x:Bind StrokeThickness}"
               HorizontalAlignment="Left" VerticalAlignment="Top">
             <Path.Data>
                 <PathGeometry>
@@ -30,8 +30,8 @@
                 </PathGeometry>
             </Path.Data>
         </Path>
-        <Path x:Name="pathRoot" Stroke="{Binding SegmentColor, ElementName=userControl}"
-              StrokeThickness="{Binding StrokeThickness, ElementName=userControl}"
+        <Path x:Name="pathRoot" Stroke="{x:Bind SegmentColor, Mode=OneWay}"
+               StrokeThickness="{x:Bind StrokeThickness}"
               HorizontalAlignment="Left" VerticalAlignment="Top" StrokeStartLineCap="Round" StrokeEndLineCap="Round">
             <Path.Data>
                 <PathGeometry>

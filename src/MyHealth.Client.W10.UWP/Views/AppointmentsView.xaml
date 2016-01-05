@@ -57,7 +57,7 @@
         </VisualStateManager.VisualStateGroups>
         <Grid x:Name="ContentGrid" 
               Margin="20,0">
-            <Grid Visibility="{Binding IsBusy, Converter={StaticResource InverseBoolToVisibilityConverter}}">
+            <Grid Visibility="{x:Bind AppointmentsViewModel.IsBusy, Converter={StaticResource InverseBoolToVisibilityConverter}, Mode=OneWay}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition x:Name="ContentColumn1" Width="420"></ColumnDefinition>
                     <ColumnDefinition x:Name="ContentColumn2" Width="*"></ColumnDefinition>
@@ -71,7 +71,6 @@
 
                 <Grid x:Name="NewAppointmentGrid"
                             Margin="0,0,10,10"
-                            DataContext="{Binding NewAppointmentViewModel}"
                             VerticalAlignment="Top">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
@@ -98,20 +97,20 @@
                                   Margin="10,20,10,5" 
                                   FontFamily="/Assets/Fonts/Roboto-Regular.ttf#Roboto"
                                   BorderThickness="1"
-                                  SelectedItem="{Binding SelectedSpeciality, Mode=TwoWay}"
-                                  ItemsSource="{Binding AvailableSpecialities}"
+                                  SelectedItem="{x:Bind AppointmentsViewModel.NewAppointmentViewModel.SelectedSpeciality, Mode=TwoWay, Converter={StaticResource NoOpConverter}}"
+                                  ItemsSource="{x:Bind AppointmentsViewModel.NewAppointmentViewModel.AvailableSpecialities, Mode=OneWay}"
                                   BorderBrush="{StaticResource MyHealthDarkGrayThemeBrush}"
                                   Background="{StaticResource MyHealthExtraLightGrayThemeBrush}"
                                   ItemContainerStyle="{StaticResource AppointmentsComboBoxItemStyle}"/>
                         <ComboBox Name="combo"
                                   Grid.Row="1"
                                   HorizontalAlignment="Stretch"
-                                  ItemsSource="{Binding Doctors}"
+                                  ItemsSource="{x:Bind AppointmentsViewModel.NewAppointmentViewModel.Doctors, Mode=OneWay}"
                                   Margin="10,5,10,5"
                                   DisplayMemberPath="Name"
                                   FontFamily="/Assets/Fonts/Roboto-Regular.ttf#Roboto"
                                   PlaceholderText="Doctor"
-                                  SelectedItem="{Binding SelectedDoctor, Mode=TwoWay}"
+                                  SelectedItem="{x:Bind AppointmentsViewModel.NewAppointmentViewModel.SelectedDoctor, Mode=TwoWay, Converter={StaticResource NoOpConverter}}"
                                    BorderBrush="{StaticResource MyHealthDarkGrayThemeBrush}"
                                   Background="{StaticResource MyHealthExtraLightGrayThemeBrush}"
                                   ItemContainerStyle="{StaticResource AppointmentsComboBoxItemStyle}"
@@ -124,7 +123,7 @@
                                           CalendarItemStyle="{StaticResource CalendarItemStyle}" 
                                           Style="{StaticResource CalendarStyle}"
                                           BorderBrush="{StaticResource MyHealthDarkGrayThemeBrush}"
-                                          SelectedDate="{Binding SelectedDate, Mode=TwoWay}"
+                                          SelectedDate="{x:Bind AppointmentsViewModel.NewAppointmentViewModel.SelectedDate, Mode=TwoWay, Converter={StaticResource NoOpConverter}}"
                                           HorizontalContentAlignment="Stretch" />
                         <ComboBox HorizontalAlignment="Left"
                                   Grid.Row="3"
@@ -132,8 +131,8 @@
                                   PlaceholderText="Hour"
                                   BorderThickness="1"
                                   FontFamily="/Assets/Fonts/Roboto-Regular.ttf#Roboto"
-                                  ItemsSource="{Binding PossibleHours}"
-                                  SelectedItem="{Binding SelectedHour, Mode=TwoWay}"
+                                  ItemsSource="{x:Bind AppointmentsViewModel.NewAppointmentViewModel.PossibleHours, Mode=OneWay}"
+                                  SelectedItem="{x:Bind AppointmentsViewModel.NewAppointmentViewModel.SelectedHour, Mode=TwoWay}"
                                   ItemContainerStyle="{StaticResource AppointmentsComboBoxItemStyle}"
                                    BorderBrush="{StaticResource MyHealthDarkGrayThemeBrush}"
                                   Background="{StaticResource MyHealthExtraLightGrayThemeBrush}"/>
@@ -150,7 +149,7 @@
                     		        FontSize="20"
                                     Margin="2,0,0,0"
                                     HorizontalAlignment="Stretch"
-                                    Command="{Binding AcceptCommand}"
+                                    Command="{x:Bind AppointmentsViewModel.NewAppointmentViewModel.AcceptCommand}"
                                     FontFamily="/Assets/Fonts/Roboto-Regular.ttf#Roboto"
                     		        Background="{StaticResource MyHealthBackgroundBlueThemeBrush}"
                     		        Foreground="{StaticResource MyHealthWhiteThemeBrush}"
@@ -176,9 +175,9 @@
                     <Grid x:Name="ListViewAppointments" 
                       Height="510"
                       Grid.Row="1">
-                        <ListView ItemsSource="{Binding Appointments}"
+                        <ListView ItemsSource="{x:Bind AppointmentsViewModel.Appointments, Mode=OneWay}"
                               ItemTemplate="{StaticResource AppointmentDataTemplate}"
-                              SelectedItem="{Binding AppointmentSelectedItem, Mode=TwoWay}"
+                              SelectedItem="{x:Bind AppointmentsViewModel.AppointmentSelectedItem, Mode=TwoWay, Converter={StaticResource NoOpConverter}}"
                               IsSwipeEnabled="False"
                               FontSize="10"
                               IsItemClickEnabled="True"
@@ -228,19 +227,19 @@
                 				StrokeThickness="2">
                                     <Ellipse.Fill>
                                         <ImageBrush Stretch="Fill" 
-                                                ImageSource="{Binding AppointmentSelectedItem.Doctor.Picture, Converter={StaticResource ByteArrayToImageConverter}}"/>
+                                                ImageSource="{x:Bind AppointmentsViewModel.AppointmentSelectedItem.Doctor.Picture, Converter={StaticResource ByteArrayToImageConverter}, Mode=OneWay}"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
                                 <StackPanel Orientation="Vertical"
                 				Grid.Column="1"
                 				HorizontalAlignment="Left"
                 				VerticalAlignment="Center">
-                                    <TextBlock Text="{Binding AppointmentSelectedItem.Doctor.Name}" 
+                                    <TextBlock Text="{x:Bind AppointmentsViewModel.AppointmentSelectedItem.Doctor.Name, Mode=OneWay}" 
                 					FontSize="26"
                 					VerticalAlignment="Center"
                                            Style="{StaticResource RegularTextStyle}"
                 					Foreground="{StaticResource MyHealthHeaderBlueThemeBrush}"/>
-                                    <TextBlock Text="{Binding AppointmentSelectedItem.Doctor.Speciality}" 
+                                    <TextBlock Text="{x:Bind AppointmentsViewModel.AppointmentSelectedItem.Doctor.Speciality, Mode=OneWay}" 
                 					FontSize="18"
                                            Opacity="0.87"
                 					VerticalAlignment="Center"
@@ -252,7 +251,7 @@
                 				    VerticalAlignment="Top"
                 				    Margin="3"
                 				    Background="{StaticResource MyHealthPinkLogoThemeBrush}"
-                				    Visibility="{Binding AppointmentSelectedItem.IsUrgent, Converter={StaticResource BoolToVisibilityConverter}}">
+                				    Visibility="{x:Bind AppointmentsViewModel.AppointmentSelectedItem.IsUrgent, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
                                     <TextBlock Text="Urgent"
                 					       Margin="4,1"
                 					       FontSize="14"
@@ -279,7 +278,7 @@
                                        Style="{StaticResource RegularTextStyle}"
                 			        VerticalAlignment="Center"
                 			        Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
-                                <TextBlock Text="{Binding AppointmentSelectedItem.DateTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:MMM dd, yyyy}'}" 
+                                <TextBlock Text="{x:Bind AppointmentsViewModel.AppointmentSelectedItem.DateTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:MMM dd, yyyy}', Mode=OneWay}" 
                                        FontSize="28"
                                        Style="{StaticResource RegularTextStyle}"
                 			           VerticalAlignment="Center"
@@ -305,9 +304,9 @@
                                        Style="{StaticResource RegularTextStyle}"
                                        FontSize="28"
                 			           Foreground="{StaticResource MyHealthHeaderBlueThemeBrush}">
-                                <Run Text="{Binding AppointmentSelectedItem.DateTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:h:mm}'}"
+                                <Run Text="{x:Bind AppointmentsViewModel.AppointmentSelectedItem.DateTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:h:mm}', Mode=OneWay}"
                                      />
-                                <Run Text="{Binding AppointmentSelectedItem.DateTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:tt}'}"
+                                <Run Text="{x:Bind AppointmentsViewModel.AppointmentSelectedItem.DateTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:tt}', Mode=OneWay}"
                                      FontSize="20"/>
                                 </TextBlock>
                             </StackPanel>
@@ -322,7 +321,7 @@
                                        Opacity="0.87"
                 			           VerticalAlignment="Center"
                 			           Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
-                                <TextBlock Text="{Binding AppointmentSelectedItem.RoomNumber}" 
+                                <TextBlock Text="{x:Bind AppointmentsViewModel.AppointmentSelectedItem.RoomNumber, Mode=OneWay}" 
                                        FontSize="28"
                                         Style="{StaticResource RegularTextStyle}"
                 			           VerticalAlignment="Center"
@@ -334,7 +333,7 @@
                             <Rectangle VerticalAlignment="Top"
                                    Height="1"
                                    Fill="{StaticResource MyHealthAppointmentSelectedThemeBrush}"/>
-                            <TextBlock Text="{Binding AppointmentSelectedItem.Description}"
+                            <TextBlock Text="{x:Bind AppointmentsViewModel.AppointmentSelectedItem.Description, Mode=OneWay}"
                                     FontSize="18"
                                     Grid.Row="1"
                                     Margin="20"
@@ -351,7 +350,7 @@
                 </Grid>
             </Grid>
             <!--Loading-->
-            <Grid Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid Visibility="{x:Bind AppointmentsViewModel.IsBusy, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
                 <ProgressRing Width="100" 
                               Height="100"
                               Foreground="{StaticResource MyHealthWhiteThemeBrush}"

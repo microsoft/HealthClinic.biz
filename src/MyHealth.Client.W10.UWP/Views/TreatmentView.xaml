@@ -57,12 +57,12 @@
                   Margin="0,0,10,10"
                   VerticalAlignment="Top"
                   HorizontalAlignment="Stretch"
-                  Visibility="{Binding IsBusy, Converter={StaticResource InverseBoolToVisibilityConverter}}">
-                    <ListView ItemsSource="{Binding Treatment}"
+                  Visibility="{x:Bind TreatmentViewModel.IsBusy, Converter={StaticResource InverseBoolToVisibilityConverter}, Mode=OneWay}">
+                    <ListView ItemsSource="{x:Bind TreatmentViewModel.Treatment, Mode=OneWay}"
                           ItemTemplate="{StaticResource TreatmentDataTemplate}"
                           ItemContainerStyle="{StaticResource TreatmentListViewItemStyle}"
                           IsSwipeEnabled="False"
-                          SelectedItem="{Binding TreatmentSelectedItem, Mode=TwoWay}"
+                          SelectedItem="{x:Bind TreatmentViewModel.TreatmentSelectedItem, Mode=TwoWay, Converter={StaticResource NoOpConverter}}"
                           FontSize="10"
                           IsItemClickEnabled="False"
                           Background="Transparent" SelectionChanged="ListView_SelectionChanged">
@@ -83,7 +83,7 @@
                           Background="{StaticResource MyHealthSelectedWhiteThemeBrush}">
                         <StackPanel Orientation="Vertical" 
                                     Margin="20,16,20,5">
-                            <TextBlock Text="{Binding TreatmentSelectedItem.Medicine, Converter={StaticResource MedicineToNameWithDosisConverter}}"
+                            <TextBlock Text="{x:Bind TreatmentViewModel.TreatmentSelectedItem.Medicine, Converter={StaticResource MedicineToNameWithDosisConverter}, Mode=OneWay}"
                                        VerticalAlignment="Top"
                                        Style="{StaticResource RegularTextStyle}"
             		                   HorizontalAlignment="Left"
@@ -96,7 +96,7 @@
             		                   FontSize="16">   
             		        <Run Text="Next pills in "
                                  Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
-            		        <Run Text="{Binding TreatmentSelectedItem.NextDoseTime, Converter={StaticResource TimeOfDayToStringConverter}}"
+            		        <Run Text="{x:Bind TreatmentViewModel.TreatmentSelectedItem.NextDoseTime, Converter={StaticResource TimeOfDayToStringConverter}, Mode=OneWay}"
                                  Foreground="{StaticResource MyHealthHeaderBlueThemeBrush}"/>
                             </TextBlock>
                         </StackPanel>
@@ -110,7 +110,7 @@
                           Margin="10,10,10,18">
                         <controls:CircularProgressBar x:Name="Countdown" 
                                                   Style="{StaticResource BigCircularProgressBarStyle}" 
-                                                  Percentage="{Binding CountDown}"
+                                                  Percentage="{x:Bind TreatmentViewModel.CountDown, Mode=OneWay}"
                                                   VerticalAlignment="Center"
                                                       HorizontalAlignment="Center"/>
                         <TextBlock x:Name="textBlock" Text=""
@@ -140,7 +140,7 @@
                                     Style="{StaticResource RegularTextStyle}">
             		        <Run Text="Breakfast "
             			        Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
-            		        <Run Text="{Binding TreatmentSelectedItem.BreakfastDoses}"
+            		        <Run Text="{x:Bind TreatmentViewModel.TreatmentSelectedItem.BreakfastDoses, Mode=OneWay}"
             			        Foreground="{StaticResource MyHealthHeaderBlueThemeBrush}"/>
                         </TextBlock>
                         <TextBlock VerticalAlignment="Center"
@@ -150,7 +150,7 @@
                                     Grid.Column="1">
             		        <Run Text="Lunch "
             			        Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
-            		        <Run Text="{Binding TreatmentSelectedItem.LunchDoses}"
+            		        <Run Text="{x:Bind TreatmentViewModel.TreatmentSelectedItem.LunchDoses, Mode=OneWay}"
             			        Foreground="{StaticResource MyHealthHeaderBlueThemeBrush}"/>
                         </TextBlock>
                         <TextBlock VerticalAlignment="Center"
@@ -160,14 +160,14 @@
                                    Grid.Column="2">
             		        <Run Text="Dinner "
             			        Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
-            		        <Run Text="{Binding TreatmentSelectedItem.DinnerDoses}"
+            		        <Run Text="{x:Bind TreatmentViewModel.TreatmentSelectedItem.DinnerDoses, Mode=OneWay}"
             			        Foreground="{StaticResource MyHealthHeaderBlueThemeBrush}"/>
                         </TextBlock>
                     </Grid>
                 </Grid>
             </Grid>
             <!--Loading-->
-            <Grid Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid Visibility="{x:Bind TreatmentViewModel.IsBusy, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
                 <ProgressRing Width="100" 
                               Height="100"
                               Foreground="{StaticResource MyHealthWhiteThemeBrush}"

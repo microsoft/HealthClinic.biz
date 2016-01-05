@@ -56,7 +56,7 @@
                 </Grid.RowDefinitions>
                 <Grid x:Name="UserInfoGrid"
                   VerticalAlignment="Top"
-                  Visibility="{Binding IsBusy, Converter={StaticResource InverseBoolToVisibilityConverter}}" >
+                    Visibility="{x:Bind UserViewModel.IsBusy, Converter={StaticResource InverseBoolToVisibilityConverter}, Mode=OneWay}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -87,19 +87,19 @@
             			             Stroke="{StaticResource MyHealthWhiteThemeBrush}"
             			             StrokeThickness="5">
                                 <Ellipse.Fill>
-                                    <ImageBrush Stretch="Fill" ImageSource="{Binding User.Picture, Converter={StaticResource ByteArrayToImageConverter}}"/>
+                                    <ImageBrush Stretch="Fill" ImageSource="{x:Bind UserViewModel.User.Picture, Converter={StaticResource ByteArrayToImageConverter}, Mode=OneWay}"/>
                                 </Ellipse.Fill>
                             </Ellipse>
                             <StackPanel Margin="10,0,0,0" 
                                         Orientation="Vertical"
                                         VerticalAlignment="Center">
-                                <TextBlock Text="{Binding User.Name}"
+                                <TextBlock Text="{x:Bind UserViewModel.User.Name, Mode=OneWay}"
                         		           HorizontalAlignment="Center"
                         		           Style="{StaticResource RegularTextStyle}"
                         		           VerticalAlignment="Center"
                         		           FontSize="24"
                         		           Foreground="{StaticResource MyHealthBackgroundBlueThemeBrush}"/>
-                                <TextBlock Text="{Binding User.ClinicId}"
+                                <TextBlock Text="{x:Bind UserViewModel.User.ClinicId, Mode=OneWay}"
                         		HorizontalAlignment="Center"
                         		VerticalAlignment="Center"
                         		FontSize="18"
@@ -127,14 +127,14 @@
                                    Opacity="0.87"
                                    Style="{StaticResource RegularTextStyle}"
             			           Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
-                                <TextBlock Text="{Binding User.DateOfBirth, Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:MMM dd, yyyy}'}"
+                                <TextBlock Text="{x:Bind UserViewModel.User.DateOfBirth, Converter={StaticResource StringFormatConverter}, ConverterParameter=' {0:MMM dd, yyyy}', Mode=OneWay}"
             			           HorizontalAlignment="Left"
             			           VerticalAlignment="Center"
                                    Grid.Row="1"
             			           FontSize="22"
                                    Style="{StaticResource RegularTextStyle}"
             			           Foreground="{StaticResource MyHealthBackgroundBlueThemeBrush}"/>
-                                <TextBlock Text="Genre"
+                                <TextBlock Text="Gender"
                                    Grid.Column="1"
                                    Opacity="0.87"
             			           HorizontalAlignment="Left"
@@ -142,7 +142,7 @@
             			           VerticalAlignment="Center"
             			           FontSize="16"
             			           Foreground="{StaticResource MyHealthBlackThemeBrush}"/>
-                                <TextBlock Text="{Binding User.Gender}"
+                                <TextBlock Text="{x:Bind UserViewModel.User.Gender, Mode=OneWay}"
                                    Grid.Column="1"
             			           HorizontalAlignment="Left"
             			           VerticalAlignment="Center"
@@ -175,10 +175,10 @@
                                    Style="{StaticResource RegularTextStyle}"
                                    Grid.Row="1"
             			           Foreground="{StaticResource MyHealthBackgroundBlueThemeBrush}">
-                            <Run Text="{Binding User.Weight}"
+                            <Run Text="{x:Bind UserViewModel.User.Weight, Mode=OneWay}"
                                  FontSize="24"
                                  FontWeight="Medium"/>
-                            <Run Text="lb"
+                            <Run Text="lbs"
                                  FontSize="20"
                                  FontWeight="Normal"/>
                                 </TextBlock>
@@ -196,7 +196,7 @@
                                    Grid.Row="1"
                                    Grid.Column="1"
             			           Foreground="{StaticResource MyHealthBackgroundBlueThemeBrush}">
-                            <Run Text="{Binding User.Height}"
+                            <Run Text="{x:Bind UserViewModel.User.Height, Mode=OneWay}"
                                  FontSize="24"
                                  FontWeight="Medium"/>
                             <Run Text="ft"
@@ -217,7 +217,7 @@
             			           FontSize="16"
                                    Style="{StaticResource RegularTextStyle}"
             			           Foreground="{StaticResource MyHealthPinkLogoThemeBrush}"/>
-                                <TextBlock Text="{Binding User.BloodType}"
+                                <TextBlock Text="{x:Bind UserViewModel.User.BloodType, Mode=OneWay}"
             			           HorizontalAlignment="Left"
             			           VerticalAlignment="Center"
                                    Grid.Row="1"
@@ -231,7 +231,7 @@
                 </Grid>
                 <Grid x:Name="AppointmentHistoryGrid"
                   Margin="0,0,10,10"
-                  Visibility="{Binding IsBusy, Converter={StaticResource InverseBoolToVisibilityConverter}}">
+                  Visibility="{x:Bind UserViewModel.IsBusy, Converter={StaticResource InverseBoolToVisibilityConverter}, Mode=OneWay}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -243,7 +243,7 @@
                             Margin="0,20"
                             x:Name="appointmentHistoryTitle" />
                     <ListView x:Name="ListViewHistory" 
-                              ItemsSource="{Binding AppointmentsHistory}"
+                              ItemsSource="{x:Bind UserViewModel.AppointmentsHistory, Mode=OneWay}"
                               ItemTemplate="{StaticResource AppointmentHistoryDataTemplate}"
                               Grid.Row="1"
                              
@@ -261,7 +261,7 @@
 
             </Grid>
             <!--Loading-->
-            <Grid Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid Visibility="{x:Bind UserViewModel.IsBusy, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
                 <ProgressRing Width="100" 
                               Height="100"
                               Foreground="{StaticResource MyHealthWhiteThemeBrush}"

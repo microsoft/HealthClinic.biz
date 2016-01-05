@@ -1,5 +1,5 @@
-﻿using MyHealth.Client.W10.UWP.Views.Base;
-using Windows.UI.Xaml;
+﻿using MyHealth.Client.Core.ViewModels;
+using MyHealth.Client.W10.UWP.Views.Base;
 using Windows.UI.Xaml.Controls;
 
 namespace MyHealth.Client.W10.UWP.Views
@@ -15,6 +15,14 @@ namespace MyHealth.Client.W10.UWP.Views
         {
             var offset = 100;
             scrollViewer.ChangeView(null, scrollViewer.ScrollableHeight - offset, null, false);
+        }
+
+        public AppointmentsViewModel AppointmentsViewModel
+        {
+            get
+            {
+                return ViewModel as AppointmentsViewModel;
+            }
         }
     }
 }

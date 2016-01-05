@@ -63,7 +63,7 @@
                     Margin="0,0,5,0"
                     FontSize="20"
                     Background="Transparent"
-                    Command="{Binding NavigateToAppointmentsCommand}"
+                    Command="{x:Bind MainViewModel.NavigateToAppointmentsCommand}"
                     FontFamily="/Assets/Fonts/icomoon.ttf#icomoon"
                     Foreground="{StaticResource MyHealthWhiteThemeBrush}"
                     VerticalAlignment="Center"
@@ -84,27 +84,27 @@
                                      Content="Home"
                                      GroupName="Group1"
                                      Tag=""
-                                     Command="{Binding NavigateToHomeCommand}"
+                                     Command="{x:Bind MainViewModel.NavigateToHomeCommand}"
                                      IsChecked="True"/>
                         <RadioButton Style ="{StaticResource HamburguerRadioButtonStyle}"   
                                      Content="Appointments"
                                      GroupName="Group1"
-                                     Command="{Binding NavigateToAppointmentsCommand}"
+                                     Command="{x:Bind MainViewModel.NavigateToAppointmentsCommand}"
                                      Tag=""/>
                         <RadioButton Style ="{StaticResource HamburguerRadioButtonStyle}"   
                                      Content="Treatments"
                                      GroupName="Group1"
-                                     Command="{Binding NavigateToTreatmentCommand}"
+                                     Command="{x:Bind MainViewModel.NavigateToTreatmentCommand}"
                                      Tag=""/>
                         <RadioButton Style ="{StaticResource HamburguerRadioButtonStyle}"   
                                      Content="User"
                                      GroupName="Group1"
-                                     Command="{Binding NavigateToUserCommand}"
+                                     Command="{x:Bind MainViewModel.NavigateToUserCommand}"
                                      Tag=""/>
                         <RadioButton Style ="{StaticResource HamburguerRadioButtonStyle}"   
                                      Content="Settings"
                                      GroupName="Group1"
-                                     Command="{Binding NavigateToSettingsCommand}"
+                                     Command="{x:Bind MainViewModel.NavigateToSettingsCommand}"
                                      Tag=""/>
                     </StackPanel>
                 </Grid>
