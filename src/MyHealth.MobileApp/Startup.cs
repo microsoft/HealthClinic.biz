@@ -3,14 +3,14 @@ using Microsoft.Owin;
 using Owin;
 using System.Web.Http;
 
-//(CDLTLL) HTTP Description needed for Swagger
+//HTTP Description needed for Swagger
 using System.Web.Http.Description;
 
-//(CDLTLL) Needed for Filters
+//Needed for Swashbuckle Filters
 using System.Globalization;
 using System.Linq;
 
-//(CDLTLL) - Has the HttpConfiguration extension methods with .EnableSwagger and .EnableSwaggerUi
+//Has the HttpConfiguration extension methods with .EnableSwagger and .EnableSwaggerUi
 using Swashbuckle.Application;
 using Swashbuckle.Swagger;
 using Newtonsoft.Json.Serialization;
@@ -25,8 +25,7 @@ namespace MyHealth.MobileApp
             HttpConfiguration config = new HttpConfiguration();
 
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-
-            //(CDLTLL)
+            
             //See info about OWIN in https://github.com/domaindrivendev/Swashbuckle
             //Manually enable the Swagger docs and, optionally, the swagger-ui by invoking the 
             //extension methods (in namespace Swashbuckle.Application) on an instance of HttpConfiguration in Startup.cs
@@ -38,7 +37,7 @@ namespace MyHealth.MobileApp
                     // when there are multiple operations with the same verb in the API.                                    
                     c.OperationFilter<IncludeParameterNamesInOperationIdFilter>();
 
-                    //(CDLTLL) Set another filter to eliminate duplciation operation ids from being generated
+                    // Set another filter to eliminate duplciation operation ids from being generated
                     // when there are multiple Web API routes, like /tables and /api
                     c.OperationFilter<IncludeRouteNameInOperationIdFilter>();
                 }
@@ -53,7 +52,6 @@ namespace MyHealth.MobileApp
         }
     }
 
-    //(CDLTLL)
     internal class IncludeParameterNamesInOperationIdFilter : IOperationFilter
     {
         public void Apply(Operation operation, SchemaRegistry schemaRegistry, ApiDescription apiDescription)
@@ -73,7 +71,6 @@ namespace MyHealth.MobileApp
         }
     }
 
-    //(CDLTLL)
     internal class IncludeRouteNameInOperationIdFilter : IOperationFilter
     {
         public void Apply(Operation operation, SchemaRegistry schemaRegistry, ApiDescription apiDescription)
