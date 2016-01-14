@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="GCMClient">
+  <name>Google Cloud Messaging Client</name>
+  <publisher>Redth</publisher>
+  <publisher-url>https://github.com/Redth/GCM.Client</publisher-url>
+  <docs-url>https://github.com/Redth/GCM.Client</docs-url>
+  <src-url>https://github.com/Redth/GCM.Client</src-url>
+  <version>1.0</version>
+  <summary>Add Google Cloud Messaging to your Xamarin.Android application</summary>
+  <samples>
+    <sample id="Sample">
+      <name>GCM Client Android Sample.</name>
+      <summary>Demonstrates how to implement the Google Cloud Messaging Client in an Android application</summary>
+    </sample>
+  </samples>
+</component>
