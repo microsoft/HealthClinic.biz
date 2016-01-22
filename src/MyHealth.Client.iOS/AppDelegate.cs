@@ -44,15 +44,19 @@ namespace MyHealth.Client.iOS
                 manager.StartManager();
 
                 //Authenticate (there are other authentication options)
-                manager.Authenticator.AuthenticateInstallation();
+                //manager.Authenticator will be null if HockeyAppiOSAppID was not set
+                if (manager.Authenticator != null)
+                {
+                    manager.Authenticator.AuthenticateInstallation();
 
-                //Rethrow any unhandled .NET exceptions as native iOS 
-                // exceptions so the stack traces appear nicely in HockeyApp
-                TaskScheduler.UnobservedTaskException += (sender, e) =>
-                    HockeyApp.Setup.ThrowExceptionAsNative(e.Exception);
+                    //Rethrow any unhandled .NET exceptions as native iOS 
+                    // exceptions so the stack traces appear nicely in HockeyApp
+                    TaskScheduler.UnobservedTaskException += (sender, e) =>
+                        HockeyApp.Setup.ThrowExceptionAsNative(e.Exception);
 
-                AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
-                    HockeyApp.Setup.ThrowExceptionAsNative(e.ExceptionObject);
+                    AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
+                        HockeyApp.Setup.ThrowExceptionAsNative(e.ExceptionObject);
+                }
             });
 
             Forms.Init();
