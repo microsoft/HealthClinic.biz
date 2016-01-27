@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24627.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{518B9E05-7955-4CF0-89EC-2F68E20D4808}"
 	ProjectSection(SolutionItems) = preProject
@@ -22,8 +22,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SugarTracker", "src\MyHealth.SugarTracker\SugarTracker\SugarTracker.csproj", "{0CA8704E-ED4D-4EEF-9D15-C931892300BE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SugarTrackerWeb", "src\MyHealth.SugarTracker\SugarTrackerWeb\SugarTrackerWeb.csproj", "{FA7A9F0E-6A9B-4E1E-982E-AE6BE52BF833}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MyHealth.Web.HealthCloudAPI", "src\MyHealth.Web.HealthCloudAPI\MyHealth.Web.HealthCloudAPI.xproj", "{F83FCDDD-60C4-4A07-8ECE-933A3CD2B3D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,10 +47,6 @@ Global
 		{FA7A9F0E-6A9B-4E1E-982E-AE6BE52BF833}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA7A9F0E-6A9B-4E1E-982E-AE6BE52BF833}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA7A9F0E-6A9B-4E1E-982E-AE6BE52BF833}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F83FCDDD-60C4-4A07-8ECE-933A3CD2B3D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F83FCDDD-60C4-4A07-8ECE-933A3CD2B3D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F83FCDDD-60C4-4A07-8ECE-933A3CD2B3D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F83FCDDD-60C4-4A07-8ECE-933A3CD2B3D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +56,5 @@ Global
 		{149BF74B-2FDA-4984-9501-A56D8DB8D139} = {949450E3-C764-46D5-A376-57D09A63CFF8}
 		{0CA8704E-ED4D-4EEF-9D15-C931892300BE} = {AD3D0219-EF3A-4C66-8EB5-9D02CF3DCE8F}
 		{FA7A9F0E-6A9B-4E1E-982E-AE6BE52BF833} = {AD3D0219-EF3A-4C66-8EB5-9D02CF3DCE8F}
-		{F83FCDDD-60C4-4A07-8ECE-933A3CD2B3D2} = {949450E3-C764-46D5-A376-57D09A63CFF8}
 	EndGlobalSection
 EndGlobal
