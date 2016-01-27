@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -26,7 +26,6 @@ namespace MyHealth.Client.HealthCloudAPI
     {
         private const string RedirectUri = "https://login.live.com/oauth20_desktop.srf";
         private const string Scopes = "mshealth.ReadDevices mshealth.ReadActivityHistory mshealth.ReadActivityLocation mshealth.ReadDevices";
-        // Please fill these in with the values you get from registering an app. See https://developer.microsoftband.com/cloudAPI for more information.
         private const string ClientId = "YOURIDHERE";
         private const string ClientSecret = "YOURSECRETHERE";
         public Login()

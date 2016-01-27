@@ -1,9 +1,12 @@
-﻿<main class="col-xs-12 col-lg-offset-1 col-lg-10 content-container">
-    <div class="content-container-inner container-fluid" ui-view></div>
-</main>
+﻿<div class="row">
+    <main class="col-xs-12 col-lg-offset-1 col-lg-10 content-container">
+        <div class="content-container-inner container-fluid" ui-view></div>
+    </main>
+</div>
 
 <toaster-container toaster-options="{'position-class': 'toast-top-right'}"></toaster-container>
 
 <div class="overlay" ng-class="{'overlay-visible':loading}">
     <div class="loading"></div>
+    <div class="overlay-info" ng-class="{'overlay-info-visible': loadingInfo}" ng-bind="loadingInfo"></div>
 </div>

@@ -44,10 +44,19 @@ namespace MyHealth.Client.W10.UWP.Services
                 JObject templates = new JObject();
                 templates["MyHealthClinicTemplate"] = templateBody;
 
-                client = new MobileServiceClient(AppSettings.MobileAPIUrl, AppSettings.MobileAPIGateway, string.Empty);
+                client = new MobileServiceClient(AppSettings.MobileAPIUrl, string.Empty, string.Empty);
 
                 await client.GetPush()
                     .RegisterAsync(channel.Uri, templates);
+
+                // Add a new tag to get only the notification for the default patientId.
+                var tags = new JArray();
+                tags.Add(AppSettings.DefaultTenantId);
+
+                // Call the custom API '/api/updatetags/<installationid>' with the JArray of tags.
+                var response = await client
+                    .InvokeApiAsync("updatetags/"
+                    + client.InstallationId, tags);
 
             }
             catch (Exception)

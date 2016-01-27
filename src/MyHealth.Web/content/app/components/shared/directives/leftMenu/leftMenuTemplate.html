@@ -1,30 +1,46 @@
 ﻿
 <ul class="nav left-menu" id="left-menu">
-    <li>
+    <li ng-if="vm.canManageUsers">
+        <a ui-sref="users" ng-class="{selected: vm.viewName === 'users'}">
+            <div class="left-menu-icon-container">
+                <span class="icon-btn_menu_doctors left-menu-icon" />
+            </div>
+            <span class="left-menu-item">Users</span>
+        </a>
+    </li>
+    <li ng-if="vm.canManageTenants">
+        <a ui-sref="clinics" ng-class="{selected: vm.viewName === 'clinics'}">
+            <div class="left-menu-icon-container">
+                <span class="icon-btn_menu_doctors left-menu-icon" />
+            </div>
+            <span class="left-menu-item">Clinics</span>
+        </a>
+    </li>
+    <li ng-if="!vm.canManageUsers && !vm.canManageTenants">
         <a ui-sref="dashboard" ng-class="{selected: vm.viewName === 'dashboard'}">
             <div class="left-menu-icon-container">
-                 <span class="icon-btn_menu_dashboard left-menu-icon" /> 
+                <span class="icon-btn_menu_dashboard left-menu-icon" />
             </div>
             <span class="left-menu-item">Dashboard</span>
         </a>
     </li>
-    <li>
+    <li ng-if="!vm.canManageUsers && !vm.canManageTenants">
         <a ui-sref="doctors" ng-class="{selected: vm.viewName === 'doctors'}">
             <div class="left-menu-icon-container">
-                 <span class="icon-btn_menu_patients left-menu-icon" /> 
+                <span class="icon-btn_menu_patients left-menu-icon" />
             </div>
             <span class="left-menu-item">Doctors</span>
         </a>
     </li>
-    <li>
+    <li ng-if="!vm.canManageUsers && !vm.canManageTenants">
         <a ui-sref="patients" ng-class="{selected: vm.viewName === 'patients'}">
             <div class="left-menu-icon-container">
-                 <span class="icon-btn_menu_doctors left-menu-icon" /> 
+                <span class="icon-btn_menu_doctors left-menu-icon" />
             </div>
             <span class="left-menu-item">Patients</span>
         </a>
     </li>
-    <li>
+    <li ng-if="!vm.canManageUsers && !vm.canManageTenants">
         <a ui-sref="dailyReport" ng-class="{selected: vm.viewName === 'dailyReport'}">
             <div class="left-menu-icon-container">
                 <span class="icon-btn_menu_report left-menu-icon" />

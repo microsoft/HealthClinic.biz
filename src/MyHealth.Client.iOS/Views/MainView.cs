@@ -8,6 +8,8 @@ using System.CodeDom.Compiler;
 using UIKit;
 using MyHealth.Client.Core;
 using Xamarin.Forms;
+using MyHealth.Client.Core.Helpers;
+using System.Threading.Tasks;
 
 namespace MyHealth.Client.iOS
 {
@@ -33,6 +35,9 @@ namespace MyHealth.Client.iOS
             MicrosoftGraphService.SetAuthenticationUiContext(new Microsoft.Experimental.IdentityModel.Clients.ActiveDirectory.PlatformParameters(this));
             MicrosoftGraphService.SetClientId(AppSettings.iOSClientId);
             MicrosoftGraphService.SetRedirectUri(AppSettings.RedirectUri);
+
+            if (Settings.ADAuthenticationEnabled)
+                InvokeOnMainThread(() => MicrosoftGraphService.SignInAsync());
 
             SetUpNavBar();
             this.SetUpTabBar();

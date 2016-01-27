@@ -1,0 +1,48 @@
+﻿<form name="userForm" novalidate>
+    <!-- Hidden inputs to prevent Chrome Autofill -->
+    <!-- http://stackoverflow.com/questions/15738259/disabling-chrome-autofill -->
+    <input style="display:none">
+    <input type="password" style="display:none">
+
+    <div class="row margin-bottom-15">
+        <button class="pull-left button button-white button-action" ng-click="navigateBack()">
+            <span class="icon-btn_back margin-right-10"></span>
+            Back to users
+        </button>
+        <button type="submit" class="pull-right button button-pink button-action" ng-click="save()" ng-show="!editMode" ng-disabled="!userForm.$valid">
+            <span class="icon-btn_tick margin-right-10"></span> Add
+        </button>
+        <button type="submit" class="pull-right button button-pink button-action" ng-click="save()" ng-show="editMode" ng-disabled="!userForm.$valid">
+            <span class="icon-btn_tick margin-right-10"></span> Save
+        </button>
+    </div>
+
+    <div class="row form-container margin-bottom-15">
+        <div class="form-container-inner-left">
+            <div class="input" ng-class="{'input-edit' : editMode}">
+                <label for="formFirstName" class="margin-bottom-10">First name</label>
+                <input type="text" id="formFirstName" class="font-size-30" ng-model="user.FirstName" required autocomplete="false"/>
+            </div>
+            <div class="input" ng-class="{'input-edit' : editMode}">
+                <label for="formLastName">Last name</label>
+                <input type="text" id="formLastName" ng-model="user.LastName" autocomplete="false" />
+            </div>
+            <div class="input" ng-class="{'input-edit' : editMode}">
+                <label for="formEmail">Email</label>
+                <input type="text" id="formEmail" ng-model="user.Email" autocomplete="false" />
+            </div>
+            <div class="inline-input input input-padding-right" ng-class="{'input-edit' : editMode}">
+                <label for="formUsername">Username</label>
+                <input type="text" id="formUsername" ng-model="user.UserName" required autocomplete="off "/>
+            </div>
+            <div class="inline-input input input-padding-right" ng-class="{'input-edit' : editMode}">
+                <label for="formPassword">New Password</label>
+                <input type="password" id="formPassword" ng-model="user.newPassword" autocomplete="off" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row margin-bottom-100" ng-show="editMode">
+        <a class="delete-button" href="" ng-click="removeUser()"><span class="icon-btn_delete"></span> Delete this user</a>
+    </div>
+</form>

@@ -49,6 +49,46 @@ namespace MyHealth.Client.iOS
 
 		void ReleaseDesignerOutlets ()
 		{
+			if (ageBirth != null) {
+				ageBirth.Dispose ();
+				ageBirth = null;
+			}
+			if (bloodGroupLabel != null) {
+				bloodGroupLabel.Dispose ();
+				bloodGroupLabel = null;
+			}
+			if (contentView != null) {
+				contentView.Dispose ();
+				contentView = null;
+			}
+			if (genreLabel != null) {
+				genreLabel.Dispose ();
+				genreLabel = null;
+			}
+			if (heightLabel != null) {
+				heightLabel.Dispose ();
+				heightLabel = null;
+			}
+			if (idLabel != null) {
+				idLabel.Dispose ();
+				idLabel = null;
+			}
+			if (nameLabel != null) {
+				nameLabel.Dispose ();
+				nameLabel = null;
+			}
+			if (userFrameView != null) {
+				userFrameView.Dispose ();
+				userFrameView = null;
+			}
+			if (userImageView != null) {
+				userImageView.Dispose ();
+				userImageView = null;
+			}
+			if (weightLabel != null) {
+				weightLabel.Dispose ();
+				weightLabel = null;
+			}
 		}
 	}
 }

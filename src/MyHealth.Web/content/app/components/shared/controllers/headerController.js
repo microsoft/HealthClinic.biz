@@ -5,14 +5,18 @@ class HeaderController {
         var vm = this;
         STATE.set(this, $state);
 
+        var stateChangeCalled = false;
+
         $timeout(() => {
-            this.title = $state.current.name;
+            if(stateChangeCalled){return;}
+            this.title = $state.current.name !== 'default' ? $state.current.name : '';
             vm.viewName = $state.current.name;
-        }, 10);
+        }, 100);
 
         $rootScope.$on('$stateChangeStart',
             (e, toState, toParams, fromState, fromParams) => {
-                this.title = toState.name;
+                stateChangeCalled = true;
+                this.title = toState.name !== 'default' ? toState.name : '';
                 vm.viewName = toState.name;
                 $rootScope.menuOpen = false;
             });
@@ -24,6 +28,13 @@ class HeaderController {
             vm.userName = response.data;
         });
 
+        $http({
+            method: 'GET',
+            url: '/api/users/current/claims'
+        }).then((response) => {
+            vm.canManageUsers = response.data.ManageUsers || false;
+            vm.canManageTenants = response.data.ManageTenants || false;
+        });
     }
 }
 

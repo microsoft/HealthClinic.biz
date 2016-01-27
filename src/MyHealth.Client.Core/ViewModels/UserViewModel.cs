@@ -35,17 +35,6 @@ namespace MyHealth.Client.Core.ViewModels
             }
         }
 
-        public IMvxCommand LoginCommand
-        {
-            get
-            {
-                return new MvxCommand(async () =>
-                {
-                    await LoginAsync();
-                });
-            }
-        }
-
         public UserViewModel(IMyHealthClient client, IMvxMessenger messenger) : base(messenger)
         {
             _myHealthClient = client;
@@ -80,17 +69,6 @@ namespace MyHealth.Client.Core.ViewModels
 			var appointments = await appointmentsTask;
 
             AppointmentsHistory = new ObservableCollection<ClinicAppointment>(appointments);
-        }
-
-        private async Task LoginAsync ()
-        {
-            // sign into outlook.com account
-            if (string.IsNullOrEmpty(MicrosoftGraphService.LoggedInUserEmail))
-            {
-                await MicrosoftGraphService.SignInAsync();
-                var currentUser = MicrosoftGraphService.LoggedInUser;
-                var currentUserEmail = MicrosoftGraphService.LoggedInUserEmail;
-            }
         }
     }
 }

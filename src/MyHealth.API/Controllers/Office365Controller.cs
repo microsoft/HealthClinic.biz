@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MyHealth.API.Controllers
 {
-
+    [ResponseCache(Duration = 0, NoStore = true, VaryByHeader = "*")]
     [Route("api/[controller]")]
     public class Office365Controller : Controller
     {

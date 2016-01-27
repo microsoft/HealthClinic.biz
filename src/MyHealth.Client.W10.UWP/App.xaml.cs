@@ -8,6 +8,10 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using MyHealth.Client.Core.ViewModels;
 using MyHealth.Client.W10.UWP.Services;
+using System.Threading.Tasks;
+using MyHealth.Client.Core;
+using Microsoft.Experimental.IdentityModel.Clients.ActiveDirectory;
+using MyHealth.Client.Core.Helpers;
 
 namespace MyHealth.Client.W10.UWP
 {
@@ -30,7 +34,7 @@ namespace MyHealth.Client.W10.UWP
             Suspending += OnSuspending;
         }
 
-        protected override void OnLaunched(LaunchActivatedEventArgs args)
+        protected async override void OnLaunched(LaunchActivatedEventArgs args)
         {
             var rootFrame = Window.Current.Content as Frame;
 
@@ -53,6 +57,8 @@ namespace MyHealth.Client.W10.UWP
                 // configuring the new page by passing required information as a navigation
                 // parameter
 
+                await AskForADCredentialsAsync();
+
                 var setup = new Setup(rootFrame);
                 setup.Initialize();
 
@@ -66,6 +72,16 @@ namespace MyHealth.Client.W10.UWP
             // Ensure the current window is active
             Window.Current.Activate();
             PushNotifications.UploadChannel();
+        }
+
+        private async Task AskForADCredentialsAsync()
+        {
+            MicrosoftGraphService.SetAuthenticationUiContext(new PlatformParameters(PromptBehavior.Always, false));
+            MicrosoftGraphService.SetClientId(AppSettings.WUPClientId);
+            MicrosoftGraphService.SetRedirectUri(AppSettings.RedirectUri);
+
+            if (Settings.ADAuthenticationEnabled)
+                await MicrosoftGraphService.SignInAsync();
         }
 
         /// <summary>

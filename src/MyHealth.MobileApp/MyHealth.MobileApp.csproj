@@ -232,6 +232,7 @@
     <Compile Include="Controllers\NotifyDelayController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
+    <Compile Include="Controllers\UpdateTagsController.cs" />
     <Compile Include="DataObjects\Appointment.cs" />
     <Compile Include="DataObjects\CustomDataEntity.cs" />
     <Compile Include="DataObjects\HomeAppointment.cs" />

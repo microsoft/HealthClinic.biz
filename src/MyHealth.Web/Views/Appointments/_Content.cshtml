@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MyHealth.Model.ClinicAppointment>
+@{
+  const string DateFormat = "MMM dd, yyyy";
+  const string TimeFormat = "h:mm tt";
+}
+<main class="col-xs-12 col-lg-offset-1 col-lg-10 content-container">
+    <div class="content-container-inner container-fluid">
+        <div class="row margin-bottom-15">
+            <div class="pull-left button button-white button-action">
+                <input type="checkbox" id="selectAll">
+                <label for="selectAll">Select all</label>
+            </div>
+            <button class="pull-left margin-left-15 button button-white button-action ng-hide">
+                <span class="icon-btn_delete margin-right-10"></span> Delete
+            </button>
+            <button class="pull-right button button-pink button-action">
+                <span class="icon-btn_new margin-right-10"></span> New Appointment
+            </button>
+        </div>
+
+        <div class="row grid">
+            <div class="grid-header">
+                <div class="grid-col-15"></div>
+                <div class="grid-col-15">Patient name </div>
+                <div class="grid-col-10">Date </div>
+                <div class="grid-col-10">Hour </div>
+                <div class="grid-col-10">Room number </div>
+                <div class="grid-col-30">Description </div>
+                <div class="grid-col-10"></div>
+            </div>
+            <div class="grid-body">
+
+                @foreach (var item in Model)
+                {
+                    <div class="grid-row">
+                        <div class="grid-col-15 grid-col-center">
+                            <input type="checkbox" id="@item.AppointmentId">
+                            <label for="@item.AppointmentId"></label>
+                            @{
+                                var base64 = Convert.ToBase64String(item.Patient.Picture);
+                                var imgSrc = $"data:image/gif;base64,{base64}";
+                            }
+                            <img class="grid-image" src="@imgSrc" alt="@item.Patient.Name">
+                        </div>
+                        <div class="grid-col-15" title="@item.Patient.Name">
+                            @Html.DisplayFor(modelItem => item.Patient.Name)
+                        </div>
+                        <div class="grid-col-10" title="@item.DateTime.ToString(DateFormat)">
+                            <time>@item.DateTime.ToString(DateFormat)</time>
+                        </div>
+                        <div class="grid-col-10" title="@item.DateTime.ToString(TimeFormat).ToLowerInvariant()">
+                            <time>@item.DateTime.ToString(TimeFormat).ToLowerInvariant()</time>
+                        </div>
+                        <div class="grid-col-10" title="@item.RoomNumber">
+                            @Html.DisplayFor(modelItem => item.RoomNumber)
+                        </div>
+                        <div class="grid-col-30" title="@item.Description">
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </div>
+                        <div class="grid-col-10 grid-col-center">
+                            <span class="grid-row-action icon-btn_edit" title="Edit"></span>
+                            <span class="grid-row-action icon-btn_delete" title="Delete"></span>
+                        </div>
+                    </div>
+                                }
+            </div>
+        </div>
+
+    </div>
+</main>

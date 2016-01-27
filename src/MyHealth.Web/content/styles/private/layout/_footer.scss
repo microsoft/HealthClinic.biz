@@ -7,6 +7,9 @@ $footer-extra-padding-bottom: 30px;
 $footer-text-line-height: 25px;
 
 .footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
     height: 200px;
     background: $footer-background;

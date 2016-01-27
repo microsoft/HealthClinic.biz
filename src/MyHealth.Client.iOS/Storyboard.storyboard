@@ -118,23 +118,11 @@
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6vS-nW-UQz">
                                                 <rect key="frame" x="344" y="8" width="34" height="38"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BpH-Gt-IuI">
-                                                        <rect key="frame" x="2" y="2" width="30" height="34"/>
-                                                        <animations/>
-                                                        <state key="normal" image="ic_login.png"/>
-                                                        <state key="disabled" image="ic_login.png"/>
-                                                        <state key="highlighted" image="ic_login.png"/>
-                                                    </button>
-                                                </subviews>
+                                                <subviews/>
                                                 <animations/>
                                                 <constraints>
-                                                    <constraint firstItem="BpH-Gt-IuI" firstAttribute="height" secondItem="6vS-nW-UQz" secondAttribute="height" id="Tuz-FB-vWM"/>
-                                                    <constraint firstItem="BpH-Gt-IuI" firstAttribute="width" secondItem="6vS-nW-UQz" secondAttribute="width" id="WIX-Oq-Djp"/>
                                                     <constraint firstAttribute="height" constant="38" id="X5r-18-4KY"/>
-                                                    <constraint firstItem="BpH-Gt-IuI" firstAttribute="centerX" secondItem="6vS-nW-UQz" secondAttribute="centerX" id="Xg3-iD-Vcx"/>
                                                     <constraint firstAttribute="width" constant="34" id="kK4-Nq-gwm"/>
-                                                    <constraint firstItem="BpH-Gt-IuI" firstAttribute="centerY" secondItem="6vS-nW-UQz" secondAttribute="centerY" id="oJn-YB-b5C"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -348,7 +336,6 @@
                     <connections>
                         <outlet property="ageBirth" destination="5ZB-kg-NnH" id="name-outlet-5ZB-kg-NnH"/>
                         <outlet property="bloodGroupLabel" destination="Nbd-3X-RXu" id="Zvi-D7-QFI"/>
-                        <outlet property="btnUserLogin" destination="BpH-Gt-IuI" id="name-outlet-BpH-Gt-IuI"/>
                         <outlet property="contentView" destination="NBM-Ai-UbZ" id="oo8-SX-a3j"/>
                         <outlet property="genreLabel" destination="tf0-0d-Zv1" id="DWh-x0-EwW"/>
                         <outlet property="heightLabel" destination="egr-s0-HXN" id="lMl-XL-Izn"/>
@@ -375,7 +362,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="2000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="14">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="14" misplaced="YES">
                                 <rect key="frame" x="0.0" y="20" width="375" height="1980"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="weX-6O-4YK" userLabel="Content View">
@@ -663,7 +650,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yXu-gG-lep" userLabel="Cell Background View">
                                                         <rect key="frame" x="2" y="2" width="355" height="462"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_doctor.png" translatesAutoresizingMaskIntoConstraints="NO" id="XLy-E0-8Cf">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_doctor.png" translatesAutoresizingMaskIntoConstraints="NO" id="XLy-E0-8Cf" misplaced="YES">
                                                                 <rect key="frame" x="208" y="352" width="134" height="110"/>
                                                                 <animations/>
                                                             </imageView>
@@ -826,7 +813,7 @@
                                                         <color key="textColor" red="0.0" green="0.84866283440000001" blue="0.80101614880000005" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3w-N2-6Ik">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3w-N2-6Ik" misplaced="YES">
                                                         <rect key="frame" x="208" y="443" width="9" height="20"/>
                                                         <animations/>
                                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
@@ -874,7 +861,7 @@
                                                         <color key="textColor" red="0.23921568630000001" green="0.23921568630000001" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwq-bh-IwA">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwq-bh-IwA" misplaced="YES">
                                                         <rect key="frame" x="90" y="443" width="9" height="20"/>
                                                         <animations/>
                                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
@@ -1054,7 +1041,7 @@
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="AppointmentTableCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="AppointmentTableCell" id="ZL1-0J-dR8" customClass="AppointmentTableCell">
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="AppointmentTableCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="AppointmentTableCell" id="ZL1-0J-dR8" customClass="AppointmentTableCell" rowHeight="74">
                                         <rect key="frame" x="0.0" y="1" width="390" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZL1-0J-dR8" id="SZI-54-O1N">
@@ -1074,7 +1061,7 @@
                                                             <color key="textColor" red="0.0" green="0.84705882349999995" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Neurosurgeon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s58-cC-KTu">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Neurosurgeon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s58-cC-KTu" misplaced="YES">
                                                             <rect key="frame" x="64" y="36" width="90" height="19"/>
                                                             <animations/>
                                                             <constraints>
@@ -1116,7 +1103,7 @@
                                                             <color key="textColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iST-hL-OyZ" userLabel="Picture Frame View">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iST-hL-OyZ" userLabel="Picture Frame View" misplaced="YES">
                                                             <rect key="frame" x="8" y="11" width="48" height="48"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ofs-sT-F4y">
@@ -1827,6 +1814,143 @@
         <image name="heart.png" width="184" height="148"/>
         <image name="ic_doctor.png" width="134" height="110"/>
         <image name="ic_login.png" width="17" height="19"/>
+        <image name="Default-568h.png" width="320" height="568"/>
+        <image name="Roboto-Black.ttf" width="0" height="0"/>
+        <image name="Roboto-BlackItalic.ttf" width="0" height="0"/>
+        <image name="Roboto-Bold.ttf" width="0" height="0"/>
+        <image name="Roboto-BoldCondensed.ttf" width="0" height="0"/>
+        <image name="Roboto-BoldCondensedItalic.ttf" width="0" height="0"/>
+        <image name="Roboto-BoldItalic.ttf" width="0" height="0"/>
+        <image name="Roboto-Condensed.ttf" width="0" height="0"/>
+        <image name="Roboto-CondensedItalic.ttf" width="0" height="0"/>
+        <image name="Roboto-Italic.ttf" width="0" height="0"/>
+        <image name="Roboto-Light.ttf" width="0" height="0"/>
+        <image name="Roboto-LightItalic.ttf" width="0" height="0"/>
+        <image name="Roboto-Medium.ttf" width="0" height="0"/>
+        <image name="Roboto-MediumItalic.ttf" width="0" height="0"/>
+        <image name="Roboto-Regular.ttf" width="0" height="0"/>
+        <image name="Roboto-Thin.ttf" width="0" height="0"/>
+        <image name="Roboto-ThinItalic.ttf" width="0" height="0"/>
+        <image name="Raleway 700.ttf" width="0" height="0"/>
+        <image name="bg_logo_settings.png" width="280" height="259"/>
+        <image name="bg_check_heart_settings.png" width="1143" height="820"/>
+        <image name="ic_appointment_active.png" width="19" height="17.5"/>
+        <image name="ic_appointment_normal.png" width="19" height="17.5"/>
+        <image name="ic_home_active.png" width="24" height="18.5"/>
+        <image name="ic_home_normal.png" width="24" height="18.5"/>
+        <image name="ic_treatment_active.png" width="9" height="19"/>
+        <image name="ic_treatment_normal.png" width="9" height="19"/>
+        <image name="ic_user_active.png" width="19" height="19"/>
+        <image name="ic_user_normal.png" width="19" height="19"/>
+        <image name="countdown1.png" width="469" height="469"/>
+        <image name="countdown2.png" width="469" height="469"/>
+        <image name="countdown3.png" width="469" height="469"/>
+        <image name="countdown4.png" width="469" height="469"/>
+        <image name="countdown5.png" width="469" height="469"/>
+        <image name="countdown6.png" width="469" height="469"/>
+        <image name="countdown7.png" width="469" height="469"/>
+        <image name="countdown8.png" width="469" height="469"/>
+        <image name="countdown9.png" width="469" height="469"/>
+        <image name="countdown10.png" width="469" height="469"/>
+        <image name="countdown11.png" width="469" height="469"/>
+        <image name="countdown12.png" width="469" height="469"/>
+        <image name="countdown13.png" width="469" height="469"/>
+        <image name="countdown14.png" width="469" height="469"/>
+        <image name="countdown15.png" width="469" height="469"/>
+        <image name="countdown16.png" width="469" height="469"/>
+        <image name="countdown17.png" width="469" height="469"/>
+        <image name="countdown18.png" width="469" height="469"/>
+        <image name="countdown19.png" width="469" height="469"/>
+        <image name="countdown20.png" width="469" height="469"/>
+        <image name="countdown21.png" width="469" height="469"/>
+        <image name="countdown22.png" width="469" height="469"/>
+        <image name="countdown23.png" width="469" height="469"/>
+        <image name="countdown24.png" width="469" height="469"/>
+        <image name="countdown25.png" width="469" height="469"/>
+        <image name="countdown26.png" width="469" height="469"/>
+        <image name="countdown27.png" width="469" height="469"/>
+        <image name="countdown28.png" width="469" height="469"/>
+        <image name="countdown29.png" width="469" height="469"/>
+        <image name="countdown30.png" width="469" height="469"/>
+        <image name="countdown31.png" width="469" height="469"/>
+        <image name="countdown32.png" width="469" height="469"/>
+        <image name="countdown33.png" width="469" height="469"/>
+        <image name="countdown34.png" width="469" height="469"/>
+        <image name="countdown35.png" width="469" height="469"/>
+        <image name="countdown36.png" width="469" height="469"/>
+        <image name="countdown37.png" width="469" height="469"/>
+        <image name="countdown38.png" width="469" height="469"/>
+        <image name="countdown39.png" width="469" height="469"/>
+        <image name="countdown40.png" width="469" height="469"/>
+        <image name="countdown41.png" width="469" height="469"/>
+        <image name="countdown42.png" width="469" height="469"/>
+        <image name="countdown43.png" width="469" height="469"/>
+        <image name="countdown44.png" width="469" height="469"/>
+        <image name="countdown45.png" width="469" height="469"/>
+        <image name="countdown46.png" width="469" height="469"/>
+        <image name="countdown47.png" width="469" height="469"/>
+        <image name="countdown48.png" width="469" height="469"/>
+        <image name="countdown49.png" width="469" height="469"/>
+        <image name="countdown50.png" width="469" height="469"/>
+        <image name="countdown51.png" width="469" height="469"/>
+        <image name="countdown52.png" width="469" height="469"/>
+        <image name="countdown53.png" width="469" height="469"/>
+        <image name="countdown54.png" width="469" height="469"/>
+        <image name="countdown55.png" width="469" height="469"/>
+        <image name="countdown56.png" width="469" height="469"/>
+        <image name="countdown57.png" width="469" height="469"/>
+        <image name="countdown58.png" width="469" height="469"/>
+        <image name="countdown59.png" width="469" height="469"/>
+        <image name="countdown60.png" width="469" height="469"/>
+        <image name="countdown61.png" width="469" height="469"/>
+        <image name="countdown62.png" width="469" height="469"/>
+        <image name="countdown63.png" width="469" height="469"/>
+        <image name="countdown64.png" width="469" height="469"/>
+        <image name="countdown65.png" width="469" height="469"/>
+        <image name="countdown66.png" width="469" height="469"/>
+        <image name="countdown67.png" width="469" height="469"/>
+        <image name="countdown68.png" width="469" height="469"/>
+        <image name="countdown69.png" width="469" height="469"/>
+        <image name="countdown70.png" width="469" height="469"/>
+        <image name="countdown71.png" width="469" height="469"/>
+        <image name="countdown72.png" width="469" height="469"/>
+        <image name="countdown73.png" width="469" height="469"/>
+        <image name="countdown74.png" width="469" height="469"/>
+        <image name="countdown75.png" width="469" height="469"/>
+        <image name="countdown76.png" width="469" height="469"/>
+        <image name="countdown77.png" width="469" height="469"/>
+        <image name="countdown78.png" width="469" height="469"/>
+        <image name="countdown79.png" width="469" height="469"/>
+        <image name="countdown80.png" width="469" height="469"/>
+        <image name="countdown81.png" width="469" height="469"/>
+        <image name="countdown82.png" width="469" height="469"/>
+        <image name="countdown83.png" width="469" height="469"/>
+        <image name="countdown84.png" width="469" height="469"/>
+        <image name="countdown85.png" width="469" height="469"/>
+        <image name="countdown86.png" width="469" height="469"/>
+        <image name="countdown87.png" width="469" height="469"/>
+        <image name="countdown88.png" width="469" height="469"/>
+        <image name="countdown89.png" width="469" height="469"/>
+        <image name="countdown90.png" width="469" height="469"/>
+        <image name="countdown91.png" width="469" height="469"/>
+        <image name="countdown92.png" width="469" height="469"/>
+        <image name="countdown93.png" width="469" height="469"/>
+        <image name="countdown94.png" width="469" height="469"/>
+        <image name="countdown95.png" width="469" height="469"/>
+        <image name="countdown96.png" width="469" height="469"/>
+        <image name="countdown97.png" width="469" height="469"/>
+        <image name="countdown98.png" width="469" height="469"/>
+        <image name="countdown99.png" width="469" height="469"/>
+        <image name="arrow.png" width="14" height="8"/>
+        <image name="Raleway regular.ttf" width="0" height="0"/>
+        <image name="ic_setting_active.png" width="17.5" height="17.5"/>
+        <image name="ic_setting_normal.png" width="17.5" height="17.5"/>
+        <image name="Icon.png" width="57" height="57"/>
+        <image name="Icon-60.png" width="60" height="60"/>
+        <image name="ic_newappointment.png" width="19" height="18"/>
+        <image name="Default.png" width="320" height="480"/>
+        <image name="left_arrow.png" width="8" height="14"/>
+        <image name="right_arrow.png" width="8" height="14"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

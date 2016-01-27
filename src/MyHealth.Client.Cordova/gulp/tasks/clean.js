@@ -5,7 +5,6 @@ module.exports = function (gulp) {
         rimraf.sync('bin');
         rimraf.sync('bld');
         rimraf.sync('platforms/*');
-        rimraf.sync('plugins/*');
         rimraf.sync('content/lib/*');
     });
 }

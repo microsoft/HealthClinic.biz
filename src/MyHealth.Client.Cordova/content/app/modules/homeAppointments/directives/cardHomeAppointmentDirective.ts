@@ -28,7 +28,9 @@
             };
 
             scope.openNotificationPopup = () => {
-                scope.notification = new Notification(scope.homeAppointment.patientId, 'choose');
+                scope.notification =
+                    new Notification(this.configService.General.DEFAULT_TENANT_ID, scope.homeAppointment.patientId, 'choose');
+
                 scope.notificationPopup = this.$ionicPopup.show({
                     templateUrl: 'templates/homeAppointments/views/cardHomeAppointmentNotificationPopup.html',
                     cssClass: 'popup-container-home-appointment-notification',
@@ -56,13 +58,16 @@
 
         private $ionicPopup: ionic.popup.IonicPopupService;
         private notificationService: NotificationService;
-        constructor($ionicPopup: ionic.popup.IonicPopupService, notificationService: NotificationService) {
+        private configService: Shared.ConfigService;
+        constructor($ionicPopup: ionic.popup.IonicPopupService, notificationService: NotificationService,
+            configService: Shared.ConfigService) {
             this.$ionicPopup = $ionicPopup;
             this.notificationService = notificationService;
+            this.configService = configService;
         }
     }
 
     app.directive('cardHomeAppointment',
-        ($ionicPopup: ionic.popup.IonicPopupService, notificationService: NotificationService) =>
-            new CardHomeAppointmentDirective($ionicPopup, notificationService));
+        ($ionicPopup: ionic.popup.IonicPopupService, notificationService: NotificationService, configService: Shared.ConfigService) =>
+            new CardHomeAppointmentDirective($ionicPopup, notificationService, configService));
 }

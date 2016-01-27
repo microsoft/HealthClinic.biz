@@ -5,8 +5,8 @@
         showServerError
     };
 
-    function showServerError() {
-        toaster.pop('error', 'Error', 'Oops! Something went wrong!');
+    function showServerError(error) {
+        toaster.pop('error', 'Error', (typeof error === 'string' && error) ? error : 'Oops! Something went wrong!');
     }
 }
 

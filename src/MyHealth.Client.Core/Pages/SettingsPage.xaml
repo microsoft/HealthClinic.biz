@@ -1,88 +1,101 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:MyHealth.Client.Core;assembly=MyHealth.Client.Core" xmlns:xfc="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.Core" x:Class="MyHealth.Client.Core.SettingsPage">
-	<ContentPage.Resources>
-		<ResourceDictionary>
-			<local:NotConverter x:Key="NotConverter">
-			</local:NotConverter>
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <local:NotConverter x:Key="NotConverter">
+      </local:NotConverter>
 
-			<OnPlatform x:Key="ButtonFontFamily" x:TypeArguments="x:String">
-				<OnPlatform.iOS>Avenir</OnPlatform.iOS>
-				<OnPlatform.Android>Roboto</OnPlatform.Android>
-				<OnPlatform.WinPhone>
-				</OnPlatform.WinPhone>
-			</OnPlatform>
+      <OnPlatform x:Key="CustomFontFamily" x:TypeArguments="x:String">
+        <OnPlatform.iOS>Avenir</OnPlatform.iOS>
+        <OnPlatform.Android>Roboto</OnPlatform.Android>
+        <OnPlatform.WinPhone>
+        </OnPlatform.WinPhone>
+      </OnPlatform>
 
-			<Style x:Key="ButtonStyle" TargetType="Button">
-                <Setter Property="TextColor" Value="White" />
-				<Setter Property="FontAttributes" Value="Bold" />
-				<Setter Property="FontFamily" Value="{StaticResource ButtonFontFamily}" />
-            </Style>
-		</ResourceDictionary>
-	</ContentPage.Resources>
-	<ContentPage.Content>
-		<AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#00D8CC">
-			<Image Source="bg_check_heart_settings.png" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0, 1, 572, 410" />
-			<AbsoluteLayout Padding="23" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
-				<Image Source="bg_logo_settings.png" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0, 1, 151, 130" />
-				<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 0.5">
-					<Label Text="Server Address" TextColor="#008880">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<OnPlatform.iOS>Avenir</OnPlatform.iOS>
-								<OnPlatform.Android>Roboto</OnPlatform.Android>
-								<OnPlatform.WinPhone>
-								</OnPlatform.WinPhone>
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Entry Text="{Binding ServerAddress}" TextColor="#008880" />
-					<Label Text="please, type a valid URL" IsVisible="{Binding IsInvalidUrl}" FontSize="14" TextColor="#008880">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<OnPlatform.iOS>Avenir</OnPlatform.iOS>
-								<OnPlatform.Android>Roboto</OnPlatform.Android>
-								<OnPlatform.WinPhone>
-								</OnPlatform.WinPhone>
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-				</StackLayout>
-				<Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 0.1">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="*" />
-						<ColumnDefinition>
-							<ColumnDefinition.Width>
-								<OnPlatform x:TypeArguments="xfc:GridLength" iOS="0" Android="*" />
-							</ColumnDefinition.Width>
-						</ColumnDefinition>
-					</Grid.ColumnDefinitions>
-					<Button Command="{Binding AcceptCommand}" 
+      <Style x:Key="ButtonStyle" TargetType="Button">
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontFamily" Value="{StaticResource CustomFontFamily}" />
+      </Style>
+
+      <Style x:Key="LabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="#008880" />
+        <Setter Property="FontFamily" Value="{StaticResource CustomFontFamily}" />
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.Content>
+    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#00D8CC">
+      <Image Source="bg_check_heart_settings.png" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0, 1, 572, 410" />
+      <AbsoluteLayout Padding="23" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+        <Image Source="bg_logo_settings.png" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0, 1, 151, 130" />
+        <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 0.7">
+          <Label Text="Server Address" Style="{StaticResource LabelStyle}">
+            <Label.FontFamily>
+              <OnPlatform x:TypeArguments="x:String">
+                <OnPlatform.iOS>Avenir</OnPlatform.iOS>
+                <OnPlatform.Android>Roboto</OnPlatform.Android>
+                <OnPlatform.WinPhone>
+                </OnPlatform.WinPhone>
+              </OnPlatform>
+            </Label.FontFamily>
+          </Label>
+          <Entry Text="{Binding ServerAddress}" TextColor="#008880" />
+          <Label Text="please, type a valid URL" IsVisible="{Binding IsInvalidUrl}" FontSize="14" Style="{StaticResource LabelStyle}">
+            <Label.FontFamily>
+              <OnPlatform x:TypeArguments="x:String">
+                <OnPlatform.iOS>Avenir</OnPlatform.iOS>
+                <OnPlatform.Android>Roboto</OnPlatform.Android>
+                <OnPlatform.WinPhone>
+                </OnPlatform.WinPhone>
+              </OnPlatform>
+            </Label.FontFamily>
+          </Label>
+          <Grid Padding="0, 15, 0, 0">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label Text="Require login at Start" Style="{StaticResource LabelStyle}" VerticalOptions="Center" />
+            <Switch Grid.Column="1" IsToggled="{Binding AzureADAuthorizationEnabled}" VerticalOptions="Center" />
+          </Grid>
+        </StackLayout>
+        <Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 0.1">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition>
+              <ColumnDefinition.Width>
+                <OnPlatform x:TypeArguments="xfc:GridLength" iOS="0" Android="*" />
+              </ColumnDefinition.Width>
+            </ColumnDefinition>
+          </Grid.ColumnDefinitions>
+          <Button Command="{Binding AcceptCommand}"
 						IsEnabled="{Binding IsInvalidUrl, Converter={StaticResource NotConverter}}"
 						Style="{StaticResource ButtonStyle}">
-						<Button.Text>
-							<OnPlatform x:TypeArguments="x:String" iOS="Save" Android="Accept" />
-						</Button.Text>
-					</Button>
-					<Button Text="Cancel" 
-						Command="{Binding CancelCommand}" 
+            <Button.Text>
+              <OnPlatform x:TypeArguments="x:String" iOS="Save" Android="Accept" />
+            </Button.Text>
+          </Button>
+          <Button Text="Cancel"
+						Command="{Binding CancelCommand}"
 						Grid.Column="1"
 						Style="{StaticResource ButtonStyle}">
-						<Button.IsVisible>
-							<OnPlatform x:TypeArguments="x:Boolean" iOS="false" Android="true" />
-						</Button.IsVisible>
-					</Button>
-				</Grid>
-			</AbsoluteLayout>
-			<Button Text="Send Feedback" 
-				Command="{Binding HockeyAppFeedbackCommand}" 
-				AbsoluteLayout.LayoutFlags="PositionProportional" 
+            <Button.IsVisible>
+              <OnPlatform x:TypeArguments="x:Boolean" iOS="false" Android="true" />
+            </Button.IsVisible>
+          </Button>
+        </Grid>
+      </AbsoluteLayout>
+      <Button Text="Send Feedback"
+				Command="{Binding HockeyAppFeedbackCommand}"
+				AbsoluteLayout.LayoutFlags="PositionProportional"
 				AbsoluteLayout.LayoutBounds="0.95, 0, AutoSize, AutoSize"
 				Style="{StaticResource ButtonStyle}"
 				FontAttributes="None">
-				<Button.IsVisible>
-					<OnPlatform x:TypeArguments="x:Boolean" iOS="true" Android="false" />
-				</Button.IsVisible>
-			</Button>
-		</AbsoluteLayout>
-	</ContentPage.Content>
+        <Button.IsVisible>
+          <OnPlatform x:TypeArguments="x:Boolean" iOS="true" Android="false" />
+        </Button.IsVisible>
+      </Button>
+    </AbsoluteLayout>
+  </ContentPage.Content>
 </ContentPage>

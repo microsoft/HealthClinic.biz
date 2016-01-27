@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24627.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHealth.Client.Core", "src\MyHealth.Client.Core\MyHealth.Client.Core.csproj", "{8815D5DB-4912-4A7B-8097-C8B29DCDB75D}"
 EndProject
@@ -137,7 +137,6 @@ Global
 		{14C09982-15CC-4337-8762-98DABAA22863}.AppStore|x86.Deploy.0 = Release|Any CPU
 		{14C09982-15CC-4337-8762-98DABAA22863}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{14C09982-15CC-4337-8762-98DABAA22863}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14C09982-15CC-4337-8762-98DABAA22863}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{14C09982-15CC-4337-8762-98DABAA22863}.Debug|ARM.ActiveCfg = Debug|Any CPU
 		{14C09982-15CC-4337-8762-98DABAA22863}.Debug|ARM.Build.0 = Debug|Any CPU
 		{14C09982-15CC-4337-8762-98DABAA22863}.Debug|ARM.Deploy.0 = Debug|Any CPU
@@ -239,6 +238,7 @@ Global
 		{B136C594-8CEC-4B3C-ADD4-5735CFAEA13F}.AppStore|x86.Deploy.0 = Release|x86
 		{B136C594-8CEC-4B3C-ADD4-5735CFAEA13F}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{B136C594-8CEC-4B3C-ADD4-5735CFAEA13F}.Debug|Any CPU.Build.0 = Debug|x86
+		{B136C594-8CEC-4B3C-ADD4-5735CFAEA13F}.Debug|Any CPU.Deploy.0 = Debug|x86
 		{B136C594-8CEC-4B3C-ADD4-5735CFAEA13F}.Debug|ARM.ActiveCfg = Debug|ARM
 		{B136C594-8CEC-4B3C-ADD4-5735CFAEA13F}.Debug|ARM.Build.0 = Debug|ARM
 		{B136C594-8CEC-4B3C-ADD4-5735CFAEA13F}.Debug|ARM.Deploy.0 = Debug|ARM

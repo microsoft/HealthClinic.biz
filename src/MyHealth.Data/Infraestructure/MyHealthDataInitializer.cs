@@ -14,10 +14,13 @@ namespace MyHealth.Data.Infraestructure
     public class MyHealthDataInitializer
     {
         private static IServiceProvider _serviceProvider = null;
+        private static UserManager<ApplicationUser> _userManager = null;
+        private static IApplicationEnvironment _applicationEnvironment = null;
+        private static IConfigurationRoot _configuration = null;
+
         private static readonly Random Randomize = new Random();
 
         private const int AppointmentMonths = 6;
-
 
         public async Task InitializeDatabaseAsync(IServiceProvider serviceProvider)
         {
@@ -26,47 +29,90 @@ namespace MyHealth.Data.Infraestructure
                 var databaseCreated = await db.Database.EnsureCreatedAsync();
                 if (databaseCreated)
                 {
-                    await CreateSampleData(serviceProvider, db);
+                    await InitializeDatabaseData(serviceProvider, db);
                 }
             }
         }
 
-        static async Task CreateSampleData(IServiceProvider serviceProvider, MyHealthContext context)
+        async Task InitializeDatabaseData(IServiceProvider serviceProvider, MyHealthContext context)
         {
             _serviceProvider = serviceProvider;
-
-            int tenantId = CreateSampleData(context);
-            await CreateDefaultUser(serviceProvider, tenantId);
-        }
-
-        private static async Task CreateDefaultUser(IServiceProvider serviceProvider, int tenantId)
-        {
-            var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
-            var appEnv = serviceProvider.GetService<IApplicationEnvironment>();
+            _userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
+            _applicationEnvironment = serviceProvider.GetService<IApplicationEnvironment>();
 
             var builder = new ConfigurationBuilder()
-                    .SetBasePath(appEnv.ApplicationBasePath)
+                    .SetBasePath(_applicationEnvironment.ApplicationBasePath)
                     .AddJsonFile("appsettings.json");
+            _configuration = builder.Build();
 
-            var configuration = builder.Build();
+            await CreateDefaultAdmin();
 
-            var user = await userManager.FindByNameAsync(configuration["DefaultUsername"]);
-            if (user == null)
+            var tenantId = await CreateDefaultTenant(context);
+
+            CreateTenantSampleData(serviceProvider, tenantId);
+
+            await CreateDefaultUser(tenantId);
+        }
+
+        public void CreateTenantSampleData(IServiceProvider serviceProvider, int tenantId)
+        {
+            _serviceProvider = serviceProvider;
+            _userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
+            var context = serviceProvider.GetService<MyHealthContext>();
+
+            CreateSampleData(context, tenantId);
+        }
+
+        public async Task RemoveTenantSampleData(MyHealthContext context, UserManager<ApplicationUser> userManager, int tenantId)
+        {
+            if (context.Tenants.Any(t => t.TenantId == tenantId))
             {
-                user = new ApplicationUser {
-                    UserName = configuration["DefaultUsername"],
-                    TenantId = tenantId,
-                    Picture = GetDefaultUser()
-                };
-                await userManager.CreateAsync(user, configuration["DefaultPassword"]);
-                await userManager.AddClaimAsync(user, new Claim("ManageStore", "Allowed"));
+                context.HomeAppointments.RemoveRange(context.HomeAppointments.Where(t => t.TenantId == tenantId));
+                context.ClinicAppointments.RemoveRange(context.ClinicAppointments.Where(t => t.TenantId == tenantId));
+                context.Medicines.RemoveRange(context.Medicines.Where(t => t.TenantId == tenantId));
+
+                var usersToDelete = context.Users.Where(t => t.TenantId == tenantId).ToList();
+
+                foreach (var user in usersToDelete)
+                    await userManager.DeleteAsync(user);
+
+                context.Tenants.Remove(context.Tenants.FirstOrDefault(t => t.TenantId == tenantId));
+                await context.SaveChangesAsync();
             }
         }
 
-        private static int CreateSampleData(MyHealthContext context)
+        private static async Task CreateDefaultUser(int tenantId)
         {
-            var tenantId = CreateTenants(context);
+            var user = await _userManager.FindByNameAsync(_configuration["DefaultUsername"]);
+            if (user == null)
+            {
+                user = new ApplicationUser {
+                    UserName = _configuration["DefaultUsername"],
+                    TenantId = tenantId
+                };
+                await _userManager.CreateAsync(user, _configuration["DefaultPassword"]);
+                await _userManager.AddClaimAsync(user, new Claim("ManageUsers", "Denied"));
+                await _userManager.AddClaimAsync(user, new Claim("ManageTenants", "Denied"));
+            }
+        }
 
+        private static async Task CreateDefaultAdmin()
+        {
+            var superadmin = await _userManager.FindByNameAsync(_configuration["DefaultAdminUsername"]);
+            if (superadmin == null)
+            {
+                superadmin = new ApplicationUser
+                {
+                    UserName = _configuration["DefaultAdminUsername"]
+                };
+                await _userManager.CreateAsync(superadmin, _configuration["DefaultAdminPassword"]);
+                await _userManager.AddClaimAsync(superadmin, new Claim("ManageUsers", "Allowed"));
+                await _userManager.AddClaimAsync(superadmin, new Claim("ManageTenants", "Allowed"));
+            }
+        }
+
+        private static int CreateSampleData(MyHealthContext context, int tenantId)
+        {
             CreateDoctors(context, tenantId);
             CreateSummaryInfo(context, tenantId);
             CreatePatients(context, tenantId);
@@ -78,40 +124,22 @@ namespace MyHealth.Data.Infraestructure
             return tenantId;
         }
 
-        static int CreateTenants(MyHealthContext context)
+        static async Task<int> CreateDefaultTenant(MyHealthContext context)
         {
-            var tenants = new List<Tenant>();
-            var defaultTenant = new Tenant()
+            var tenant = new Tenant()
             {
                 Name = "HealthClinic.biz",
                 Address = "Madison Ave 10037",
                 City = "New York",
-                WaitTimeAvg = Randomize.Next(1, 10)
+                WaitTimeAvg = Randomize.Next(1, 10),
+                AssociatedUsername = _configuration["DefaultUsername"],
+                Creator = _configuration["DefaultAdminUsername"]
             };
-            context.Tenants.Add(defaultTenant);
 
-            var tenant = new Tenant()
-            {
-                Name = "Madison HealthCare",
-                Address = "Madison Ave 10037",
-                City = "New York",
-                WaitTimeAvg = Randomize.Next(1, 10)
-            };
-            tenants.Add(tenant);
+            context.Tenants.Add(tenant);
+            await context.SaveChangesAsync();
 
-            tenant = new Tenant()
-            {
-                Name = "HCR Global",
-                Address = "Spring Studios, 50. Varick St",
-                City = "New York",
-                WaitTimeAvg = Randomize.Next(1, 10)
-            };
-            tenants.Add(tenant);
-
-            context.Tenants.AddRange(tenants);
-            context.SaveChanges();
-
-            return defaultTenant.TenantId;
+            return tenant.TenantId;
         }
 
         static void CreateDoctors(MyHealthContext context, int tenantId)

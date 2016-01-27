@@ -63,6 +63,19 @@ namespace MyHealth.Web
 
             services.AddSession();
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admin", policy =>
+                {
+                    policy.RequireClaim("ManageUsers", "Allowed");
+                    policy.RequireClaim("ManageTenants", "Allowed");
+                });
+
+                options.AddPolicy("Tenant", policy =>
+                {
+                    policy.RequireClaim("ManageTenants", "Allowed");
+                });
+            });
         }
 
         // Configure is called after ConfigureServices is called.

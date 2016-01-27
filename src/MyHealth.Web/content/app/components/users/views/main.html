@@ -1,0 +1,43 @@
+﻿<div class="row margin-bottom-15">
+    <div class="pull-left button button-white button-action">
+        <input type="checkbox" id="selectAll" ng-model="everySelected" ng-change="refreshSelectedItems(true)" />
+        <label for="selectAll">Select all</label>
+    </div>
+    <button class="pull-left margin-left-15 button button-white button-action" ng-click="remove()" ng-show="anySelected"> <span class="icon-btn_delete margin-right-10"></span> Delete</button>
+    <button class="pull-right button button-pink button-action" ng-click="nagivateToDetail()"> <span class="icon-btn_new margin-right-10"></span> New user</button>
+</div>
+
+<div class="row grid">
+    <div class="grid-header">
+        <div class="grid-col-5"> </div>
+        <div class="grid-col-30"> Name </div>
+        <div class="grid-col-20"> Username </div>
+        <div class="grid-col-30"> Email </div>
+        <div class="grid-col-15"> </div>
+    </div>
+    <div class="grid-body">
+        <div class="grid-row" ng-repeat="user in users" ng-class="{ 'selected' : user.selected }">
+            <div class="grid-col-5 image-column">
+                <input type="checkbox" id="user_{{user.UserName}}" ng-model="user.selected" ng-change="refreshSelectedItems()" />
+                <label for="user_{{user.UserName}}"></label>
+            </div>
+            <div class="grid-col-30">{{user.FirstName + ' ' + user.LastName}}</div>
+            <div class="grid-col-20" ng-bind="user.UserName"></div>
+            <div class="grid-col-30" ng-bind="user.Email"></div>
+            <div class="grid-col-15 action-buttons text-center">
+                <span class="icon-btn_edit" ng-click="nagivateToDetail(user.UserName)"></span>
+                <span class="icon-btn_delete" ng-click="remove(user)"></span>
+            </div>
+        </div>
+        <div class="grid-row" ng-show="noData">
+            <div class="grid-col-100 grid-load-more">
+                <span>NO DATA</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="grid-load-more">
+    <button class="button button-pink button-action" ng-click="getList()" ng-hide="noMoreData">LOAD MORE</button>
+</div>

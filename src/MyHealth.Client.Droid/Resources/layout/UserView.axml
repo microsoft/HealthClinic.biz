@@ -55,15 +55,6 @@
                     android:id="@+id/linearLayout1"
                     android:layout_margin="4dp"
                     android:background="@color/mh_tc_lightgrey">
-                    <ImageButton
-                        android:id="@+id/myButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/transparent"
-                        android:src="@drawable/ic_login_normal"
-                        android:layout_gravity="right"
-                        android:layout_margin="5dp"
-                        local:MvxBind="Click LoginCommand;" />
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"

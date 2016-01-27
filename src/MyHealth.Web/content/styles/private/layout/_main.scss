@@ -1,11 +1,9 @@
 ﻿@import '../../base/_variables.scss';
 
 #app {
-    height: 100%;
     min-width: $min-width;
 }
 
 .content-container {
-    min-height: calc(100% - #{$footer-height});
-    padding: 150px 0 30px 0;
+    padding: 150px 0 230px 0;
 }

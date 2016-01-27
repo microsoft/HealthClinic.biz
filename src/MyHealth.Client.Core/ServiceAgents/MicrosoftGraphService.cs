@@ -15,12 +15,23 @@ namespace MyHealth.Client.Core
 {
     public class MicrosoftGraphService
     {
-        public static void SetClientId(string id) { clientId = id; }
-        public static void SetRedirectUri(Uri uri) { redirectUri = uri; }
-        public static void SetAuthenticationUiContext(IPlatformParameters UiContext) { authenticationParentUiContext = UiContext; }
-
+        private const string AADInstance = "https://login.microsoftonline.com/";
+        private static readonly string CommonAuthority = AADInstance + "common";
+        private const string ResourceBetaUrl = "https://graph.microsoft.com/beta/";
+        private const string ResourceV1ReleaseUrl = "https://graph.microsoft.com/v1.0/";
+        private static readonly string[] PermissionScope = new[] { "https://graph.microsoft.com/calendars.readwrite" };
+        private static readonly string OutlookTenandId = "outlook.com";
+        private static readonly string UriSchemeDelimiter = "/";
 
         private static string clientId = null;
+        private static Uri redirectUri = null;
+        private static IPlatformParameters authenticationParentUiContext;
+        private static GraphService graphClient = null;
+
+        public static string AccessToken = null;
+
+        #region Properties
+
         private static string ClientId
         {
             get
@@ -34,7 +45,6 @@ namespace MyHealth.Client.Core
             }
         }
 
-        private static Uri redirectUri = null;
         private static Uri RedirectUri
         {
             get
@@ -48,7 +58,6 @@ namespace MyHealth.Client.Core
             }
         }
 
-        private static IPlatformParameters authenticationParentUiContext;
         public static IPlatformParameters AuthenticationParentUiContext
         {
             get
@@ -62,19 +71,14 @@ namespace MyHealth.Client.Core
             }
         }
 
-        const string AADInstance = "https://login.microsoftonline.com/";
-        static readonly string CommonAuthority = AADInstance + "common";
-        const string ResourceBetaUrl = "https://graph.microsoft.com/beta/";
-        const string ResourceV1ReleaseUrl = "https://graph.microsoft.com/v1.0/";
-        const string ResourceUrl = "https://graph.microsoft.com/";
-        static readonly string[] PermissionScope = new[] { "https://graph.microsoft.com/calendars.readwrite" };
-        public static string AccessToken = null;
         public static AuthenticationContext AuthenticationContext { get; private set; }
         public static string LastTenantId { get; set; }
         public static string LoggedInUser { get; private set; }
         public static string LoggedInUserEmail { get; private set; }
 
-        private static GraphService graphClient = null;
+        #endregion Properties
+
+        #region Private Methods
 
         private async static Task<string> GetAccessTokenAsync(AuthenticationContext context, string[] scope)
         {
@@ -105,108 +109,6 @@ namespace MyHealth.Client.Core
             return AccessToken;
         }
 
-        public static async Task<GraphService> GetGraphClientAsync(string[] scope)
-        {
-            if (graphClient == null)
-            {
-                try
-                {
-                    AuthenticationContext = new AuthenticationContext(CommonAuthority, new TokenCache());
-
-                    var token = await GetAccessTokenAsync(AuthenticationContext, scope);
-                    if (string.IsNullOrEmpty(token))
-                    {
-                        // User cancelled sign-in
-                        return null;
-                    }
-                    else
-                    {
-                        var tenantId = (LastTenantId ?? "outlook.com") + "/";
-                        Uri serviceRoot = new Uri(ResourceBetaUrl + tenantId);
-                        graphClient = new GraphService(serviceRoot, async () => await GetAccessTokenAsync(AuthenticationContext, scope));
-                    }
-                }
-                catch (AdalException ex)
-                {
-                    Debug.WriteLine("Error from Adal: " + ex.ToString());
-                    AuthenticationContext.TokenCache.Clear();
-                    return null;
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine("Exception thrown: " + ex.ToString());
-                    AuthenticationContext.TokenCache.Clear();
-                    return null;
-                }
-            }
-
-            return graphClient;
-        }
-
-        public static async Task SignInAsync()
-        {
-            await GetGraphClientAsync(PermissionScope);
-        }
-
-        public static void SignOut()
-        {
-            AuthenticationContext.TokenCache.Clear();
-            graphClient = null;
-            LoggedInUser = null;
-            LoggedInUserEmail = null;
-        }
-
-        /// <summary>
-        /// This method calls GraphService.Me.Events.AddEventAsync() to create an event
-        /// on singed-in user's default calendar.  Due to a bug after the call does not
-        /// the execution flow does not return back to the next line after the call.
-        /// </summary>
-        /// <param name="subject"></param>
-        /// <param name="startTime"></param>
-        /// <param name="endTime"></param>
-        /// <param name="attendeeEmails"></param>
-        /// <param name="description"></param>
-        /// <param name="locationDisplayName"></param>
-        /// <returns></returns>
-        public static async Task AddEventAsync(
-            string subject,
-            DateTimeOffset startTime,
-            DateTimeOffset endTime,
-            IEnumerable<string> attendeeEmails,
-            string description,
-            string locationDisplayName)
-        {
-            var client = await GetGraphClientAsync(PermissionScope);
-            if (client == null)
-            {
-                throw new Exception("Error getting Microsoft Graph service client");
-            }
-
-            var @event = new Event();
-            @event.Subject = subject;
-            @event.Start = startTime;
-            @event.End = endTime;
-            @event.Location = new Location() { DisplayName = locationDisplayName };
-            var listOfAttendees = new List<Attendee>();
-
-            foreach (var email in attendeeEmails)
-            {
-                var name = await GetUserDisplayNameAsync(email);
-                var attendee = new Attendee() { EmailAddress = new EmailAddress() { Address = email, Name = name } };
-                listOfAttendees.Add(attendee);
-            }
-            @event.Attendees = listOfAttendees;
-            var itemBody = new ItemBody();
-            itemBody.ContentType = BodyType.Text;
-            itemBody.Content = description;
-            @event.Body = itemBody;
-            // The following call never returns.  A bug was logged against O365 client library,
-            // but it later was resolved as Not Repro.
-            await client.Me.Events.AddEventAsync(@event);
-
-            // So have to workaround using Rest Api below.
-        }
-
         private static async Task<string> GetUserDisplayNameAsync(string email)
         {
             var client = await GetGraphClientAsync(PermissionScope);
@@ -219,6 +121,108 @@ namespace MyHealth.Client.Core
             {
                 return email;
             }
+        }
+
+        private static async Task EnsureAccessTokenAsync()
+        {
+            if (AuthenticationContext == null)
+            {
+                AuthenticationContext = new AuthenticationContext(CommonAuthority, new TokenCache());
+            }
+
+            if (string.IsNullOrEmpty(AccessToken))
+            {
+                AccessToken = await GetAccessTokenAsync(AuthenticationContext, PermissionScope);
+            }
+        }
+
+        #endregion Private Methods
+
+        #region Public Methods
+
+        public static void SetClientId(string id)
+        {
+            clientId = id;
+        }
+
+        public static void SetRedirectUri(Uri uri)
+        {
+            redirectUri = uri;
+        }
+
+        public static void SetAuthenticationUiContext(IPlatformParameters UiContext)
+        {
+            authenticationParentUiContext = UiContext;
+        }
+
+        public static async Task<GraphService> GetGraphClientAsync(string[] scope)
+        {
+            if (graphClient != null)
+            {
+                return graphClient;
+            }
+
+            var errorAuthenticating = false;
+
+            try
+            {
+                AuthenticationContext = new AuthenticationContext(CommonAuthority, new TokenCache());
+
+                var token = await GetAccessTokenAsync(AuthenticationContext, scope);
+
+                if (string.IsNullOrEmpty(token))
+                {
+                    return null;
+                }
+
+                var tenantId = (LastTenantId ?? OutlookTenandId) + UriSchemeDelimiter;
+                var serviceRoot = new Uri(ResourceBetaUrl + tenantId);
+
+                graphClient = new GraphService(serviceRoot, async () =>
+                    await GetAccessTokenAsync(AuthenticationContext, scope));
+            }
+            catch (AdalException ex) when (ex.ErrorCode == AdalError.AuthenticationCanceled)
+            {
+                // User tried closing sign-in window
+                errorAuthenticating = true;
+            }
+            catch (AdalServiceException ex) when (ex.ErrorCode == "access_denied")
+            {
+                // The permission scope asked is denied for this user:
+                // AADSTS65005: 
+                //   Dynamic scope is invalid: scope Calendars.ReadWrite does not exist on application 00000003-0000-0000-c000-000000000000. 
+                //   Request ID: ea763e39-1df1-437f-80f5-4578482e9ea1, Timestamp: 01/20/2016 11:00:05\r\n
+                //   Trace ID: 4af73768-8231-490f-8840-f059b650b574\r\n
+                //   Correlation ID: 40a55660-bf44-4b69-b5d0-ed2306914f52\r\n
+                //   Timestamp: 2016-01-20 11:00:04Z
+
+                // This same exception is used when logging-in with a valid O365 account,
+                // and user cancels "asks for permission" dialog
+
+                // TODO: Workarround to avoid the scope issue
+                errorAuthenticating = false;
+            }
+            catch (Exception)
+            {
+                // Whatever else happens, re-sign-in
+                errorAuthenticating = true;
+            }
+
+            if (errorAuthenticating)
+            {
+                graphClient = await GetGraphClientAsync(scope);
+            }
+
+            return graphClient;
+        }
+
+        /// <summary>
+        /// Enforces a successful sign-in to access the app.
+        /// </summary>
+        /// <returns></returns>
+        public static async Task SignInAsync()
+        {
+            await GetGraphClientAsync(PermissionScope);
         }
 
         /// <summary>
@@ -314,70 +318,6 @@ namespace MyHealth.Client.Core
             return result;
         }
 
-        public static async Task<IEnumerable<IEvent>> GetEventsAsync(DateTimeOffset day)
-        {
-            var end = day + TimeSpan.FromDays(1);
-            var client = await GetGraphClientAsync(PermissionScope);
-            var events = await client.Me.Calendar.Events.Where((IEvent e) => e.Start >= day && e.Start <= end).ExecuteAsync();
-            List<IEvent> result = new List<IEvent>();
-            while (events != null)
-            {
-                result.AddRange(events.CurrentPage);
-                events = await events.GetNextPageAsync();
-            };
-
-            return result;
-        }
-
-        public static async Task<IEnumerable<Event>> GetEventsJsonAsync()
-        {
-            await EnsureAccessTokenAsync();
-            var result = new List<Event>();
-            if (!string.IsNullOrEmpty(AccessToken))
-            {
-
-                var api = $"{ResourceBetaUrl}me/events";
-                await EnsureAccessTokenAsync();
-                var json = await GetAsync(api, AccessToken);
-                if (!string.IsNullOrEmpty(json))
-                {
-                    var data = JObject.Parse(json).SelectToken("value");
-                    result = JsonConvert.DeserializeObject<List<Event>>(data.ToString());
-                }
-            }
-
-            return result;
-        }
-
-        private static async Task EnsureAccessTokenAsync()
-        {
-            if (AuthenticationContext == null)
-            {
-                AuthenticationContext = new AuthenticationContext(CommonAuthority, new TokenCache());
-            }
-
-            if (string.IsNullOrEmpty(AccessToken))
-            {
-                AccessToken = await GetAccessTokenAsync(AuthenticationContext, PermissionScope);
-            }
-        }
-
-        public static async Task<string> GetAsync(string url, string token)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                var response = await client.GetAsync(url);
-                var responseString = await response.Content.ReadAsStringAsync();
-                if (response.IsSuccessStatusCode)
-                {
-                    return responseString;
-                }
-
-                Debug.WriteLine("Unseccessful request: " + response);
-                return null;
-            }
-        }
+        #endregion Public Methods
     }
 }

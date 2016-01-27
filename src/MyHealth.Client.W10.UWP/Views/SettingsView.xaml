@@ -72,6 +72,10 @@
                        Foreground="{StaticResource MyHealthBlackThemeBrush}"
                        Opacity="0.6"
                        FontSize="18"/>
+            <CheckBox Margin="0, 15, 0, 0" 
+                      Content="Require login at Start" 
+                      FontFamily="/Assets/Fonts/Roboto-Regular.ttf#Roboto"
+                      IsChecked="{Binding AzureADAuthorizationEnabled, Mode=TwoWay}" />
             <Grid Margin="0,25,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>

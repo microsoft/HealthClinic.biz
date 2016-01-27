@@ -15,12 +15,15 @@ namespace MyHealth.MobileApp.Controllers
         {
             var message = new TemplatePushMessage()
             {
+                { "tenantId",  data.GetValue("tenantId").Value<string>() },
                 { "patientId",  data.GetValue("patientId").Value<string>() },
                 { "doctorId",  data.GetValue("doctorId").Value<string>() },
                 { "message", data.GetValue("message").Value<string>() }
             };
 
-            await GetPushClient().SendTemplateNotificationAsync(message);
+            var tags = new string[] { data.GetValue("tenantId").Value<string>() };
+
+            await GetPushClient().SendTemplateNotificationAsync(message, tags);
         }
 
         NotificationHubClient GetPushClient()

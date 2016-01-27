@@ -5,6 +5,11 @@ using Gcm.Client;
 using Microsoft.WindowsAzure.MobileServices;
 using MyHealth.Client.Droid.Views;
 using Newtonsoft.Json.Linq;
+using MyHealth.Client.Core;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Android.Media;
+using Newtonsoft.Json;
 
 namespace MyHealth.Client.Droid.Notifications
 {
@@ -32,12 +37,23 @@ namespace MyHealth.Client.Droid.Notifications
                 JObject templates = new JObject();
                 templates["testGcmTemplate"] = templateBody;
 
+                var tags = new JArray();
+                tags.Add(AppSettings.DefaultTenantId);
+
                 MainActivity.CurrentActivity.RunOnUiThread(
-                    async () => await push.RegisterAsync(registrationId, templates));
+                    async () =>
+                    {
+                        await push.RegisterAsync(registrationId, templates);
+
+                        await client.InvokeApiAsync("updatetags/" + client.InstallationId, tags);
+                    }
+                );
+
+
+
             }
             catch (MobileServiceInvalidOperationException ex)
             {
-                var a = await ex.Response.Content.ReadAsStringAsync();
                 System.Diagnostics.Debug.WriteLine(
                     string.Format("Error with Azure push registration: {0}", ex.Message));
             }

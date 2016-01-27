@@ -1,0 +1,58 @@
+﻿/*****************************************************
+/* VENDORS
+/*****************************************************/
+
+// Bootstrap
+@import "vendor/bootstrap/_bootstrap.scss";
+
+@import "vendor/bootstrap/_bootstrap-overrides.scss";
+
+/*****************************************************
+/* BASE STYLES
+/*****************************************************/
+
+// Definition of variables to use across the project.
+
+// Do not import in this file!
+//"base/variables.less"
+
+// Cross-browser reset by Nicolas Gallagher (http://necolas.github.io/normalize.css/)
+@import "base/_normalize.scss";
+
+// Custom reset
+@import "base/_custom-normalize.scss";
+
+// Custom fonts definition
+@import "base/_fonts.scss";
+
+// icomoon definition
+@import "base/_icomoon.scss";
+
+@import "private/base/_general.scss";
+
+/*****************************************************
+/* COMPONENTS
+/*****************************************************/
+
+@import "components/_buttons.scss";
+@import "components/_checkbox.scss";
+@import "components/_grid.scss";
+
+
+/*****************************************************
+/* LAYOUT
+/*****************************************************/
+
+@import "private/layout/_header.scss";
+@import "private/layout/_main.scss";
+@import "private/layout/_footer.scss";
+
+
+/*****************************************************
+/* HELPERS
+/*****************************************************/
+
+@import "helpers/_colors.scss";
+@import "helpers/_clearfix.scss";
+@import "helpers/_font-sizes.scss";
+@import "helpers/_separators.scss";

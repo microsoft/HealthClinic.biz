@@ -51,9 +51,7 @@ namespace MyHealth.Client.iOS
                 .To(vm => vm.User.Height);
             set.Bind(bloodGroupLabel)
                 .To(vm => vm.User.BloodType);
-  
-			set.Bind (btnUserLogin)
-				.To (vm => vm.LoginCommand);
+            
             set.Apply();
         }
 

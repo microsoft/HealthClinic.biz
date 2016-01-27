@@ -7,6 +7,7 @@ using MyHealth.API.AppExtensions;
 
 namespace MyHealth.API.Controllers
 {
+    [ResponseCache(Duration = 0, NoStore = true, VaryByHeader = "*")]
     [Route("api/[controller]")]
     public class HomeAppointmentsController : Controller
     {
@@ -40,7 +41,5 @@ namespace MyHealth.API.Controllers
         {
             await _VisitsRepository.UpdateAsync(appointment);
         }
-
-
     }
 }

@@ -1,13 +1,13 @@
 ﻿var moduleName = 'myHealth.doctors';
 
 import DoctorsController from './controllers/doctorsController';
-import DetailController from './controllers/detailController';
+import DoctorDetailController from './controllers/doctorDetailController';
 import DoctorsService from './services/doctorsService';
 import FileBase64 from './directives/fileDirective';
 
 angular.module(moduleName, []).
     controller('doctorsController', DoctorsController).
-    controller('detailController', DetailController).
+    controller('doctorDetailController', DoctorDetailController).
     service('doctorsService', DoctorsService).
     directive('fileBase64', FileBase64);
 

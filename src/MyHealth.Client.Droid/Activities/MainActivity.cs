@@ -19,6 +19,9 @@ using Android.Widget;
 using Microsoft.WindowsAzure.MobileServices;
 using MyHealth.Client.Droid.Notifications;
 using Gcm.Client;
+using System.Threading.Tasks;
+using MyHealth.Client.Core.Helpers;
+using Microsoft.Experimental.IdentityModel.Clients.ActiveDirectory;
 
 namespace MyHealth.Client.Droid.Views
 {
@@ -60,9 +63,12 @@ namespace MyHealth.Client.Droid.Views
             base.OnCreate(bundle);
 
             // Settings needed by the Microsoft Graph service client.
-            MicrosoftGraphService.SetAuthenticationUiContext(new Microsoft.Experimental.IdentityModel.Clients.ActiveDirectory.PlatformParameters(this));
+            MicrosoftGraphService.SetAuthenticationUiContext(new PlatformParameters(this));
             MicrosoftGraphService.SetClientId(AppSettings.DroidClientId);
             MicrosoftGraphService.SetRedirectUri(AppSettings.RedirectUri);
+
+            if (Settings.ADAuthenticationEnabled)
+                Task.Run(() => MicrosoftGraphService.SignInAsync());
 
             RegisterForPushNotifications();
 
@@ -97,7 +103,7 @@ namespace MyHealth.Client.Droid.Views
             {
                 // Create the Mobile Service Client instance, using the provided
                 // Mobile Service URL and key
-                client = new MobileServiceClient(AppSettings.MobileAPIUrl, AppSettings.MobileAPIGateway, string.Empty);
+                client = new MobileServiceClient(AppSettings.MobileAPIUrl, string.Empty, string.Empty);
                 // Set the current instance of TodoActivity.
                 instance = this;
                 // Make sure the GCM client is set up correctly.

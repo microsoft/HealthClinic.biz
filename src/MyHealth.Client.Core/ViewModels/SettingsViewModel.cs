@@ -4,6 +4,7 @@ using MvvmCross.Plugins.Messenger;
 using Xamarin.Forms;
 using Cirrious.CrossCore;
 using MyHealth.Client.Core.Services;
+using MyHealth.Client.Core.Helpers;
 
 namespace MyHealth.Client.Core.ViewModels
 {
@@ -16,9 +17,10 @@ namespace MyHealth.Client.Core.ViewModels
 
         string _serverAddress;
 		bool _isInvalidUrl;
-		Uri tempUri;
+		Uri _tempUri;
+        bool _azureADAuthorizationEnabled;
 
-		public string ServerAddress
+        public string ServerAddress
 		{ 
 			get { return _serverAddress; }
 			set { 
@@ -34,7 +36,17 @@ namespace MyHealth.Client.Core.ViewModels
 			set { _isInvalidUrl = value; RaisePropertyChanged (() => IsInvalidUrl); }
 		}
 
-		public IMvxCommand AcceptCommand
+        public bool AzureADAuthorizationEnabled
+        {
+            get { return _azureADAuthorizationEnabled; }
+            set
+            {
+                _azureADAuthorizationEnabled = value;
+                RaisePropertyChanged(() => AzureADAuthorizationEnabled);
+            }
+        }
+
+        public IMvxCommand AcceptCommand
 		{
 			get { return new MvxCommand (() => SaveSettingsAndClose()); }
 		}
@@ -54,6 +66,7 @@ namespace MyHealth.Client.Core.ViewModels
 			_messenger = messenger;
 
 			ServerAddress = AppSettings.ServerlUrl;
+            AzureADAuthorizationEnabled = Settings.ADAuthenticationEnabled;
 		}
 
         void LaunchHockeyAppFeedback()
@@ -65,9 +78,9 @@ namespace MyHealth.Client.Core.ViewModels
 
 		bool CheckInvalidUrl(string url)
 		{
-			bool validUrl = Uri.TryCreate(url, UriKind.Absolute, out tempUri) && 
-				(tempUri.Scheme == UriSchemeHttp || 
-					tempUri.Scheme == UriSchemeHttps);
+			bool validUrl = Uri.TryCreate(url, UriKind.Absolute, out _tempUri) && 
+				(_tempUri.Scheme == UriSchemeHttp || 
+					_tempUri.Scheme == UriSchemeHttps);
 
 			return !validUrl;
 		}
@@ -79,6 +92,9 @@ namespace MyHealth.Client.Core.ViewModels
 
 			AppSettings.ServerlUrl = _serverAddress;
             _messenger.Publish(new SettingsChangedMessage(this));
+
+            if (_azureADAuthorizationEnabled != Settings.ADAuthenticationEnabled)
+                Settings.ADAuthenticationEnabled = _azureADAuthorizationEnabled;
 
             Device.OnPlatform(
                 Android: () => Close (this));

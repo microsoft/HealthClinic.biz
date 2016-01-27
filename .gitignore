@@ -3,7 +3,6 @@
 Thumbs.db
 #Ignore files build by Visual Studio
 *.obj
-*.exe
 *.pdb
 *.user
 *.aps
@@ -24,6 +23,7 @@ Thumbs.db
 *.lib
 *.sbr
 **/bin
+!**/*Cordova*/Plugins/**/bin
 **/obj
 bin/[Rr]elease*/
 _ReSharper*/
@@ -54,7 +54,6 @@ platforms/
 **/*Cordova*/**/main.css
 **/*Cordova*/**/templates.js
 **/*Cordova*/**/tests/out
-**/*Cordova*/**/plugins
 **/*Cordova*/**/content/lib
 !CordovaPlugins/**/bin
 
@@ -77,3 +76,4 @@ src/MyHealth.Web/wwwroot/_references.js
 src/MyHealth.Web.Stress/wwwroot/
 src/MyHealth.Web.Stress/content/lib/
 *.orig
+

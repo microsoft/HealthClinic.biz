@@ -16,6 +16,27 @@
 
 .overlay-visible {
     display: flex;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
     opacity: 1;
+    -moz-transition: opacity .2s;
+    -o-transition: opacity .2s;
+    -webkit-transition: opacity .2s;
     transition: opacity .2s;
+}
+
+.overlay-info {
+    display: none;
+    width: auto;
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+    padding: 5px 10px;
+    margin-top: 69px;
+    max-width: 300px;
+    border-radius: 3px;
+}
+
+.overlay-info-visible {
+    display: inline-block;
 }

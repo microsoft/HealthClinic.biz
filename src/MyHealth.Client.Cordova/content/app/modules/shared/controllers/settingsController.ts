@@ -9,6 +9,10 @@
             $scope.$watchCollection('Settings.Update', function () {
                 configService.save();
             });
+
+            $scope.$watchCollection('Settings.General', function () {
+                configService.save();
+            });
         }
     }
 

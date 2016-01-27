@@ -47,12 +47,12 @@ namespace MyHealth.Client.iOS
                 //manager.Authenticator will be null if HockeyAppiOSAppID was not set
                 if (manager.Authenticator != null)
                 {
-                    manager.Authenticator.AuthenticateInstallation();
+                manager.Authenticator.AuthenticateInstallation();
 
-                    //Rethrow any unhandled .NET exceptions as native iOS 
-                    // exceptions so the stack traces appear nicely in HockeyApp
-                    TaskScheduler.UnobservedTaskException += (sender, e) =>
-                        HockeyApp.Setup.ThrowExceptionAsNative(e.Exception);
+                //Rethrow any unhandled .NET exceptions as native iOS 
+                // exceptions so the stack traces appear nicely in HockeyApp
+                TaskScheduler.UnobservedTaskException += (sender, e) =>
+                    HockeyApp.Setup.ThrowExceptionAsNative(e.Exception);
 
                     AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
                         HockeyApp.Setup.ThrowExceptionAsNative(e.ExceptionObject);
@@ -170,7 +170,7 @@ namespace MyHealth.Client.iOS
 				_deviceToken = _deviceToken.Trim ('<', '>').Replace (" ", "");
 
 				// Instantiate a MobileService Client
-                _client = new MobileServiceClient(AppSettings.MobileAPIUrl, AppSettings.MobileAPIUrl, string.Empty);
+                _client = new MobileServiceClient(AppSettings.MobileAPIUrl, string.Empty, string.Empty);
 
                 // Register for push with your mobile app
                 var push = _client.GetPush();
@@ -183,6 +183,13 @@ namespace MyHealth.Client.iOS
                 templates["testApsTemplate"] = templateBody;
 
 				await push.RegisterAsync(_deviceToken, templates);
+
+                // Add a new tag to get only the notification for the default patientId.
+                var tags = new JArray();
+                tags.Add(AppSettings.DefaultTenantId);
+
+                await _client.InvokeApiAsync("updatetags/" + _client.InstallationId, tags);
+
             }
             catch (Exception e)
             {

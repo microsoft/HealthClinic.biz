@@ -54,13 +54,13 @@ namespace MyHealth.Web.Stress.Data.Infraestructure.Initializer
             Name = "Attendee 3"
         };
 
-        internal static readonly Attendee Atttende4 = new Attendee
+        internal static readonly Attendee Attendee4 = new Attendee
         {
             Email = "atttende4@healthclinic.biz",
             Name = "Attendee 4"
         };
 
-        internal static readonly Attendee[] Attendees = { Attende1, Attendee2, Attendee3, Atttende4 };
+        internal static readonly Attendee[] Attendees = { Attende1, Attendee2, Attendee3, Attendee4 };
 
        
     }
