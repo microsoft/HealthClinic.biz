@@ -22,7 +22,7 @@ For extra information about licenses, you can see it at the dependency repositor
  - Bing Maps Key - [Getting a Bing Maps Key](https://msdn.microsoft.com/en-us/library/ff428642.aspx)
  - Microsoft Azure subscription
  
-# How to sign up for Microsoft#
+# How to sign up for Microsoft Azure#
 
 You need an Azure account to work with this demo code. You can:
  - Open an Azure account for free.[Azure subscription](https://azure.com/). You get credits that can be used to try out paid Azure services. Even after the credits are used up, you can keep the account and use free Azure services and features, such as the Web Apps feature in Azure App Service.
