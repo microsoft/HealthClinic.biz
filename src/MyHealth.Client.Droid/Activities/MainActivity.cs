@@ -21,7 +21,10 @@ using MyHealth.Client.Droid.Notifications;
 using Gcm.Client;
 using System.Threading.Tasks;
 using MyHealth.Client.Core.Helpers;
-using Microsoft.Experimental.IdentityModel.Clients.ActiveDirectory;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using MyHealth.Client.Core.ServiceAgents;
+using MvvmCross.Plugins.Messenger;
+using MyHealth.Client.Core.Messages;
 
 namespace MyHealth.Client.Droid.Views
 {
@@ -29,7 +32,7 @@ namespace MyHealth.Client.Droid.Views
     public class MainActivity :
         MvxCachingFragmentCompatActivity, IMvxFragmentHost
     {
-        public MobileServiceClient client;
+        public MobileServiceClient mobileAppClient;
         private DrawerLayout _drawerLayout;
         private MvxActionBarDrawerToggle _drawerToggle;
         private FragmentManager _fragmentManager;
@@ -54,7 +57,7 @@ namespace MyHealth.Client.Droid.Views
         {
             get
             {
-                return client;
+                return mobileAppClient;
             }
         }
 
@@ -62,17 +65,8 @@ namespace MyHealth.Client.Droid.Views
         {
             base.OnCreate(bundle);
 
-            // Settings needed by the Microsoft Graph service client.
-            MicrosoftGraphService.SetAuthenticationUiContext(new PlatformParameters(this));
-            MicrosoftGraphService.SetClientId(AppSettings.DroidClientId);
-            MicrosoftGraphService.SetRedirectUri(AppSettings.RedirectUri);
-
-            if (Settings.ADAuthenticationEnabled)
-                Task.Run(() => MicrosoftGraphService.SignInAsync());
-
             RegisterForPushNotifications();
 
-            _fragmentManager = FragmentManager;
             RegisterFragments(bundle);
             SetContentView(Resource.Layout.MainView);
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
@@ -95,6 +89,15 @@ namespace MyHealth.Client.Droid.Views
 
             ViewModel.ShowMenu();
             ViewModel.ShowHome();
+
+            var authContext = new PlatformParameters(this);
+            Task.Run(() => SignIn(authContext));
+        }
+
+        async void SignIn(PlatformParameters authContext)
+        {
+             var messenger = Mvx.Resolve<IMvxMessenger>();
+             await (new MyHealthClient(messenger)).AuthenticationService.SignInAsync(authContext);
         }
 
         private void RegisterForPushNotifications()
@@ -103,8 +106,8 @@ namespace MyHealth.Client.Droid.Views
             {
                 // Create the Mobile Service Client instance, using the provided
                 // Mobile Service URL and key
-                client = new MobileServiceClient(AppSettings.MobileAPIUrl, string.Empty, string.Empty);
-                // Set the current instance of TodoActivity.
+                mobileAppClient = new MobileServiceClient(AppSettings.MobileAPIUrl);
+
                 instance = this;
                 // Make sure the GCM client is set up correctly.
                 GcmClient.CheckDevice(this);
@@ -176,6 +179,7 @@ namespace MyHealth.Client.Droid.Views
 
         private void RegisterFragments(Bundle bundle)
         {
+
             RegisterFragment<MenuFragment, MenuViewModel>(typeof(MenuViewModel).TagName(), bundle);
             RegisterFragment<HomeFragment, HomeViewModel>(typeof(HomeViewModel).TagName(), bundle);
             RegisterFragment<AppointmentsFragment, AppointmentsViewModel>(typeof(AppointmentsViewModel).TagName(), bundle);
@@ -197,7 +201,6 @@ namespace MyHealth.Client.Droid.Views
         {
             _drawerLayout.CloseDrawers();
 
-
             if (request.ViewModelType == typeof(MenuViewModel))
             {
                 ShowFragment(typeof(MenuViewModel).TagName(), Resource.Id.left_drawer, bundle);
@@ -206,6 +209,7 @@ namespace MyHealth.Client.Droid.Views
             {
                 ShowFragment(request.ViewModelType.TagName(), Resource.Id.content_view, bundle, addToBackStack:true);
             }
+
             return true;
         }
 
@@ -244,7 +248,7 @@ namespace MyHealth.Client.Droid.Views
         protected override void OnActivityResult(int requestCode, Result resultCode, Android.Content.Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
-            Microsoft.Experimental.IdentityModel.Clients.ActiveDirectory.AuthenticationAgentContinuationHelper
+            Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationAgentContinuationHelper
                 .SetAuthenticationAgentContinuationEventArgs(requestCode, resultCode, data);
         }
     }

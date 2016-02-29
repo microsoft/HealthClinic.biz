@@ -4,7 +4,6 @@
 /// <reference path='typings/cordova-ionic/cordova-ionic.d.ts'/>
 /// <reference path='typings/ionic/ionic.d.ts'/>
 /// <reference path='typings/cordova-plugin-code-push/codePush.d.ts'/>
-/// <reference path='typings/cordova-plugin-ms-appinsights/Appinsights.d.ts'/>
 
 module MyHealth.Client.Cordova {
     'use strict';
@@ -86,17 +85,6 @@ module MyHealth.Client.Cordova {
                 document.addEventListener('pause', onPause, false);
                 document.addEventListener('resume', onResume, false);
 
-                if (window.appInsights) {
-                    // configure appInsights key
-
-                    appInsights.config.instrumentationKey = configService.AppInsights.INSTRUMENTATION_KEY;
-
-                    // track app is started
-                    appInsights.trackPageView();
-                    var eventData = { Timestamp: new Date() };
-                    appInsights.trackEvent('deviceready', eventData);
-                }
-
                 if (window.cordova) {
                     if (window.cordova.plugins) {
                         if (window.cordova.plugins.Keyboard) {
@@ -116,6 +104,10 @@ module MyHealth.Client.Cordova {
 
                 if (window.StatusBar) {
                     window.StatusBar.styleDefault();
+                    
+                    if (cordova.platformId == 'android') {
+                        window.StatusBar.backgroundColorByHexString("#004d48");
+                    }
                 }
             };
         }

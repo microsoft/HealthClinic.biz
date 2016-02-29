@@ -44,7 +44,7 @@ namespace MyHealth.Client.W10.UWP.Services
                 JObject templates = new JObject();
                 templates["MyHealthClinicTemplate"] = templateBody;
 
-                client = new MobileServiceClient(AppSettings.MobileAPIUrl, string.Empty, string.Empty);
+                client = new MobileServiceClient(AppSettings.MobileAPIUrl);
 
                 await client.GetPush()
                     .RegisterAsync(channel.Uri, templates);

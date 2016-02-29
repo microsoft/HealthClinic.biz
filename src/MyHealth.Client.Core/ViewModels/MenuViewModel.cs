@@ -129,6 +129,15 @@ namespace MyHealth.Client.Core.ViewModels
         protected override async Task InitializeAsync()
         {
             CurrentUser = await _userSvc.GetCurrentAsync();
+            _messenger.Subscribe<LoggedUserInfoChangedMessage>(UpdateLoggedUserInfo);
+        }
+
+        public void UpdateLoggedUserInfo(LoggedUserInfoChangedMessage msg)
+        {
+            CurrentUser.Name = msg.User;
+            CurrentUser.Email = msg.Email;
+            CurrentUser.Picture = msg.Photo;
+            RaisePropertyChanged(() => CurrentUser);
         }
 
     }

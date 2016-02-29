@@ -7,7 +7,7 @@ declare module Microsoft.WindowsAzure {
     
     // MobileServiceClient object based on Microsoft Azure documentation: http://msdn.microsoft.com/en-us/library/windowsazure/jj554219.aspx
     interface MobileServiceClient {
-        new (applicationUrl: string, applicationUrl2: string, applicationKey: string): MobileServiceClient;
+        new (applicationUrl: string, applicationKey: string): MobileServiceClient;
         applicationUrl: string;
         applicationKey: string;
         currentUser: User;

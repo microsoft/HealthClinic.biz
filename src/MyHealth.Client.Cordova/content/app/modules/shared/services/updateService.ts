@@ -45,12 +45,12 @@
             this.$rootScope.$broadcast('updateStatusChanged', { status: 'downloading_update' });
             remotePackage.download((localPackage) => {
                 this.$rootScope.$broadcast('updateStatusChanged', { status: 'installing_update' });
-                localPackage.apply(() => {
+                localPackage.install(() => {
                     // Done!
                 }, (err) => {
                     this.$rootScope.$broadcast('updateStatusChanged', { status: 'done' });
                     this.alert('Update Error', 'There was an error while installing the update');
-                });
+                }, {installMode: InstallMode.IMMEDIATE});
             }, (err) => {
                 this.$rootScope.$broadcast('updateStatusChanged', { status: 'done' });
                 this.alert('Update Error', 'There was an error while downloading the update');

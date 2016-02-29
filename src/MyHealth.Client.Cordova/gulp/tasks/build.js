@@ -24,7 +24,7 @@ module.exports = function (gulp) {
             var plugins = [];
             // Get the plugins
             readConfigFile(function(result){
-                result.widget['vs:plugin'].forEach(function(item){
+                result.widget['plugin'].forEach(function(item){
                     var plugin = item.$;
                     plugin.params = [];
                     if(item.param){

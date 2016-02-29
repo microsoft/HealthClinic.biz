@@ -1,7 +1,7 @@
 {
   "name": "MyHealth.Client.Cordova",
   "dependencies": {
-    "ionic": "driftyco/ionic-bower#1.1.0",
+    "ionic": "driftyco/ionic-bower#1.2.4",
     "jquery": "~2.1.4",
     "moment": "~2.10.6",
     "es6-promise": "~3.0.2"

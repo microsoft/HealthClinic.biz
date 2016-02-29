@@ -44,13 +44,10 @@ namespace MyHealth.Client.Droid.Notifications
                     async () =>
                     {
                         await push.RegisterAsync(registrationId, templates);
-
+                   
                         await client.InvokeApiAsync("updatetags/" + client.InstallationId, tags);
                     }
                 );
-
-
-
             }
             catch (MobileServiceInvalidOperationException ex)
             {
@@ -61,9 +58,7 @@ namespace MyHealth.Client.Droid.Notifications
 
         protected override void OnMessage(Context context, Intent intent)
         {
-
             string message = string.Empty;
-
             // Extract the push notification message from the intent.
             if (intent.Extras.ContainsKey("message"))
             {

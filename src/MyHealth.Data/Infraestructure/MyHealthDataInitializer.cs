@@ -313,7 +313,7 @@ namespace MyHealth.Data.Infraestructure
         static void CreatePatients(MyHealthContext context, int tenantId)
         {
             var patients = new List<Patient>();
-            var doctor = context.Doctors.First();
+            var doctor = context.Doctors.Where(p => p.TenantId == tenantId).First();
 
             var patient = new Patient
             {
@@ -540,7 +540,9 @@ namespace MyHealth.Data.Infraestructure
                        },
                 };
             var medicines = new List<Medicine>();
-            var patients = context.Patients.Select(p => p.PatientId).ToList();
+            var patients = context.Patients
+                .Where(p => p.TenantId == tenantId)
+                .Select(p => p.PatientId).ToList();
 
             var globalIdx = 0;
 
@@ -585,8 +587,10 @@ namespace MyHealth.Data.Infraestructure
         static void CreateClinicAppointments(MyHealthContext context, int tenantId)
         {
             var appointments = new List<ClinicAppointment>();
-            var patients = context.Patients.Select(p => p.PatientId).ToList();
-            var doctors = context.Doctors.ToList();
+            var patients = context.Patients
+                .Where(p => p.TenantId == tenantId)
+                .Select(p => p.PatientId).ToList();
+            var doctors = context.Doctors.Where(p => p.TenantId == tenantId).ToList();
 
             foreach (int patientId in patients)
             {
@@ -659,7 +663,8 @@ namespace MyHealth.Data.Infraestructure
             var visits = new List<HomeAppointment>();
 
             var patients = context
-                .Patients.OrderBy(p => p.PatientId).Select(p => p.PatientId)
+                .Patients.Where(p => p.TenantId == tenantId)
+                .OrderBy(p => p.PatientId).Select(p => p.PatientId)
                 .Skip(1).Take(4).ToList();
 
             var doctors = context.Doctors.Select(p => p.DoctorId).ToList();
@@ -898,7 +903,6 @@ namespace MyHealth.Data.Infraestructure
 
         private static byte[] GetDefaultUser()
         {
-            // Scott Hanselman
             return Convert.FromBase64String(UsersFakeImages.Users.First());
         }
 

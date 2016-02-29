@@ -20,7 +20,7 @@
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array/>
 	<key>MinimumOSVersion</key>
-	<string>7.0</string>
+	<string>8.0</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Roboto-Bold.ttf</string>

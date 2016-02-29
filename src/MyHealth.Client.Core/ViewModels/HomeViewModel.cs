@@ -152,7 +152,7 @@ namespace MyHealth.Client.Core.ViewModels
 
 		async Task RetrieveAppointmentsAsync ()
 		{
-			var appointments = await _myHealthClient.AppointmentsService.GetPatientAppointmentsAsync (AppSettings.DefaultPatientId, AmountOfAppointments);
+			var appointments = await _myHealthClient.AppointmentsService.GetPatientAppointmentsAsync (AppSettings.CurrentPatientId, AmountOfAppointments);
 			if (appointments.Count > 0)
 				FirstAppointment = appointments.First ();
             if (appointments.Count >= 2)
@@ -164,7 +164,7 @@ namespace MyHealth.Client.Core.ViewModels
 
 		async Task RetrieveMedecinesAsync ()
 		{
-			var medicines = await _myHealthClient.MedicinesService.GetMedicinesWithDosesAsync (AppSettings.DefaultPatientId, AmountOfMedicines);
+			var medicines = await _myHealthClient.MedicinesService.GetMedicinesWithDosesAsync (AppSettings.CurrentPatientId, AmountOfMedicines);
 			if (medicines.Count > 0)
 				FirstMedicine = medicines.First ();
 			if (medicines.Count >= 2)

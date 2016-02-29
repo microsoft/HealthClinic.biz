@@ -1,15 +1,20 @@
 using Cirrious.MvvmCross.Touch.Views;
 using Cirrious.MvvmCross.ViewModels;
-using Foundation;
 using CoreGraphics;
+using Foundation;
+using LocalAuthentication;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using MyHealth.Client.Core;
+using MyHealth.Client.Core.Helpers;
 using MyHealth.Client.Core.ViewModels;
 using System;
-using System.CodeDom.Compiler;
 using UIKit;
-using MyHealth.Client.Core;
 using Xamarin.Forms;
-using MyHealth.Client.Core.Helpers;
 using System.Threading.Tasks;
+using Cirrious.CrossCore;
+using MyHealth.Client.Core.Services;
+using MyHealth.Client.Core.ServiceAgents;
+using MvvmCross.Plugins.Messenger;
 
 namespace MyHealth.Client.iOS
 {
@@ -22,7 +27,7 @@ namespace MyHealth.Client.iOS
         {
         }
 
-        public override void ViewDidLoad()
+        public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
@@ -31,13 +36,13 @@ namespace MyHealth.Client.iOS
                 return;
             }
 
-            // Settings needed by the Microsoft Graph service client.
-            MicrosoftGraphService.SetAuthenticationUiContext(new Microsoft.Experimental.IdentityModel.Clients.ActiveDirectory.PlatformParameters(this));
-            MicrosoftGraphService.SetClientId(AppSettings.iOSClientId);
-            MicrosoftGraphService.SetRedirectUri(AppSettings.RedirectUri);
-
-            if (Settings.ADAuthenticationEnabled)
-                InvokeOnMainThread(() => MicrosoftGraphService.SignInAsync());
+            if (Settings.SecurityEnabled)
+            {
+                if (Settings.TouchIdEnrolledAndFingerprintDetected)
+                    AuthenticateThroughFingerprint();
+                else
+                    await AuthenticateThroughAzureADAndAddFingerprintAsync();
+            }
 
             SetUpNavBar();
             this.SetUpTabBar();
@@ -48,6 +53,90 @@ namespace MyHealth.Client.iOS
         public override void ItemSelected(UITabBar tabbar, UITabBarItem item)
         {
             Title = item.Title;
+        }
+
+        void AuthenticateThroughFingerprint()
+        {
+            var context = new LAContext();
+            NSError authError;
+            var myReason = new NSString(
+                "Please, provide your fingerprint to acess the app.");
+            if (context.CanEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, out authError))
+            {
+                var replyHandler = new LAContextReplyHandler((success, error) => 
+                    {
+                        this.InvokeOnMainThread(async () => 
+                            {
+                                if (success)
+                                    return;
+
+                                var dialogService = Mvx.Resolve<IDialogService>();
+                                await dialogService.AlertAsync(
+                                    "We could not detect your fingerprint. " +
+                                    "You will be asked again to enter your Azure AD credentials. " +
+                                    "Thank you.",
+                                    "Touch ID",
+                                    "OK");
+
+                                // If fingerprint not detected, repeat Azure AD auth.
+                                AuthenticateThroughAzureADAndAddFingerprintAsync()
+                                    .ConfigureAwait(false);
+                            });
+                    });
+                context.EvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, myReason, replyHandler);
+            }
+        }
+
+        async Task AuthenticateThroughAzureADAndAddFingerprintAsync ()
+        {
+            var authenticationParentUiContext = new PlatformParameters(this);
+            var messenger = Mvx.Resolve<IMvxMessenger>();
+            await new MyHealthClient(messenger).AuthenticationService.SignInAsync(authenticationParentUiContext);
+
+            // If we went beyond this line the Azure AD auth. was a success
+            AddFingerprintAuthentication();
+        }
+
+        void AddFingerprintAuthentication()
+        {
+            var context = new LAContext();
+            NSError authError;
+            var myReason = new NSString(
+                "Please, provide your fingerprint to simplify the authentication.");
+            if (context.CanEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, out authError))
+            {
+                var replyHandler = new LAContextReplyHandler((success, error) => 
+                {
+                    this.InvokeOnMainThread(() => 
+                    {
+                        var dialogService = Mvx.Resolve<IDialogService>();
+
+                        if (success)
+                        {
+                            Settings.TouchIdEnrolledAndFingerprintDetected = true;
+
+                            dialogService.AlertAsync(
+                                "Your fingerprint was successfully detected. " +
+                                "You can access the app through it from now on. " +
+                                "Thank you.",
+                                "Touch ID",
+                                "OK");
+                        }
+                        else
+                        {
+                            Settings.TouchIdEnrolledAndFingerprintDetected = false;
+
+                            dialogService.AlertAsync(
+                                "We could not detect your fingerprint. " +
+                                "You will need to authenticate through Azure AD. " +
+                                "Thank you.",
+                                "Touch ID",
+                                "OK");
+                        }
+                    });
+                });
+                context.EvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, myReason, replyHandler);
+            }
         }
 
 		void SetUpNavBar ()

@@ -13,9 +13,7 @@
 
         public getClient() {
             if (!this.client) {
-                this.client = new WindowsAzure.MobileServiceClient(
-                    this.configService.Azure.API_URL, this.configService.Azure.GATEWAY_URL, ''
-                ).withFilter((request, next, callback) => {
+                this.client = new WindowsAzure.MobileServiceClient(this.configService.Azure.API_URL, '').withFilter((request, next, callback) => {
                     if (request.url.indexOf('/tables/homeappointment') >= 0 && request.url.indexOf('$expand') === -1) {
                         request.url = request.url + ((request.url.indexOf('?') === -1) ? '?' : '&');
                         request.url = request.url + '$expand=patient';
@@ -43,20 +41,67 @@
         public getActiveDoctor() {
             return new Promise<Doctor>((resolve, reject) => {
                 if (!this.activeDoctor.id) {
+                    if (this.configService.General.REQUIRE_LOGIN) {
+                        this.getLoggedDoctor().then((doctor: any) => {
+                            resolve(doctor);
+                        });
+                        
+                    } else {
+                        this.getDefaultDoctor().then((doctor: any) => {
+                            resolve(doctor);
+                        });
+                    }
+
+                } else {
+                    resolve(this.activeDoctor);
+                }
+            });
+        }
+
+        public getLoggedDoctor() {
+            return new Promise<Doctor>((resolve, reject) => {
+                this.login().then(() => {
+
+                    var tenantId = this.configService.General.DEFAULT_TENANT_ID;
+
+                    this.getClient().invokeApi('LoggedUser', {
+                        method: 'get',
+                        parameters: { tenantId: tenantId }
+                    }).done((response) => {
+                        this.activeDoctor.deserialize(response.result);
+                        this.configService.General.DEFAULT_DOCTOR_GUID = this.activeDoctor.id;
+                        this.$rootScope.$broadcast('activeDoctorUpdated');
+                        resolve(this.activeDoctor);
+                    }, (error) => {
+                        console.error(error);
+                    });
+                });
+            });
+        }
+
+        public getDefaultDoctor() {
+            return new Promise<Doctor>((resolve, reject) => {
+                if (!this.activeDoctor.id) {
                     this.login().then(() => {
                         var doctorsTable = this.getClient().getTable('doctor');
+                        var doctorId = this.configService.General.DEFAULT_DOCTOR_GUID;
+                        var tenantId = this.configService.General.DEFAULT_TENANT_ID;
                         doctorsTable.where(
                             {
-                                id: this.configService.General.DEFAULT_DOCTOR_GUID,
-                                tenantId: this.configService.General.DEFAULT_TENANT_ID 
+                                id: doctorId,
+                                tenantId: tenantId
                             })
                             .read().done((result: any) => {
-                            this.activeDoctor.deserialize(result[0]);
-                            this.$rootScope.$broadcast('activeDoctorUpdated');
-                            resolve(this.activeDoctor);
-                        }, (error: any) => {
-                            console.log(error);
-                        });
+                                if (result.length > 0) {
+                                    this.activeDoctor.deserialize(result[0]);
+                                    this.$rootScope.$broadcast('activeDoctorUpdated');
+                                } else {
+                                    console.error('Couldn\'t find the doctor with GUID: ' + doctorId + ' and Tenant ID: ' + tenantId);
+                                }
+                                resolve(this.activeDoctor);
+                            }, (error: any) => {
+                                console.log(error);
+                            });
                     });
                 } else {
                     resolve(this.activeDoctor);

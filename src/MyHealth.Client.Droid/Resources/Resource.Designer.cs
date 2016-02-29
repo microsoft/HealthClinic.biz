@@ -90,9 +90,9 @@ namespace MyHealth.Client.Droid
 			global::Cirrious.MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::MyHealth.Client.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
 			global::Cirrious.MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxItemTemplate = global::MyHealth.Client.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
 			global::Gcm.Client.Resource.String.library_name = global::MyHealth.Client.Droid.Resource.String.library_name;
-			global::Microsoft.Experimental.IdentityModel.Clients.ActiveDirectory.Resource.Id.agentWebView = global::MyHealth.Client.Droid.Resource.Id.agentWebView;
-			global::Microsoft.Experimental.IdentityModel.Clients.ActiveDirectory.Resource.Layout.WebAuthenticationBroker = global::MyHealth.Client.Droid.Resource.Layout.WebAuthenticationBroker;
-			global::Microsoft.Experimental.IdentityModel.Clients.ActiveDirectory.Resource.String.ApplicationName = global::MyHealth.Client.Droid.Resource.String.ApplicationName;
+			global::Microsoft.IdentityModel.Clients.ActiveDirectory.Resource.Id.agentWebView = global::MyHealth.Client.Droid.Resource.Id.agentWebView;
+			global::Microsoft.IdentityModel.Clients.ActiveDirectory.Resource.Layout.WebAuthenticationBroker = global::MyHealth.Client.Droid.Resource.Layout.WebAuthenticationBroker;
+			global::Microsoft.IdentityModel.Clients.ActiveDirectory.Resource.String.ApplicationName = global::MyHealth.Client.Droid.Resource.String.ApplicationName;
 			global::Splat.Resource.String.library_name = global::MyHealth.Client.Droid.Resource.String.library_name;
 			global::Xamarin.Forms.Platform.Resource.String.ApplicationName = global::MyHealth.Client.Droid.Resource.String.ApplicationName;
 			global::Xamarin.Forms.Platform.Resource.String.Hello = global::MyHealth.Client.Droid.Resource.String.Hello;

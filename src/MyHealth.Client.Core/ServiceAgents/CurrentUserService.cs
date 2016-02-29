@@ -19,7 +19,7 @@ namespace MyHealth.Client.Core.ServiceAgents
         {
             if (_current == null)
             {
-                _current = await _client.PatientsService.GetAsync(AppSettings.DefaultPatientId);
+                _current = await _client.PatientsService.GetAsync(AppSettings.CurrentPatientId);
             }
             return _current;
         }

@@ -66,7 +66,7 @@ namespace MyHealth.Client.Core.ViewModels
 			_messenger = messenger;
 
 			ServerAddress = AppSettings.ServerlUrl;
-            AzureADAuthorizationEnabled = Settings.ADAuthenticationEnabled;
+            AzureADAuthorizationEnabled = Settings.SecurityEnabled;
 		}
 
         void LaunchHockeyAppFeedback()
@@ -93,8 +93,12 @@ namespace MyHealth.Client.Core.ViewModels
 			AppSettings.ServerlUrl = _serverAddress;
             _messenger.Publish(new SettingsChangedMessage(this));
 
-            if (_azureADAuthorizationEnabled != Settings.ADAuthenticationEnabled)
-                Settings.ADAuthenticationEnabled = _azureADAuthorizationEnabled;
+            if (_azureADAuthorizationEnabled != Settings.SecurityEnabled)
+            {
+                Settings.SecurityEnabled = _azureADAuthorizationEnabled;
+                // Reset fingerprint
+                Settings.TouchIdEnrolledAndFingerprintDetected = false;
+            }
 
             Device.OnPlatform(
                 Android: () => Close (this));

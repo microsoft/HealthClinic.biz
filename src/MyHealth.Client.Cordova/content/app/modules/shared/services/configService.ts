@@ -5,8 +5,7 @@ module MyHealth.Client.Cordova.Application.Shared {
     export class ConfigService {
 
         public Azure = {
-            API_URL: 'https://YOUR_MOBILEAPP.azurewebsites.net',
-            GATEWAY_URL: 'https://YOUR_GATEWAY.azurewebsites.net/',
+            API_URL: 'https://YOUR_MOBILEAPP.azurewebsites.net'
         };
 
 
@@ -14,10 +13,7 @@ module MyHealth.Client.Cordova.Application.Shared {
             DEFAULT_TENANT_ID: 0,
             DEFAULT_DOCTOR_GUID: 'D0ACA653-2AB1-4160-87FC-21E72FD2ED44',
             REQUIRE_LOGIN: false
-        };
-
-        public AppInsights = {
-            INSTRUMENTATION_KEY: 'YOUR_INSTRUMENTATION_KEY'
+       
         };
 
         public BingMaps = {

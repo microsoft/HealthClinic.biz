@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Controllers;
+using System.Linq;
 
 namespace MyHealth.MobileApp.Controllers
 {
@@ -47,6 +48,7 @@ namespace MyHealth.MobileApp.Controllers
             {
                 // Return the installation for the specific ID.
                 var installation = await hubClient.GetInstallationAsync(Id);
+ 
                 return installation.Tags as List<string>;
             }
             catch (MessagingException ex)
@@ -69,6 +71,13 @@ namespace MyHealth.MobileApp.Controllers
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
 
+            var updates = await GetUpdates(Id, message);
+
+            return await PatchInstallation(Id, updates);
+        }
+
+        private async Task<List<PartialUpdateOperation>> GetUpdates(string Id, string message)
+        {
             // Verify that the tags are a valid JSON array.
             var tags = JArray.Parse(message);
 
@@ -77,13 +86,24 @@ namespace MyHealth.MobileApp.Controllers
             var updates = new List<PartialUpdateOperation>();
 
             // Add a update operation for the tag.
+            UpdateOperationType operation = UpdateOperationType.Replace;
+
+            var existingTags = await GetTagsByInstallationId(Id);
+            if (existingTags == null || !existingTags.Any())
+                operation = UpdateOperationType.Add;
+
             updates.Add(new PartialUpdateOperation
             {
-                Operation = UpdateOperationType.Replace,
+                Operation = operation,
                 Path = "/tags",
                 Value = tags.ToString()
             });
 
+            return updates;
+        }
+
+        private async Task<HttpResponseMessage> PatchInstallation(string Id, List<PartialUpdateOperation> updates)
+        {
             try
             {
                 // Add the requested tag to the installation.

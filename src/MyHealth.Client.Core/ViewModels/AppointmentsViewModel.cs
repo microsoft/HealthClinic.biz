@@ -86,7 +86,7 @@ namespace MyHealth.Client.Core.ViewModels
             Appointments.Clear();
 
             var appointments = await _myHealthClient.
-                AppointmentsService.GetPatientAppointmentsAsync(AppSettings.DefaultPatientId, MaxAppointmentsToList);
+                AppointmentsService.GetPatientAppointmentsAsync(AppSettings.CurrentPatientId, MaxAppointmentsToList);
             
 			if (appointments.Count > 0)
 				Appointments.AddRange(appointments);

@@ -69,7 +69,7 @@ namespace MyHealth.Client.Core.ViewModels
 
         private async Task InitializeTreatments()
         {
-            var medicines = await _myHealthClient.MedicinesService.GetMedicinesWithDosesAsync(AppSettings.DefaultPatientId, AmountOfMedicines);
+            var medicines = await _myHealthClient.MedicinesService.GetMedicinesWithDosesAsync(AppSettings.CurrentPatientId, AmountOfMedicines);
 
             Treatment = new ObservableCollection<MedicineWithDoses>(medicines);
 

@@ -9,21 +9,13 @@ using Windows.UI.Xaml.Navigation;
 using MyHealth.Client.Core.ViewModels;
 using MyHealth.Client.W10.UWP.Services;
 using System.Threading.Tasks;
-using MyHealth.Client.Core;
-using Microsoft.Experimental.IdentityModel.Clients.ActiveDirectory;
-using MyHealth.Client.Core.Helpers;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using MyHealth.Client.Core.ServiceAgents;
 
 namespace MyHealth.Client.W10.UWP
 {
-    /// <summary>
-    /// Provides application-specific behavior to supplement the default Application class.
-    /// </summary>
     sealed partial class App : Application
     {
-        /// <summary>
-        /// Initializes the singleton application object.  This is the first line of authored code
-        /// executed, and as such is the logical equivalent of main() or WinMain().
-        /// </summary>
         public App()
         {
             Microsoft.ApplicationInsights.WindowsAppInitializer.InitializeAsync(
@@ -57,10 +49,10 @@ namespace MyHealth.Client.W10.UWP
                 // configuring the new page by passing required information as a navigation
                 // parameter
 
-                await AskForADCredentialsAsync();
-
                 var setup = new Setup(rootFrame);
                 setup.Initialize();
+
+                await AskForADCredentialsAsync();
 
                 Window.Current.Content = new Views.MainView(rootFrame, Mvx.Resolve<IMvxMessenger>());
 
@@ -76,12 +68,9 @@ namespace MyHealth.Client.W10.UWP
 
         private async Task AskForADCredentialsAsync()
         {
-            MicrosoftGraphService.SetAuthenticationUiContext(new PlatformParameters(PromptBehavior.Always, false));
-            MicrosoftGraphService.SetClientId(AppSettings.WUPClientId);
-            MicrosoftGraphService.SetRedirectUri(AppSettings.RedirectUri);
-
-            if (Settings.ADAuthenticationEnabled)
-                await MicrosoftGraphService.SignInAsync();
+            var messenger = Mvx.Resolve<IMvxMessenger>();
+            MyHealthClient client = new MyHealthClient(messenger);
+            await client.AuthenticationService.SignInAsync(new PlatformParameters(PromptBehavior.Always, false));
         }
 
         /// <summary>

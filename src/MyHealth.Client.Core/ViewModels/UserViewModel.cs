@@ -1,5 +1,6 @@
 ﻿using Cirrious.MvvmCross.ViewModels;
 using MvvmCross.Plugins.Messenger;
+using MyHealth.Client.Core.Helpers;
 using MyHealth.Client.Core.Model;
 using MyHealth.Client.Core.ServiceAgents;
 using System.Collections.ObjectModel;
@@ -54,21 +55,26 @@ namespace MyHealth.Client.Core.ViewModels
 
         private async Task InitializeUserAsync()
         {
-            if (!string.IsNullOrEmpty(MicrosoftGraphService.LoggedInUser))
+            var userTask = _myHealthClient.PatientsService.GetAsync(AppSettings.CurrentPatientId);
+            var appointmentsTask = _myHealthClient.AppointmentsService.GetPatientAppointmentsAsync(AppSettings.CurrentPatientId, MaxAppointmentsToList);
+
+            await Task.WhenAll(userTask, appointmentsTask);
+            User = await userTask;
+
+            UpdateLoggedUserInfo(); // Show the information read from AAD.
+
+            AppointmentsHistory = new ObservableCollection<ClinicAppointment>(await appointmentsTask);
+        }
+
+        private void UpdateLoggedUserInfo()
+        {
+            if (Settings.SecurityEnabled && !AppSettings.OutlookIntegration)
             {
-                User = (await _myHealthClient.PatientsService.GetByNameAsync(MicrosoftGraphService.LoggedInUser, 1)).FirstOrDefault();
-                return;
+                User.Name = MicrosoftGraphService.LoggedUser;
+                User.Email = MicrosoftGraphService.LoggedUserEmail;
+                User.Picture = MicrosoftGraphService.LoggedUserPhoto;
+                RaisePropertyChanged(() => User);
             }
-
-			var userTask = _myHealthClient.PatientsService.GetAsync(AppSettings.DefaultPatientId);
-			var appointmentsTask = _myHealthClient.AppointmentsService.GetPatientAppointmentsAsync(AppSettings.DefaultPatientId, MaxAppointmentsToList);
-
-			await Task.WhenAll (userTask, appointmentsTask);
-
-			User = await userTask;
-			var appointments = await appointmentsTask;
-
-            AppointmentsHistory = new ObservableCollection<ClinicAppointment>(appointments);
         }
     }
 }
