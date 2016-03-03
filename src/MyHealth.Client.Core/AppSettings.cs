@@ -8,11 +8,11 @@ namespace MyHealth.Client.Core
 
         public static string MobileAPIUrl = "https://YOUR_WEB_MOBILE.azurewebsites.net";
 
-        public static int DefaultPatientId = YOUR_PATIENT_ID;
+        public static int DefaultPatientId = __YOURPATIENTID__;
 
-        public static int CurrentPatientId = YOUR_PATIENT_ID;
+        public static int CurrentPatientId = __YOURPATIENTID__;
 
-        public static int DefaultTenantId = YOUR_TENANT_ID;
+        public static int DefaultTenantId = __YOURTENANTID__;
 
         public static string DefaultAppointmentDescription = "Follow up in order to determine the effectiveness of treatment received";
 
