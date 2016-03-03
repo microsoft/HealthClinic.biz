@@ -1,6 +1,4 @@
-﻿
-using System;
-using MvvmCross.Plugins.Messenger;
+﻿using MvvmCross.Plugins.Messenger;
 
 namespace MyHealth.Client.Core.ServiceAgents
 {

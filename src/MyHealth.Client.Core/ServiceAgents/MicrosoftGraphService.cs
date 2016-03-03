@@ -10,7 +10,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Net;
 using System.IO;
 
 namespace MyHealth.Client.Core

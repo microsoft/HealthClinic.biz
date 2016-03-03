@@ -1,6 +1,7 @@
 ﻿using Cirrious.MvvmCross.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using MyHealth.Client.Core.Helpers;
+using MyHealth.Client.Core.Messages;
 using MyHealth.Client.Core.Model;
 using MyHealth.Client.Core.ServiceAgents;
 using System.Collections.ObjectModel;
@@ -61,12 +62,13 @@ namespace MyHealth.Client.Core.ViewModels
             await Task.WhenAll(userTask, appointmentsTask);
             User = await userTask;
 
-            UpdateLoggedUserInfo(); // Show the information read from AAD.
+            _messenger.Subscribe<LoggedUserInfoChangedMessage>(UpdateLoggedUserInfo);
+            UpdateLoggedUserInfo(null);
 
             AppointmentsHistory = new ObservableCollection<ClinicAppointment>(await appointmentsTask);
         }
 
-        private void UpdateLoggedUserInfo()
+        public void UpdateLoggedUserInfo(LoggedUserInfoChangedMessage msg)
         {
             if (Settings.SecurityEnabled && !AppSettings.OutlookIntegration)
             {
