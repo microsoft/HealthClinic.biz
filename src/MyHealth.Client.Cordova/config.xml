@@ -104,4 +104,9 @@
   <plugin name="cordova-plugin-zip" version="3.0.0" />
   <plugin name="ionic-plugin-keyboard" version="1.0.8" />
   <plugin name="com.internrocket.plugins.statusbarcolor" version="0.0.1" />
+  <preference name="KeepRunning" value="True" />
+  <preference name="ShowTitle" value="True" />
+  <preference name="InAppBrowserStorageEnabled" value="True" />
+  <preference name="SuppressesIncrementalRendering" value="True" />
+  <preference name="Fullscreen" value="False" />
 </widget>
