@@ -6,7 +6,7 @@
         constructor($scope: any, homeAppointmentService: HomeAppointmentService, $rootScope: any, $state: any) {
 
             $scope.$on('$ionicView.enter', () => {
-                homeAppointmentService.update();
+                homeAppointmentService.update(false);
             });
 
             $scope.homeAppointments = homeAppointmentService.get();
@@ -15,14 +15,9 @@
             });
 
             $scope.navigate = (homeAppointment: any) => {
-                $state.go('app.homeAppointment', { homeAppointmentId: homeAppointment.appointmentId });
+                $state.go('app.homeAppointment', { homeAppointmentId: homeAppointment.appointmentId});
             };
 
-            var today = moment({ hour: 0 });
-            $scope.homeAppointmentsFilter = homeAppointment => {
-                var diff = today.diff(moment(homeAppointment.dateTime), 'hours');
-                return diff <= 0 && !homeAppointment.visited;
-            };
         }
     }
 

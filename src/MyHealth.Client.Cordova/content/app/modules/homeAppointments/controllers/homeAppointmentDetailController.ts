@@ -6,10 +6,11 @@
         constructor($scope: any, homeAppointmentService: HomeAppointmentService, $rootScope: any, $stateParams: any) {
 
             $scope.$on('$ionicView.enter', () => {
-                homeAppointmentService.update();
+                homeAppointmentService.update($stateParams.visited);
             });
 
-            $scope.homeAppointment = homeAppointmentService.get($stateParams.homeAppointmentId);
+            $scope.homeAppointment = homeAppointmentService.getDetails($stateParams.homeAppointmentId, $stateParams.visited);
+
             $scope.$on('homeAppointmentUpdated', () => {
                 $scope.$apply();
             });

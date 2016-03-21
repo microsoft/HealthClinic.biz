@@ -44,7 +44,7 @@ module MyHealth.Client.Cordova {
                     }
                 })
                 .state('app.homeAppointment', {
-                    url: '/homeappointment/:homeAppointmentId',
+                    url: '/homeappointment/:homeAppointmentId/:visited',
                     views: {
                         'menuContent': {
                             templateUrl: 'templates/homeAppointments/views/homeAppointmentDetail.html',

@@ -12,8 +12,10 @@
         }
 
         private homeAppointments: HomeAppointment[] = new Array<HomeAppointment>();
+        private visitedHomeAppointments: HomeAppointment[] = new Array<HomeAppointment>();
         private patients: Patient[] = new Array<Patient>();
         private homeAppointmentById: any = [];
+        private visitedHomeAppointmentById: any = [];
         private patientById: any = [];
 
         private digestHomeAppointmentData(data: Array<any>) {
@@ -34,6 +36,24 @@
             });
         }
 
+        private digestVisitedHomeAppointmentData(data: Array<any>) {
+            data.forEach((homeAppointmentData) => {
+                if (this.visitedHomeAppointmentById[homeAppointmentData.appointmentId]) {
+                    this.visitedHomeAppointmentById[homeAppointmentData.appointmentId].deserialize(homeAppointmentData);
+                } else {
+                    var visitedHomeAppointment = new HomeAppointment().deserialize(homeAppointmentData);
+                    this.visitedHomeAppointmentById[visitedHomeAppointment.appointmentId] = visitedHomeAppointment;
+                    this.visitedHomeAppointments.push(visitedHomeAppointment);
+                }
+                if (homeAppointmentData.patient) {
+                    this.digestPatientData([homeAppointmentData.patient]);
+                    var appoID = homeAppointmentData.appointmentId;
+                    var patID = homeAppointmentData.patient.patientId;
+                    this.visitedHomeAppointmentById[appoID].patient = this.patientById[patID];
+                }
+            });
+        }
+
         private digestPatientData(data: Array<any>) {
             data.forEach((patientData) => {
                 if (this.patientById[patientData.patientId]) {
@@ -44,6 +64,15 @@
                     this.patients.push(patient);
                 }
             });
+        }
+
+        public getDetails(id: any, visited: boolean) {
+            if (visited) {
+                return this.getVisited(id);
+            }
+            else {
+                return this.get(id);
+            }
         }
 
         public get(id: any = null) {
@@ -57,11 +86,30 @@
             }
         }
 
-        public update() {
-            this.dataService.getHomeAppointments().then((result: any) => {
-                this.digestHomeAppointmentData(result);
-                this.$rootScope.$broadcast('homeAppointmentUpdated');
-            });
+        public getVisited(id: any = null) {
+            if (id) {
+                if (!this.visitedHomeAppointmentById[id]) {
+                    this.visitedHomeAppointmentById[id] = new HomeAppointment();
+                }
+                return this.visitedHomeAppointmentById[id];
+            } else {
+                return this.visitedHomeAppointments;
+            }
+        }
+
+        public update(visited: boolean) {
+            if (visited) {
+                this.dataService.getHomeAppointments(true).then((result: any) => {
+                    this.digestVisitedHomeAppointmentData(result);
+                    this.$rootScope.$broadcast('homeAppointmentUpdated');
+                });
+            }
+            else {
+                this.dataService.getHomeAppointments(false).then((result: any) => {
+                    this.digestHomeAppointmentData(result);
+                    this.$rootScope.$broadcast('homeAppointmentUpdated');
+                });
+            }
         }
 
         public updateAppointment(appointment: any) {

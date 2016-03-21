@@ -109,13 +109,18 @@
             });
         }
 
-        public getHomeAppointments() {
+        public getHomeAppointments(visited: boolean) {
             return new Promise<any>((resolve, reject) => {
                 this.getActiveDoctor().then((doctor: any) => {
                     var homeAppointmentsTable = this.getClient().getTable('homeappointment');
                     homeAppointmentsTable.take(10)
                         .orderBy('dateTime')
-                        .where({ doctorId: doctor.doctorId, tenantId: this.configService.General.DEFAULT_TENANT_ID })
+                        .where(
+                        {
+                            doctorId: doctor.doctorId,
+                            tenantId: this.configService.General.DEFAULT_TENANT_ID,
+                            visited: visited
+                        })
                         .read()
                         .done((result: any) => {
                             resolve(result);

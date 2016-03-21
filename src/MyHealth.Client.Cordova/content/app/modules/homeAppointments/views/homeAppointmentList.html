@@ -2,7 +2,7 @@
     <div class="loader" ng-class="{hidden: homeAppointments.length !== 0}">Loading...</div>
     <ion-content>
 
-        <card-home-appointment ng-model="homeAppointment" first="$first" ng-repeat="homeAppointment in homeAppointments | filter: homeAppointmentsFilter | orderBy: 'dateTime' as filtered_result track by homeAppointment.appointmentId" ng-click="navigate(homeAppointment)"></card-home-appointment>
+        <card-home-appointment ng-model="homeAppointment" first="$first" ng-repeat="homeAppointment in homeAppointments | filter: {visited:false} | orderBy: 'dateTime' as filtered_result track by homeAppointment.appointmentId" ng-click="navigate(homeAppointment)"></card-home-appointment>
 
     </ion-content>
 </ion-view>
