@@ -11,6 +11,7 @@ using MyHealth.Client.W10.UWP.Services;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using MyHealth.Client.Core.ServiceAgents;
+using MyHealth.Client.Core.Helpers;
 
 namespace MyHealth.Client.W10.UWP
 {
@@ -68,9 +69,12 @@ namespace MyHealth.Client.W10.UWP
 
         private async Task AskForADCredentialsAsync()
         {
-            var messenger = Mvx.Resolve<IMvxMessenger>();
-            MyHealthClient client = new MyHealthClient(messenger);
-            await client.AuthenticationService.SignInAsync(new PlatformParameters(PromptBehavior.Always, false));
+            if (Settings.SecurityEnabled)
+            {
+                var messenger = Mvx.Resolve<IMvxMessenger>();
+                MyHealthClient client = new MyHealthClient(messenger);
+                await client.AuthenticationService.SignInAsync(new PlatformParameters(PromptBehavior.Always, false));
+            }
         }
 
         /// <summary>

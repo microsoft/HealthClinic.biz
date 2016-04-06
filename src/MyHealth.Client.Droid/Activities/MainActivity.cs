@@ -96,8 +96,11 @@ namespace MyHealth.Client.Droid.Views
 
         async void SignIn(PlatformParameters authContext)
         {
-             var messenger = Mvx.Resolve<IMvxMessenger>();
-             await (new MyHealthClient(messenger)).AuthenticationService.SignInAsync(authContext);
+            if (Settings.SecurityEnabled)
+            {
+                var messenger = Mvx.Resolve<IMvxMessenger>();
+                await (new MyHealthClient(messenger)).AuthenticationService.SignInAsync(authContext);
+            }
         }
 
         private void RegisterForPushNotifications()
