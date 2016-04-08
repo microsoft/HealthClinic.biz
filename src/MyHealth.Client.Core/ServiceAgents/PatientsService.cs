@@ -10,8 +10,8 @@ namespace MyHealth.Client.Core.ServiceAgents
         public PatientsService(string urlPrefix, int tenantId)
             : base(urlPrefix, tenantId)
         {
-
         }
+
         public async Task<Patient> GetAsync(int id)
         {
             string url = $"{_UrlPrefix}api/patients/{id}";

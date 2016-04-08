@@ -1,18 +1,17 @@
-﻿using Microsoft.IdentityModel.Clients.ActiveDirectory;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using System.Linq;
-using MyHealth.Client.Core.Helpers;
-using MvvmCross.Plugins.Messenger;
 using Cirrious.CrossCore;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using MvvmCross.Plugins.Messenger;
+using MyHealth.Client.Core.Helpers;
 using MyHealth.Client.Core.Messages;
 
 namespace MyHealth.Client.Core.ServiceAgents
 {
     public class AuthenticationService
     {
-        private PatientsService _patientService = null;
-        IMvxMessenger _messenger = null;
-        private const int GetOnlyOne = 1;
+        private readonly PatientsService _patientService;
+		private readonly IMvxMessenger _messenger;
 
         public AuthenticationService(PatientsService patientService, IMvxMessenger messenger)
         {
@@ -22,41 +21,33 @@ namespace MyHealth.Client.Core.ServiceAgents
 
         public async Task SignInAsync(IPlatformParameters context)
         {
-            if (Settings.SecurityEnabled)
+            await MicrosoftGraphService.SignInAsync(context);
+			var currentPatient = await GetPatientInfoAsync();
+            
+			if (currentPatient != null)
             {
-                await MicrosoftGraphService.SignInAsync(context);
-
-                Model.Patient currentPatient = await GetPatientInfo();
-                if (currentPatient != null)
-                {
-                    AppSettings.CurrentPatientId = currentPatient.PatientId;
-                    MicrosoftGraphService.LoggedUserPhoto = currentPatient.Picture;
-                }
-
-                PublishChanges();
-                LoadUserPhoto();
+                AppSettings.CurrentPatientId = currentPatient.PatientId;
+                // We first get patient's picture from backend
+				MicrosoftGraphService.LoggedUserPhoto = currentPatient.Picture;
+				// And, then, try to get a newer one from Microsoft Graph
+				MicrosoftGraphService.LoggedUserPhoto = await MicrosoftGraphService.GetUserPhotoAsync();
             }
+
+			_messenger.Publish(new LoggedUserInfoChangedMessage(this));
         }
 
-        private async void LoadUserPhoto()
-        {
-            MicrosoftGraphService.LoggedUserPhoto = await MicrosoftGraphService.GetUserPhotoAsync();
-            PublishChanges();
-        }
+		public void SignOut ()
+		{
+			MicrosoftGraphService.SignOut ();
+		}
 
-        private void PublishChanges()
+        private async Task<Model.Patient> GetPatientInfoAsync()
         {
-            _messenger.Publish(new LoggedUserInfoChangedMessage(this,
-                    user: MicrosoftGraphService.LoggedUser,
-                    email: MicrosoftGraphService.LoggedUserEmail,
-                    photo: MicrosoftGraphService.LoggedUserPhoto));
-        }
+			var patientsMatchingName = await _patientService
+				.GetByNameAsync (MicrosoftGraphService.LoggedUser, 1);
+			var patient = patientsMatchingName.FirstOrDefault();
 
-        private async Task<Model.Patient> GetPatientInfo()
-        {
-            return (await _patientService
-                        .GetByNameAsync(MicrosoftGraphService.LoggedUser, GetOnlyOne))
-                            .FirstOrDefault();
+			return patient;
         }
     }
 

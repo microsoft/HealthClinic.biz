@@ -65,8 +65,6 @@ namespace MyHealth.Client.iOS
 
             Akavache.BlobCache.ApplicationName = "MyHealth";
 
-            
-
             var setup = new Setup(this, _window);
             setup.Initialize();
 

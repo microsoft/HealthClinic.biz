@@ -106,7 +106,8 @@ namespace MyHealth.Client.iOS
 
         void UpdateAppleWatch(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName != nameof(HomeViewModel.FirstMedicineCountDown))
+            if (e.PropertyName != nameof(HomeViewModel.FirstMedicineCountDown) ||
+			   HomeViewModel.FirstMedicine == null)
                 return;
 
             _wormhole.PassMessage(NextPillsMessage.MessageType,
@@ -173,7 +174,6 @@ namespace MyHealth.Client.iOS
 
 		void AnimateHeart ()
 		{
-
 			heartWidthConstraint.Constant = _heartWidthConstraintConstant;
 			heartHeightConstraint.Constant = _heartHeightConstraintConstant;
 
@@ -191,7 +191,6 @@ namespace MyHealth.Client.iOS
                 UIViewAnimationOptions.CurveEaseOut,
                 () => this.View.LayoutIfNeeded(),
                 null);
-
 		}
 
 		void CreateRoundCornersOnDoctorPicture ()

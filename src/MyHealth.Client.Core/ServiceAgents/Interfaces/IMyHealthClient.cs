@@ -22,5 +22,7 @@ namespace MyHealth.Client.Core.ServiceAgents
         HomeAppointmentsService HomeAppointmentsService { get; }
 
         DoctorCalendarService DoctorCalendarService { get; }
+
+		AuthenticationService AuthenticationService { get; }
     }
 }

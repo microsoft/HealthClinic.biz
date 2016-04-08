@@ -1,16 +1,17 @@
-﻿using Microsoft.Graph;
-using Microsoft.IdentityModel.Clients.ActiveDirectory;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Graph;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using MyHealth.Client.Core.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.IO;
 
 namespace MyHealth.Client.Core
 {
@@ -21,15 +22,14 @@ namespace MyHealth.Client.Core
 
         private static IPlatformParameters authenticationParentUiContext;
         private static GraphService graphClient = null;
-
-        public static string AccessToken = null;
+		private static string accessToken = null;
 
         #region Properties
 
         public static AuthenticationContext AuthenticationContext { get; private set; }
         public static string LastTenantId { get; set; }
-        public static string LoggedUser { get; private set; }
-        public static string LoggedUserEmail { get; private set; }
+        public static string LoggedUser { get; set; }
+        public static string LoggedUserEmail { get; set; }
         public static byte[] LoggedUserPhoto { get; set; }
 
         #endregion Properties
@@ -39,11 +39,26 @@ namespace MyHealth.Client.Core
         public static async Task SignInAsync(IPlatformParameters context)
         {
             authenticationParentUiContext = context;
-            if (AppSettings.OutlookIntegration)
-                await GetGraphClientAsync();
-            else
-                await SignInAsync();
+
+			if (AppSettings.OutlookIntegration) {
+				await GetGraphClientAsync ();
+				return;
+			}
+
+			await SignInAsync ();
         }
+
+		public static void SignOut ()
+		{
+			AuthenticationContext?.TokenCache.Clear ();
+
+			accessToken = null;
+
+			LastTenantId = null;
+			LoggedUser = null;
+			LoggedUserEmail = null;
+			LoggedUserPhoto = null;
+		}
 
         // Create an event on signed-in user's default calendar using the REST api.
         public static async Task AddEventAsync(
@@ -51,7 +66,7 @@ namespace MyHealth.Client.Core
             IEnumerable<string> attendeeEmails, string description,string locationDisplayName) {
             await EnsureAccessTokenAsync();
 
-            if (!string.IsNullOrEmpty(AccessToken))
+            if (!string.IsNullOrEmpty(accessToken))
             {
                 var @event = new
                 {
@@ -81,7 +96,7 @@ namespace MyHealth.Client.Core
                 var postData = JsonConvert.SerializeObject(@event);
                 using (HttpClient client = new HttpClient())
                 {
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AccessToken);
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     var content = new StringContent(postData, Encoding.UTF8, "application/json");
                     var response = await client.PostAsync(api, content);
@@ -106,7 +121,7 @@ namespace MyHealth.Client.Core
             List<Office365.Event> result = new List<Office365.Event>();
             using (HttpClient client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AccessToken);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 var response = await client.GetAsync(api);
                 var responseString = await response.Content.ReadAsStringAsync();
@@ -133,7 +148,7 @@ namespace MyHealth.Client.Core
                 string url = "https://graph.microsoft.com/v1.0/me/photo/$value";
                 using (HttpClient client = new HttpClient())
                 {
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AccessToken);
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                     var stream = await client.GetStreamAsync(url);
                     result = ReadStream(stream);
                 }
@@ -146,50 +161,74 @@ namespace MyHealth.Client.Core
             return result;
         }
 
-        static byte[] ReadStream(Stream input)
-        {
-            byte[] buffer = new byte[16 * 1024];
-            using (MemoryStream ms = new MemoryStream())
-            {
-                int read;
-                while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                    ms.Write(buffer, 0, read);
-                }
-                return ms.ToArray();
-            }
-        }
-
         #endregion Public Methods
 
         #region Private Methods
 
-        private async static Task<string> GetAccessTokenAsync()
+		static byte[] ReadStream(Stream input)
+		{
+			byte[] buffer = new byte[16 * 1024];
+			using (MemoryStream ms = new MemoryStream())
+			{
+				int read;
+				while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+				{
+					ms.Write(buffer, 0, read);
+				}
+				return ms.ToArray();
+			}
+		}
+
+        private async static Task RetrieveAccessTokenAndUserInfoAsync()
         {
             if (authenticationParentUiContext == null)
             {
                 throw new InvalidOperationException("The authentication parent is invalid");
             }
 
-            AuthenticationResult result = await AuthenticationContext.AcquireTokenAsync(
-                            resource: AppSettings.Security.Scope,
-                            clientId: AppSettings.Security.ClientId,
-                            redirectUri: AppSettings.Security.RedirectUri,
-                            parameters: authenticationParentUiContext);
+			var errorAcquiringToken = false;
+			AuthenticationResult result = null;
 
-            if (!string.IsNullOrEmpty(result.AccessToken))
-            {
-                AccessToken = result.AccessToken;
-                LoggedUser = $"{ result.UserInfo.GivenName} {result.UserInfo.FamilyName}";
-                LoggedUserEmail = result.UserInfo.DisplayableId;
-                LastTenantId = result.TenantId;
-            }
-            else
-            {
-                AccessToken = null;
-            }
+			try
+			{
+				if (accessToken == null)
+					throw new Exception ("There was previously a sign out. We need to sign in again");
 
-            return AccessToken;
+				result = await AuthenticationContext.AcquireTokenSilentAsync(
+					resource: AppSettings.Security.Scope,
+					clientId: AppSettings.Security.ClientId);
+
+				if (result != null && !string.IsNullOrWhiteSpace(result.AccessToken))
+					accessToken = result.AccessToken;
+			}
+			catch (Exception)
+			{
+				errorAcquiringToken = true;
+			}
+
+			if (errorAcquiringToken)
+			{
+				try
+				{
+		            result = await AuthenticationContext.AcquireTokenAsync(
+			            resource: AppSettings.Security.Scope,
+			            clientId: AppSettings.Security.ClientId,
+			            redirectUri: AppSettings.Security.RedirectUri,
+			            parameters: authenticationParentUiContext);
+
+					if (result != null && !string.IsNullOrWhiteSpace(result.AccessToken))
+		                accessToken = result.AccessToken;
+				}
+				catch (Exception e)
+				{
+					throw;
+				}
+			}
+
+            LoggedUser = $"{result.UserInfo.GivenName} {result.UserInfo.FamilyName}";
+            LoggedUserEmail = result.UserInfo.DisplayableId;
+
+            LastTenantId = result.TenantId;
         }
 
         private static bool IsValidDomain(string email)
@@ -199,26 +238,24 @@ namespace MyHealth.Client.Core
 
         private static async Task EnsureAccessTokenAsync()
         {
-            if (AuthenticationContext == null)
-            {
-                AuthenticationContext = new AuthenticationContext(AppSettings.Security.Authority, new TokenCache());
-            }
+			SignOut ();
 
-            if (string.IsNullOrEmpty(AccessToken))
+            if (string.IsNullOrEmpty(accessToken))
             {
-                await GetAccessTokenAsync();
+                await RetrieveAccessTokenAndUserInfoAsync();
             }
         }
-
-
 
         static async Task SignInAsync()
         {
             var errorAuthenticating = false;
+
             try
             {
-                AuthenticationContext = new AuthenticationContext(AppSettings.Security.Authority, new TokenCache());
-                AccessToken = await GetAccessTokenAsync();
+				if (AuthenticationContext == null)
+                	AuthenticationContext = new AuthenticationContext(AppSettings.Security.Authority);
+                
+				await RetrieveAccessTokenAndUserInfoAsync();
             }
             catch (AdalException ex) when (ex.ErrorCode == AdalError.AuthenticationCanceled)
             {
@@ -241,16 +278,22 @@ namespace MyHealth.Client.Core
         static async Task<GraphService> GetGraphClientAsync()
         {
             var errorAuthenticating = false;
+
             try
             {
                 await SignInAsync();
 
-                if (!string.IsNullOrEmpty(AccessToken) && IsValidDomain(LoggedUserEmail)
+                if (!string.IsNullOrEmpty(accessToken) && IsValidDomain(LoggedUserEmail)
                     && AppSettings.OutlookIntegration)
                 {
                     var tenantId = (LastTenantId ?? OutlookTenandId) + UriSchemeDelimiter;
                     var serviceRoot = new Uri("https://graph.microsoft.com/beta/" + tenantId);
-                    graphClient = new GraphService(serviceRoot, async () => await GetAccessTokenAsync());
+                    graphClient = new GraphService(serviceRoot, async () => 
+						{
+							await RetrieveAccessTokenAndUserInfoAsync();
+
+							return accessToken;
+						});
                 }
             }
             catch (Exception)
