@@ -15,9 +15,9 @@ For extra information about licenses, you can see it at the dependency repositor
 # Prerequisites #
 
  - Windows 10
- - Visual Studio 2015 Update 1 (make sure you install UWP Development tools, Cross Platform Mobile Development, and Office Developer Tools).
+ - Visual Studio 2015 Update 2 (make sure you install UWP Development tools, Cross Platform Mobile Development, and Office Developer Tools).
  - [Xamarin for Visual Studio](https://xamarin.com/visual-studio)
- - [Microsoft Azure SDK](http://go.microsoft.com/fwlink/?LinkId=617168) for Visual Studio 2015
+ - [Microsoft Azure SDK](https://www.microsoft.com/web/handlers/webpi.ashx/getinstaller/VWDOrVs2015AzurePack.appids) for Visual Studio 2015
  - Microsoft Office 2016
  - Bing Maps Key - [Getting a Bing Maps Key](https://msdn.microsoft.com/en-us/library/ff428642.aspx)
  - Microsoft Azure subscription
