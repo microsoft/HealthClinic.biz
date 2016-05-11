@@ -1,7 +1,7 @@
 ﻿@import '../../base/_variables.scss';
 
 .login-button {
-    @extend .accent-button;
+    @extend .accent-button !optional;
     width: 226px;
     height: 37px;
     background-color: transparent;

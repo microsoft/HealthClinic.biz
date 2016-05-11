@@ -4,7 +4,7 @@ $iterations: 101;
 
 @for $i from 1 to $iterations {
     .grid-col-#{$i} {
-        width: #{$i}%;
+        width: #{$i * 1%};
     }
 }
 
