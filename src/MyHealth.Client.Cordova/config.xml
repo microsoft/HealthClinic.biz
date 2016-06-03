@@ -87,7 +87,7 @@
   <platform name="ios">
     <preference name="CodePushDeploymentKey" value="__YOURIOSCODEPUSHKEY__" />
   </platform>
-  <preference name="instrumentation_key" value="7d0738de-dda1-49e6-afaa-9be0a062c07c" />
+  <preference name="instrumentation_key" value="" />
   <plugin name="code-push" version="1.5.2-beta" />
   <plugin name="cordova-plugin-code-push" version="1.5.0-beta" />
   <plugin name="cordova-plugin-console" version="1.0.2" />
