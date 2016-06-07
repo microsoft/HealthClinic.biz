@@ -45,7 +45,7 @@ namespace MyHealth.Client.Core
         static SecuritySettings AADSettings = new SecuritySettings()
         {
             ClientId = "YOUR_AAD_CLIENT_ID",
-            RedirectUri = new Uri("YOUR_AAD_REDIRECT_URI"),
+            RedirectUri = new Uri("http://your_aad_redirect_url"),
             Authority = "YOUR_AAD_AUTHORITY",
             Scope = "https://graph.microsoft.com",
             Domain = "YOUR_AAD_DOMAIN"
@@ -54,7 +54,7 @@ namespace MyHealth.Client.Core
         static SecuritySettings OutlookSettings = new SecuritySettings()
         {
             ClientId = "YOUR_OUTLOOK_CLIENT_ID",
-            RedirectUri = new Uri("YOUR_OUTLOOK_REDIRECT_URI"),
+            RedirectUri = new Uri("http://your_outlook_redirect_url"),
             Authority = "YOUR_OUTLOOK_AUTHORITY",
             Scope = "https://graph.microsoft.com/calendars.readwrite",
             Domain = "YOUR_OUTLOOK_DOMAIN"
