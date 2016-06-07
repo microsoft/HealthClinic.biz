@@ -81,13 +81,13 @@
   <preference name="android-targetSdkVersion" value="21" />
   <allow-navigation href="*" />
   <platform name="android">
-    <preference name="CodePushDeploymentKey" value="559f0091-2e2a-4327-bf86-f18922cc4c26" />
+    <preference name="CodePushDeploymentKey" value="__YOURANDROIDCODEPUSHKEY__" />
     <preference name="StatusBarBackgroundColor" value="#004d48" />
   </platform>
   <platform name="ios">
-    <preference name="CodePushDeploymentKey" value="39e7998a-ca53-4d31-8980-824235dd324f" />
+    <preference name="CodePushDeploymentKey" value="__YOURIOSCODEPUSHKEY__" />
   </platform>
-  <preference name="instrumentation_key" value="7d0738de-dda1-49e6-afaa-9be0a062c07c" />
+  <preference name="instrumentation_key" value="" />
   <plugin name="code-push" version="1.5.2-beta" />
   <plugin name="cordova-plugin-code-push" version="1.5.0-beta" />
   <plugin name="cordova-plugin-console" version="1.0.2" />
