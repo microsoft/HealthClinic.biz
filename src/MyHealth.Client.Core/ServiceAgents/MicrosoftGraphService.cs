@@ -219,7 +219,7 @@ namespace MyHealth.Client.Core
 					if (result != null && !string.IsNullOrWhiteSpace(result.AccessToken))
 		                accessToken = result.AccessToken;
 				}
-				catch (Exception e)
+				catch (Exception)
 				{
 					throw;
 				}

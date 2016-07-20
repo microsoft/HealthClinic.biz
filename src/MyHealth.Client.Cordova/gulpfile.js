@@ -9,6 +9,9 @@ require('./gulp/tasks/preview.js')(gulp);
 require('./gulp/tasks/sass.js')(gulp);
 require('./gulp/tasks/watch.js')(gulp);
 require('./gulp/tasks/typescript.js')(gulp);
+require('./gulp/tasks/tests.js')(gulp);
 
 gulp.task('default', ['sass', 'copy', 'ts:transpile']);
-gulp.task('dev', ['sass', 'copy', 'lint:ts','ts:transpile', 'watch', 'preview']);
+gulp.task('dev', ['sass', 'copy', 'lint:ts', 'ts:transpile', 'watch', 'preview']);
+
+

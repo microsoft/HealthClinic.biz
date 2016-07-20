@@ -20,6 +20,16 @@
     "xml2js": "~0.4.13"
   },
   "devDependencies": {
-    "gulp-typescript": "^2.9.2"
+    "karma-junit-reporter": "^1.0.0",
+    "del": "^1.1.1",
+    "gulp-typescript": "^2.9.2",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-karma": "^0.0.4",
+    "gulp-tsc": "^0.9.4",
+    "jasmine": "^2.2.1",
+    "karma": "^0.12.31",
+    "karma-cli": "0.0.4",
+    "karma-jasmine": "^0.3.5",
+    "karma-phantomjs-launcher": "^0.1.4"
   }
 }

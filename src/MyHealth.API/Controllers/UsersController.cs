@@ -11,6 +11,7 @@ using System.Security.Claims;
 using MyHealth.Data.Repositories;
 using MyHealth.Data.Infraestructure;
 using System;
+using MyHealth.API.Infrastructure;
 using MyHealth.API.Validators;
 
 namespace MyHealth.API.Controllers
@@ -48,21 +49,21 @@ namespace MyHealth.API.Controllers
         }
 
         [HttpGet]
-        [Authorize("Admin")]
+        [Authorize(Policies.Admin)]
         public async Task<IEnumerable<ApplicationUser>> Get(int pageSize, int pageCount)
         {
             return await _applicationUsersRepository.GetAsync(pageSize, pageCount);
         }
 
         [HttpGet("{username}")]
-        [Authorize("Admin")]
+        [Authorize(Policies.Admin)]
         public async Task<ApplicationUser> GetAsync(string username)
         {
             return await _applicationUsersRepository.GetAsync(username);
         }
 
         [HttpPost]
-        [Authorize("Admin")]
+        [Authorize(Policies.Admin)]
         public async Task<ApplicationUserResponse> AddAsync([FromBody]ApplicationUserAddRequest request)
         {
             if (!await _userValidators.ValidatePasswordAsync(request.user, request.password))
@@ -77,7 +78,7 @@ namespace MyHealth.API.Controllers
         }
 
         [HttpPut]
-        [Authorize("Admin")]
+        [Authorize(Policies.Admin)]
         public async Task<ApplicationUserResponse> UpdateAsync([FromBody]ApplicationUserAddRequest request)
         {
             if (request.password != null && !await _userValidators.ValidatePasswordAsync(request.user, request.password))
@@ -106,7 +107,7 @@ namespace MyHealth.API.Controllers
         }
 
         [HttpDelete("{username}")]
-        [Authorize("Admin")]
+        [Authorize(Policies.Admin)]
         public async Task<ApplicationUserResponse> DeleteAsync(string username)
         {
             var result = await _applicationUsersRepository.DeleteAsync(username);

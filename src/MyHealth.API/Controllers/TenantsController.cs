@@ -6,6 +6,7 @@ using MyHealth.Data.Repositories;
 using MyHealth.Model;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MyHealth.API.Infrastructure;
 
 namespace MyHealth.API.Controllers
 {
@@ -43,7 +44,7 @@ namespace MyHealth.API.Controllers
         }
 
         [HttpGet("list")]
-        [Authorize("Tenant")]
+        [Authorize(Policies.Tenant)]
         public async Task<IEnumerable<Tenant>> GetAsync(int pageSize, int pageCount)
         {
             ApplicationUser user = await _ApplicationUsersRepository.GetByUserNameAsync(User.Identity.Name);
@@ -58,14 +59,14 @@ namespace MyHealth.API.Controllers
         }
 
         [HttpGet("{tenantId}")]
-        [Authorize("Tenant")]
+        [Authorize(Policies.Tenant)]
         public async Task<Tenant> GetAsync(int tenantId)
         {
             return await _TenantsRepository.GetAsync(tenantId);
         }
 
         [HttpPost]
-        [Authorize("Tenant")]
+        [Authorize(Policies.Tenant)]
         public async Task<TenantResponse> AddAsync([FromBody]TenantRequest request)
         {
             if (!await _UserValidators.ValidatePasswordAsync(new ApplicationUser(), request.password))
@@ -101,7 +102,7 @@ namespace MyHealth.API.Controllers
         }
 
         [HttpPut]
-        [Authorize("Tenant")]
+        [Authorize(Policies.Tenant)]
         public async Task<TenantResponse> UpdateAsync([FromBody]TenantRequest request)
         {
             if (request.password != null && !await _UserValidators.ValidatePasswordAsync(new ApplicationUser(), request.password))
@@ -132,7 +133,7 @@ namespace MyHealth.API.Controllers
         }
 
         [HttpDelete("{tenantId}")]
-        [Authorize("Tenant")]
+        [Authorize(Policies.Tenant)]
         public async Task DeleteAsync(int tenantId)
         {
             await _TenantsRepository.DeleteAsync(tenantId);

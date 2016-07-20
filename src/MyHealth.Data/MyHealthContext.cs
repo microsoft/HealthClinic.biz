@@ -1,19 +1,26 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
 using MyHealth.Model;
 
 namespace MyHealth.Data
 {
-
-    public class MyHealthContext : IdentityDbContext<ApplicationUser>
+    public class MyHealthContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
     {
         public MyHealthContext()
         {
         }
 
+        public MyHealthContext(DbContextOptions<MyHealthContext> options)
+            :base(options)
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
+
             builder.Entity<ClinicAppointment>().Property(a => a.AppointmentId).UseSqlServerIdentityColumn();
 
             builder.Entity<ClinicAppointment>().HasOne(c => c.Patient).WithMany(p => p.ClinicAppointment).OnDelete(DeleteBehavior.Restrict);
@@ -28,8 +35,6 @@ namespace MyHealth.Data
 
             builder.Entity<Doctor>().Property(d => d.DoctorId).UseSqlServerIdentityColumn();
             builder.Entity<Patient>().Property(p => p.PatientId).UseSqlServerIdentityColumn();
-
-            base.OnModelCreating(builder);
         }
 
         public DbSet<Tenant> Tenants { get; set; }
@@ -51,6 +56,5 @@ namespace MyHealth.Data
         public DbSet<ClinicSummary> ClinicSummaries { get; set; }
 
         public DbSet<Tip> Tips { get; set; }
-
     }
 }
