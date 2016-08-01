@@ -36,3 +36,9 @@ Here's links to blog posts related to this project:
 
  - [Connect(“demos”); // 2015: HealthClinic.biz](http://blogs.msdn.com/b/visualstudio/archive/2015/12/08/connect-demos-2015-healthclinic-biz.aspx) by Erika Ehrli
  - [ASP.NET 5 and .NET Core RC1 in context Plus all the Connect 2015 News](http://www.hanselman.com/blog/ASPNET5AndNETCoreRC1InContextPlusAllTheConnect2015News.aspx) by Scott Hanselman
+
+# Licenses #
+These samples and templates are all licensed under the MIT license. See the license.txt file in the root.
+
+# Code of Conduct #
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
