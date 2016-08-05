@@ -21,19 +21,19 @@
         <div class="form-container-inner-left">
             <div class="input" ng-class="{'input-edit' : editMode}">
                 <label for="formFirstName" class="margin-bottom-10">First name</label>
-                <input type="text" id="formFirstName" class="font-size-30" ng-model="user.FirstName" required autocomplete="false"/>
+                <input type="text" id="formFirstName" class="font-size-30" ng-model="user.firstName" required autocomplete="false"/>
             </div>
             <div class="input" ng-class="{'input-edit' : editMode}">
                 <label for="formLastName">Last name</label>
-                <input type="text" id="formLastName" ng-model="user.LastName" autocomplete="false" />
+                <input type="text" id="formLastName" ng-model="user.lastName" autocomplete="false" />
             </div>
             <div class="input" ng-class="{'input-edit' : editMode}">
                 <label for="formEmail">Email</label>
-                <input type="text" id="formEmail" ng-model="user.Email" autocomplete="false" />
+                <input type="text" id="formEmail" ng-model="user.email" autocomplete="false" />
             </div>
             <div class="inline-input input input-padding-right" ng-class="{'input-edit' : editMode}">
                 <label for="formUsername">Username</label>
-                <input type="text" id="formUsername" ng-model="user.UserName" required autocomplete="off "/>
+                <input type="text" id="formUsername" ng-model="user.userName" required autocomplete="off "/>
             </div>
             <div class="inline-input input input-padding-right" ng-class="{'input-edit' : editMode}">
                 <label for="formPassword">New Password</label>

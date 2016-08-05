@@ -18,57 +18,57 @@
     <div class="row form-container margin-bottom-15">
         <div class="form-container-inner-left">
             <div class="form-image-doctor form-image-doctor-up visible-xs visible-sm">
-                <input type="file" accept="image/*" class="form-image-doctor-file" file-base64 data-b64="doctor.Picture" />
-                <button class="form-image-doctor-button" ng-if="!doctor.Picture">
+                <input type="file" accept="image/*" class="form-image-doctor-file" file-base64 data-b64="doctor.picture" />
+                <button class="form-image-doctor-button" ng-if="!doctor.picture">
                     <span class="icon-btn_new"></span>
                     <span>Add a profile photo</span>
                 </button>
-                <div class="form-image-doctor-img" style="background-image:url('{{doctor.Picture}}');" ng-if="doctor.Picture"></div>
+                <div class="form-image-doctor-img" style="background-image:url('{{doctor.picture}}');" ng-if="doctor.picture"></div>
             </div>
             <div class="input" ng-class="{'input-edit' : editMode}">
                 <label for="formName" class="margin-bottom-10">Name</label>
-                <input type="text" id="formName" class="font-size-30" ng-model="doctor.Name" required/>
+                <input type="text" id="formName" class="font-size-30" ng-model="doctor.name" required/>
             </div>
             <div class="input" ng-class="{'textarea-edit' : editMode}">
                 <label for="formDescription">Description</label>
-                <textarea id="formDescription" ng-model="doctor.Description" required></textarea>
+                <textarea id="formDescription" ng-model="doctor.description" required></textarea>
             </div>
             <div class="input" ng-class="{'input-edit' : editMode}">
                 <label for="formAddress">Address</label>
-                <input type="text" id="formAddress" ng-model="doctor.Address" required/>
+                <input type="text" id="formAddress" ng-model="doctor.address" required/>
             </div>
             <div class="inline-input input input-padding-right fix-after-icon" ng-class="{'input-edit' : editMode}">
                 <label for="formEmail">E-mail</label>
-                <input type="email" id="formEmail" ng-model="doctor.Email" required/>
+                <input type="email" id="formEmail" ng-model="doctor.email" required/>
             </div>
             <div class="inline-input input input-telephone fix-after-icon" ng-class="{'input-edit' : editMode}">
                 <label for="formTelephone">Phone</label>
-                <input type="text" id="formTelephone" ng-model="doctor.Phone" required/>
+                <input type="text" id="formTelephone" ng-model="doctor.phone" required/>
             </div>
             <div class="inline-input input input-padding-left" ng-class="{'input-edit' : editMode}">
                 <label for="formMobile">Mobile</label>
-                <input type="text" id="formMobile" ng-model="doctor.Mobile" required/>
+                <input type="text" id="formMobile" ng-model="doctor.mobile" required/>
             </div>
         </div>
 
         <div class="form-container-inner-right">
             <div class="form-image-doctor visible-md visible-lg">
-                <input type="file" accept="image/*" class="form-image-doctor-file" file-base64 data-b64="doctor.Picture"/>
-                <button class="form-image-doctor-button" ng-if="!doctor.Picture">
+                <input type="file" accept="image/*" class="form-image-doctor-file" file-base64 data-b64="doctor.picture"/>
+                <button class="form-image-doctor-button" ng-if="!doctor.picture">
                     <span class="icon-btn_new"></span>
                     <span>Add a profile photo</span>
                 </button>
-                <div class="form-image-doctor-img" style="background-image: url('{{doctor.Picture}}');" ng-if="doctor.Picture">
+                <div class="form-image-doctor-img" style="background-image: url('{{doctor.picture}}');" ng-if="doctor.picture">
 
                 </div>
             </div>
             <div class="form-patients-number">
-                <span class="form-patients-number-quantity" ng-bind="doctor.PatientCount || 0"></span>
+                <span class="form-patients-number-quantity" ng-bind="doctor.patientCount || 0"></span>
                 <span class="form-patients-number-patients">PATIENTS</span>
             </div>
             <div class="form-register-date">
                 <span class="form-register-date-title">Registration Date</span>
-                <span class="form-register-date-date" ng-bind="doctor.CreatedAt || '---' | date: 'mediumDate'"></span>
+                <span class="form-register-date-date" ng-bind="doctor.createdAt || '---' | date: 'mediumDate'"></span>
             </div>
         </div>
     </div>

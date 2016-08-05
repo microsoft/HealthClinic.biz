@@ -21,28 +21,28 @@
         <div class="form-container-inner-left">
             <div class="input" ng-class="{'input-edit' : editMode}">
                 <label for="formName" class="margin-bottom-10">Name</label>
-                <input type="text" id="formName" class="font-size-30" ng-model="clinic.Name" required />
+                <input type="text" id="formName" class="font-size-30" ng-model="clinic.name" required />
             </div>
             <div class="input" ng-class="{'textarea-edit' : editMode}">
                 <label for="formAddress">Address</label>
-                <input type="text" id="formAddress" ng-model="clinic.Address" required />
+                <input type="text" id="formAddress" ng-model="clinic.address" required />
             </div>
             <div class="input" ng-class="{'input-edit' : editMode}">
                 <label for="formCity">City</label>
-                <input type="text" id="formCity" ng-model="clinic.City" required />
+                <input type="text" id="formCity" ng-model="clinic.city" required />
             </div>
             <div class="inline-input input input-padding-right fix-after-icon" ng-class="{'input-edit' : editMode}">
                 <label for="formUsername">Username</label>
-                <input type="text" id="formUsername" ng-model="clinic.AssociatedUsername" required autocomplete="off" />
+                <input type="text" id="formUsername" ng-model="clinic.associatedUsername" required autocomplete="off" />
             </div>
             <div class="inline-input input input-telephone fix-after-icon" ng-class="{'input-edit' : editMode}">
                 <label for="formPassword">Password</label>
-                <input type="password" id="formPassword" ng-model="clinic.Password" ng-required="!editMode" autocomplete="off" />
+                <input type="password" id="formPassword" ng-model="clinic.password" ng-required="!editMode" autocomplete="off" />
             </div>
         </div>
     </div>
 
     <div class="row margin-bottom-100" ng-show="editMode">
-        <a class="delete-button" href="" ng-click="removeDoctor()"><span class="icon-btn_delete"></span> Delete this doctor</a>
+        <a class="delete-button" href="" ng-click="removeDoctor()"><span class="icon-btn_delete"></span> Delete this clinic</a>
     </div>
 </form>

@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using MyHealth.Data;
 

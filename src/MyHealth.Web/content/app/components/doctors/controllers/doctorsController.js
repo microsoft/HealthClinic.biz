@@ -63,12 +63,12 @@
             .then(() => {
                 var doctorIdList;
                 if (doctor) {
-                    doctorIdList = [doctor.DoctorId];
+                    doctorIdList = [doctor.doctorId];
                 } else {
                     doctorIdList = $scope.doctors
                         .map((doctorItem) => {
                             if (doctorItem.selected) {
-                                return doctorItem.DoctorId;
+                                return doctorItem.doctorId;
                             }
                             return null;
                         });
@@ -79,7 +79,7 @@
                       .then((response) => {
                           if (response.status === 200) {
                               $scope.doctors.forEach((doctorItem) => {
-                                  if (doctorId === doctorItem.DoctorId) {
+                                  if (doctorId === doctorItem.doctorId) {
                                       let index = $scope.doctors.indexOf(doctorItem);
                                       $scope.doctors.splice(index, 1);
                                   }

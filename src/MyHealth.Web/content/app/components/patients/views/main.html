@@ -18,14 +18,14 @@
     <div class="grid-body">
         <div class="grid-row" ng-repeat="patient in patients" ng-class="{ 'selected' : patient.selected }">
             <div class="grid-col-15 image-column">
-                <input type="checkbox" id="{{patient.PatientId}}" ng-model="patient.selected" ng-change="refreshSelectedItems()" />
-                <label for="{{patient.PatientId}}"></label>
-                <img data-ng-src="data:image/png;base64,{{patient.Picture}}" class="grid-image" alt="patient picture" />
+                <input type="checkbox" id="{{patient.patientId}}" ng-model="patient.selected" ng-change="refreshSelectedItems()" />
+                <label for="{{patient.patientId}}"></label>
+                <img data-ng-src="data:image/png;base64,{{patient.picture}}" class="grid-image" alt="patient picture" />
             </div>
-            <div class="grid-col-20" ng-bind="patient.Name"></div>
-            <div class="grid-col-10" ng-bind="patient.DateOfBirth | date"></div>
-            <div class="grid-col-30" ng-bind="patient.Email"></div>
-            <div class="grid-col-15" ng-bind="patient.Phone"></div>
+            <div class="grid-col-20" ng-bind="patient.name"></div>
+            <div class="grid-col-10" ng-bind="patient.dateOfBirth | date"></div>
+            <div class="grid-col-30" ng-bind="patient.email"></div>
+            <div class="grid-col-15" ng-bind="patient.phone"></div>
             <div class="grid-col-10 action-buttons text-center">
                 <span class="icon-btn_delete" ng-click="remove(patient)"></span>
             </div>

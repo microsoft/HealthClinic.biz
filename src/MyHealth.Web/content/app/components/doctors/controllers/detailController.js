@@ -71,12 +71,12 @@
         };
 
         $scope.save = () => {
-            if ($scope.doctor.Picture) {
-                $scope.doctor.Picture = $scope.doctor.Picture.split(',')[1];
+            if ($scope.doctor.picture) {
+                $scope.doctor.picture = $scope.doctor.picture.split(',')[1];
             }
 
             if (!$scope.editMode) {
-                $scope.doctor.TenantId = tenantId;
+                $scope.doctor.tenantId = tenantId;
                 $rootScope.loading = true;
                 doctorsService.add($scope.doctor)
                     .then((response) => {

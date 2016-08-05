@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Data.Entity;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MyHealth.API.Infrastructure;
@@ -10,8 +10,9 @@ using MyHealth.API.Validators;
 using MyHealth.Data;
 using MyHealth.Data.Repositories;
 using MyHealth.Model;
-using Acheve.AspNet.TestHost.Security;
+using Acheve.AspNetCore.TestHost.Security;
 using MyHealth.Data.Infraestructure;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace MyHealth.API
 {
@@ -33,9 +34,7 @@ namespace MyHealth.API
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddEntityFramework()
-                .AddSqlServer()
-                .AddDbContext<MyHealthContext>(options =>
+            services.AddDbContext<MyHealthContext>(options =>
                     options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
 
             services.AddScoped<ApplicationUsersRepository>();

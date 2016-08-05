@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNet.Authorization;
-using Microsoft.AspNet.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyHealth.Data;
 using System.Threading.Tasks;
 using System.Linq;
-using Microsoft.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using MyHealth.Model;
-using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.Security.Claims;
 using MyHealth.Data.Repositories;

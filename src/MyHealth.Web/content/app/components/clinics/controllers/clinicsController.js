@@ -65,12 +65,12 @@
             .then(() => {
                 var tenantIdList;
                 if (clinic) {
-                    tenantIdList = [clinic.TenantId];
+                    tenantIdList = [clinic.tenantId];
                 } else {
                     tenantIdList = $scope.clinics
                         .map((clinicItem) => {
                             if (clinicItem.selected) {
-                                return clinicItem.TenantId;
+                                return clinicItem.tenantId;
                             }
                             return null;
                         });
@@ -84,7 +84,7 @@
                         .then((response) => {
                             if (response.status === 200) {
                                 $scope.clinics.forEach((clinicItem) => {
-                                    if (tenantId === clinicItem.TenantId) {
+                                    if (tenantId === clinicItem.tenantId) {
                                         let index = $scope.clinics.indexOf(clinicItem);
                                         $scope.clinics.splice(index, 1);
                                     }

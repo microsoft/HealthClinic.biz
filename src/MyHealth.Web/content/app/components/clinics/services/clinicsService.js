@@ -49,7 +49,7 @@
             url: url,
             data: {
                 tenant: tenant,
-                password: tenant.Password || null
+                password: tenant.password || null
             }
         });
     }
@@ -61,7 +61,7 @@
             url: url,
             data: {
                 tenant: tenant,
-                password: tenant.Password || null
+                password: tenant.password || null
             }
         });
     }

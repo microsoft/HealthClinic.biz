@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Net.Http;
 using System.Text;
-using Microsoft.AspNet.TestHost;
+using Microsoft.AspNetCore.TestHost;
 using Newtonsoft.Json;
 
 namespace MyHealth.API.Infrastructure

@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNet.Authorization;
-using Microsoft.AspNet.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyHealth.API.AppExtensions;
 using MyHealth.API.Validators;
 using MyHealth.Data.Repositories;

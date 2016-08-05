@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using MyHealth.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace MyHealth.API.Validators

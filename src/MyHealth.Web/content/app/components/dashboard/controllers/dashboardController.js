@@ -107,8 +107,8 @@
                 dashboardService.getExpenses($scope.incomesExpensesYear)
                     .then((allExpenses) => {
                         allExpenses.forEach((elem, index) => {
-                            expenses[index] = elem.Expenses;
-                            incomes[index] = elem.Incomes;
+                            expenses[index] = elem.expenses;
+                            incomes[index] = elem.incomes;
                         });
 
                         createChartDataIncomesExpenses(expenses, incomes);
@@ -127,7 +127,7 @@
                 dashboardService.getPatients($scope.patientsYear)
                     .then((allPatients) => {
                         allPatients.forEach((elem, index) => {
-                            patients[index] = elem.PatientsCount;
+                            patients[index] = elem.patientsCount;
                         });
 
                         createChartDataPatients(patients);

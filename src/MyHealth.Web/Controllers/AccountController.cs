@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using MyHealth.Model;
 using MyHealth.Web.Viewmodels;
 using System.Threading.Tasks;
