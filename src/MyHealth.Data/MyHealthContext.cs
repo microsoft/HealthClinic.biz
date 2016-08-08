@@ -7,10 +7,6 @@ namespace MyHealth.Data
 {
     public class MyHealthContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
     {
-        public MyHealthContext()
-        {
-        }
-
         public MyHealthContext(DbContextOptions<MyHealthContext> options)
             :base(options)
         {

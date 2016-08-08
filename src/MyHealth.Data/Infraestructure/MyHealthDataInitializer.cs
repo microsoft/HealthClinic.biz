@@ -7,8 +7,9 @@ using MyHealth.Model;
 using System.Security.Claims;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.AspNetCore.Hosting;
+using System.Data.SqlClient;
+using System.Threading;
 
 namespace MyHealth.Data.Infraestructure
 {
@@ -17,10 +18,9 @@ namespace MyHealth.Data.Infraestructure
         private static IServiceProvider _serviceProvider = null;
         private static UserManager<ApplicationUser> _userManager = null;
         private static IConfigurationRoot _configuration = null;
-
         private static readonly Random Randomize = new Random();
-
         private const int AppointmentMonths = 6;
+        private int attempt = 1;
 
         public async Task InitializeDatabaseAsync(IServiceProvider serviceProvider)
         {
@@ -917,6 +917,5 @@ namespace MyHealth.Data.Infraestructure
         {
             return Convert.FromBase64String(DoctorsFakeImages.Doctors[index - 1]);
         }
-
     }
 }

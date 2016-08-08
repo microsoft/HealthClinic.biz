@@ -21,14 +21,15 @@ namespace MyHealth.Web
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
             if (env.IsDevelopment())
             {
-                // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
+                builder.AddUserSecrets();
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }
+
+            builder.AddEnvironmentVariables();
             Configuration = builder.Build();
         }
 
@@ -38,7 +39,7 @@ namespace MyHealth.Web
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = Configuration["Data:DefaultConnection:Connectionstring"];
+            var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<MyHealthContext>(options => options.UseSqlServer(connection));
 
             // Register dependencies
