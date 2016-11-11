@@ -8,7 +8,7 @@ namespace MyHealth.Client.Core
     {
         public override void Initialize()
         {
-			Mvx.ConstructAndRegisterSingleton<IMyHealthClient, MyHealthClient> ();
+            Mvx.ConstructAndRegisterSingleton<IMyHealthClient, MyHealthClient> ();
             Mvx.RegisterType<ICurrentUserService, CurrentUserService>();
 
             CreatableTypes()

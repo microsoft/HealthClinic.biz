@@ -34,8 +34,16 @@ namespace MyHealth.Client.iOS
         }
 
 		protected override IMvxApplication CreateApp()
-		{
-			return new Core.App();
+        {
+            var ignored = Microsoft.DemoTelemetry.TelemetryHelper.SendTelemetryAsync(
+                demoName: "HealthClinic.biz",
+                tags: new Dictionary<string, string[]> {
+                    { "Products", new[] { "Xamarin", "Xamarin iOS" } },
+                    { "Audience", new[] { "Developers"} }
+                }
+            );
+
+            return new Core.App();
 		}
 
         protected override void InitializeIoC()

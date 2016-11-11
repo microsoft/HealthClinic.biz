@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Android.Content;
 using Android.Widget;
 using Cirrious.CrossCore;
@@ -19,7 +20,7 @@ namespace MyHealth.Client.Droid
         public Setup(Context applicationContext) : base(applicationContext)
         {
         }
-
+        
         protected override void InitializeIoC()
         {
             base.InitializeIoC();
@@ -28,6 +29,14 @@ namespace MyHealth.Client.Droid
 
         protected override IMvxApplication CreateApp()
         {
+            var ignored = Microsoft.DemoTelemetry.TelemetryHelper.SendTelemetryAsync(
+                demoName: "HealthClinic.biz",
+                tags: new Dictionary<string, string[]> {
+                    { "Products", new[] { "Xamarin", "Xamarin Android" } },
+                    { "Audience", new[] { "Developers"} }
+                }
+            );
+
             return new Core.App();
         }
 

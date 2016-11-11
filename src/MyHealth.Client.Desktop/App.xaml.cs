@@ -33,5 +33,15 @@ namespace MyHealth.Client.Desktop
             get { return _appViewModel.Value; }
         }
 
+        protected override void OnLoadCompleted(NavigationEventArgs e)
+        {
+            var ignored = Microsoft.DemoTelemetry.TelemetryHelper.SendTelemetryAsync(
+                demoName: "HealthClinic.biz",
+                tags: new Dictionary<string, string[]> {
+                    { "Products", new[] { "Xamarin", "Windows Desktop" } },
+                    { "Audience", new[] { "Developers"} }
+                }
+            );
+        }
     }
 }
