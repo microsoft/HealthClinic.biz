@@ -225,6 +225,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SharedAssets\DemoTelemetry.cs">
+      <Link>DemoTelemetry.cs</Link>
+    </Compile>
     <Compile Include="Activities\ToolbarExtensions.cs" />
     <Compile Include="Activities\NewAppointmentActivity.cs" />
     <Compile Include="Activities\SettingsView.cs" />

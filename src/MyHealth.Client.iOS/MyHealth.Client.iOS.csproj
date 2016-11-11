@@ -115,6 +115,9 @@
     <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\SharedAssets\DemoTelemetry.cs">
+      <Link>DemoTelemetry.cs</Link>
+    </Compile>
     <Compile Include="AkavacheSqliteLinkerOverride.cs" />
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="Converters\NullToFrameHeightZeroConverter.cs" />
