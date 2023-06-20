@@ -3,30 +3,41 @@
   "description": "MyHealth",
   "authors": [ "Microsoft" ],
 
+  "testRunner": "xunit",
+
   "dependencies": {
-    "Microsoft.AspNet.TestHost": "1.0.0-rc1-final",
-    "Microsoft.AspNet.Diagnostics": "1.0.0-rc1-final",
-    "Acheve.AspNet.TestHost.Security": "1.0.0-rc1-final",
+    "Microsoft.NETCore.App": {
+      "version": "1.0.0",
+      "type": "platform"
+    },
+    "MyHealth.API": "1.0.0-*",
+    "NETStandard.Library": "1.6.0",
+    "Microsoft.AspNetCore.TestHost": "1.0.0",
+    "Microsoft.AspNetCore.Diagnostics": "1.0.0",
+    "Acheve.AspNetCore.TestHost.Security": "1.0.0",
     "xunit": "2.1.0",
-    "xunit.runner.dnx": "2.1.0-rc1-build204",
+    "dotnet-test-xunit": "2.2.0-preview2-build1029",
     "FluentAssertions": "4.4.0",
-    "MyHealth.API": "1.0.0-*"
+    "Microsoft.EntityFrameworkCore": "1.0.0"
   },
 
   "commands": {
-    "test": "xunit.runner.dnx",
-    "testxml": "xunit.runner.dnx -xml TestResults.xml"
+    "test": "dotnet-test-xunit",
+    "testxml": "dotnet-test-xunit -xml TestResults.xml"
   },
 
   "frameworks": {
-    "dnx451": { },
-    "dnxcore50": {
-      "dependencies": {
-        "System.Collections": "4.0.11-beta-23409",
-        "System.Linq": "4.0.0-beta-23109",
-        "System.Threading": "4.0.11-beta-23409",
-        "System.Runtime": "4.0.21-beta-23409"
-      }
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "portable-net45+win8"
+      ]
+    }
+  },
+
+  "buildOptions": {
+    "copyToOutput": {
+      "include": [ "appsettings.json" ]
     }
   }
 }

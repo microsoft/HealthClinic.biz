@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using MyHealth.Data.Repositories;
 using MyHealth.Model;
 using System.Collections.Generic;

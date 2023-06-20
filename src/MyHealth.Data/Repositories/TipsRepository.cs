@@ -1,7 +1,7 @@
 ﻿using MyHealth.Model;
 using System.Threading.Tasks;
 using System.Linq;
-using Microsoft.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyHealth.Data.Repositories
 {

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
@@ -31,7 +31,7 @@ namespace MyHealth.Office365
 
         string applicationBasePath { get; set; }
 
-        public O365Repository(IHostingEnvironment env, IApplicationEnvironment appEnv)
+        public O365Repository(IHostingEnvironment env, ApplicationEnvironment appEnv)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(appEnv.ApplicationBasePath)

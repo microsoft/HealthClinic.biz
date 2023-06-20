@@ -20,16 +20,16 @@
     <div class="grid-body">
         <div class="grid-row" ng-repeat="clinic in clinics" ng-class="{ 'selected' : clinic.selected }">
             <div class="grid-col-5 image-column">
-                <input type="checkbox" id="clinic_{{clinic.TenantId}}" ng-model="clinic.selected" ng-change="refreshSelectedItems()" />
-                <label for="clinic_{{clinic.TenantId}}"></label>
+                <input type="checkbox" id="clinic_{{clinic.tenantId}}" ng-model="clinic.selected" ng-change="refreshSelectedItems()" />
+                <label for="clinic_{{clinic.tenantId}}"></label>
             </div>
-            <div class="grid-col-5" ng-bind="clinic.TenantId"></div>
-            <div class="grid-col-5" ng-bind="clinic.PatientId"></div>
-            <div class="grid-col-20" ng-bind="clinic.Name"></div>
-            <div class="grid-col-25" ng-bind="clinic.AssociatedUsername"></div>
-            <div class="grid-col-25" ng-bind="clinic.Creator"></div>
+            <div class="grid-col-5" ng-bind="clinic.tenantId"></div>
+            <div class="grid-col-5" ng-bind="clinic.patientId"></div>
+            <div class="grid-col-20" ng-bind="clinic.name"></div>
+            <div class="grid-col-25" ng-bind="clinic.associatedUsername"></div>
+            <div class="grid-col-25" ng-bind="clinic.creator"></div>
             <div class="grid-col-15 action-buttons text-center">
-                <span class="icon-btn_edit" ng-click="nagivateToDetail(clinic.TenantId)"></span>
+                <span class="icon-btn_edit" ng-click="nagivateToDetail(clinic.tenantId)"></span>
                 <span class="icon-btn_delete" ng-click="remove(clinic)"></span>
             </div>
         </div>

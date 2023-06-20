@@ -1,7 +1,7 @@
 ﻿using MyHealth.Model;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System;
 

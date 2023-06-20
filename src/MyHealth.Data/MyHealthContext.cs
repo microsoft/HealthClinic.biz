@@ -1,17 +1,12 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Infrastructure;
-using Microsoft.Data.Entity.Metadata;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using MyHealth.Model;
 
 namespace MyHealth.Data
 {
     public class MyHealthContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
     {
-        public MyHealthContext()
-        {
-        }
-
         public MyHealthContext(DbContextOptions<MyHealthContext> options)
             :base(options)
         {
@@ -24,17 +19,18 @@ namespace MyHealth.Data
             builder.Entity<ClinicAppointment>().Property(a => a.AppointmentId).UseSqlServerIdentityColumn();
 
             builder.Entity<ClinicAppointment>().HasOne(c => c.Patient).WithMany(p => p.ClinicAppointment).OnDelete(DeleteBehavior.Restrict);
-            builder.Entity<ClinicAppointment>().HasOne(c => c.Tenant).WithOne().OnDelete(DeleteBehavior.Restrict);
+            builder.Entity<ClinicAppointment>().HasOne(c => c.Tenant).WithMany().OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<HomeAppointment>().Property(a => a.AppointmentId).UseSqlServerIdentityColumn();
 
             builder.Entity<HomeAppointment>().HasOne(a => a.Patient).WithMany(p => p.HomeAppointments).OnDelete(DeleteBehavior.Restrict);
-            builder.Entity<HomeAppointment>().HasOne(a => a.Tenant).WithOne().OnDelete(DeleteBehavior.Restrict);
+            builder.Entity<HomeAppointment>().HasOne(a => a.Tenant).WithMany().OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<Medicine>().HasOne(m => m.Tenant).WithOne().OnDelete(DeleteBehavior.Restrict);
+            builder.Entity<Medicine>().HasOne(m => m.Tenant).WithMany().OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<Doctor>().Property(d => d.DoctorId).UseSqlServerIdentityColumn();
             builder.Entity<Patient>().Property(p => p.PatientId).UseSqlServerIdentityColumn();
+
         }
 
         public DbSet<Tenant> Tenants { get; set; }

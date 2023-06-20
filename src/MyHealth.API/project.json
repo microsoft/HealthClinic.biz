@@ -1,28 +1,22 @@
-﻿{
+{
+  "authors": [
+    "Microsoft"
+  ],
+  "description": "HealthClinic.biz",
   "version": "1.0.0-*",
-  "description": "MyHealth",
-  "authors": [ "Microsoft" ],
-  "compilationOptions": {
-    "define": [ "O365INTEGRATION" ]
-  },
+
   "dependencies": {
-    "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
-    "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
-    "Microsoft.Net.Http.Server": "1.0.0-rc1-final",
-    "MyHealth.Data": "",
-    "MyHealth.Model": "",
-    "MyHealth.Office365": ""
+    "Microsoft.AspNetCore.Mvc": "1.0.0",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0",
+    "MyHealth.Data": "1.0.0-*",
+    "MyHealth.Model": "1.0.0-*",
+    "MyHealth.Office365": "1.0.0-*",
+    "NETStandard.Library": "1.6.0"
   },
 
   "frameworks": {
-    "dnx451": { },
-    "dnxcore50": {
-      "dependencies": {
-        "System.Collections": "4.0.11-beta-23409",
-        "System.Linq": "4.0.0-beta-23109",
-        "System.Threading": "4.0.11-beta-23409",
-        "System.Runtime": "4.0.21-beta-23409"
-      }
+    "netstandard1.6": {
+      "imports": "dnxcore50"
     }
   }
 }

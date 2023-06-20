@@ -1,7 +1,8 @@
 ﻿using System;
-using Microsoft.AspNet.TestHost;
+using Microsoft.AspNetCore.TestHost;
 using MyHealth.API.Infrastructure.Fixtures;
 using Xunit;
+using Microsoft.AspNetCore.Hosting;
 
 namespace MyHealth.API.Specs
 {
@@ -10,10 +11,11 @@ namespace MyHealth.API.Specs
     {
         protected DatabaseTestBase()
         {
-            // Arrange
-            Server = new TestServer(
-                TestServer.CreateBuilder()
-                    .UseStartup<TestStartup>());
+            var hostBuilder = new WebHostBuilder()
+                .UseStartup<TestStartup>();
+
+                // Arrange
+            Server = new TestServer(hostBuilder);
         }
 
         protected TestServer Server { get; }

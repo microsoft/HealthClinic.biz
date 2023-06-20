@@ -1,11 +1,11 @@
 ﻿using MyHealth.Model;
 using System.Threading.Tasks;
-using Microsoft.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
-using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Identity;
 using MyHealth.Data.Infraestructure;
 
 namespace MyHealth.Data.Repositories

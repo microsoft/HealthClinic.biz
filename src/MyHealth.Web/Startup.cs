@@ -1,30 +1,26 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using MyHealth.Data;
-using MyHealth.Data.Infraestructure;
-using MyHealth.Model;
 using MyHealth.Web.AppBuilderExtensions;
-using Microsoft.Extensions.PlatformAbstractions;
+using MyHealth.Model;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using MyHealth.Data;
 using MyHealth.API.Infrastructure;
+using Microsoft.Extensions.Configuration;
+using MyHealth.Data.Infraestructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyHealth.Web
 {
     public class Startup
     {
-        private readonly Platform _Platform;
-
-        public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv
-            , IRuntimeEnvironment runtimeEnvironment)
+        public Startup(IHostingEnvironment env)
         {
-            // Setup configuration sources.
-
             var builder = new ConfigurationBuilder()
-                .SetBasePath(appEnv.ApplicationBasePath)
-                .AddJsonFile("appsettings.json")
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
             if (env.IsDevelopment())
@@ -35,17 +31,16 @@ namespace MyHealth.Web
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
-            _Platform = new Platform(runtimeEnvironment);
         }
 
         public IConfiguration Configuration { get; set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            var useInMemoryStore = !_Platform.IsRunningOnWindows || _Platform.IsRunningOnMono || _Platform.IsRunningOnNanoServer;
-
-            services.ConfigureDataContext(Configuration, useInMemoryStore);
+            var connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<MyHealthContext>(options => options.UseSqlServer(connection));
 
             // Register dependencies
             services.ConfigureDependencies();
@@ -60,21 +55,20 @@ namespace MyHealth.Web
             // Add MVC services to the services container.
             services.AddMvc();
 
-            services.AddCaching();
+            services.AddMemoryCache();
 
             services.AddSession();
 
             services.AddAuthorization(Policies.Configuration);
         }
 
-        // Configure is called after ConfigureServices is called.
-        public async void Configure(IApplicationBuilder app, IHostingEnvironment env, 
-            ILoggerFactory loggerFactory, MyHealthDataInitializer dataInitializer)
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public async void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, 
+            MyHealthDataInitializer dataInitializer)
         {
             // Add Application Insights monitoring to the request pipeline as a very first middleware.
             app.UseApplicationInsightsRequestTelemetry();
 
-            loggerFactory.MinimumLevel = LogLevel.Information;
             loggerFactory.AddConsole();
 
             // Add the following to the request pipeline only in development environment.
@@ -82,7 +76,6 @@ namespace MyHealth.Web
             {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage(options => options.EnableAll());
             }
             else
             {
@@ -98,16 +91,12 @@ namespace MyHealth.Web
             app.UseSession();
 
             app.ConfigureSecurity();
-            
+
             // Add MVC to the request pipeline.
             app.ConfigureRoutes();
 
-            app.UseIISPlatformHandler();
-
             await dataInitializer.InitializeDatabaseAsync(app.ApplicationServices);
-        }
 
-        // Entry point for the application.
-        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
+        }
     }
 }

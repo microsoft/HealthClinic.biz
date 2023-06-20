@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
@@ -7,7 +7,9 @@ using MyHealth.Model;
 using System.Security.Claims;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.AspNetCore.Hosting;
+using System.Data.SqlClient;
+using System.Threading;
 
 namespace MyHealth.Data.Infraestructure
 {
@@ -15,12 +17,10 @@ namespace MyHealth.Data.Infraestructure
     {
         private static IServiceProvider _serviceProvider = null;
         private static UserManager<ApplicationUser> _userManager = null;
-        private static IApplicationEnvironment _applicationEnvironment = null;
         private static IConfigurationRoot _configuration = null;
-
         private static readonly Random Randomize = new Random();
-
         private const int AppointmentMonths = 6;
+        private int attempt = 1;
 
         public async Task InitializeDatabaseAsync(IServiceProvider serviceProvider)
         {
@@ -38,10 +38,10 @@ namespace MyHealth.Data.Infraestructure
         {
             _serviceProvider = serviceProvider;
             _userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
-            _applicationEnvironment = serviceProvider.GetService<IApplicationEnvironment>();
+            var env = serviceProvider.GetService<IHostingEnvironment>();
 
             var builder = new ConfigurationBuilder()
-                    .SetBasePath(_applicationEnvironment.ApplicationBasePath)
+                    .SetBasePath(env.ContentRootPath)
                     .AddJsonFile("appsettings.json");
             _configuration = builder.Build();
 
@@ -86,7 +86,8 @@ namespace MyHealth.Data.Infraestructure
             var user = await _userManager.FindByNameAsync(_configuration["DefaultUsername"]);
             if (user == null)
             {
-                user = new ApplicationUser {
+                user = new ApplicationUser
+                {
                     UserName = _configuration["DefaultUsername"],
                     TenantId = tenantId
                 };
@@ -374,7 +375,7 @@ namespace MyHealth.Data.Infraestructure
                 Age = Randomize.Next(35, 38),
                 DateOfBirth = DateTime.UtcNow.AddDays(-Randomize.Next(1, 30)).AddMonths(-Randomize.Next(1, 12)).AddYears(-Randomize.Next(30, 38)),
                 Phone = "555-322-111",
-                Doctors = new List<Doctor>() {  doctor },
+                Doctors = new List<Doctor>() { doctor },
                 Id = Guid.NewGuid().ToString()
             };
             patients.Add(patient);
@@ -539,6 +540,7 @@ namespace MyHealth.Data.Infraestructure
                            TimeOfDay = TimeOfDay.Breakfast
                        },
                 };
+
             var medicines = new List<Medicine>();
             var patients = context.Patients
                 .Where(p => p.TenantId == tenantId)
@@ -565,8 +567,8 @@ namespace MyHealth.Data.Infraestructure
                     globalIdx = globalIdx % data.Length;
                 }
 
-                context.Medicines.AddRange(medicines);
             }
+            context.Medicines.AddRange(medicines);
             context.SaveChanges();
         }
 
@@ -576,7 +578,7 @@ namespace MyHealth.Data.Infraestructure
             {
                 Title = "Daily Health Tip",
                 Content = "Drinking two glassess of water in the morning helps activate internal organs.\n\nDrinking one glass of water before a meal will help with digestion.\n\nDrinking one glass of water before taking a shower helps prevent high blood pressure.\n\nDrinking a glass of water before bedtime helps prevent strokes or heart attack.",
-                Date = DateTime.UtcNow, 
+                Date = DateTime.UtcNow,
                 TenantId = tenantId
             };
 
@@ -915,6 +917,5 @@ namespace MyHealth.Data.Infraestructure
         {
             return Convert.FromBase64String(DoctorsFakeImages.Doctors[index - 1]);
         }
-
     }
 }

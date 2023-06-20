@@ -1,7 +1,7 @@
 ﻿using MyHealth.Model;
 using System.Threading.Tasks;
 using System.Linq;
-using Microsoft.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
 
@@ -27,7 +27,7 @@ namespace MyHealth.Data.Repositories
         public async Task<IEnumerable<ExpensesSummary>> GetExpensesSummaryAsync(int tenantId, int year)
         {
             return await _context.ExpensesSummaries
-                .Where(e => e.TenantId == tenantId & e.Year == year)
+                .Where(p => p.TenantId == tenantId && p.Year == year)
                 .OrderBy(e => e.Month)
                 .ToListAsync();
         }
@@ -35,7 +35,8 @@ namespace MyHealth.Data.Repositories
         public async Task<IEnumerable<PatientsSummary>> GetPatientsSummaryAsync(int tenantId, int year)
         {
             return await _context.PatientsSummaries
-                .Where(p => p.TenantId == tenantId & p.Year == year)
+                .Where(p => p.TenantId == tenantId && p.Year == year)
+                .Where(p => p.Year == year)
                 .OrderBy(p => p.Month)
                 .ToListAsync();
         }

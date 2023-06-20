@@ -14,7 +14,7 @@
             doctorsService.getDoctor(doctorId)
                 .then((response) => {
                     $scope.doctor = response.data;
-                    $scope.doctor.Picture = `data:image/png;base64,${$scope.doctor.Picture}`;
+                    $scope.doctor.picture = `data:image/png;base64,${$scope.doctor.picture}`;
                 })
                 .catch((error) => {
                     toasterService.showServerError(error);
@@ -71,12 +71,12 @@
         };
 
         $scope.save = () => {
-            if ($scope.doctor.Picture) {
-                $scope.doctor.Picture = $scope.doctor.Picture.split(',')[1];
+            if ($scope.doctor.picture) {
+                $scope.doctor.picture = $scope.doctor.picture.split(',')[1];
             }
 
             if (!$scope.editMode) {
-                $scope.doctor.TenantId = tenantId;
+                $scope.doctor.tenantId = tenantId;
                 $rootScope.loading = true;
                 doctorsService.add($scope.doctor)
                     .then((response) => {
